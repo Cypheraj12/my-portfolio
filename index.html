@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anant Joshi | Marvel Avengers, Spider-Man, Doctor Strange & Ghost Rider Portfolio</title>
+    <meta name="description" content="Portfolio of Anant Joshi - Final Year B.Tech CSE (Data Science Specialization). Inspired by Marvel Avengers, Spider-Man, Doctor Strange & Ghost Rider.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:ital,wght@1,700;1,900&family=Outfit:wght@300;400;600;700;800;900&family=Playfair+Display:ital,wght@1,700;1,900&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="intro-active">
+
+    <!-- ==================== CINEMATIC INTRO OVERLAY ==================== -->
+    <div id="marvel-intro-overlay">
+        <!-- Canvas for 3D Web Shooting -->
+        <canvas id="web-canvas"></canvas>
+
+        <!-- Phase 1: Pure Big Greetings Cycling Red, White & Fire Flame Colors -->
+        <div id="intro-phase-greetings" class="intro-phase active">
+            <div class="greetings-text-wrapper">
+                <span id="greeting-text" class="red-greeting">NAMASTE</span>
+            </div>
+        </div>
+
+        <!-- Phase 2 & 3: Your Friendly Neighbourhood (Bold & Big, NOT Tilt/Italic) -->
+        <div id="intro-phase-neighbourhood" class="intro-phase">
+            <div class="neighbourhood-container">
+                <h1 id="neighbourhood-text" class="straight-bold-neighbourhood">YOUR FRIENDLY NEIGHBOURHOOD</h1>
+            </div>
+        </div>
+
+        <!-- Phase 4: Spider Crawl -->
+        <div id="intro-phase-spider" class="intro-phase">
+            <div class="spider-crawler" id="spider-crawler">
+                <svg viewBox="0 0 100 100" class="spidey-svg">
+                    <path d="M50 35 C45 35 40 40 40 46 C40 52 45 56 50 56 C55 56 60 52 60 46 C60 40 55 35 50 35 Z M50 58 C42 58 36 66 36 76 C36 84 42 90 50 90 C58 90 64 84 64 76 C64 66 58 58 50 58 Z" fill="#E62429"/>
+                    <!-- Eyes -->
+                    <polygon points="44,42 48,46 44,47" fill="#FFF"/>
+                    <polygon points="56,42 52,46 56,47" fill="#FFF"/>
+                    <!-- Legs left -->
+                    <path d="M42 44 Q 25 35 15 25" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <path d="M40 48 Q 20 45 10 40" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <path d="M40 54 Q 18 60 12 68" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <path d="M42 62 Q 22 78 16 88" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <!-- Legs right -->
+                    <path d="M58 44 Q 75 35 85 25" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <path d="M60 48 Q 80 45 90 40" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <path d="M60 54 Q 82 60 88 68" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <path d="M58 62 Q 78 78 84 88" stroke="#E62429" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-Screen Dynamic Eye of Agamotto Time Stone Background Canvas Overlay -->
+    <canvas id="bg-web-canvas"></canvas>
+    <!-- Lightning canvas overlay for Thor's Thunderbolts -->
+    <canvas id="lightning-canvas"></canvas>
+    <!-- Doctor Strange Eldritch Screen-Dominating Purple/Yellow Magic Flash Canvas -->
+    <canvas id="portal-canvas"></canvas>
+
+    <!-- Vertical Sidebar Name Badge (Revealed when Cap Shield flies up) -->
+    <div id="vertical-sidebar-name" class="vertical-sidebar-name">
+        <span class="v-letter">A</span>
+        <span class="v-letter">N</span>
+        <span class="v-letter">A</span>
+        <span class="v-letter">N</span>
+        <span class="v-letter">T</span>
+        <span class="v-space"></span>
+        <span class="v-letter v-gold">J</span>
+        <span class="v-letter v-gold">O</span>
+        <span class="v-letter v-gold">S</span>
+        <span class="v-letter v-gold">H</span>
+        <span class="v-letter v-gold">I</span>
+    </div>
+
+    <!-- Floating Interactive Superhero Gadgets (No Cap Label) -->
+    <div id="gadgets-layer">
+        <!-- Captain America Shield (No text label overlay) -->
+        <div class="super-gadget cap-shield-gadget" id="cap-shield">
+            <div class="shield-outer-ring">
+                <div class="shield-white-ring">
+                    <div class="shield-blue-center">
+                        <i class="fa-solid fa-star shield-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thor's Mjolnir Hammer -->
+        <div class="super-gadget thor-hammer-gadget" id="thor-hammer">
+            <div class="mjolnir">
+                <div class="hammer-head">
+                    <div class="hammer-bevel"></div>
+                    <div class="rune-engraving">ᚦᛟᚱ</div>
+                </div>
+                <div class="hammer-handle">
+                    <div class="strap"></div>
+                </div>
+            </div>
+            <div class="gadget-label">THOR'S MJOLNIR (CLICK FOR THUNDER)</div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="marvel-nav" id="main-marvel-nav">
+        <div class="nav-logo">
+            <span class="logo-red">ANANT</span><span class="logo-white">JOSHI</span>
+            <div class="spider-badge"><i class="fa-solid fa-spider"></i></div>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero" class="nav-item active"><i class="fa-solid fa-house"></i> HOME</a>
+            <a href="#about" class="nav-item"><i class="fa-solid fa-user-ninja"></i> ABOUT</a>
+            <a href="#projects" class="nav-item"><i class="fa-solid fa-cubes"></i> PROJECTS</a>
+            <a href="#skills" class="nav-item"><i class="fa-solid fa-bolt"></i> SKILLS & IMPACT</a>
+            <a href="#contact" class="nav-item"><i class="fa-solid fa-paper-plane"></i> CONTACT</a>
+        </nav>
+        
+        <!-- Iron Man Arc Reactor Navigation Area with Sliding LinkedIn & GitHub Social Symbols -->
+        <div class="nav-arc-group">
+            <div class="nav-social-slide" id="nav-social-slide">
+                <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="nav-social-icon linkedin-icon" title="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Cypheraj12" target="_blank" class="nav-social-icon github-icon" title="GitHub Profile">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+
+            <button class="nav-arc-reactor-btn" id="arc-reactor-nav-btn" title="Click Arc Reactor to Reveal Profiles!">
+                <div class="arc-core-nav"></div>
+                <div class="arc-ring-nav"></div>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg-overlay"></div>
+            
+            <div class="hero-container">
+                <div class="hero-text-side">
+                    <div class="avengers-tag"><i class="fa-solid fa-shield-halved"></i> AVENGERS INITIATIVE candidate</div>
+                    
+                    <!-- Doctor Strange Chant Banner 1 (Clickable with "CLICK ME!" badge) -->
+                    <div class="strange-chant-banner clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                        <span class="chant-click-badge">✦ CLICK ME!</span>
+                        <i class="fa-solid fa-hat-wizard"></i> "By the light of the Eternal Sanctum, open the way — to Anant Joshi's Data Realm!"
+                    </div>
+
+                    <p class="hero-academic-tag">Final Year B.Tech CSE (Data Science Specialization)</p>
+                    
+                    <h1 class="hero-title">
+                        BUILDING <span class="simple-white-text">INTELLIGENT DATA</span> SOLUTIONS.
+                    </h1>
+
+                    <p class="hero-description">
+                        Final Year B.Tech CSE student specializing in Data Science, with hands-on experience in Machine Learning, Data Analysis, Predictive Modeling, and Scalable Backend Systems. Focused on solving practical problems using modern AI/ML tools and data-driven approaches.
+                    </p>
+
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="btn btn-marvel-red"><i class="fa-solid fa-rocket"></i> EXPLORE MISSIONS →</a>
+                        <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="btn btn-spidey-blue"><i class="fa-brands fa-linkedin-in"></i> LINKEDIN</a>
+                        <a href="https://github.com/Cypheraj12" target="_blank" class="btn btn-dark-comic"><i class="fa-brands fa-github"></i> GITHUB</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual-side">
+                    <!-- Framed Original User Photo with Floating Badges -->
+                    <div class="photo-frame-container tilt-card">
+                        <div class="hero-photo-wrapper">
+                            <img src="anant_photo.jpg" alt="Anant Joshi" class="hero-user-photo">
+                            <div class="photo-glow-border"></div>
+                        </div>
+
+                        <!-- Floating Badges around Hero Photo with Fire Flame Badge -->
+                        <div class="floating-badge badge-top-right">
+                            <span class="badge-star">🔥</span> <strong>Anant Joshi</strong> <span class="badge-pill fire-flame-pill">AI/ML & Data Science</span>
+                        </div>
+
+                        <div class="floating-badge badge-top-left">
+                            <i class="fa-solid fa-chart-column"></i> Data Analysis
+                        </div>
+
+                        <div class="floating-badge badge-mid-right">
+                            <i class="fa-solid fa-brain"></i> ML Engineer
+                        </div>
+
+                        <div class="floating-badge badge-bottom">
+                            <i class="fa-solid fa-chart-line"></i> Predictive Modelling
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-down-indicator">
+                <div class="mouse-icon"><div class="wheel"></div></div>
+                <span>SCROLL DOWN FOR MISSIONS</span>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT SECTION ==================== -->
+        <section id="about" class="about-section">
+            <div class="section-header">
+                <!-- Doctor Strange Chant Banner 2 (Clickable with "CLICK ME!" badge) -->
+                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                    <span class="chant-click-badge">✦ CLICK ME!</span>
+                    ✨ "By the ancient laws of magic, let the veil be lifted — to reveal secret data dossier AJ-2049!"
+                </div>
+                <h2 class="section-title"><span class="red-accent">SECRET</span> IDENTITY & DOSSIER</h2>
+                <div class="section-subtitle">BACKGROUND DATA & CORE OBJECTIVES</div>
+            </div>
+
+            <div class="about-grid">
+                <!-- Profile dossier card with User's Original Photo -->
+                <div class="dossier-card tilt-card">
+                    <div class="dossier-header">
+                        <span class="classified-stamp">CLASSIFIED</span>
+                        <div class="agent-id">AGENT ID: AJ-2049</div>
+                    </div>
+                    <div class="dossier-body">
+                        <div class="avatar-box">
+                            <div class="avatar-ring"></div>
+                            <img src="anant_photo.jpg" alt="Agent Anant Joshi" class="dossier-user-photo">
+                            <div class="spider-overlay-icon"><i class="fa-solid fa-spider"></i></div>
+                        </div>
+                        <h3 class="agent-name">ANANT JOSHI</h3>
+                        <p class="agent-title">Final Year B.Tech CSE (Data Science Specialization) | 2023 - Present</p>
+                        <p class="agent-location"><i class="fa-solid fa-location-dot"></i> Lucknow, Uttar Pradesh, India</p>
+
+                        <div class="agent-stats">
+                            <div class="stat-box">
+                                <span class="stat-val">95%</span>
+                                <span class="stat-lbl">Deepfake Accuracy</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-val">60%</span>
+                                <span class="stat-lbl">Latency Reduction</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-val">99%</span>
+                                <span class="stat-lbl">API Availability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio card -->
+                <div class="bio-card tilt-card">
+                    <h3 class="card-heading"><i class="fa-solid fa-brain"></i> SUMMARY OF CAPABILITIES</h3>
+                    <p class="bio-paragraph">
+                        I am a Final Year B.Tech Computer Science student specializing in Data Science. Like Sorcerer Supreme Doctor Strange manipulating time and reality, I bend complex dataset dimensions and neural networks to predict future outcomes.
+                    </p>
+                    <p class="bio-paragraph">
+                        Brings hands-on experience in <strong>predictive modeling and computer vision</strong>, with a strong focus on solving practical problems using modern AI/ML tools and data-driven approaches. Specialized in Flask, FastAPI, TensorFlow, PyTorch, MobileNetV2, LSTM, XGBoost, and MongoDB.
+                    </p>
+
+                    <div class="contact-links-inline">
+                        <a href="mailto:anantajjoshi@gmail.com" class="inline-link"><i class="fa-solid fa-envelope"></i> anantajjoshi@gmail.com</a>
+                        <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="inline-link"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a>
+                        <a href="https://github.com/Cypheraj12" target="_blank" class="inline-link"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PROJECTS SECTION ==================== -->
+        <section id="projects" class="projects-section">
+            <div class="section-header">
+                <!-- Doctor Strange Chant Banner 3 (Clickable with "CLICK ME!" badge) -->
+                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                    <span class="chant-click-badge">✦ CLICK ME!</span>
+                    🔮 "Ancient forces, heed my command and bend reality — into high-throughput scalable systems!"
+                </div>
+                <h2 class="section-title">PROJECTS <span class="red-accent">SHOWCASE</span></h2>
+                <div class="section-subtitle">SUPERHERO MISSIONS ENGINEERED WITH ADVANCED TECH</div>
+            </div>
+
+            <div class="project-filters">
+                <button class="project-filter-btn active" data-pfilter="all">All Projects</button>
+                <button class="project-filter-btn" data-pfilter="ml">AI/ML & Data Science</button>
+                <button class="project-filter-btn" data-pfilter="backend">Backend & REST APIs</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: Deepfake Detection -->
+                <article class="project-card tilt-card motion-card" data-category="ml">
+                    <div class="card-banner banner-red">
+                        <span class="mission-code">MISSION #01</span>
+                        <span class="banner-category-badge">Deep Learning & Computer Vision</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="project-title">Deepfake Detection Web App</h3>
+                        <p class="project-summary">
+                            Engineered a real-time deepfake image and video detection system using Python and TensorFlow (MobileNetV2), achieving 95% accuracy and reducing false positives by 40%. Implemented feature extraction techniques (sharpness, compression artifacts, variance).
+                        </p>
+                        
+                        <div class="highlight-pills">
+                            <span class="pill-green">✦ 95% Accuracy</span>
+                            <span class="pill-green">✦ 35% Faster Inference</span>
+                            <span class="pill-green">✦ 40% Less False Positives</span>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span>#Python</span><span>#TensorFlow</span><span>#MobileNetV2</span><span>#OpenCV</span><span>#Deep Learning</span>
+                        </div>
+
+                        <div class="project-footer">
+                            <a href="https://github.com/Cypheraj12/Deep_fake_detection_using_deep_learning" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> View Repository</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2: YouTube Video Fetcher API -->
+                <article class="project-card tilt-card motion-card" data-category="backend">
+                    <div class="card-banner banner-blue">
+                        <span class="mission-code">MISSION #02</span>
+                        <span class="banner-category-badge">High-Throughput REST API</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="project-title">Scalable YouTube Video Fetcher API</h3>
+                        <p class="project-summary">
+                            Developed a scalable REST API service using YouTube Data API v3 to fetch and store video data asynchronously. Optimized MongoDB queries with indexing (60% boost) and built API key rotation system ensuring 99% availability.
+                        </p>
+
+                        <div class="highlight-pills">
+                            <span class="pill-green">✦ 50% Latency Reduction</span>
+                            <span class="pill-green">✦ 60% Query Performance</span>
+                            <span class="pill-green">✦ 99% Availability</span>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span>#Python</span><span>#FastAPI</span><span>#MongoDB</span><span>#Asyncio</span><span>#REST API</span>
+                        </div>
+
+                        <div class="project-footer">
+                            <a href="https://github.com/Cypheraj12/youtube-video-fetcher" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> View Repository</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3: Heart Disease ML Risk Predictor -->
+                <article class="project-card tilt-card motion-card" data-category="ml">
+                    <div class="card-banner banner-green">
+                        <span class="mission-code">MISSION #03</span>
+                        <span class="banner-category-badge">Streamlit & Health Analytics</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="project-title">Heart Disease ML Risk Predictor</h3>
+                        <p class="project-summary">
+                            Streamlit-based machine learning application analyzing patient health data to estimate heart disease risk. Built using Scikit-Learn models trained on UCI Heart Disease dataset with explainable AI metrics.
+                        </p>
+
+                        <div class="highlight-pills">
+                            <span class="pill-green">✦ UCI Health ML</span>
+                            <span class="pill-green">✦ Risk Scoring</span>
+                            <span class="pill-green">✦ Live Streamlit App</span>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span>#Python</span><span>#Scikit-Learn</span><span>#Streamlit</span><span>#Pandas</span><span>#SHAP</span>
+                        </div>
+
+                        <div class="project-footer">
+                            <a href="https://github.com/Cypheraj12/Heart_disease-prediction" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> View Repository</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4: Predictive API Latency Forecasting -->
+                <article class="project-card tilt-card motion-card" data-category="ml">
+                    <div class="card-banner banner-gold">
+                        <span class="mission-code">MISSION #04</span>
+                        <span class="banner-category-badge">Time-Series ML & Backend MLOps</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="project-title">Predictive API Latency Forecasting</h3>
+                        <p class="project-summary">
+                            Designing a machine learning pipeline using LSTM and XGBoost for time-series forecasting of API latency (p95) 5–15 minutes ahead, with real-time FastAPI ingestion, Docker containerization, and Prometheus metrics tracking.
+                        </p>
+
+                        <div class="highlight-pills">
+                            <span class="pill-green">✦ 5–15m Ahead Forecast</span>
+                            <span class="pill-green">✦ p95 Latency Tracking</span>
+                            <span class="pill-green">✦ Dockerized</span>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span>#FastAPI</span><span>#Docker</span><span>#LSTM</span><span>#XGBoost</span><span>#Prometheus</span>
+                        </div>
+
+                        <div class="project-footer">
+                            <a href="https://github.com/Cypheraj12" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5: Laptop Price Analysis & Prediction -->
+                <article class="project-card tilt-card motion-card" data-category="ml">
+                    <div class="card-banner banner-purple">
+                        <span class="mission-code">MISSION #05</span>
+                        <span class="banner-category-badge">Data Analysis & Regression</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="project-title">Laptop Price Analysis & Prediction</h3>
+                        <p class="project-summary">
+                            Performed comprehensive data analysis on a multi-feature laptop dataset, building regression models to predict market prices based on hardware specs, brand, and type.
+                        </p>
+
+                        <div class="highlight-pills">
+                            <span class="pill-green">✦ Feature Analysis</span>
+                            <span class="pill-green">✦ Linear Regression</span>
+                            <span class="pill-green">✦ EDA Insights</span>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span>#Python</span><span>#Pandas</span><span>#Scikit-Learn</span><span>#Matplotlib</span><span>#Jupyter</span>
+                        </div>
+
+                        <div class="project-footer">
+                            <a href="https://github.com/Cypheraj12/laptop_price-analysis-and-prediction" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> View Repository</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ==================== KEY PERFORMANCE METRICS ==================== -->
+        <section id="metrics" class="metrics-section">
+            <div class="section-header">
+                <!-- Doctor Strange Chant Banner 4 (Clickable with "CLICK ME!" badge) -->
+                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                    <span class="chant-click-badge">✦ CLICK ME!</span>
+                    ⏳ "By the power that binds space and time, answer my call — with p95 predictive scaling & 99% uptime!"
+                </div>
+                <h2 class="section-title">KEY PERFORMANCE <span class="red-accent">METRICS</span></h2>
+                <div class="section-subtitle">QUANTIFIABLE BENCHMARKS FROM REAL-WORLD DEPLOYMENTS</div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card tilt-card motion-card">
+                    <div class="metric-value">95%</div>
+                    <div class="metric-label">Deepfake Model Accuracy</div>
+                </div>
+
+                <div class="metric-card tilt-card motion-card">
+                    <div class="metric-value">60%</div>
+                    <div class="metric-label">MongoDB Query Speed Boost</div>
+                </div>
+
+                <div class="metric-card tilt-card motion-card">
+                    <div class="metric-value">-50%</div>
+                    <div class="metric-label">Async API Response Latency</div>
+                </div>
+
+                <div class="metric-card tilt-card motion-card">
+                    <div class="metric-value">99%</div>
+                    <div class="metric-label">High-Availability API Uptime</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SKILLS & TECH STACK SECTION ==================== -->
+        <section id="skills" class="skills-section">
+            <div class="section-header">
+                <!-- Doctor Strange Chant Banner 5 (Clickable with "CLICK ME!" badge) -->
+                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                    <span class="chant-click-badge">✦ CLICK ME!</span>
+                    📜 "In the name of the Ancient Mystics, reveal your power — through Python, TensorFlow & PyTorch!"
+                </div>
+                <div class="tech-header-tag">// TECHNICAL STACK & CORE COMPETENCIES</div>
+                <h2 class="section-title">CURRENT <span class="red-accent">TECH STACK</span></h2>
+                <div class="section-subtitle">DYNAMIC INTERACTIVE FLASHCARDS WITH LIVE MOTION</div>
+            </div>
+
+            <div class="tech-stack-container">
+                <!-- Group 1: Programming Languages -->
+                <div class="tech-group-card tilt-card motion-card">
+                    <h3 class="group-title"><i class="fa-solid fa-laptop-code"></i> Programming Languages</h3>
+                    <div class="chips-flex">
+                        <span class="tech-chip"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="tech-chip"><i class="fa-solid fa-database"></i> SQL</span>
+                        <span class="tech-chip"><i class="fa-brands fa-html5"></i> HTML</span>
+                        <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+                    </div>
+                </div>
+
+                <!-- Group 2: Libraries & Frameworks -->
+                <div class="tech-group-card tilt-card motion-card">
+                    <h3 class="group-title"><i class="fa-solid fa-bolt"></i> Libraries & Frameworks</h3>
+                    <div class="chips-flex">
+                        <span class="tech-chip">Pandas</span>
+                        <span class="tech-chip">NumPy</span>
+                        <span class="tech-chip">Scikit-learn</span>
+                        <span class="tech-chip">TensorFlow</span>
+                        <span class="tech-chip">PyTorch</span>
+                        <span class="tech-chip">OpenCV</span>
+                        <span class="tech-chip">FastAPI</span>
+                        <span class="tech-chip">Flask</span>
+                    </div>
+                </div>
+
+                <!-- Group 3: Tools & Infrastructure -->
+                <div class="tech-group-card tilt-card motion-card">
+                    <h3 class="group-title"><i class="fa-solid fa-screwdriver-wrench"></i> Tools & Infrastructure</h3>
+                    <div class="chips-flex">
+                        <span class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git</span>
+                        <span class="tech-chip"><i class="fa-brands fa-github"></i> GitHub</span>
+                        <span class="tech-chip">Jupyter Notebook</span>
+                        <span class="tech-chip">MongoDB</span>
+                        <span class="tech-chip">Streamlit</span>
+                        <span class="tech-chip">Prometheus</span>
+                        <span class="tech-chip"><i class="fa-brands fa-docker"></i> Docker</span>
+                    </div>
+                </div>
+
+                <!-- Group 4: Core Concepts & Domains -->
+                <div class="tech-group-card tilt-card motion-card">
+                    <h3 class="group-title"><i class="fa-solid fa-brain"></i> Core Concepts & Domains</h3>
+                    <div class="chips-flex">
+                        <span class="tech-chip">Machine Learning</span>
+                        <span class="tech-chip">Data Analysis</span>
+                        <span class="tech-chip">Data Visualization</span>
+                        <span class="tech-chip">Computer Vision</span>
+                        <span class="tech-chip">REST APIs</span>
+                        <span class="tech-chip">Feature Engineering</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <section id="contact" class="contact-section">
+            <div class="section-header">
+                <!-- Doctor Strange Chant Banner 6 (Clickable with "CLICK ME!" badge) -->
+                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                    <span class="chant-click-badge">✦ CLICK ME!</span>
+                    🌀 "By the sacred circle of sorcerers, let the portal open — and transmit your message!"
+                </div>
+                <h2 class="section-title">SUMMON <span class="red-accent">ANANT JOSHI</span></h2>
+                <div class="section-subtitle">ACTIVATE THE SPIDER-SIGNAL OR SEND AN ENCRYPTED TRANSMISSION</div>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info-card tilt-card motion-card">
+                    <h3><i class="fa-solid fa-signal"></i> DIRECT COMMS CHANNEL</h3>
+                    <p>Have an exciting Data Science opportunity, backend challenge, or collaboration? Reach out anytime!</p>
+                    
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope contact-icon"></i>
+                        <div>
+                            <span class="item-label">EMAIL TRANSMISSION</span>
+                            <a href="mailto:anantajjoshi@gmail.com" class="item-val">anantajjoshi@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone contact-icon"></i>
+                        <div>
+                            <span class="item-label">PHONE TRANSMISSION</span>
+                            <a href="tel:9569043150" class="item-val">+91 9569043150</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot contact-icon"></i>
+                        <div>
+                            <span class="item-label">BASE LOCATION</span>
+                            <span class="item-val">Lucknow, Uttar Pradesh, India</span>
+                        </div>
+                    </div>
+
+                    <div class="social-hero-links">
+                        <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="social-btn linkedin-btn"><i class="fa-brands fa-linkedin-in"></i> LINKEDIN</a>
+                        <a href="https://github.com/Cypheraj12" target="_blank" class="social-btn github-btn"><i class="fa-brands fa-github"></i> GITHUB</a>
+                    </div>
+                </div>
+
+                <form class="contact-form tilt-card motion-card" id="contact-form" onsubmit="event.preventDefault(); alert('Transmission Sent to Anant Joshi!');">
+                    <h3><i class="fa-solid fa-paper-plane"></i> ENCRYPTED MESSAGE FORM</h3>
+                    <div class="form-group">
+                        <label for="sender-name">AGENT / RECRUITER NAME</label>
+                        <input type="text" id="sender-name" placeholder="e.g. Nick Fury" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sender-email">YOUR COMM EMAIL</label>
+                        <input type="email" id="sender-email" placeholder="e.g. fury@shield.gov" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sender-message">TRANSMISSION CONTENT</label>
+                        <textarea id="sender-message" rows="4" placeholder="Describe the mission or opportunity..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-marvel-red form-submit-btn"><i class="fa-solid fa-satellite-dish"></i> TRANSMIT SIGNAL</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="marvel-footer">
+        <div class="footer-content">
+            <div class="spider-logo-footer"><i class="fa-solid fa-spider"></i></div>
+            <p>"WITH GREAT DATA COMES GREAT RESPONSIBILITY"</p>
+            <p class="copyright">© 2026 ANANT JOSHI | ALL RIGHTS RESERVED | INSPIRED BY MARVEL AVENGERS, SPIDER-MAN, DOCTOR STRANGE & GHOST RIDER</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
