@@ -1,4 +1,4 @@
-# 🚀 Anant Joshi — Marvel Avengers × Spider-Man × Doctor Strange × Ghost Rider Portfolio
+# 🚀 Anant Joshi —  Portfolio
 
 A high-performance, superhero-themed personal portfolio website built with HTML5, CSS3, JavaScript, Canvas 2D graphics, and custom SVG cursors.
 
