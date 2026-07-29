@@ -365,8 +365,12 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             
             // Move Cap Shield smoothly live towards top Header section
+            const isMobile = window.innerWidth <= 768;
+            const targetX = isMobile ? '35vw' : '42vw';
+            const targetY = isMobile ? '-78vh' : '-86vh';
+
             capShield.style.transition = 'all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            capShield.style.transform = 'translate(42vw, -86vh) rotate(1440deg) scale(1.1)';
+            capShield.style.transform = `translate(${targetX}, ${targetY}) rotate(1440deg) scale(1.1)`;
 
             // Show Vertical Sidebar Name
             if (verticalNameBadge) {
@@ -445,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function spawnPurpleYellowMagicFlash(cx, cy) {
-        const sparkCount = 380; // High particle density filling whole screen
+        const sparkCount = 380;
         const magicParticles = [];
         const magicColors = ['#c084fc', '#9d4edd', '#7b2cbf', '#FFD700', '#ffb703', '#ffffff', '#00f3ff'];
         let waveRadius = 0;
@@ -471,7 +475,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let alive = false;
             waveRadius += 40;
 
-            // Screen-wide Eldritch Shockwave Ring
             pCtx.save();
             pCtx.strokeStyle = 'rgba(192, 132, 252, 0.7)';
             pCtx.lineWidth = 6;
@@ -510,15 +513,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 7. ARC REACTOR NAV BUTTON SLIDE SOCIAL PROFILES
+    // 7. ARC REACTOR NAV BUTTON & MOBILE MENU TOGGLE
     // ----------------------------------------------------
     const arcNavBtn = document.getElementById('arc-reactor-nav-btn');
     const navSocialSlide = document.getElementById('nav-social-slide');
+    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+    const navLinks = document.getElementById('nav-links');
 
     if (arcNavBtn && navSocialSlide) {
         arcNavBtn.addEventListener('click', () => {
             navSocialSlide.classList.toggle('active');
             arcNavBtn.classList.toggle('active');
+        });
+    }
+
+    if (mobileNavToggle && navLinks) {
+        mobileNavToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('mobile-active');
+            const icon = mobileNavToggle.querySelector('i');
+            if (icon) {
+                if (navLinks.classList.contains('mobile-active')) {
+                    icon.className = 'fa-solid fa-xmark';
+                } else {
+                    icon.className = 'fa-solid fa-bars';
+                }
+            }
+        });
+
+        // Close mobile nav on item click
+        const navItemsList = navLinks.querySelectorAll('.nav-item');
+        navItemsList.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('mobile-active');
+                const icon = mobileNavToggle.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
+            });
         });
     }
 
@@ -553,6 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 768) return; // Disable tilt on mobile for performance
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
