@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anant Joshi | Marvel Avengers, Spider-Man, Doctor Strange & Ghost Rider Portfolio</title>
-    <meta name="description" content="Portfolio of Anant Joshi - Final Year B.Tech CSE (Data Science Specialization). Inspired by Marvel Avengers, Spider-Man, Doctor Strange & Ghost Rider.">
+    <title>Anant Joshi | Marvel Avengers, Spider-Man & Doctor Strange Portfolio</title>
+    <meta name="description" content="Portfolio of Anant Joshi - Final Year B.Tech CSE (Data Science Specialization). Inspired by Marvel Avengers, Spider-Man & Doctor Strange.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,41 +17,88 @@
 
     <!-- ==================== CINEMATIC INTRO OVERLAY ==================== -->
     <div id="marvel-intro-overlay">
-        <!-- Canvas for 3D Web Shooting -->
+        <!-- Canvas for Ultra-Premium 3D Web Shooting -->
         <canvas id="web-canvas"></canvas>
 
-        <!-- Phase 1: Pure Big Greetings Cycling Red, White & Fire Flame Colors -->
+        <!-- Phase 1: Dynamic Color Cycling Greetings -->
         <div id="intro-phase-greetings" class="intro-phase active">
-            <div class="greetings-text-wrapper">
-                <span id="greeting-text" class="red-greeting">NAMASTE</span>
+            <div class="greetings-container">
+                <span id="greeting-text" class="comic-greeting-text">NAMASTE</span>
             </div>
         </div>
 
-        <!-- Phase 2 & 3: Your Friendly Neighbourhood (Bold & Wide Dark Red, NO Black Outline) -->
+        <!-- Phase 2 & 3: Your Friendly Neighbourhood (Bold Marvel Crimson Red) -->
         <div id="intro-phase-neighbourhood" class="intro-phase">
             <div class="neighbourhood-container">
                 <h1 id="neighbourhood-text" class="straight-bold-neighbourhood">YOUR FRIENDLY NEIGHBOURHOOD</h1>
             </div>
         </div>
 
-        <!-- Phase 4: Spider Crawl -->
+        <!-- Phase 4: Ultra-Premium Metallic 3D Spider Crawl -->
         <div id="intro-phase-spider" class="intro-phase">
             <div class="spider-crawler" id="spider-crawler">
                 <svg viewBox="0 0 100 100" class="spidey-svg">
-                    <path d="M50 35 C45 35 40 40 40 46 C40 52 45 56 50 56 C55 56 60 52 60 46 C60 40 55 35 50 35 Z M50 58 C42 58 36 66 36 76 C36 84 42 90 50 90 C58 90 64 84 64 76 C64 66 58 58 50 58 Z" fill="#E62429"/>
-                    <!-- Eyes -->
-                    <polygon points="44,42 48,46 44,47" fill="#FFF"/>
-                    <polygon points="56,42 52,46 56,47" fill="#FFF"/>
-                    <!-- Legs left -->
-                    <path d="M42 44 Q 25 35 15 25" stroke="#E62429" stroke-width="3" fill="none"/>
-                    <path d="M40 48 Q 20 45 10 40" stroke="#E62429" stroke-width="3" fill="none"/>
-                    <path d="M40 54 Q 18 60 12 68" stroke="#E62429" stroke-width="3" fill="none"/>
-                    <path d="M42 62 Q 22 78 16 88" stroke="#E62429" stroke-width="3" fill="none"/>
-                    <!-- Legs right -->
-                    <path d="M58 44 Q 75 35 85 25" stroke="#E62429" stroke-width="3" fill="none"/>
-                    <path d="M60 48 Q 80 45 90 40" stroke="#E62429" stroke-width="3" fill="none"/>
-                    <path d="M60 54 Q 82 60 88 68" stroke="#E62429" stroke-width="3" fill="none"/>
-                    <path d="M58 62 Q 78 78 84 88" stroke="#E62429" stroke-width="3" fill="none"/>
+                    <defs>
+                        <!-- Metallic Body Gradient -->
+                        <radialGradient id="spidey-body-grad" cx="50%" cy="40%" r="50%">
+                            <stop offset="0%" stop-color="#ff3b3f"/>
+                            <stop offset="60%" stop-color="#d60000"/>
+                            <stop offset="100%" stop-color="#800000"/>
+                        </radialGradient>
+                        <!-- Metallic Eye Gradient -->
+                        <linearGradient id="spidey-eye-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="70%" stop-color="#e2e8f0"/>
+                            <stop offset="100%" stop-color="#00f3ff"/>
+                        </linearGradient>
+                        <!-- Leg Metallic Gradient -->
+                        <linearGradient id="spidey-leg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ff3b3f"/>
+                            <stop offset="50%" stop-color="#b91c1c"/>
+                            <stop offset="100%" stop-color="#450a0a"/>
+                        </linearGradient>
+                        <!-- Glow Filter -->
+                        <filter id="spidey-glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                        </filter>
+                    </defs>
+
+                    <!-- Outer Metallic Glow Shell -->
+                    <path d="M50 32 C43 32 38 38 38 46 C38 53 43 57 50 57 C57 57 62 53 62 46 C62 38 57 32 50 32 Z M50 59 C40 59 34 68 34 78 C34 86 40 92 50 92 C60 92 66 86 66 78 C66 68 60 59 50 59 Z" fill="url(#spidey-body-grad)" stroke="#ffffff" stroke-width="1.5" filter="url(#spidey-glow)"/>
+
+                    <!-- Spider Armor Chest Lines -->
+                    <path d="M50 36 L50 54 M42 45 L58 45 M40 76 L60 76 M50 62 L50 88 M42 68 L58 84 M58 68 L42 84" stroke="#ffe600" stroke-width="1.2" opacity="0.8"/>
+
+                    <!-- 3D Metallic Eyes with Silver Trim -->
+                    <path d="M42 41 Q 48 44 48 48 Q 42 48 41 43 Z" fill="url(#spidey-eye-grad)" stroke="#000000" stroke-width="1.5"/>
+                    <path d="M58 41 Q 52 44 52 48 Q 58 48 59 43 Z" fill="url(#spidey-eye-grad)" stroke="#000000" stroke-width="1.5"/>
+
+                    <!-- Premium Jointed Metallic Spider Legs (Left Side) -->
+                    <path d="M40 42 Q 22 30 10 18" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="10" cy="18" r="2.5" fill="#00f3ff"/>
+
+                    <path d="M38 47 Q 16 42 6 36" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="6" cy="36" r="2.5" fill="#00f3ff"/>
+
+                    <path d="M38 54 Q 14 62 8 72" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="8" cy="72" r="2.5" fill="#00f3ff"/>
+
+                    <path d="M40 64 Q 18 82 12 94" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="12" cy="94" r="2.5" fill="#00f3ff"/>
+
+                    <!-- Premium Jointed Metallic Spider Legs (Right Side) -->
+                    <path d="M60 42 Q 78 30 90 18" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="90" cy="18" r="2.5" fill="#00f3ff"/>
+
+                    <path d="M62 47 Q 84 42 94 36" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="94" cy="36" r="2.5" fill="#00f3ff"/>
+
+                    <path d="M62 54 Q 86 62 92 72" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="92" cy="72" r="2.5" fill="#00f3ff"/>
+
+                    <path d="M60 64 Q 82 82 88 94" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <circle cx="88" cy="94" r="2.5" fill="#00f3ff"/>
                 </svg>
             </div>
         </div>
@@ -64,36 +111,41 @@
     <!-- Doctor Strange Eldritch Screen-Dominating Purple/Yellow Magic Flash Canvas -->
     <canvas id="portal-canvas"></canvas>
 
-    <!-- Vertical Sidebar Name Badge (Revealed when Cap Shield flies up) -->
-    <div id="vertical-sidebar-name" class="vertical-sidebar-name">
-        <span class="v-letter">A</span>
-        <span class="v-letter">N</span>
-        <span class="v-letter">A</span>
-        <span class="v-letter">N</span>
-        <span class="v-letter">T</span>
-        <span class="v-space"></span>
-        <span class="v-letter v-gold">J</span>
-        <span class="v-letter v-gold">O</span>
-        <span class="v-letter v-gold">S</span>
-        <span class="v-letter v-gold">H</span>
-        <span class="v-letter v-gold">I</span>
+    <!-- Thor Mjolnir Worthiness Popup Toast Message -->
+    <div id="thor-toast-msg" class="thor-toast-msg">
+        <i class="fa-solid fa-bolt"></i> Proof of worthiness, below.
     </div>
 
-    <!-- Floating Interactive Superhero Gadgets (No Cap Label) -->
+    <!-- Deadpool Laughing Resume Toast Message Popup -->
+    <div id="deadpool-toast-msg" class="deadpool-toast-msg">
+        <i class="fa-solid fa-face-laugh-squint"></i> HAHA, Gotcha. Enjoy my resume 😂📜
+    </div>
+
+    <!-- Floating Interactive Superhero Gadgets -->
     <div id="gadgets-layer">
-        <!-- Captain America Shield (No text label overlay) -->
-        <div class="super-gadget cap-shield-gadget" id="cap-shield">
-            <div class="shield-outer-ring">
-                <div class="shield-white-ring">
-                    <div class="shield-blue-center">
-                        <i class="fa-solid fa-star shield-star"></i>
-                    </div>
-                </div>
+        <!-- Deadpool Face Mask Widget (Click for Laugh & Automatic Resume Download) -->
+        <div class="super-gadget deadpool-face-gadget" id="deadpool-mask" title="Click Deadpool for Resume & Laugh!">
+            <div class="deadpool-mask-outer">
+                <svg viewBox="0 0 100 100" class="deadpool-svg">
+                    <!-- Red Face Base -->
+                    <circle cx="50" cy="50" r="46" fill="#d60000" stroke="#000000" stroke-width="4"/>
+                    <!-- Black Center Line Accent -->
+                    <line x1="50" y1="4" x2="50" y2="96" stroke="#1a0000" stroke-width="3"/>
+                    <!-- Left Eye Oval Patch -->
+                    <ellipse cx="32" cy="48" rx="16" ry="24" fill="#050505" transform="rotate(15 32 48)"/>
+                    <!-- Right Eye Oval Patch -->
+                    <ellipse cx="68" cy="48" rx="16" ry="24" fill="#050505" transform="rotate(-15 68 48)"/>
+                    <!-- Left Slanted White Eye -->
+                    <polygon points="26,46 40,40 34,55" fill="#ffffff"/>
+                    <!-- Right Slanted White Eye -->
+                    <polygon points="74,46 60,40 66,55" fill="#ffffff"/>
+                </svg>
             </div>
+            <div class="gadget-label deadpool-label">DEADPOOL'S RESUME (CLICK ME!)</div>
         </div>
 
         <!-- Thor's Mjolnir Hammer -->
-        <div class="super-gadget thor-hammer-gadget" id="thor-hammer">
+        <div class="super-gadget thor-hammer-gadget" id="thor-hammer" title="Click Thor's Mjolnir for Thunder & jump to Projects!">
             <div class="mjolnir">
                 <div class="hammer-head">
                     <div class="hammer-bevel"></div>
@@ -138,6 +190,11 @@
                 <div class="arc-ring-nav"></div>
             </button>
 
+            <!-- Arc Reactor Message Popup Toast -->
+            <div id="arc-toast-msg" class="arc-toast-msg">
+                <i class="fa-solid fa-circle-check"></i> Reactor's stable. Socials incoming.
+            </div>
+
             <!-- Mobile Hamburger Toggle Button -->
             <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
                 <i class="fa-solid fa-bars"></i>
@@ -152,14 +209,6 @@
             
             <div class="hero-container">
                 <div class="hero-text-side">
-                    <div class="avengers-tag"><i class="fa-solid fa-shield-halved"></i> AVENGERS INITIATIVE candidate</div>
-                    
-                    <!-- Doctor Strange Chant Banner 1 (Clickable with "CLICK ME!" badge) -->
-                    <div class="strange-chant-banner clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
-                        <span class="chant-click-badge">✦ CLICK ME!</span>
-                        <i class="fa-solid fa-hat-wizard"></i> "By the light of the Eternal Sanctum, open the way — to Anant Joshi's Data Realm!"
-                    </div>
-
                     <p class="hero-academic-tag">Final Year B.Tech CSE (Data Science Specialization)</p>
                     
                     <h1 class="hero-title">
@@ -214,8 +263,8 @@
         <!-- ==================== ABOUT SECTION ==================== -->
         <section id="about" class="about-section">
             <div class="section-header">
-                <!-- Doctor Strange Chant Banner 2 (Clickable with "CLICK ME!" badge) -->
-                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                <!-- Doctor Strange Chant 1 (Clickable with "CLICK ME!" badge) -->
+                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with subtle magic pulse!">
                     <span class="chant-click-badge">✦ CLICK ME!</span>
                     ✨ "By the ancient laws of magic, let the veil be lifted — to reveal secret data dossier AJ-2049!"
                 </div>
@@ -279,8 +328,8 @@
         <!-- ==================== PROJECTS SECTION ==================== -->
         <section id="projects" class="projects-section">
             <div class="section-header">
-                <!-- Doctor Strange Chant Banner 3 (Clickable with "CLICK ME!" badge) -->
-                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
+                <!-- Doctor Strange Chant 2 (Clickable with "CLICK ME!" badge) -->
+                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with subtle magic pulse!">
                     <span class="chant-click-badge">✦ CLICK ME!</span>
                     🔮 "Ancient forces, heed my command and bend reality — into high-throughput scalable systems!"
                 </div>
@@ -437,49 +486,9 @@
             </div>
         </section>
 
-        <!-- ==================== KEY PERFORMANCE METRICS ==================== -->
-        <section id="metrics" class="metrics-section">
-            <div class="section-header">
-                <!-- Doctor Strange Chant Banner 4 (Clickable with "CLICK ME!" badge) -->
-                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
-                    <span class="chant-click-badge">✦ CLICK ME!</span>
-                    ⏳ "By the power that binds space and time, answer my call — with p95 predictive scaling & 99% uptime!"
-                </div>
-                <h2 class="section-title">KEY PERFORMANCE <span class="red-accent">METRICS</span></h2>
-                <div class="section-subtitle">QUANTIFIABLE BENCHMARKS FROM REAL-WORLD DEPLOYMENTS</div>
-            </div>
-
-            <div class="metrics-grid">
-                <div class="metric-card tilt-card motion-card">
-                    <div class="metric-value">95%</div>
-                    <div class="metric-label">Deepfake Model Accuracy</div>
-                </div>
-
-                <div class="metric-card tilt-card motion-card">
-                    <div class="metric-value">60%</div>
-                    <div class="metric-label">MongoDB Query Speed Boost</div>
-                </div>
-
-                <div class="metric-card tilt-card motion-card">
-                    <div class="metric-value">-50%</div>
-                    <div class="metric-label">Async API Response Latency</div>
-                </div>
-
-                <div class="metric-card tilt-card motion-card">
-                    <div class="metric-value">99%</div>
-                    <div class="metric-label">High-Availability API Uptime</div>
-                </div>
-            </div>
-        </section>
-
         <!-- ==================== SKILLS & TECH STACK SECTION ==================== -->
         <section id="skills" class="skills-section">
             <div class="section-header">
-                <!-- Doctor Strange Chant Banner 5 (Clickable with "CLICK ME!" badge) -->
-                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
-                    <span class="chant-click-badge">✦ CLICK ME!</span>
-                    📜 "In the name of the Ancient Mystics, reveal your power — through Python, TensorFlow & PyTorch!"
-                </div>
                 <div class="tech-header-tag">// TECHNICAL STACK & CORE COMPETENCIES</div>
                 <h2 class="section-title">CURRENT <span class="red-accent">TECH STACK</span></h2>
                 <div class="section-subtitle">DYNAMIC INTERACTIVE FLASHCARDS WITH LIVE MOTION</div>
@@ -544,11 +553,6 @@
         <!-- ==================== CONTACT SECTION ==================== -->
         <section id="contact" class="contact-section">
             <div class="section-header">
-                <!-- Doctor Strange Chant Banner 6 (Clickable with "CLICK ME!" badge) -->
-                <div class="strange-chant-inline clickable-chant" title="Click chant to vanish for 8s with purple/yellow magic flash!">
-                    <span class="chant-click-badge">✦ CLICK ME!</span>
-                    🌀 "By the sacred circle of sorcerers, let the portal open — and transmit your message!"
-                </div>
                 <h2 class="section-title">SUMMON <span class="red-accent">ANANT JOSHI</span></h2>
                 <div class="section-subtitle">ACTIVATE THE SPIDER-SIGNAL OR SEND AN ENCRYPTED TRANSMISSION</div>
             </div>
@@ -567,14 +571,6 @@
                     </div>
 
                     <div class="contact-item">
-                        <i class="fa-solid fa-phone contact-icon"></i>
-                        <div>
-                            <span class="item-label">PHONE TRANSMISSION</span>
-                            <a href="tel:9569043150" class="item-val">+91 9569043150</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
                         <i class="fa-solid fa-location-dot contact-icon"></i>
                         <div>
                             <span class="item-label">BASE LOCATION</span>
@@ -588,21 +584,29 @@
                     </div>
                 </div>
 
-                <form class="contact-form tilt-card motion-card" id="contact-form" onsubmit="event.preventDefault(); alert('Transmission Sent to Anant Joshi!');">
+                <!-- Direct Email Transmission Form via FormSubmit Endpoint -->
+                <form class="contact-form tilt-card motion-card" id="contact-form" action="https://formsubmit.co/anantajjoshi@gmail.com" method="POST">
                     <h3><i class="fa-solid fa-paper-plane"></i> ENCRYPTED MESSAGE FORM</h3>
+                    
+                    <!-- FormSubmit Configuration Settings -->
+                    <input type="hidden" name="_subject" value="New Portfolio Message for Anant Joshi!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
                     <div class="form-group">
                         <label for="sender-name">AGENT / RECRUITER NAME</label>
-                        <input type="text" id="sender-name" placeholder="e.g. Nick Fury" required>
+                        <input type="text" id="sender-name" name="name" placeholder="e.g. Nick Fury" required>
                     </div>
                     <div class="form-group">
                         <label for="sender-email">YOUR COMM EMAIL</label>
-                        <input type="email" id="sender-email" placeholder="e.g. fury@shield.gov" required>
+                        <input type="email" id="sender-email" name="email" placeholder="e.g. fury@shield.gov" required>
                     </div>
                     <div class="form-group">
                         <label for="sender-message">TRANSMISSION CONTENT</label>
-                        <textarea id="sender-message" rows="4" placeholder="Describe the mission or opportunity..." required></textarea>
+                        <textarea id="sender-message" name="message" rows="4" placeholder="Describe the mission or opportunity..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-marvel-red form-submit-btn"><i class="fa-solid fa-satellite-dish"></i> TRANSMIT SIGNAL</button>
+                    <button type="submit" class="btn btn-marvel-red form-submit-btn" id="form-submit-btn"><i class="fa-solid fa-satellite-dish"></i> TRANSMIT SIGNAL DIRECTLY</button>
+                    <div id="form-status-msg" class="form-status-msg"></div>
                 </form>
             </div>
         </section>
@@ -612,7 +616,7 @@
         <div class="footer-content">
             <div class="spider-logo-footer"><i class="fa-solid fa-spider"></i></div>
             <p>"WITH GREAT DATA COMES GREAT RESPONSIBILITY"</p>
-            <p class="copyright">© 2026 ANANT JOSHI | ALL RIGHTS RESERVED | INSPIRED BY MARVEL AVENGERS, SPIDER-MAN, DOCTOR STRANGE & GHOST RIDER</p>
+            <p class="copyright">© 2026 ANANT JOSHI | ALL RIGHTS RESERVED | INSPIRED BY MARVEL AVENGERS, SPIDER-MAN & DOCTOR STRANGE</p>
         </div>
     </footer>
 

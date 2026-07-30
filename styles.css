@@ -1,28 +1,28 @@
-/* ==================== MARVEL AVENGERS, SPIDER-MAN, DOCTOR STRANGE & GHOST RIDER STYLES ==================== */
+/* ==================== MARVEL AVENGERS, SPIDER-MAN & DOCTOR STRANGE STYLES ==================== */
 :root {
-    --marvel-red: #E62429;
-    --marvel-dark-red: #b31217;
+    --marvel-red: #ff3b3f;
+    --marvel-dark-red: #c01116;
     --deadpool-red: #d60000;
     --spidey-blue: #0055ff;
-    --spidey-light-blue: #3388ff;
-    --ironman-gold: #FFD700;
-    --marvel-gold: #d4af37;
+    --spidey-light-blue: #38bdf8;
+    --ironman-gold: #ffe600;
+    --marvel-gold: #ffe600;
+    --flame-yellow: #ffe600;
+    --dark-flame-yellow: #e6a100;
     --arc-cyan: #00f3ff;
-    --thor-blue: #00d2ff;
+    --thor-blue: #38bdf8;
     --strange-orange: #ff6600;
-    --strange-gold: #ffaa00;
+    --strange-gold: #ffe600;
     --time-green: #00ff88;
     --time-emerald: #00cc66;
-    --ghost-fire: #ff3300;
-    --ghost-flame: #ff6600;
-    --spell-purple: #a855f7;
-    --deep-purple: #7b2cbf;
+    --spell-purple: #c084fc;
+    --deep-purple: #9333ea;
     --bg-dark: transparent;
-    --bg-card: rgba(5, 15, 10, 0.94);
-    --bg-card-hover: rgba(10, 25, 18, 0.98);
+    --bg-card: rgba(6, 8, 14, 0.97);
+    --bg-card-hover: rgba(12, 16, 26, 0.99);
     --text-main: #ffffff;
-    --text-muted: #cbd5e1;
-    --border-glow: rgba(0, 255, 136, 0.4);
+    --text-muted: #f1f5f9;
+    --border-glow: rgba(0, 85, 255, 0.35);
     --font-marvel: 'Bebas Neue', sans-serif;
     --font-cinzel: 'Cinzel', serif;
     --font-italic: 'Playfair Display', serif;
@@ -34,21 +34,22 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* CUSTOM MARVEL / DOCTOR STRANGE THEME SVG CURSORS */
+/* CUSTOM MARVEL / DOCTOR STRANGE DEFAULT CURSOR */
 body, html {
-    background-color: #010603;
+    background-color: #030407;
     color: var(--text-main);
     font-family: var(--font-body);
     overflow-x: hidden;
-    line-height: 1.6;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="9" fill="none" stroke="%2300ff88" stroke-width="2"/><circle cx="13" cy="13" r="3" fill="%23E62429"/><line x1="13" y1="0" x2="13" y2="26" stroke="%23ffd700" stroke-width="1.5"/><line x1="0" y1="13" x2="26" y2="13" stroke="%23ffd700" stroke-width="1.5"/></svg>') 13 13, auto;
+    line-height: 1.65;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="9" fill="none" stroke="%230055ff" stroke-width="2"/><circle cx="13" cy="13" r="3" fill="%23ff3b3f"/><line x1="13" y1="0" x2="13" y2="26" stroke="%23ffe600" stroke-width="1.5"/><line x1="0" y1="13" x2="26" y2="13" stroke="%23ffe600" stroke-width="1.5"/></svg>') 13 13, auto;
 }
 
-/* Pointer Cursor for Interactive Elements */
+/* AUTHENTIC CAPTAIN AMERICA SHIELD HOVER CURSOR FOR ALL INTERACTIVE ELEMENTS */
 a, button, .super-gadget, .clickable-chant, .tech-chip, .project-card, .btn, .project-filter-btn {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="11" fill="none" stroke="%2300f3ff" stroke-width="2.5"/><polygon points="15,3 19,15 15,27 11,15" fill="%23E62429"/><circle cx="15" cy="15" r="4.5" fill="%23ffd700"/></svg>') 15 15, pointer !important;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="%23ff3b3f" stroke="%23ffffff" stroke-width="1"/><circle cx="16" cy="16" r="11" fill="%23ffffff"/><circle cx="16" cy="16" r="7.5" fill="%23ff3b3f"/><circle cx="16" cy="16" r="4.5" fill="%230033aa"/><polygon points="16,12.5 17.1,14.8 19.5,14.8 17.5,16.2 18.2,18.5 16,17 13.8,18.5 14.5,16.2 12.5,14.8 14.9,14.8" fill="%23ffffff"/></svg>') 16 16, pointer !important;
 }
 
 body.intro-active {
@@ -60,18 +61,18 @@ body.intro-active {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #020704;
+    background: #030407;
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--time-green);
+    background: var(--spidey-light-blue);
     border-radius: 5px;
-    box-shadow: 0 0 10px var(--time-green);
+    box-shadow: 0 0 10px var(--spidey-light-blue);
 }
 ::-webkit-scrollbar-thumb:hover {
     background: var(--spidey-blue);
 }
 
-/* ==================== FULL-SCREEN EYE OF AGAMOTTO BACKGROUND CANVAS ==================== */
+/* ==================== EYE OF AGAMOTTO BACKGROUND CANVAS ==================== */
 #bg-web-canvas {
     position: fixed;
     top: 0;
@@ -80,10 +81,12 @@ body.intro-active {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
-    opacity: 1;
+    opacity: 0.35;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
-/* Thor's Thunderbolts & Doctor Strange Screen-Dominating Purple/Yellow Sparkle Canvases */
+/* Thor's Thunderbolts & Doctor Strange Screen-Dominating Canvases */
 #lightning-canvas {
     position: fixed;
     top: 0;
@@ -92,6 +95,7 @@ body.intro-active {
     height: 100vh;
     z-index: 9998;
     pointer-events: none;
+    transform: translateZ(0);
 }
 
 #portal-canvas {
@@ -102,6 +106,7 @@ body.intro-active {
     height: 100vh;
     z-index: 99998;
     pointer-events: none;
+    transform: translateZ(0);
 }
 
 main.main-content {
@@ -121,14 +126,14 @@ section {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #020704;
+    background-color: #030407;
     z-index: 99999;
     display: flex;
     justify-content: center;
     align-items: center;
     perspective: 1000px;
     opacity: 1;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 0.6s ease-in-out;
 }
 
 #marvel-intro-overlay.fade-out {
@@ -156,7 +161,7 @@ section {
     z-index: 10;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.4s ease;
 }
 
 .intro-phase.active {
@@ -164,146 +169,174 @@ section {
     visibility: visible;
 }
 
-/* Phase 1: Pure Big Greetings Cycling Red, White & Fire Flame Colors */
-.greetings-text-wrapper {
+/* Phase 1: Comic Greeting Text */
+.greetings-container {
     text-align: center;
 }
 
-#greeting-text {
+.comic-greeting-text {
     font-family: var(--font-marvel);
+    font-size: clamp(3rem, 9vw, 8.5rem);
     font-weight: 900;
-    font-size: clamp(4.5rem, 13vw, 9.5rem);
     letter-spacing: 4px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.red-greeting {
-    color: var(--marvel-red) !important;
     text-shadow: 
-        0 0 25px var(--marvel-red),
-        0 0 50px rgba(230, 36, 41, 0.8),
-        3px 3px 0 #7a0000 !important;
+        0 2px 8px #000000,
+        0 0 15px rgba(0, 85, 255, 0.4) !important;
+    animation: textPulse 1s infinite alternate;
+    will-change: transform;
 }
 
-.white-greeting {
-    color: #ffffff !important;
-    text-shadow: 
-        0 0 25px #ffffff,
-        0 0 50px rgba(255, 255, 255, 0.8),
-        3px 3px 0 #333333 !important;
+@keyframes textPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
 }
 
-.fire-greeting {
-    background: linear-gradient(135deg, #ff3300, #ff9900, #ffcc00) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    filter: drop-shadow(0 0 25px rgba(255, 51, 0, 0.95)) !important;
-}
-
-/* Phase 2: Friendly Neighbourhood (Dark Red, Bold, Wide Font, NO Black Outline) */
+/* Phase 2: Friendly Neighbourhood (High-Contrast Backdrop Box) */
 .neighbourhood-container {
     text-align: center;
     width: 90%;
-    max-width: 1100px;
+    max-width: 1000px;
+    padding: 25px 35px;
+    background: rgba(4, 6, 12, 0.96);
+    border: 3px solid #ff3b3f;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255, 59, 63, 0.6), inset 0 0 15px rgba(0,0,0,0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
 #neighbourhood-text.straight-bold-neighbourhood {
     font-family: var(--font-marvel) !important;
     font-style: normal !important;
     font-weight: 900 !important;
-    font-size: clamp(2.5rem, 7.5vw, 6rem) !important;
-    color: #d60000 !important;
+    font-size: clamp(1.8rem, 5.2vw, 4.8rem) !important;
+    color: #ffffff !important;
     -webkit-text-stroke: none !important;
-    letter-spacing: 6px !important;
-    line-height: 1.1;
+    letter-spacing: 3px !important;
+    line-height: 1.15;
     text-shadow: 
-        0 0 20px rgba(214, 0, 0, 0.85),
-        0 0 45px rgba(160, 0, 0, 0.6) !important;
+        0 0 15px #ff3b3f,
+        0 0 30px #c01116,
+        3px 3px 0 #000000 !important;
     transform: none !important;
-    animation: boldPulse 0.4s ease-in-out infinite alternate;
 }
 
-@keyframes boldPulse {
-    from { transform: scale(0.98); }
-    to { transform: scale(1.02); }
-}
-
-/* Phase 4: Spider Crawler */
+/* Phase 4: Prominent, Highly Visible Metallic Spider Crawler */
 #spider-crawler {
     position: absolute;
-    bottom: -120px;
+    bottom: -220px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 100px;
-    z-index: 20;
-    filter: drop-shadow(0 0 15px var(--marvel-red));
+    width: 220px;
+    height: 220px;
+    z-index: 25;
+    filter: drop-shadow(0 0 30px #ff3b3f) drop-shadow(0 0 50px #ffffff);
+    will-change: transform, bottom, opacity;
 }
 
 #spider-crawler.crawl-up {
-    animation: spiderCrawlUp 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: spiderCrawlUp 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 @keyframes spiderCrawlUp {
-    0% { bottom: -120px; transform: translateX(-50%) scale(0.8); }
-    50% { bottom: 45vh; transform: translateX(-50%) scale(1.3) rotate(0deg); }
-    75% { bottom: 50vh; transform: translateX(-50%) scale(1.5) rotate(15deg); }
-    100% { bottom: 50vh; transform: translateX(-50%) scale(2) rotate(0deg); opacity: 0; }
+    0% { bottom: -220px; transform: translateX(-50%) scale(1); }
+    50% { bottom: 40vh; transform: translateX(-50%) scale(1.6) rotate(0deg); filter: drop-shadow(0 0 45px #ff3b3f) drop-shadow(0 0 70px #00f3ff); }
+    100% { bottom: 48vh; transform: translateX(-50%) scale(2.4) rotate(0deg); opacity: 0; }
 }
 
 .spidey-svg {
     width: 100%;
     height: 100%;
-    animation: legWiggle 0.2s infinite alternate;
 }
 
-@keyframes legWiggle {
-    0% { transform: rotate(-3deg); }
-    100% { transform: rotate(3deg); }
-}
-
-/* ==================== VERTICAL SIDEBAR NAME BADGE ==================== */
-.vertical-sidebar-name {
+/* ==================== THOR MJOLNIR WORTHINESS TOAST POPUP ==================== */
+.thor-toast-msg {
     position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%) translateX(-180px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    z-index: 9995;
-    background: rgba(4, 15, 10, 0.96);
-    border: 2px solid var(--marvel-red);
-    padding: 20px 12px;
-    border-radius: 30px;
-    box-shadow: 0 0 35px var(--marvel-red), 0 0 50px var(--ironman-gold);
-    backdrop-filter: blur(12px);
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.vertical-sidebar-name.active {
-    transform: translateY(-50%) translateX(0);
-    opacity: 1;
-}
-
-.v-letter {
-    font-family: var(--font-marvel);
-    font-size: 1.8rem;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    white-space: nowrap;
+    background: rgba(4, 8, 18, 0.98);
+    border: 2px solid var(--thor-blue);
     color: #ffffff;
-    line-height: 1;
-    text-shadow: 0 0 10px var(--marvel-red);
+    font-family: var(--font-marvel);
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+    padding: 10px 26px;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.8), 0 10px 30px rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 99995;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    will-change: transform, opacity;
 }
 
-.v-gold {
-    color: var(--ironman-gold);
-    text-shadow: 0 0 10px var(--ironman-gold);
+.thor-toast-msg i {
+    color: var(--thor-blue);
+    font-size: 1.4rem;
+    animation: thunderPulse 1.2s infinite alternate;
 }
 
-.v-space {
-    height: 15px;
+@keyframes thunderPulse {
+    from { filter: drop-shadow(0 0 5px #00F3FF); }
+    to { filter: drop-shadow(0 0 18px #00F3FF); }
+}
+
+.thor-toast-msg.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+/* ==================== DEADPOOL RESUME LAUGHING TOAST POPUP ==================== */
+.deadpool-toast-msg {
+    position: fixed;
+    bottom: 120px;
+    left: 30px;
+    white-space: nowrap;
+    background: rgba(8, 4, 6, 0.98);
+    border: 2px solid #d60000;
+    color: #ffffff;
+    font-family: var(--font-marvel);
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+    padding: 12px 28px;
+    border-radius: 30px;
+    box-shadow: 0 0 35px rgba(214, 0, 0, 0.85), 0 10px 35px rgba(0,0,0,0.95);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 99995;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    will-change: transform, opacity;
+}
+
+.deadpool-toast-msg i {
+    color: #ffe600;
+    font-size: 1.6rem;
+    animation: laughPulse 0.4s infinite alternate;
+}
+
+@keyframes laughPulse {
+    from { transform: scale(1) rotate(-5deg); }
+    to { transform: scale(1.25) rotate(10deg); }
+}
+
+.deadpool-toast-msg.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 /* ==================== INTERACTIVE MARVEL GADGETS ==================== */
@@ -320,67 +353,41 @@ section {
 .super-gadget {
     position: absolute;
     pointer-events: auto !important;
-    transition: all 0.5s ease;
+    transition: transform 0.3s ease;
     z-index: 99999 !important;
+    will-change: transform;
 }
 
-/* Cap Shield Widget & Hover Animation */
-.cap-shield-gadget {
+/* Deadpool Face Mask Gadget Widget (CLEAN NO ROTATION, NO LAUNCHING) */
+.deadpool-face-gadget {
     bottom: 30px;
     left: 30px;
-    width: 85px;
-    height: 85px;
-    animation: floatShield 4s ease-in-out infinite alternate;
+    width: 75px;
+    height: 75px;
 }
 
-.cap-shield-gadget:hover {
-    animation-play-state: paused;
-    transform: scale(1.3) rotate(360deg) !important;
-    filter: drop-shadow(0 0 35px #E62429) drop-shadow(0 0 50px #0033aa) !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-}
-
-@keyframes floatShield {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(-15px) rotate(180deg); }
-}
-
-.shield-outer-ring {
+.deadpool-mask-outer {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: radial-gradient(circle, #E62429 0%, #E62429 45%, #ffffff 45%, #ffffff 60%, #E62429 60%, #E62429 80%, #0033aa 80%);
-    box-shadow: 0 0 25px rgba(230, 36, 41, 0.8), inset 0 0 10px #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #ffffff;
+    box-shadow: 0 0 25px rgba(214, 0, 0, 0.8), inset 0 0 10px #000;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.shield-white-ring {
-    width: 70%;
-    height: 70%;
-    border-radius: 50%;
-    background: radial-gradient(circle, #0033aa 0%, #0033aa 60%, #ffffff 60%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.deadpool-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 12px #d60000);
 }
 
-.shield-blue-center {
-    width: 75%;
-    height: 75%;
-    border-radius: 50%;
-    background: #0033aa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Subtle Pop Bounce on Hover / Touch Active - NO ROTATION AT ALL */
+.deadpool-face-gadget:hover, .deadpool-face-gadget:active {
+    transform: translateY(-6px) scale(1.15) !important;
+    filter: drop-shadow(0 0 35px #d60000) !important;
 }
 
-.shield-star {
-    color: #ffffff;
-    font-size: 1.4rem;
-    filter: drop-shadow(0 0 4px #000);
+.deadpool-face-gadget:hover .deadpool-label, .deadpool-face-gadget:active .deadpool-label {
+    opacity: 1;
 }
 
 .gadget-label {
@@ -390,18 +397,26 @@ section {
     transform: translateX(-50%);
     white-space: nowrap;
     font-family: var(--font-marvel);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     letter-spacing: 1px;
-    color: var(--ironman-gold);
-    background: rgba(0,0,0,0.85);
-    padding: 3px 8px;
+    color: #ffe600;
+    background: rgba(4, 6, 12, 0.98);
+    padding: 4px 10px;
     border-radius: 4px;
-    border: 1px solid var(--ironman-gold);
+    border: 1px solid #ffe600;
     opacity: 0;
     transition: opacity 0.3s ease;
+    box-shadow: 0 2px 8px #000;
+    pointer-events: none;
 }
 
-.thor-hammer-gadget:hover .gadget-label {
+.deadpool-label {
+    border-color: #d60000 !important;
+    color: #ffffff !important;
+    background: rgba(18, 4, 6, 0.98) !important;
+}
+
+.thor-hammer-gadget:hover .gadget-label, .thor-hammer-gadget:active .gadget-label {
     opacity: 1;
 }
 
@@ -409,23 +424,13 @@ section {
 .thor-hammer-gadget {
     bottom: 30px;
     right: 30px;
-    width: 70px;
-    height: 85px;
-    animation: floatMjolnir 3.5s ease-in-out infinite alternate;
+    width: 65px;
+    height: 80px;
 }
 
-@keyframes floatMjolnir {
-    0% { transform: translateY(0) rotate(-10deg); }
-    100% { transform: translateY(-18px) rotate(10deg); }
-}
-
-.thor-hammer-gadget:hover {
-    animation: lightningSurge 0.3s infinite alternate;
-}
-
-@keyframes lightningSurge {
-    0% { transform: scale(1.15) rotate(-15deg); filter: drop-shadow(0 0 20px var(--thor-blue)); }
-    100% { transform: scale(1.25) rotate(15deg); filter: drop-shadow(0 0 40px var(--arc-cyan)); }
+.thor-hammer-gadget:hover, .thor-hammer-gadget:active {
+    transform: scale(1.15) rotate(10deg);
+    filter: drop-shadow(0 0 25px var(--thor-blue));
 }
 
 .mjolnir {
@@ -435,12 +440,12 @@ section {
 }
 
 .hammer-head {
-    width: 60px;
-    height: 38px;
+    width: 55px;
+    height: 35px;
     background: linear-gradient(135deg, #a1a8b8 0%, #4a5568 100%);
     border: 2px solid #e2e8f0;
     border-radius: 4px;
-    box-shadow: inset 0 0 8px rgba(255,255,255,0.6), 0 0 15px rgba(0, 210, 255, 0.4);
+    box-shadow: inset 0 0 6px rgba(255,255,255,0.6), 0 0 12px rgba(0, 210, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -454,44 +459,39 @@ section {
 }
 
 .hammer-handle {
-    width: 12px;
-    height: 45px;
+    width: 11px;
+    height: 42px;
     background: linear-gradient(to bottom, #744210, #2c1a04);
     margin: 0 auto;
     border-radius: 0 0 3px 3px;
     border: 1px solid #975a16;
 }
 
-/* Clickable Chants & Highlighted "CLICK ME!" Side Badge */
+/* Clickable Chants & High-Contrast Readability Styling */
 .clickable-chant {
     position: relative;
-    transition: opacity 0.5s ease, transform 0.3s ease;
+    transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
 .chant-click-badge {
     display: inline-block;
     font-family: var(--font-marvel);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     letter-spacing: 1.5px;
-    color: #FFD700;
-    background: rgba(168, 85, 247, 0.35);
-    border: 1px solid #FFD700;
-    padding: 2px 8px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #0055ff;
+    border: 1px solid #ffe600;
+    padding: 3px 10px;
     border-radius: 12px;
-    margin-right: 8px;
+    margin-right: 10px;
     vertical-align: middle;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-    animation: chantBadgePulse 1.2s infinite alternate;
+    box-shadow: 0 0 10px rgba(0, 85, 255, 0.8);
+    text-shadow: 0 1px 3px #000;
 }
 
-@keyframes chantBadgePulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 6px #FFD700; }
-    100% { transform: scale(1.08); box-shadow: 0 0 14px #a855f7; }
-}
-
-.clickable-chant:hover {
-    transform: scale(1.04);
-    text-shadow: 0 0 20px var(--spell-purple), 0 0 30px var(--ironman-gold) !important;
+.clickable-chant:hover, .clickable-chant:active {
+    transform: scale(1.02);
 }
 
 .vanished-chant {
@@ -499,31 +499,22 @@ section {
     pointer-events: none !important;
 }
 
-/* Doctor Strange Humorous Chants Styling */
-.strange-chant-banner {
+/* High-Contrast Doctor Strange Chants */
+.strange-chant-inline {
     display: inline-block;
     font-family: var(--font-cinzel);
     font-style: italic;
-    color: var(--ironman-gold);
-    background: rgba(0, 20, 10, 0.85);
-    border: 1px solid var(--ironman-gold);
+    font-weight: 700;
+    color: #ffe600;
+    background: rgba(2, 4, 10, 0.96);
+    border: 1px solid rgba(255, 230, 0, 0.7);
     padding: 8px 18px;
-    font-size: 0.98rem;
-    letter-spacing: 1px;
     border-radius: 20px;
-    margin-bottom: 18px;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-    text-shadow: 0 1px 4px #000;
-}
-
-.strange-chant-inline {
-    font-family: var(--font-cinzel);
-    font-style: italic;
-    color: var(--ironman-gold);
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     letter-spacing: 1px;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 8px #000;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.95);
+    text-shadow: 0 2px 6px #000000;
 }
 
 /* ==================== NAVIGATION BAR ==================== */
@@ -537,9 +528,10 @@ section {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background: rgba(2, 10, 6, 0.94);
-    backdrop-filter: blur(16px);
-    border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+    background: rgba(4, 6, 12, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 2px solid rgba(0, 85, 255, 0.4);
     transition: all 0.3s ease;
 }
 
@@ -554,7 +546,7 @@ section {
 
 .logo-red {
     color: #ffffff;
-    background: var(--marvel-red);
+    background: #ff3b3f;
     padding: 2px 10px;
     border-radius: 3px;
 }
@@ -565,7 +557,7 @@ section {
 }
 
 .spider-badge {
-    color: var(--marvel-red);
+    color: #ff3b3f;
     font-size: 1.4rem;
     animation: rotateSpider 8s linear infinite;
 }
@@ -593,7 +585,7 @@ section {
 
 .nav-item:hover, .nav-item.active {
     color: #ffffff;
-    text-shadow: 0 0 10px var(--time-green);
+    text-shadow: 0 0 10px var(--spidey-light-blue);
 }
 
 .nav-item::after {
@@ -603,7 +595,7 @@ section {
     left: 0;
     width: 0%;
     height: 2px;
-    background: var(--time-green);
+    background: var(--spidey-light-blue);
     transition: width 0.3s ease;
 }
 
@@ -658,9 +650,9 @@ section {
     border: 1px solid #ffffff;
 }
 
-.nav-social-icon:hover {
+.nav-social-icon:hover, .nav-social-icon:active {
     transform: scale(1.2) rotate(10deg);
-    box-shadow: 0 0 20px var(--arc-cyan);
+    box-shadow: 0 0 20px var(--spidey-blue);
 }
 
 /* Iron Man Arc Reactor Navigation Button */
@@ -668,9 +660,9 @@ section {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #030e14;
-    border: 2px solid var(--arc-cyan);
-    box-shadow: 0 0 18px var(--arc-cyan);
+    background: #030407;
+    border: 2px solid var(--spidey-blue);
+    box-shadow: 0 0 18px var(--spidey-blue);
     position: relative;
     display: flex;
     align-items: center;
@@ -680,7 +672,7 @@ section {
 
 .nav-arc-reactor-btn:hover, .nav-arc-reactor-btn.active {
     transform: scale(1.15) rotate(180deg);
-    box-shadow: 0 0 35px var(--arc-cyan), 0 0 50px #ffffff;
+    box-shadow: 0 0 35px var(--spidey-blue), 0 0 50px #ffffff;
 }
 
 .arc-core-nav {
@@ -688,7 +680,7 @@ section {
     height: 15px;
     border-radius: 50%;
     background: #ffffff;
-    box-shadow: 0 0 12px #ffffff, 0 0 20px var(--arc-cyan);
+    box-shadow: 0 0 12px #ffffff, 0 0 20px var(--spidey-blue);
     animation: corePulse 1.5s infinite alternate;
 }
 
@@ -697,15 +689,51 @@ section {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 2px dashed var(--arc-cyan);
+    border: 2px dashed var(--spidey-blue);
     animation: spinRing 8s linear infinite;
+}
+
+/* Arc Reactor Toast Popup Message */
+.arc-toast-msg {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    white-space: nowrap;
+    background: rgba(4, 8, 16, 0.98);
+    border: 2px solid var(--arc-cyan);
+    color: #ffffff;
+    font-family: var(--font-marvel);
+    font-size: 1.05rem;
+    letter-spacing: 1.5px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.6), 0 8px 25px rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1005;
+}
+
+.arc-toast-msg i {
+    color: var(--arc-cyan);
+    font-size: 1.1rem;
+}
+
+.arc-toast-msg.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 /* Mobile Nav Toggle Button */
 .mobile-nav-toggle {
     display: none;
-    background: rgba(230, 36, 41, 0.2);
-    border: 1px solid var(--marvel-red);
+    background: rgba(255, 59, 63, 0.2);
+    border: 1px solid #ff3b3f;
     color: #ffffff;
     width: 42px;
     height: 42px;
@@ -716,9 +744,9 @@ section {
     transition: all 0.3s ease;
 }
 
-.mobile-nav-toggle:hover {
-    background: var(--marvel-red);
-    box-shadow: 0 0 15px var(--marvel-red);
+.mobile-nav-toggle:hover, .mobile-nav-toggle:active {
+    background: #ff3b3f;
+    box-shadow: 0 0 15px #ff3b3f;
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -743,22 +771,8 @@ section {
     z-index: 2;
 }
 
-.avengers-tag {
-    display: inline-block;
-    font-family: var(--font-marvel);
-    color: var(--ironman-gold);
-    background: rgba(255, 215, 0, 0.12);
-    border: 1px solid var(--ironman-gold);
-    padding: 6px 16px;
-    font-size: 1.1rem;
-    letter-spacing: 3px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    text-shadow: 0 2px 4px #000;
-}
-
 .hero-academic-tag {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--spidey-light-blue);
     font-weight: 700;
     margin-bottom: 15px;
@@ -779,15 +793,17 @@ section {
     color: #ffffff !important;
     background: none !important;
     -webkit-text-fill-color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
+    text-shadow: none !important;
+    filter: none !important;
 }
 
 .hero-description {
-    font-size: 1.15rem;
-    color: var(--text-muted);
+    font-size: 1.18rem;
+    color: #f1f5f9;
     max-width: 600px;
     margin-bottom: 35px;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    line-height: 1.7;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.95);
 }
 
 .hero-cta-group {
@@ -811,14 +827,14 @@ section {
 }
 
 .btn-marvel-red {
-    background: linear-gradient(135deg, var(--marvel-red), #ff1e25);
+    background: linear-gradient(135deg, #ff3b3f, #e60000);
     color: #ffffff;
-    box-shadow: 0 0 25px rgba(230, 36, 41, 0.6);
+    box-shadow: 0 0 25px rgba(255, 59, 63, 0.6);
 }
 
-.btn-marvel-red:hover {
+.btn-marvel-red:hover, .btn-marvel-red:active {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 0 40px rgba(230, 36, 41, 0.9);
+    box-shadow: 0 0 40px rgba(255, 59, 63, 0.9);
 }
 
 .btn-spidey-blue {
@@ -827,7 +843,7 @@ section {
     box-shadow: 0 0 20px rgba(0, 119, 181, 0.5);
 }
 
-.btn-spidey-blue:hover {
+.btn-spidey-blue:hover, .btn-spidey-blue:active {
     background: #0088cc;
     box-shadow: 0 0 35px rgba(0, 119, 181, 0.9);
     transform: translateY(-3px);
@@ -839,7 +855,7 @@ section {
     color: #ffffff;
 }
 
-.btn-dark-comic:hover {
+.btn-dark-comic:hover, .btn-dark-comic:active {
     background: rgba(255,255,255,0.2);
     border-color: #ffffff;
     transform: translateY(-3px);
@@ -856,6 +872,8 @@ section {
     width: 340px;
     height: 420px;
     margin: 0 auto;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .hero-photo-wrapper {
@@ -865,7 +883,7 @@ section {
     overflow: hidden;
     position: relative;
     border: 3px solid transparent;
-    background: linear-gradient(135deg, #ff3300, #ff9900, #E62429) border-box;
+    background: linear-gradient(135deg, #ff3300, #ff9900, #ff3b3f) border-box;
     box-shadow: 0 0 40px rgba(255, 51, 0, 0.5);
     transition: all 0.4s ease;
 }
@@ -882,22 +900,24 @@ section {
     transform: scale(1.05);
 }
 
-/* Floating Badges around Photo */
+/* Floating Badges */
 .floating-badge {
     position: absolute;
     z-index: 15;
-    background: rgba(5, 15, 10, 0.95);
+    background: rgba(6, 8, 14, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 20px;
     padding: 8px 16px;
     font-size: 0.9rem;
     color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     gap: 8px;
     animation: floatBadge 3.5s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 @keyframes floatBadge {
@@ -908,41 +928,41 @@ section {
 .badge-top-right {
     top: 20px;
     right: -40px;
-    border-color: #ff6600;
+    border-color: #ff3b3f;
 }
 
 .badge-top-left {
     top: 90px;
     left: -35px;
-    border-color: var(--arc-cyan);
+    border-color: var(--spidey-blue);
 }
 
 .badge-mid-right {
     bottom: 120px;
     right: -45px;
-    border-color: #a855f7;
+    border-color: var(--spidey-light-blue);
 }
 
 .badge-bottom {
     bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
-    border-color: #00ff66;
+    border-color: #ff3b3f;
 }
 
 .fire-flame-pill {
-    background: linear-gradient(135deg, #ff3300, #ff9900, #ffcc00) !important;
-    color: #000000 !important;
+    background: linear-gradient(135deg, #c01116, #ff3b3f) !important;
+    color: #ffffff !important;
     font-weight: 800 !important;
-    border: 1px solid #ffcc00 !important;
-    box-shadow: 0 0 12px rgba(255, 102, 0, 0.9) !important;
+    border: 1px solid #ff3b3f !important;
+    box-shadow: 0 0 12px rgba(255, 59, 63, 0.6) !important;
     padding: 2px 10px;
     border-radius: 10px;
     font-size: 0.78rem;
 }
 
 .badge-star {
-    color: var(--ironman-gold);
+    color: #ffe600;
 }
 
 .scroll-down-indicator {
@@ -954,14 +974,14 @@ section {
     gap: 8px;
     font-family: var(--font-marvel);
     letter-spacing: 2px;
-    color: var(--text-muted);
+    color: #f1f5f9;
     font-size: 0.95rem;
 }
 
 .mouse-icon {
     width: 24px;
     height: 38px;
-    border: 2px solid var(--text-muted);
+    border: 2px solid #f1f5f9;
     border-radius: 12px;
     position: relative;
 }
@@ -969,7 +989,7 @@ section {
 .mouse-icon .wheel {
     width: 4px;
     height: 8px;
-    background: var(--marvel-red);
+    background: #ff3b3f;
     border-radius: 2px;
     position: absolute;
     top: 6px;
@@ -983,7 +1003,7 @@ section {
     100% { top: 20px; opacity: 0; }
 }
 
-/* ==================== SECTION HEADERS ==================== */
+/* ==================== SECTION HEADERS & CRISP HIGH-CONTRAST RED ACCENTS ==================== */
 .section-header {
     text-align: center;
     margin-bottom: 50px;
@@ -991,11 +1011,12 @@ section {
 
 .tech-header-tag {
     font-family: var(--font-marvel);
-    color: var(--ironman-gold);
+    color: #ffe600;
     letter-spacing: 3px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    font-weight: 700;
     margin-bottom: 8px;
-    text-shadow: 0 2px 4px #000;
+    text-shadow: 0 2px 6px #000;
 }
 
 .section-title {
@@ -1007,14 +1028,17 @@ section {
 }
 
 .red-accent {
-    color: var(--marvel-red);
-    text-shadow: 0 0 15px var(--marvel-red);
+    color: #ff3b3f !important;
+    font-weight: 900 !important;
+    text-shadow: 
+        0 2px 6px #000000, 
+        0 0 12px rgba(255, 59, 63, 0.4) !important;
 }
 
 .section-subtitle {
     font-size: 1.05rem;
     letter-spacing: 3px;
-    color: var(--text-muted);
+    color: #cbd5e1;
     text-transform: uppercase;
     margin-top: 5px;
     text-shadow: 0 2px 4px #000;
@@ -1035,12 +1059,13 @@ section {
 
 .dossier-card {
     background: var(--bg-card);
-    border: 2px solid var(--marvel-red);
+    border: 2px solid #ff3b3f;
     border-radius: 18px;
     padding: 30px;
     position: relative;
-    box-shadow: 0 0 30px rgba(230, 36, 41, 0.3);
-    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .dossier-header {
@@ -1054,7 +1079,7 @@ section {
 
 .classified-stamp {
     font-family: var(--font-marvel);
-    background: var(--marvel-red);
+    background: #ff3b3f;
     color: #fff;
     padding: 3px 12px;
     font-size: 1rem;
@@ -1064,10 +1089,11 @@ section {
 
 .agent-id {
     font-family: var(--font-marvel);
-    color: var(--ironman-gold);
+    color: #ffe600;
     letter-spacing: 2px;
-    font-size: 1.2rem;
-    text-shadow: 0 1px 4px #000;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px #000;
 }
 
 .avatar-box {
@@ -1082,8 +1108,8 @@ section {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 3px solid var(--marvel-red);
-    box-shadow: 0 0 20px var(--marvel-red);
+    border: 3px solid #ff3b3f;
+    box-shadow: 0 0 20px #ff3b3f;
     animation: avatarPulse 2s infinite alternate;
 }
 
@@ -1104,7 +1130,7 @@ section {
     position: absolute;
     bottom: -5px;
     right: -5px;
-    background: var(--marvel-red);
+    background: #ff3b3f;
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -1127,14 +1153,15 @@ section {
 .agent-title {
     text-align: center;
     color: var(--spidey-light-blue);
-    font-size: 0.95rem;
+    font-size: 0.98rem;
+    font-weight: 700;
     margin-bottom: 8px;
 }
 
 .agent-location {
     text-align: center;
-    color: var(--text-muted);
-    font-size: 0.9rem;
+    color: #f1f5f9;
+    font-size: 0.92rem;
     margin-bottom: 25px;
 }
 
@@ -1146,33 +1173,35 @@ section {
 }
 
 .stat-box {
-    background: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.08);
     padding: 12px 5px;
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .stat-val {
     display: block;
     font-family: var(--font-marvel);
     font-size: 1.8rem;
-    color: var(--ironman-gold);
-    text-shadow: 0 1px 4px #000;
+    color: #ffe600;
+    text-shadow: 0 2px 4px #000;
 }
 
 .stat-lbl {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    line-height: 1.1;
+    font-size: 0.8rem;
+    color: #f1f5f9;
+    line-height: 1.2;
+    font-weight: 600;
 }
 
 .bio-card {
     background: var(--bg-card);
-    border: 2px solid rgba(0, 255, 136, 0.3);
+    border: 2px solid rgba(0, 85, 255, 0.4);
     border-radius: 18px;
     padding: 35px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.6);
-    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .card-heading {
@@ -1187,9 +1216,10 @@ section {
 }
 
 .bio-paragraph {
-    font-size: 1.1rem;
-    color: var(--text-muted);
+    font-size: 1.15rem;
+    color: #f1f5f9;
     margin-bottom: 20px;
+    line-height: 1.7;
 }
 
 .inline-link {
@@ -1197,20 +1227,20 @@ section {
     align-items: center;
     gap: 8px;
     color: #fff;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.1);
     padding: 8px 16px;
     border-radius: 20px;
     text-decoration: none;
     margin-right: 10px;
     margin-top: 10px;
     font-size: 0.95rem;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.25);
     transition: all 0.3s ease;
 }
 
-.inline-link:hover {
-    background: var(--marvel-red);
-    border-color: var(--marvel-red);
+.inline-link:hover, .inline-link:active {
+    background: #ff3b3f;
+    border-color: #ff3b3f;
     transform: translateY(-2px);
 }
 
@@ -1230,9 +1260,9 @@ section {
 }
 
 .project-filter-btn {
-    background: rgba(5, 15, 10, 0.9);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: var(--text-muted);
+    background: rgba(6, 8, 14, 0.98);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #f1f5f9;
     padding: 10px 24px;
     font-family: var(--font-body);
     font-weight: 600;
@@ -1241,11 +1271,11 @@ section {
     transition: all 0.3s ease;
 }
 
-.project-filter-btn.active, .project-filter-btn:hover {
-    background: linear-gradient(135deg, #a855f7, #00F3FF);
+.project-filter-btn.active, .project-filter-btn:hover, .project-filter-btn:active {
+    background: linear-gradient(135deg, #ff3b3f, var(--spidey-blue));
     color: #fff;
     border-color: transparent;
-    box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+    box-shadow: 0 0 25px rgba(0, 85, 255, 0.5);
 }
 
 .projects-grid {
@@ -1256,13 +1286,14 @@ section {
 
 .project-card {
     background: var(--bg-card);
-    border: 2px solid rgba(0, 255, 136, 0.25);
+    border: 2px solid rgba(0, 85, 255, 0.4);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
     display: flex;
     flex-direction: column;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .card-banner {
@@ -1272,11 +1303,11 @@ section {
     align-items: center;
 }
 
-.banner-red { background: linear-gradient(135deg, #b31217, #E62429); }
+.banner-red { background: linear-gradient(135deg, #c01116, #ff3b3f); }
 .banner-blue { background: linear-gradient(135deg, #0033aa, #0066ff); }
-.banner-green { background: linear-gradient(135deg, #047857, #10b981); }
+.banner-green { background: linear-gradient(135deg, #334155, #64748b); }
 .banner-gold { background: linear-gradient(135deg, #b7791f, #d69e2e); }
-.banner-purple { background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
+.banner-purple { background: linear-gradient(135deg, #7a0000, #c01116); }
 
 .mission-code {
     font-family: var(--font-marvel);
@@ -1287,7 +1318,7 @@ section {
 
 .banner-category-badge {
     font-family: var(--font-marvel);
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
     color: #fff;
     padding: 4px 12px;
     border-radius: 12px;
@@ -1312,10 +1343,10 @@ section {
 }
 
 .project-summary {
-    color: var(--text-muted);
-    font-size: 0.96rem;
+    color: #f1f5f9;
+    font-size: 0.98rem;
     margin-bottom: 20px;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .highlight-pills {
@@ -1327,12 +1358,13 @@ section {
 
 .pill-green {
     font-size: 0.85rem;
-    color: #00ff99;
-    background: rgba(0, 255, 153, 0.12);
-    border: 1px solid rgba(0, 255, 153, 0.35);
+    color: var(--spidey-light-blue);
+    background: rgba(0, 85, 255, 0.18);
+    border: 1px solid rgba(0, 85, 255, 0.45);
     padding: 4px 12px;
     border-radius: 15px;
     display: inline-block;
+    font-weight: 600;
 }
 
 .tech-tags {
@@ -1344,17 +1376,18 @@ section {
 
 .tech-tags span {
     font-size: 0.8rem;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.22);
     color: var(--spidey-light-blue);
     padding: 4px 12px;
     border-radius: 12px;
+    font-weight: 600;
 }
 
 .project-footer {
     margin-top: auto;
     padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255,255,255,0.12);
 }
 
 .project-link-btn {
@@ -1363,7 +1396,7 @@ section {
     gap: 8px;
     font-family: var(--font-marvel);
     color: #fff;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.15);
     padding: 8px 20px;
     border-radius: 6px;
     text-decoration: none;
@@ -1371,46 +1404,8 @@ section {
     transition: background 0.3s ease;
 }
 
-.project-link-btn:hover {
-    background: var(--marvel-red);
-}
-
-/* ==================== KEY PERFORMANCE METRICS ==================== */
-.metrics-section {
-    padding: 80px 40px;
-    max-width: 1250px;
-    margin: 0 auto;
-}
-
-.metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.metric-card {
-    background: var(--bg-card);
-    border: 2px solid rgba(0, 255, 136, 0.3);
-    border-radius: 18px;
-    padding: 30px 18px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    backdrop-filter: blur(16px);
-}
-
-.metric-value {
-    font-family: var(--font-marvel);
-    font-size: 3.5rem;
-    line-height: 1;
-    background: linear-gradient(135deg, #a855f7, #00F3FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 8px;
-}
-
-.metric-label {
-    font-size: 0.92rem;
-    color: var(--text-muted);
+.project-link-btn:hover, .project-link-btn:active {
+    background: #ff3b3f;
 }
 
 /* ==================== TECH STACK GROUPS ==================== */
@@ -1428,11 +1423,12 @@ section {
 
 .tech-group-card {
     background: var(--bg-card);
-    border: 2px solid rgba(0, 255, 136, 0.3);
+    border: 2px solid rgba(0, 85, 255, 0.4);
     border-radius: 18px;
     padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .group-title {
@@ -1453,24 +1449,25 @@ section {
 }
 
 .tech-chip {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #e2e8f0;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #f1f5f9;
     padding: 8px 16px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     transition: all 0.3s ease;
 }
 
-.tech-chip:hover {
-    background: var(--marvel-red);
+.tech-chip:hover, .tech-chip:active {
+    background: #ff3b3f;
     color: #fff;
-    border-color: var(--marvel-red);
+    border-color: #ff3b3f;
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 0 15px var(--marvel-red);
+    box-shadow: 0 0 15px #ff3b3f;
 }
 
 /* ==================== DYNAMIC MOTION CARDS KEYFRAMES & HOVER STYLES ==================== */
@@ -1478,6 +1475,7 @@ section {
     animation: levitateMotion 6s ease-in-out infinite alternate;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .motion-card:nth-child(even) {
@@ -1486,13 +1484,13 @@ section {
 
 @keyframes levitateMotion {
     0% { transform: translateY(0px); }
-    100% { transform: translateY(-10px); }
+    100% { transform: translateY(-8px); }
 }
 
-.motion-card:hover {
+.motion-card:hover, .motion-card:active {
     animation-play-state: paused;
-    transform: translateY(-12px) scale(1.03) rotateX(3deg) !important;
-    border-color: var(--arc-cyan) !important;
+    transform: translateY(-10px) scale(1.02) !important;
+    border-color: var(--spidey-blue) !important;
     box-shadow: 0 15px 40px rgba(0, 243, 255, 0.35) !important;
     background: var(--bg-card-hover) !important;
 }
@@ -1512,11 +1510,12 @@ section {
 
 .contact-info-card, .contact-form {
     background: var(--bg-card);
-    border: 2px solid rgba(0, 255, 136, 0.3);
+    border: 2px solid rgba(0, 85, 255, 0.4);
     border-radius: 20px;
     padding: 35px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .contact-info-card h3, .contact-form h3 {
@@ -1531,7 +1530,7 @@ section {
 }
 
 .contact-info-card p {
-    color: var(--text-muted);
+    color: #f1f5f9;
     margin-bottom: 25px;
 }
 
@@ -1546,20 +1545,21 @@ section {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(230, 36, 41, 0.15);
-    border: 1px solid var(--marvel-red);
+    background: rgba(255, 59, 63, 0.15);
+    border: 1px solid #ff3b3f;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--marvel-red);
+    color: #ff3b3f;
     font-size: 1.2rem;
 }
 
 .item-label {
     display: block;
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: #cbd5e1;
     letter-spacing: 2px;
+    font-weight: 600;
 }
 
 .item-val {
@@ -1570,8 +1570,8 @@ section {
     transition: color 0.3s ease;
 }
 
-.item-val:hover {
-    color: var(--marvel-red);
+.item-val:hover, .item-val:active {
+    color: #ff3b3f;
 }
 
 .social-hero-links {
@@ -1595,7 +1595,7 @@ section {
 .linkedin-btn { background: #0077b5; }
 .github-btn { background: #333; }
 
-.social-btn:hover {
+.social-btn:hover, .social-btn:active {
     transform: translateY(-3px);
     box-shadow: 0 0 20px rgba(255,255,255,0.4);
 }
@@ -1608,7 +1608,7 @@ section {
     display: block;
     font-family: var(--font-marvel);
     letter-spacing: 2px;
-    color: var(--text-muted);
+    color: #f1f5f9;
     margin-bottom: 6px;
     font-size: 1rem;
 }
@@ -1616,8 +1616,8 @@ section {
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 12px 16px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.25);
     border-radius: 6px;
     color: #fff;
     font-family: var(--font-body);
@@ -1627,8 +1627,8 @@ section {
 
 .form-group input:focus, .form-group textarea:focus {
     outline: none;
-    border-color: var(--marvel-red);
-    box-shadow: 0 0 15px rgba(230, 36, 41, 0.4);
+    border-color: #ff3b3f;
+    box-shadow: 0 0 15px rgba(255, 59, 63, 0.4);
 }
 
 .form-submit-btn {
@@ -1636,36 +1636,51 @@ section {
     justify-content: center;
 }
 
+.form-status-msg {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--spidey-light-blue);
+    display: none;
+}
+
+.form-status-msg.error {
+    color: #ff3b3f;
+}
+
 /* ==================== FOOTER ==================== */
 .marvel-footer {
-    background: #020704;
-    border-top: 2px solid var(--marvel-red);
+    background: #030407;
+    border-top: 2px solid #ff3b3f;
     padding: 40px 20px;
     text-align: center;
 }
 
 .spider-logo-footer {
     font-size: 2.2rem;
-    color: var(--marvel-red);
+    color: #ff3b3f;
     margin-bottom: 12px;
 }
 
 .marvel-footer p {
     font-family: var(--font-marvel);
     letter-spacing: 2px;
-    color: var(--ironman-gold);
-    font-size: 1.2rem;
+    color: #ffe600;
+    font-size: 1.25rem;
+    font-weight: 700;
     margin-bottom: 8px;
+    text-shadow: 0 2px 4px #000;
 }
 
 .marvel-footer .copyright {
     font-family: var(--font-body);
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #cbd5e1;
     letter-spacing: 1px;
 }
 
-/* ==================== COMPREHENSIVE RESPONSIVE DESIGN (TABLET & PHONE) ==================== */
+/* ==================== COMPREHENSIVE RESPONSIVE DESIGN (TABLET & MOBILE OPTIMIZATION) ==================== */
 @media (max-width: 1024px) {
     .marvel-nav {
         padding: 12px 25px;
@@ -1702,7 +1717,7 @@ section {
     }
 
     .floating-badge {
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         padding: 6px 12px;
     }
 
@@ -1712,9 +1727,8 @@ section {
 }
 
 @media (max-width: 768px) {
-    /* Header & Mobile Drawer Navigation */
     .marvel-nav {
-        padding: 12px 20px;
+        padding: 12px 18px;
     }
 
     .mobile-nav-toggle {
@@ -1723,12 +1737,13 @@ section {
 
     .nav-links {
         position: fixed;
-        top: 68px;
+        top: 65px;
         left: 0;
         width: 100vw;
-        background: rgba(2, 10, 6, 0.98);
-        border-bottom: 2px solid var(--marvel-red);
+        background: rgba(4, 6, 12, 0.98);
+        border-bottom: 2px solid #ff3b3f;
         backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 25px 20px;
         gap: 18px;
@@ -1737,7 +1752,7 @@ section {
         visibility: hidden;
         transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         z-index: 999;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.9);
     }
 
     .nav-links.mobile-active {
@@ -1747,31 +1762,26 @@ section {
     }
 
     .nav-item {
-        font-size: 1.4rem;
+        font-size: 1.35rem;
         text-align: center;
         width: 100%;
     }
 
-    /* Hero Section */
     .hero-section {
-        padding: 100px 20px 50px;
-    }
-
-    .avengers-tag {
-        font-size: 0.95rem;
-        padding: 4px 12px;
+        padding: 95px 18px 45px;
     }
 
     .hero-academic-tag {
-        font-size: 1rem;
+        font-size: 0.98rem;
     }
 
     .hero-title {
-        font-size: 2.6rem;
+        font-size: clamp(2.3rem, 7.5vw, 3.2rem);
     }
 
     .hero-description {
-        font-size: 1.05rem;
+        font-size: 1.02rem;
+        line-height: 1.6;
     }
 
     .btn {
@@ -1781,29 +1791,91 @@ section {
         justify-content: center;
     }
 
-    .strange-chant-banner, .strange-chant-inline {
+    .strange-chant-inline {
         font-size: 0.88rem;
         padding: 8px 14px;
         line-height: 1.4;
     }
 
-    .chant-click-badge {
-        font-size: 0.7rem;
-        padding: 2px 6px;
+    .about-section, .projects-section, .skills-section, .contact-section {
+        padding: 60px 18px;
     }
 
-    /* Gadgets on Mobile */
-    .cap-shield-gadget {
-        width: 65px;
-        height: 65px;
-        bottom: 20px;
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-stack-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-card, .contact-form, .dossier-card, .bio-card {
+        padding: 22px 18px;
+    }
+
+    /* Responsive Mobile Floating Badges around Photo Frame */
+    .floating-badge {
+        display: flex;
+        font-size: 0.78rem;
+        padding: 5px 10px;
+        border-radius: 12px;
+    }
+
+    .badge-top-right {
+        top: -15px;
+        right: 50%;
+        transform: translateX(50%);
+        white-space: nowrap;
+    }
+
+    .badge-top-left {
+        top: 35px;
+        left: -10px;
+    }
+
+    .badge-mid-right {
+        bottom: 45px;
+        right: -10px;
+    }
+
+    .badge-bottom {
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+
+    .photo-frame-container {
+        width: 270px;
+        height: 330px;
+        margin: 20px auto;
+    }
+
+    /* Responsive Mobile Spider Crawler */
+    #spider-crawler {
+        width: 140px;
+        height: 140px;
+        bottom: -140px;
+    }
+
+    @keyframes spiderCrawlUp {
+        0% { bottom: -140px; transform: translateX(-50%) scale(1); }
+        50% { bottom: 42vh; transform: translateX(-50%) scale(1.4) rotate(0deg); filter: drop-shadow(0 0 35px #ff3b3f) drop-shadow(0 0 50px #00f3ff); }
+        100% { bottom: 48vh; transform: translateX(-50%) scale(1.9) rotate(0deg); opacity: 0; }
+    }
+
+    /* Mobile Gadgets Anchored Position */
+    .deadpool-face-gadget {
+        width: 60px;
+        height: 60px;
+        bottom: 18px;
         left: 15px;
     }
 
     .thor-hammer-gadget {
         width: 55px;
         height: 70px;
-        bottom: 20px;
+        bottom: 18px;
         right: 15px;
     }
 
@@ -1813,62 +1885,44 @@ section {
     }
 
     .hammer-handle {
-        width: 10px;
-        height: 38px;
+        width: 9px;
+        height: 36px;
     }
 
-    .vertical-sidebar-name {
-        left: 8px;
-        padding: 12px 8px;
-        border-radius: 20px;
+    /* Mobile Responsive Toast Notifications */
+    .deadpool-toast-msg {
+        left: 50%;
+        bottom: 85px;
+        transform: translateX(-50%) translateY(20px);
+        font-size: 0.98rem;
+        padding: 8px 18px;
+        max-width: 92%;
+        text-align: center;
+        justify-content: center;
     }
 
-    .v-letter {
-        font-size: 1.2rem;
+    .deadpool-toast-msg.show {
+        transform: translateX(-50%) translateY(0);
     }
 
-    /* Sections Padding */
-    .about-section, .projects-section, .metrics-section, .skills-section, .contact-section {
-        padding: 70px 20px;
+    .arc-toast-msg {
+        right: 10px;
+        font-size: 0.88rem;
+        padding: 6px 12px;
     }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .tech-stack-container {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-info-card, .contact-form, .dossier-card, .bio-card {
-        padding: 25px 20px;
-    }
-
-    .floating-badge {
-        display: none;
-    }
-
-    .photo-frame-container {
-        width: 260px;
-        height: 320px;
+    .thor-toast-msg {
+        font-size: 0.98rem;
+        padding: 8px 18px;
+        max-width: 92%;
+        text-align: center;
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2.2rem;
-    }
-
-    .metrics-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .metric-value {
-        font-size: 3rem;
+        font-size: 2.1rem;
     }
 
     .agent-stats {
@@ -1876,6 +1930,6 @@ section {
     }
 
     .nav-logo {
-        font-size: 1.8rem;
+        font-size: 1.75rem;
     }
 }
