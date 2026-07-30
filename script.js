@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     renderBgParticles();
 
-    // Helper function for instant touch + click binding (No 300ms mobile touch delay)
+    // Helper function for instant touch + click binding
     function addInstantTapListener(element, callback) {
         if (!element) return;
         let touchHandled = false;
@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 5. DEADPOOL MASK CLICK/TAP: LAUGH MSG & FORCED DIRECT SYSTEM RESUME DOWNLOAD
+    // 5. DEADPOOL MASK CLICK/TAP: UNCACHED DIRECT SYSTEM RESUME DOWNLOAD
     // ----------------------------------------------------
     const deadpoolMask = document.getElementById('deadpool-mask');
     const deadpoolToastMsg = document.getElementById('deadpool-toast-msg');
@@ -443,14 +443,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Play Deadpool Laugh Audio Effect
             playDeadpoolLaughSound();
 
-            // 3. Forced Blob Download: Direct System Save
-            fetch('Anant_Joshi_Resume.pdf')
+            // 3. Forced Uncached Blob Download of Final Year Resume
+            const cacheBusterUrl = 'Anant_Joshi_FinalYear_Resume.pdf?v=' + Date.now();
+            fetch(cacheBusterUrl, { cache: 'no-cache' })
                 .then(res => res.blob())
                 .then(blob => {
                     const blobUrl = URL.createObjectURL(blob);
                     const link = document.createElement('a');
                     link.href = blobUrl;
-                    link.download = 'Anant_Joshi_Resume.pdf';
+                    link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
@@ -458,8 +459,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch(err => {
                     const link = document.createElement('a');
-                    link.href = 'Anant_Joshi_Resume.pdf';
-                    link.download = 'Anant_Joshi_Resume.pdf';
+                    link.href = cacheBusterUrl;
+                    link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
