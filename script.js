@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const introOverlay = document.getElementById('marvel-intro-overlay');
     const phaseGreetings = document.getElementById('intro-phase-greetings');
     const phaseNeighbourhood = document.getElementById('intro-phase-neighbourhood');
-    const webCanvas = document.getElementById('web-canvas');
 
     let introFinished = false;
 
@@ -53,13 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             phaseNeighbourhood.classList.add('active');
 
-            // Trigger Authentic Comic Spider-Man Web Blast Animation
-            shootWeb3D();
-
-            // Display duration (~2.2 seconds) for Friendly Neighbourhood text, then finish intro directly
+            // Display duration (~2.8 seconds) for Upside Down Hanging Spider-Man & Pro Headline
             setTimeout(() => {
                 finishIntro();
-            }, 2200);
+            }, 2800);
         }, 300);
     }
 
@@ -74,94 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 2. AUTHENTIC COMIC SPIDER-MAN WEB BLAST CANVAS
-    // ----------------------------------------------------
-    function shootWeb3D() {
-        const ctx = webCanvas.getContext('2d');
-        webCanvas.width = window.innerWidth;
-        webCanvas.height = window.innerHeight;
-
-        const centerX = webCanvas.width / 2;
-        const centerY = webCanvas.height / 2;
-        const numRadials = window.innerWidth <= 768 ? 14 : 24;
-        let radiusProgress = 0;
-
-        function animateWeb() {
-            if (radiusProgress > Math.max(webCanvas.width, webCanvas.height) * 1.3) return;
-            ctx.clearRect(0, 0, webCanvas.width, webCanvas.height);
-
-            // 1. Thick Outer Glowing Aura Web Lines
-            for (let i = 0; i < numRadials; i++) {
-                const angle = (i * 2 * Math.PI) / numRadials;
-                const endX = centerX + Math.cos(angle) * radiusProgress;
-                const endY = centerY + Math.sin(angle) * radiusProgress;
-
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-                ctx.lineWidth = 4;
-                ctx.beginPath();
-                ctx.moveTo(centerX, centerY);
-                ctx.lineTo(endX, endY);
-                ctx.stroke();
-
-                // Core Solid Pure White Web Strand
-                ctx.strokeStyle = '#ffffff';
-                ctx.lineWidth = 2.2;
-                ctx.beginPath();
-                ctx.moveTo(centerX, centerY);
-                ctx.lineTo(endX, endY);
-                ctx.stroke();
-            }
-
-            // 2. Interlocking Concentric Web Lattices (Curved Web Segments)
-            const ringCount = window.innerWidth <= 768 ? 7 : 10;
-            for (let r = 1; r <= ringCount; r++) {
-                const currentRadius = (radiusProgress / ringCount) * r;
-                if (currentRadius <= 0) continue;
-
-                ctx.strokeStyle = '#ffffff';
-                ctx.lineWidth = 2.0;
-
-                for (let i = 0; i < numRadials; i++) {
-                    const a1 = (i * 2 * Math.PI) / numRadials;
-                    const a2 = ((i + 1) * 2 * Math.PI) / numRadials;
-
-                    const x1 = centerX + Math.cos(a1) * currentRadius;
-                    const y1 = centerY + Math.sin(a1) * currentRadius;
-                    const x2 = centerX + Math.cos(a2) * currentRadius;
-                    const y2 = centerY + Math.sin(a2) * currentRadius;
-
-                    // Inward Control Point for Authentic Curved Spider-Web Lines
-                    const midAngle = (a1 + a2) / 2;
-                    const ctrlRadius = currentRadius * 0.82;
-                    const ctrlX = centerX + Math.cos(midAngle) * ctrlRadius;
-                    const ctrlY = centerY + Math.sin(midAngle) * ctrlRadius;
-
-                    ctx.beginPath();
-                    ctx.moveTo(x1, y1);
-                    ctx.quadraticCurveTo(ctrlX, ctrlY, x2, y2);
-                    ctx.stroke();
-
-                    // Web Fluid Intersection Node Drops
-                    ctx.save();
-                    ctx.fillStyle = '#ffffff';
-                    ctx.shadowColor = '#00f3ff';
-                    ctx.shadowBlur = 8;
-                    ctx.beginPath();
-                    ctx.arc(x1, y1, 3, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.restore();
-                }
-            }
-
-            radiusProgress += 55;
-            requestAnimationFrame(animateWeb);
-        }
-
-        animateWeb();
-    }
-
-    // ----------------------------------------------------
-    // 3. FULL-SCREEN HIGH-PERFORMANCE DYNAMIC EYE OF AGAMOTTO TIME STONE CANVAS
+    // 2. FULL-SCREEN HIGH-PERFORMANCE DYNAMIC EYE OF AGAMOTTO TIME STONE CANVAS
     // ----------------------------------------------------
     const bgCanvas = document.getElementById('bg-web-canvas');
     const bgCtx = bgCanvas.getContext('2d');
@@ -303,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 4. THOR'S MJOLNIR CLICK/TAP LIGHTNING & WORTHINESS TOAST
+    // 3. THOR'S MJOLNIR CLICK/TAP LIGHTNING & WORTHINESS TOAST
     // ----------------------------------------------------
     const thorHammer = document.getElementById('thor-hammer');
     const lightningCanvas = document.getElementById('lightning-canvas');
@@ -410,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 5. DEADPOOL MASK CLICK/TAP: UNCACHED DIRECT SYSTEM RESUME DOWNLOAD
+    // 4. DEADPOOL MASK CLICK/TAP: UNCACHED DIRECT SYSTEM RESUME DOWNLOAD
     // ----------------------------------------------------
     const deadpoolMask = document.getElementById('deadpool-mask');
     const deadpoolToastMsg = document.getElementById('deadpool-toast-msg');
@@ -482,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 6. DOCTOR STRANGE SUBTLE ELDRITCH SPELL PULSE (NO SPARKLES)
+    // 5. DOCTOR STRANGE SUBTLE ELDRITCH SPELL PULSE (NO SPARKLES)
     // ----------------------------------------------------
     const portalCanvas = document.getElementById('portal-canvas');
     const pCtx = portalCanvas.getContext('2d');
@@ -572,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 7. ARC REACTOR NAV BUTTON & TOAST MESSAGE DISPLAY
+    // 6. ARC REACTOR NAV BUTTON & TOAST MESSAGE DISPLAY
     // ----------------------------------------------------
     const arcNavBtn = document.getElementById('arc-reactor-nav-btn');
     const navSocialSlide = document.getElementById('nav-social-slide');
@@ -622,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 8. DIRECT EMAIL TRANSMISSION FORM HANDLING
+    // 7. DIRECT EMAIL TRANSMISSION FORM HANDLING
     // ----------------------------------------------------
     const contactForm = document.getElementById('contact-form');
     const formSubmitBtn = document.getElementById('form-submit-btn');
@@ -677,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 9. PROJECT FILTERING INTERACTIVITY
+    // 8. PROJECT FILTERING INTERACTIVITY
     // ----------------------------------------------------
     const pFilterBtns = document.querySelectorAll('.project-filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -700,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 10. 3D CARD TILT & HOVER MOTION EFFECT
+    // 9. 3D CARD TILT & HOVER MOTION EFFECT
     // ----------------------------------------------------
     const tiltCards = document.querySelectorAll('.tilt-card');
 
@@ -726,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 11. ACTIVE NAVBAR HIGHLIGHT ON SCROLL
+    // 10. ACTIVE NAVBAR HIGHLIGHT ON SCROLL
     // ----------------------------------------------------
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');

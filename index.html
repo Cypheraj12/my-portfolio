@@ -17,7 +17,7 @@
 
     <!-- ==================== CINEMATIC INTRO OVERLAY ==================== -->
     <div id="marvel-intro-overlay">
-        <!-- Canvas for Ultra-Premium 3D Web Shooting -->
+        <!-- Canvas for background effects if needed -->
         <canvas id="web-canvas"></canvas>
 
         <!-- Phase 1: Dynamic Color Cycling Greetings -->
@@ -27,9 +27,52 @@
             </div>
         </div>
 
-        <!-- Phase 2: Your Friendly Neighbourhood (Pure Floating Text - No Box) -->
+        <!-- Phase 2: Iconic Upside-Down Hanging Spider-Man + Senior Pro Headline -->
         <div id="intro-phase-neighbourhood" class="intro-phase">
-            <h1 id="neighbourhood-text" class="straight-bold-neighbourhood">YOUR FRIENDLY NEIGHBOURHOOD</h1>
+            <div class="hanging-spidey-wrapper" id="hanging-spidey-wrapper">
+                <!-- Thin Glowing Web Strand Line -->
+                <div class="web-strand-line"></div>
+
+                <!-- Iconic Upside Down Spider-Man Vector Illustration -->
+                <div class="spidey-upside-down-svg">
+                    <svg viewBox="0 0 160 220" width="140" height="190" class="spidey-hanging-svg">
+                        <!-- Web Anchor Circle at Feet -->
+                        <circle cx="80" cy="15" r="4" fill="#ffffff" filter="drop-shadow(0 0 6px #00f3ff)"/>
+                        
+                        <!-- Upside Down Hanging Spider-Man Body -->
+                        <g transform="translate(0, 10)">
+                            <!-- Legs attached upside-down to web strand -->
+                            <path d="M62,35 L80,0 L98,35 L88,58 L72,58 Z" fill="#0055ff" stroke="#030407" stroke-width="2.5"/>
+                            <path d="M72,58 L80,35 L88,58 Z" fill="#c01116"/>
+                            <!-- Suit Belt -->
+                            <rect x="62" y="58" width="36" height="8" fill="#ffe600" rx="2"/>
+                            <!-- Red & Blue Spider Suit Torso -->
+                            <path d="M54,66 L106,66 L96,118 L64,118 Z" fill="#ff3b3f" stroke="#030407" stroke-width="2.5"/>
+                            <!-- Side Blue Panels -->
+                            <path d="M54,66 L68,66 L64,118 L54,98 Z" fill="#0055ff"/>
+                            <path d="M106,66 L92,66 L96,118 L106,98 Z" fill="#0055ff"/>
+                            <!-- Iconic Black Spider Emblem on Chest -->
+                            <path d="M80,78 L72,92 L88,92 Z" fill="#000000"/>
+                            <path d="M80,94 L70,108 L90,108 Z" fill="#000000"/>
+                            <!-- Arms Crouched Down Upside Down -->
+                            <path d="M52,70 L22,108 L34,118 L60,84 Z" fill="#ff3b3f" stroke="#030407" stroke-width="2"/>
+                            <path d="M108,70 L138,108 L126,118 L100,84 Z" fill="#ff3b3f" stroke="#030407" stroke-width="2"/>
+                            <!-- Spider Mask Head (Upside Down) -->
+                            <ellipse cx="80" cy="146" rx="23" ry="29" fill="#ff3b3f" stroke="#030407" stroke-width="2.5"/>
+                            <!-- Glowing White Eyes -->
+                            <path d="M62,140 Q76,142 75,158 Q62,154 62,140 Z" fill="#ffffff" stroke="#000000" stroke-width="2" filter="drop-shadow(0 0 8px #ffffff)"/>
+                            <path d="M98,140 Q84,142 85,158 Q98,154 98,140 Z" fill="#ffffff" stroke="#000000" stroke-width="2" filter="drop-shadow(0 0 8px #ffffff)"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Pro Senior Level Typography Wrapper -->
+            <div class="pro-neighbourhood-text-wrapper">
+                <span class="spidey-sub-tag"><i class="fa-solid fa-spider"></i> MARVEL AVENGERS × SPIDER-MAN</span>
+                <h1 id="neighbourhood-text" class="pro-neighbourhood-title">YOUR FRIENDLY NEIGHBOURHOOD</h1>
+                <p class="pro-neighbourhood-subtitle">DATA SCIENCE & BACKEND ENGINEER</p>
+            </div>
         </div>
     </div>
 
