@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anant Joshi | Marvel Avengers, Spider-Man & Doctor Strange Portfolio</title>
+    <title>Anant Joshi | Portfolio</title>
     <meta name="description" content="Portfolio of Anant Joshi - Final Year B.Tech CSE (Data Science Specialization). Inspired by Marvel Avengers, Spider-Man & Doctor Strange.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,6 @@
 
     <!-- ==================== CINEMATIC INTRO OVERLAY ==================== -->
     <div id="marvel-intro-overlay">
-        <!-- Canvas for background effects if needed -->
         <canvas id="web-canvas"></canvas>
 
         <!-- Phase 1: Dynamic Color Cycling Greetings -->
@@ -27,51 +26,71 @@
             </div>
         </div>
 
-        <!-- Phase 2: Iconic Upside-Down Hanging Spider-Man + Senior Pro Headline -->
+        <!-- Phase 2: High Quality Dynamic Upside-Down Spider-Man Figure + Pro Headline -->
         <div id="intro-phase-neighbourhood" class="intro-phase">
             <div class="hanging-spidey-wrapper" id="hanging-spidey-wrapper">
-                <!-- Thin Glowing Web Strand Line -->
+                <!-- Glowing Web Strand Line -->
                 <div class="web-strand-line"></div>
 
-                <!-- Iconic Upside Down Spider-Man Vector Illustration -->
+                <!-- High Quality Dynamic Upside Down Spider-Man Vector Graphic -->
                 <div class="spidey-upside-down-svg">
-                    <svg viewBox="0 0 160 220" width="140" height="190" class="spidey-hanging-svg">
-                        <!-- Web Anchor Circle at Feet -->
-                        <circle cx="80" cy="15" r="4" fill="#ffffff" filter="drop-shadow(0 0 6px #00f3ff)"/>
-                        
-                        <!-- Upside Down Hanging Spider-Man Body -->
-                        <g transform="translate(0, 10)">
-                            <!-- Legs attached upside-down to web strand -->
-                            <path d="M62,35 L80,0 L98,35 L88,58 L72,58 Z" fill="#0055ff" stroke="#030407" stroke-width="2.5"/>
-                            <path d="M72,58 L80,35 L88,58 Z" fill="#c01116"/>
-                            <!-- Suit Belt -->
-                            <rect x="62" y="58" width="36" height="8" fill="#ffe600" rx="2"/>
-                            <!-- Red & Blue Spider Suit Torso -->
-                            <path d="M54,66 L106,66 L96,118 L64,118 Z" fill="#ff3b3f" stroke="#030407" stroke-width="2.5"/>
-                            <!-- Side Blue Panels -->
-                            <path d="M54,66 L68,66 L64,118 L54,98 Z" fill="#0055ff"/>
-                            <path d="M106,66 L92,66 L96,118 L106,98 Z" fill="#0055ff"/>
-                            <!-- Iconic Black Spider Emblem on Chest -->
-                            <path d="M80,78 L72,92 L88,92 Z" fill="#000000"/>
-                            <path d="M80,94 L70,108 L90,108 Z" fill="#000000"/>
-                            <!-- Arms Crouched Down Upside Down -->
-                            <path d="M52,70 L22,108 L34,118 L60,84 Z" fill="#ff3b3f" stroke="#030407" stroke-width="2"/>
-                            <path d="M108,70 L138,108 L126,118 L100,84 Z" fill="#ff3b3f" stroke="#030407" stroke-width="2"/>
-                            <!-- Spider Mask Head (Upside Down) -->
-                            <ellipse cx="80" cy="146" rx="23" ry="29" fill="#ff3b3f" stroke="#030407" stroke-width="2.5"/>
-                            <!-- Glowing White Eyes -->
-                            <path d="M62,140 Q76,142 75,158 Q62,154 62,140 Z" fill="#ffffff" stroke="#000000" stroke-width="2" filter="drop-shadow(0 0 8px #ffffff)"/>
-                            <path d="M98,140 Q84,142 85,158 Q98,154 98,140 Z" fill="#ffffff" stroke="#000000" stroke-width="2" filter="drop-shadow(0 0 8px #ffffff)"/>
+                    <svg viewBox="0 0 200 280" width="180" height="252" class="spidey-hanging-svg">
+                        <!-- Web Anchor Circle -->
+                        <circle cx="100" cy="15" r="4" fill="#ffffff" filter="drop-shadow(0 0 8px #00f3ff)"/>
+
+                        <!-- Dynamic Upside Down Spider-Man Body -->
+                        <g transform="translate(0, 15)">
+                            <!-- Web line held in hand -->
+                            <line x1="100" y1="-15" x2="140" y2="100" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 2" opacity="0.6"/>
+
+                            <!-- Left Leg Bent Up -->
+                            <path d="M75,65 Q58,25 80,8 Q92,28 85,60 Z" fill="#0055ff" stroke="#060a12" stroke-width="2.5"/>
+                            <path d="M80,8 Q95,3 92,25 Z" fill="#e62429" stroke="#060a12" stroke-width="2"/>
+
+                            <!-- Right Leg Bent Up -->
+                            <path d="M125,65 Q142,25 120,8 Q108,28 115,60 Z" fill="#0055ff" stroke="#060a12" stroke-width="2.5"/>
+                            <path d="M120,8 Q105,3 108,25 Z" fill="#e62429" stroke="#060a12" stroke-width="2"/>
+
+                            <!-- Waist & Belt -->
+                            <path d="M72,60 L128,60 L120,85 L80,85 Z" fill="#0055ff" stroke="#060a12" stroke-width="2.5"/>
+                            <rect x="76" y="80" width="48" height="7" fill="#ffe600" rx="2"/>
+
+                            <!-- Muscular Torso (Upside Down) -->
+                            <path d="M65,85 L135,85 L120,150 L80,150 Z" fill="#ff3b3f" stroke="#060a12" stroke-width="3"/>
+                            <path d="M65,85 L82,85 L76,145 L68,125 Z" fill="#0055ff"/>
+                            <path d="M135,85 L118,85 L124,145 L132,125 Z" fill="#0055ff"/>
+
+                            <!-- Web Suit Grid Texture Lines -->
+                            <path d="M80,90 Q100,100 120,90 M75,105 Q100,115 125,105 M72,120 Q100,130 128,120" stroke="rgba(0,0,0,0.35)" stroke-width="1.5" fill="none"/>
+                            <path d="M100,85 L100,150 M88,87 L88,145 M112,87 L112,145" stroke="rgba(0,0,0,0.35)" stroke-width="1.5" fill="none"/>
+
+                            <!-- Iconic Black Spider Chest Emblem -->
+                            <path d="M100,105 C92,95 90,118 80,110 C92,120 95,130 100,120 C105,130 108,120 120,110 C110,118 108,95 100,105 Z" fill="#000000"/>
+
+                            <!-- Left Arm Reaching Down / Thwip Pose -->
+                            <path d="M65,88 L35,135 L45,145 L72,105 Z" fill="#ff3b3f" stroke="#060a12" stroke-width="2.5"/>
+                            <path d="M30,138 Q20,155 35,160 Q42,150 42,142 Z" fill="#ff3b3f" stroke="#060a12" stroke-width="2"/>
+
+                            <!-- Right Arm Gripping Web -->
+                            <path d="M135,88 L155,120 L142,130 L128,102 Z" fill="#ff3b3f" stroke="#060a12" stroke-width="2.5"/>
+
+                            <!-- Mask Head (Upside Down, Heroic Facing Angle) -->
+                            <g transform="translate(0, 140)">
+                                <ellipse cx="100" cy="35" rx="26" ry="32" fill="#ff3b3f" stroke="#060a12" stroke-width="3"/>
+                                <!-- Web Lines on Mask -->
+                                <path d="M100,5 C100,35 100,67 100,67 M74,35 L126,35 M80,20 L120,50 M120,20 L80,50" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" fill="none"/>
+                                <!-- Expressive Glowing White Eye Lenses -->
+                                <path d="M78,28 Q95,30 94,48 Q78,44 78,28 Z" fill="#ffffff" stroke="#000000" stroke-width="2.5" filter="drop-shadow(0 0 10px #ffffff)"/>
+                                <path d="M122,28 Q105,30 106,48 Q122,44 122,28 Z" fill="#ffffff" stroke="#000000" stroke-width="2.5" filter="drop-shadow(0 0 10px #ffffff)"/>
+                            </g>
                         </g>
                     </svg>
                 </div>
             </div>
 
-            <!-- Pro Senior Level Typography Wrapper -->
+            <!-- Ultra-Clean Pro Headline (No Marvel, Spiderman, Data Science or ML Engineer) -->
             <div class="pro-neighbourhood-text-wrapper">
-                <span class="spidey-sub-tag"><i class="fa-solid fa-spider"></i> MARVEL AVENGERS × SPIDER-MAN</span>
                 <h1 id="neighbourhood-text" class="pro-neighbourhood-title">YOUR FRIENDLY NEIGHBOURHOOD</h1>
-                <p class="pro-neighbourhood-subtitle">DATA SCIENCE & BACKEND ENGINEER</p>
             </div>
         </div>
     </div>
