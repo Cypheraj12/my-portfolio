@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const introOverlay = document.getElementById('marvel-intro-overlay');
     const phaseGreetings = document.getElementById('intro-phase-greetings');
     const phaseNeighbourhood = document.getElementById('intro-phase-neighbourhood');
-    const phaseSpider = document.getElementById('intro-phase-spider');
-    const spiderCrawler = document.getElementById('spider-crawler');
     const webCanvas = document.getElementById('web-canvas');
 
     let introFinished = false;
@@ -58,22 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Trigger Authentic Comic Spider-Man Web Blast Animation
             shootWeb3D();
 
-            // Display duration (~2.2 seconds) for Friendly Neighbourhood text
+            // Display duration (~2.2 seconds) for Friendly Neighbourhood text, then finish intro directly
             setTimeout(() => {
-                transitionToPhase3();
+                finishIntro();
             }, 2200);
         }, 300);
-    }
-
-    function transitionToPhase3() {
-        if (introFinished) return;
-        phaseNeighbourhood.classList.remove('active');
-        phaseSpider.classList.add('active');
-        spiderCrawler.classList.add('crawl-up');
-
-        setTimeout(() => {
-            finishIntro();
-        }, 2400);
     }
 
     function finishIntro() {

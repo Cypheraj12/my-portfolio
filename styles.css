@@ -191,88 +191,25 @@ section {
     to { transform: scale(1.05); }
 }
 
-/* Phase 2: Ultra-Cinematic Marvel Studios Title Card */
-.neighbourhood-container {
-    text-align: center;
-    width: 92%;
-    max-width: 1050px;
-    padding: 32px 45px;
-    background: radial-gradient(ellipse at center, rgba(12, 16, 28, 0.92) 0%, rgba(3, 4, 8, 0.98) 100%);
-    border-top: 2px solid rgba(255, 59, 63, 0.85);
-    border-bottom: 2px solid rgba(255, 59, 63, 0.85);
-    border-left: none;
-    border-right: none;
-    border-radius: 4px;
-    box-shadow: 
-        0 25px 60px rgba(0, 0, 0, 0.95),
-        0 0 50px rgba(255, 59, 63, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    position: relative;
-}
-
-.neighbourhood-container::before,
-.neighbourhood-container::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 100%;
-    top: 0;
-    pointer-events: none;
-}
-
-.neighbourhood-container::before {
-    left: 0;
-    border-left: 2px solid #ff3b3f;
-}
-
-.neighbourhood-container::after {
-    right: 0;
-    border-right: 2px solid #ff3b3f;
-}
-
+/* Phase 2: Pure Floating Cinematic Marvel Headline (No Box Container) */
 #neighbourhood-text.straight-bold-neighbourhood {
     font-family: var(--font-marvel) !important;
     font-style: normal !important;
     font-weight: 900 !important;
-    font-size: clamp(2.2rem, 5.8vw, 5.2rem) !important;
-    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 35%, #cbd5e1 70%, #ff3b3f 100%);
+    font-size: clamp(2.4rem, 6.8vw, 6.2rem) !important;
+    color: #ffffff !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 40%, #cbd5e1 75%, #ff3b3f 100%);
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     letter-spacing: 8px !important;
-    line-height: 1.1;
+    line-height: 1.08;
+    text-align: center;
     text-transform: uppercase;
-    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(255, 59, 63, 0.45));
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 30px rgba(255, 59, 63, 0.65));
     transform: none !important;
-}
-
-/* Phase 4: Prominent, Highly Visible Metallic Spider Crawler */
-#spider-crawler {
-    position: absolute;
-    bottom: -220px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 220px;
-    height: 220px;
-    z-index: 25;
-    filter: drop-shadow(0 0 30px #ff3b3f) drop-shadow(0 0 50px #ffffff);
-    will-change: transform, bottom, opacity;
-}
-
-#spider-crawler.crawl-up {
-    animation: spiderCrawlUp 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes spiderCrawlUp {
-    0% { bottom: -220px; transform: translateX(-50%) scale(1); }
-    50% { bottom: 40vh; transform: translateX(-50%) scale(1.6) rotate(0deg); filter: drop-shadow(0 0 45px #ff3b3f) drop-shadow(0 0 70px #00f3ff); }
-    100% { bottom: 48vh; transform: translateX(-50%) scale(2.4) rotate(0deg); opacity: 0; }
-}
-
-.spidey-svg {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* ==================== THOR MJOLNIR WORTHINESS TOAST POPUP ==================== */
@@ -1877,27 +1814,10 @@ section {
         margin: 20px auto;
     }
 
-    /* Mobile Marvel Studios Title Card Adjustment */
-    .neighbourhood-container {
-        padding: 20px 24px;
-    }
-
+    /* Mobile Floating Headline Adjustment */
     #neighbourhood-text.straight-bold-neighbourhood {
         letter-spacing: 4px !important;
-        font-size: clamp(1.6rem, 5.2vw, 3.2rem) !important;
-    }
-
-    /* Responsive Mobile Spider Crawler */
-    #spider-crawler {
-        width: 140px;
-        height: 140px;
-        bottom: -140px;
-    }
-
-    @keyframes spiderCrawlUp {
-        0% { bottom: -140px; transform: translateX(-50%) scale(1); }
-        50% { bottom: 42vh; transform: translateX(-50%) scale(1.4) rotate(0deg); filter: drop-shadow(0 0 35px #ff3b3f) drop-shadow(0 0 50px #00f3ff); }
-        100% { bottom: 48vh; transform: translateX(-50%) scale(1.9) rotate(0deg); opacity: 0; }
+        font-size: clamp(1.8rem, 6.2vw, 3.8rem) !important;
     }
 
     /* Mobile Gadgets Anchored Position */

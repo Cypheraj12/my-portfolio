@@ -27,80 +27,9 @@
             </div>
         </div>
 
-        <!-- Phase 2 & 3: Your Friendly Neighbourhood (Bold Marvel Crimson Red) -->
+        <!-- Phase 2: Your Friendly Neighbourhood (Pure Floating Text - No Box) -->
         <div id="intro-phase-neighbourhood" class="intro-phase">
-            <div class="neighbourhood-container">
-                <h1 id="neighbourhood-text" class="straight-bold-neighbourhood">YOUR FRIENDLY NEIGHBOURHOOD</h1>
-            </div>
-        </div>
-
-        <!-- Phase 4: Ultra-Premium Metallic 3D Spider Crawl -->
-        <div id="intro-phase-spider" class="intro-phase">
-            <div class="spider-crawler" id="spider-crawler">
-                <svg viewBox="0 0 100 100" class="spidey-svg">
-                    <defs>
-                        <!-- Metallic Body Gradient -->
-                        <radialGradient id="spidey-body-grad" cx="50%" cy="40%" r="50%">
-                            <stop offset="0%" stop-color="#ff3b3f"/>
-                            <stop offset="60%" stop-color="#d60000"/>
-                            <stop offset="100%" stop-color="#800000"/>
-                        </radialGradient>
-                        <!-- Metallic Eye Gradient -->
-                        <linearGradient id="spidey-eye-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#ffffff"/>
-                            <stop offset="70%" stop-color="#e2e8f0"/>
-                            <stop offset="100%" stop-color="#00f3ff"/>
-                        </linearGradient>
-                        <!-- Leg Metallic Gradient -->
-                        <linearGradient id="spidey-leg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#ff3b3f"/>
-                            <stop offset="50%" stop-color="#b91c1c"/>
-                            <stop offset="100%" stop-color="#450a0a"/>
-                        </linearGradient>
-                        <!-- Glow Filter -->
-                        <filter id="spidey-glow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="3" result="blur"/>
-                            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                        </filter>
-                    </defs>
-
-                    <!-- Outer Metallic Glow Shell -->
-                    <path d="M50 32 C43 32 38 38 38 46 C38 53 43 57 50 57 C57 57 62 53 62 46 C62 38 57 32 50 32 Z M50 59 C40 59 34 68 34 78 C34 86 40 92 50 92 C60 92 66 86 66 78 C66 68 60 59 50 59 Z" fill="url(#spidey-body-grad)" stroke="#ffffff" stroke-width="1.5" filter="url(#spidey-glow)"/>
-
-                    <!-- Spider Armor Chest Lines -->
-                    <path d="M50 36 L50 54 M42 45 L58 45 M40 76 L60 76 M50 62 L50 88 M42 68 L58 84 M58 68 L42 84" stroke="#ffe600" stroke-width="1.2" opacity="0.8"/>
-
-                    <!-- 3D Metallic Eyes with Silver Trim -->
-                    <path d="M42 41 Q 48 44 48 48 Q 42 48 41 43 Z" fill="url(#spidey-eye-grad)" stroke="#000000" stroke-width="1.5"/>
-                    <path d="M58 41 Q 52 44 52 48 Q 58 48 59 43 Z" fill="url(#spidey-eye-grad)" stroke="#000000" stroke-width="1.5"/>
-
-                    <!-- Premium Jointed Metallic Spider Legs (Left Side) -->
-                    <path d="M40 42 Q 22 30 10 18" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="10" cy="18" r="2.5" fill="#00f3ff"/>
-
-                    <path d="M38 47 Q 16 42 6 36" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="6" cy="36" r="2.5" fill="#00f3ff"/>
-
-                    <path d="M38 54 Q 14 62 8 72" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="8" cy="72" r="2.5" fill="#00f3ff"/>
-
-                    <path d="M40 64 Q 18 82 12 94" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="12" cy="94" r="2.5" fill="#00f3ff"/>
-
-                    <!-- Premium Jointed Metallic Spider Legs (Right Side) -->
-                    <path d="M60 42 Q 78 30 90 18" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="90" cy="18" r="2.5" fill="#00f3ff"/>
-
-                    <path d="M62 47 Q 84 42 94 36" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="94" cy="36" r="2.5" fill="#00f3ff"/>
-
-                    <path d="M62 54 Q 86 62 92 72" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="92" cy="72" r="2.5" fill="#00f3ff"/>
-
-                    <path d="M60 64 Q 82 82 88 94" stroke="url(#spidey-leg-grad)" stroke-width="4" stroke-linecap="round" fill="none"/>
-                    <circle cx="88" cy="94" r="2.5" fill="#00f3ff"/>
-                </svg>
-            </div>
+            <h1 id="neighbourhood-text" class="straight-bold-neighbourhood">YOUR FRIENDLY NEIGHBOURHOOD</h1>
         </div>
     </div>
 
@@ -108,7 +37,7 @@
     <canvas id="bg-web-canvas"></canvas>
     <!-- Lightning canvas overlay for Thor's Thunderbolts -->
     <canvas id="lightning-canvas"></canvas>
-    <!-- Doctor Strange Eldritch Screen-Dominating Purple/Yellow Magic Flash Canvas -->
+    <!-- Doctor Strange Eldritch Screen-Dominating Magic Flash Canvas -->
     <canvas id="portal-canvas"></canvas>
 
     <!-- Thor Mjolnir Worthiness Popup Toast Message -->
@@ -123,7 +52,7 @@
 
     <!-- Floating Interactive Superhero Gadgets -->
     <div id="gadgets-layer">
-        <!-- Deadpool Face Mask Widget (Click for Laugh & Automatic Resume Download) -->
+        <!-- Deadpool Face Mask Widget (Click for Resume & Laugh) -->
         <div class="super-gadget deadpool-face-gadget" id="deadpool-mask" title="Click Deadpool for Resume & Laugh!">
             <div class="deadpool-mask-outer">
                 <svg viewBox="0 0 100 100" class="deadpool-svg">
@@ -234,7 +163,7 @@
                             <div class="photo-glow-border"></div>
                         </div>
 
-                        <!-- Floating Badges around Hero Photo with Fire Flame Badge -->
+                        <!-- Floating Badges around Hero Photo -->
                         <div class="floating-badge badge-top-right">
                             <span class="badge-star">🔥</span> <strong>Anant Joshi</strong> <span class="badge-pill fire-flame-pill">AI/ML & Data Science</span>
                         </div>
@@ -451,7 +380,7 @@
                         </div>
 
                         <div class="project-footer">
-                            <a href="https://github.com/Cypheraj12" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+                            <a href="https://github.com/Cypheraj12" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> View Repository</a>
                         </div>
                     </div>
                 </article>
