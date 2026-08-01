@@ -37,6 +37,26 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+/* HARDWARE ACCELERATION & GPU BOOST FOR LAG-FREE ANIMATIONS ACROSS ALL DEVICES */
+.hanging-spidey-wrapper,
+.spidey-hanging-img-container,
+.motion-card,
+.tilt-card,
+.super-gadget,
+.floating-badge,
+.hero-user-photo,
+.marvel-nav,
+.btn,
+.intro-phase,
+.thor-toast-msg,
+.deadpool-toast-msg,
+.arc-toast-msg {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
 /* CUSTOM MARVEL / DOCTOR STRANGE DEFAULT CURSOR */
 body, html {
     background-color: #030407;
@@ -82,8 +102,6 @@ body.intro-active {
     z-index: 0;
     pointer-events: none;
     opacity: 0.35;
-    transform: translateZ(0);
-    will-change: transform;
 }
 
 /* Thor's Thunderbolts & Doctor Strange Screen-Dominating Canvases */
@@ -95,7 +113,6 @@ body.intro-active {
     height: 100vh;
     z-index: 9998;
     pointer-events: none;
-    transform: translateZ(0);
 }
 
 #portal-canvas {
@@ -106,7 +123,6 @@ body.intro-active {
     height: 100vh;
     z-index: 99998;
     pointer-events: none;
-    transform: translateZ(0);
 }
 
 main.main-content {
@@ -184,7 +200,6 @@ section {
         0 2px 8px #000000,
         0 0 15px rgba(0, 85, 255, 0.4) !important;
     animation: textPulse 1s infinite alternate;
-    will-change: transform;
 }
 
 @keyframes textPulse {
@@ -201,7 +216,6 @@ section {
     margin-top: -40px;
     margin-bottom: 25px;
     animation: spideyElasticDrop 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    will-change: transform, opacity;
 }
 
 @keyframes spideyElasticDrop {
@@ -212,17 +226,16 @@ section {
 
 .web-strand-line {
     width: 2.5px;
-    height: 100px;
+    height: clamp(60px, 12vh, 100px);
     background: linear-gradient(to bottom, transparent, #ffffff, #00f3ff);
     box-shadow: 0 0 14px #00f3ff;
 }
 
 .spidey-hanging-img-container {
-    width: 175px;
+    width: clamp(120px, 28vw, 175px);
     height: auto;
     filter: drop-shadow(0 0 25px rgba(255, 59, 63, 0.7)) drop-shadow(0 0 45px rgba(0, 243, 255, 0.5));
     animation: spideyGentleSway 3.5s ease-in-out infinite alternate;
-    will-change: transform;
 }
 
 .spidey-hanging-img {
@@ -255,9 +268,9 @@ section {
 .pro-neighbourhood-title {
     font-family: 'Outfit', 'Inter', sans-serif !important;
     font-weight: 900 !important;
-    font-size: clamp(2.2rem, 6vw, 4.8rem) !important;
+    font-size: clamp(1.8rem, 6vw, 4.8rem) !important;
     color: #ffffff !important;
-    letter-spacing: 6px !important;
+    letter-spacing: 5px !important;
     line-height: 1.1;
     text-transform: uppercase;
     text-shadow: 
@@ -291,7 +304,6 @@ section {
     z-index: 99995;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    will-change: transform, opacity;
 }
 
 .thor-toast-msg i {
@@ -336,7 +348,6 @@ section {
     z-index: 99995;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    will-change: transform, opacity;
 }
 
 .deadpool-toast-msg i {
@@ -372,15 +383,14 @@ section {
     pointer-events: auto !important;
     transition: transform 0.3s ease;
     z-index: 99999 !important;
-    will-change: transform;
 }
 
-/* Deadpool Face Mask Gadget Widget (CLEAN NO ROTATION, NO LAUNCHING) */
+/* Deadpool Face Mask Gadget Widget */
 .deadpool-face-gadget {
-    bottom: 30px;
-    left: 30px;
-    width: 75px;
-    height: 75px;
+    bottom: clamp(15px, 4vw, 30px);
+    left: clamp(15px, 4vw, 30px);
+    width: clamp(55px, 14vw, 75px);
+    height: clamp(55px, 14vw, 75px);
 }
 
 .deadpool-mask-outer {
@@ -397,7 +407,7 @@ section {
     filter: drop-shadow(0 0 12px #d60000);
 }
 
-/* Subtle Pop Bounce on Hover / Touch Active - NO ROTATION AT ALL */
+/* Subtle Pop Bounce on Hover / Touch Active */
 .deadpool-face-gadget:hover, .deadpool-face-gadget:active {
     transform: translateY(-6px) scale(1.15) !important;
     filter: drop-shadow(0 0 35px #d60000) !important;
@@ -439,10 +449,10 @@ section {
 
 /* Thor Mjolnir Widget */
 .thor-hammer-gadget {
-    bottom: 30px;
-    right: 30px;
-    width: 65px;
-    height: 80px;
+    bottom: clamp(15px, 4vw, 30px);
+    right: clamp(15px, 4vw, 30px);
+    width: clamp(50px, 13vw, 65px);
+    height: clamp(65px, 15vw, 80px);
 }
 
 .thor-hammer-gadget:hover, .thor-hammer-gadget:active {
@@ -457,8 +467,8 @@ section {
 }
 
 .hammer-head {
-    width: 55px;
-    height: 35px;
+    width: 100%;
+    height: 45%;
     background: linear-gradient(135deg, #a1a8b8 0%, #4a5568 100%);
     border: 2px solid #e2e8f0;
     border-radius: 4px;
@@ -476,8 +486,8 @@ section {
 }
 
 .hammer-handle {
-    width: 11px;
-    height: 42px;
+    width: 20%;
+    height: 55%;
     background: linear-gradient(to bottom, #744210, #2c1a04);
     margin: 0 auto;
     border-radius: 0 0 3px 3px;
@@ -886,11 +896,10 @@ section {
 
 .photo-frame-container {
     position: relative;
-    width: 340px;
-    height: 420px;
+    width: clamp(260px, 45vw, 340px);
+    height: clamp(320px, 55vw, 420px);
     margin: 0 auto;
     transform-style: preserve-3d;
-    will-change: transform;
 }
 
 .hero-photo-wrapper {
@@ -934,7 +943,6 @@ section {
     align-items: center;
     gap: 8px;
     animation: floatBadge 3.5s ease-in-out infinite alternate;
-    will-change: transform;
 }
 
 @keyframes floatBadge {
@@ -1492,7 +1500,6 @@ section {
     animation: levitateMotion 6s ease-in-out infinite alternate;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
-    will-change: transform;
 }
 
 .motion-card:nth-child(even) {
@@ -1705,7 +1712,7 @@ section {
 
     .hero-container {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 35px;
         text-align: center;
     }
 
@@ -1729,23 +1736,14 @@ section {
     }
 
     .photo-frame-container {
-        width: 300px;
-        height: 370px;
+        width: clamp(260px, 45vw, 340px);
+        height: clamp(320px, 55vw, 420px);
     }
-
-    .floating-badge {
-        font-size: 0.82rem;
-        padding: 6px 12px;
-    }
-
-    .badge-top-right { right: -10px; top: 10px; }
-    .badge-top-left { left: -10px; top: 70px; }
-    .badge-mid-right { right: -15px; bottom: 100px; }
 }
 
 @media (max-width: 768px) {
     .marvel-nav {
-        padding: 12px 18px;
+        padding: 10px 18px;
     }
 
     .mobile-nav-toggle {
@@ -1754,7 +1752,7 @@ section {
 
     .nav-links {
         position: fixed;
-        top: 65px;
+        top: 62px;
         left: 0;
         width: 100vw;
         background: rgba(4, 6, 12, 0.98);
@@ -1779,13 +1777,13 @@ section {
     }
 
     .nav-item {
-        font-size: 1.35rem;
+        font-size: 1.3rem;
         text-align: center;
         width: 100%;
     }
 
     .hero-section {
-        padding: 95px 18px 45px;
+        padding: 95px 16px 45px;
     }
 
     .hero-academic-tag {
@@ -1793,47 +1791,43 @@ section {
     }
 
     .hero-title {
-        font-size: clamp(2.3rem, 7.5vw, 3.2rem);
+        font-size: clamp(2.1rem, 7vw, 3.2rem);
     }
 
     .hero-description {
-        font-size: 1.02rem;
+        font-size: 1rem;
         line-height: 1.6;
     }
 
     .btn {
-        padding: 12px 22px;
-        font-size: 1.1rem;
+        padding: 12px 20px;
+        font-size: 1.05rem;
         width: 100%;
         justify-content: center;
     }
 
     .strange-chant-inline {
-        font-size: 0.88rem;
+        font-size: 0.85rem;
         padding: 8px 14px;
         line-height: 1.4;
     }
 
     .about-section, .projects-section, .skills-section, .contact-section {
-        padding: 60px 18px;
+        padding: 55px 16px;
     }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tech-stack-container {
+    .projects-grid, .tech-stack-container {
         grid-template-columns: 1fr;
     }
 
     .contact-info-card, .contact-form, .dossier-card, .bio-card {
-        padding: 22px 18px;
+        padding: 20px 16px;
     }
 
     /* Responsive Mobile Floating Badges around Photo Frame */
     .floating-badge {
         display: flex;
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         padding: 5px 10px;
         border-radius: 12px;
     }
@@ -1846,13 +1840,13 @@ section {
     }
 
     .badge-top-left {
-        top: 35px;
-        left: -10px;
+        top: 30px;
+        left: -5px;
     }
 
     .badge-mid-right {
-        bottom: 45px;
-        right: -10px;
+        bottom: 40px;
+        right: -5px;
     }
 
     .badge-bottom {
@@ -1862,46 +1856,24 @@ section {
         white-space: nowrap;
     }
 
-    .photo-frame-container {
-        width: 270px;
-        height: 330px;
-        margin: 20px auto;
-    }
-
-    /* Mobile Pro Headline Adjustment */
     .pro-neighbourhood-title {
         letter-spacing: 3px !important;
-        font-size: clamp(1.6rem, 5.5vw, 3.2rem) !important;
+        font-size: clamp(1.4rem, 5vw, 3.0rem) !important;
     }
 
-    /* Mobile Hanging Spidey Cutout Container */
-    .spidey-hanging-img-container {
-        width: 135px;
-    }
-
-    /* Mobile Gadgets Anchored Position */
+    /* Mobile Superhero Gadgets */
     .deadpool-face-gadget {
-        width: 60px;
-        height: 60px;
-        bottom: 18px;
-        left: 15px;
+        width: 58px;
+        height: 58px;
+        bottom: 15px;
+        left: 12px;
     }
 
     .thor-hammer-gadget {
-        width: 55px;
-        height: 70px;
-        bottom: 18px;
-        right: 15px;
-    }
-
-    .hammer-head {
-        width: 48px;
-        height: 30px;
-    }
-
-    .hammer-handle {
-        width: 9px;
-        height: 36px;
+        width: 50px;
+        height: 65px;
+        bottom: 15px;
+        right: 12px;
     }
 
     /* Mobile Responsive Toast Notifications */
@@ -1909,8 +1881,8 @@ section {
         left: 50%;
         bottom: 85px;
         transform: translateX(-50%) translateY(20px);
-        font-size: 0.98rem;
-        padding: 8px 18px;
+        font-size: 0.95rem;
+        padding: 8px 16px;
         max-width: 92%;
         text-align: center;
         justify-content: center;
@@ -1927,8 +1899,8 @@ section {
     }
 
     .thor-toast-msg {
-        font-size: 0.98rem;
-        padding: 8px 18px;
+        font-size: 0.95rem;
+        padding: 8px 16px;
         max-width: 92%;
         text-align: center;
         justify-content: center;
@@ -1937,14 +1909,22 @@ section {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2.1rem;
+        font-size: 1.95rem;
     }
 
     .agent-stats {
         grid-template-columns: 1fr;
     }
 
+    .stat-box {
+        padding: 8px 4px;
+    }
+
+    .stat-val {
+        font-size: 1.4rem;
+    }
+
     .nav-logo {
-        font-size: 1.75rem;
+        font-size: 1.6rem;
     }
 }

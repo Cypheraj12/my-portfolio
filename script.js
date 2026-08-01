@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add pop scaling feedback on color change
                 greetingTextEl.style.transform = 'scale(1.15)';
                 setTimeout(() => {
-                    greetingTextEl.style.transform = 'scale(1)';
+                    if (greetingTextEl) greetingTextEl.style.transform = 'scale(1)';
                 }, 150);
             }
         } else {
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function transitionToPhase2() {
         if (introFinished) return;
-        phaseGreetings.classList.remove('active');
+        if (phaseGreetings) phaseGreetings.classList.remove('active');
         setTimeout(() => {
-            phaseNeighbourhood.classList.add('active');
+            if (phaseNeighbourhood) phaseNeighbourhood.classList.add('active');
 
             // Display duration (~2.8 seconds) for Upside Down Hanging Spider-Man & Pro Headline
             setTimeout(() => {
@@ -62,52 +62,69 @@ document.addEventListener('DOMContentLoaded', () => {
     function finishIntro() {
         if (introFinished) return;
         introFinished = true;
-        introOverlay.classList.add('fade-out');
-        document.body.classList.remove('intro-active');
-        setTimeout(() => {
-            introOverlay.style.display = 'none';
-        }, 600);
+        if (introOverlay) {
+            introOverlay.classList.add('fade-out');
+            document.body.classList.remove('intro-active');
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+            }, 600);
+        }
     }
 
     // ----------------------------------------------------
-    // 2. FULL-SCREEN HIGH-PERFORMANCE DYNAMIC EYE OF AGAMOTTO TIME STONE CANVAS
+    // 2. FULL-SCREEN HIGH-PERFORMANCE EYE OF AGAMOTTO TIME STONE CANVAS (RETINA & MOBILE OPTIMIZED)
     // ----------------------------------------------------
     const bgCanvas = document.getElementById('bg-web-canvas');
+    if (!bgCanvas) return;
     const bgCtx = bgCanvas.getContext('2d');
+    
+    // Limit pixel ratio to 2 max for silky smooth 60fps on 4K retina mobile screens
+    const getDpr = () => Math.min(window.devicePixelRatio || 1, 2);
+    let dpr = getDpr();
     let bgWidth = bgCanvas.width = window.innerWidth;
     let bgHeight = bgCanvas.height = window.innerHeight;
 
-    window.addEventListener('resize', () => {
+    const resizeBgCanvas = () => {
+        dpr = getDpr();
         bgWidth = bgCanvas.width = window.innerWidth;
         bgHeight = bgCanvas.height = window.innerHeight;
-    });
+    };
+
+    window.addEventListener('resize', resizeBgCanvas, { passive: true });
 
     const isMobile = window.innerWidth <= 768;
     const particles = [];
-    const particleCount = isMobile ? 18 : 55;
-    const connectMaxDist = isMobile ? 80 : 130;
+    const particleCount = isMobile ? 18 : 45;
+    const connectMaxDist = isMobile ? 85 : 130;
     const colors = ['#10b981', '#059669', '#00ff88', '#e62429', '#ffd700'];
 
     for (let i = 0; i < particleCount; i++) {
         particles.push({
             x: Math.random() * bgWidth,
             y: Math.random() * bgHeight,
-            vx: (Math.random() - 0.5) * 0.8,
-            vy: (Math.random() - 0.5) * 0.8,
-            size: Math.random() * 2.8 + 1,
+            vx: (Math.random() - 0.5) * 0.7,
+            vy: (Math.random() - 0.5) * 0.7,
+            size: Math.random() * 2.5 + 1,
             color: colors[Math.floor(Math.random() * colors.length)]
         });
     }
 
     let timeAngle = 0;
+    let bgAnimFrameId = null;
 
     function renderBgParticles() {
+        // Pause animation loop if tab is hidden to preserve battery and mobile performance
+        if (document.hidden) {
+            bgAnimFrameId = requestAnimationFrame(renderBgParticles);
+            return;
+        }
+
         bgCtx.clearRect(0, 0, bgWidth, bgHeight);
 
         timeAngle += 0.003;
         const cx = bgWidth / 2;
         const cy = bgHeight / 2;
-        const eyeW = Math.min(bgWidth, bgHeight) * (isMobile ? 0.85 : 0.75);
+        const eyeW = Math.min(bgWidth, bgHeight) * (isMobile ? 0.85 : 0.72);
         const eyeH = eyeW * 0.58;
 
         bgCtx.save();
@@ -121,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bgCtx.fillRect(-bgWidth / 2, -bgHeight / 2, bgWidth, bgHeight);
 
         bgCtx.strokeStyle = 'rgba(139, 101, 8, 0.4)';
-        bgCtx.lineWidth = isMobile ? 6 : 12;
+        bgCtx.lineWidth = isMobile ? 5 : 10;
 
         bgCtx.beginPath();
         bgCtx.ellipse(0, 0, eyeW / 2, eyeH / 2, 0, 0, Math.PI * 2);
@@ -130,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bgCtx.save();
         bgCtx.rotate(timeAngle);
         bgCtx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
-        bgCtx.lineWidth = 2.5;
+        bgCtx.lineWidth = 2;
         bgCtx.beginPath();
         bgCtx.arc(0, 0, eyeH * 0.42, 0, Math.PI * 2);
         bgCtx.stroke();
@@ -188,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        requestAnimationFrame(renderBgParticles);
+        bgAnimFrameId = requestAnimationFrame(renderBgParticles);
     }
     renderBgParticles();
 
@@ -217,16 +234,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const thorHammer = document.getElementById('thor-hammer');
     const lightningCanvas = document.getElementById('lightning-canvas');
     const thorToastMsg = document.getElementById('thor-toast-msg');
-    const lCtx = lightningCanvas.getContext('2d');
-    lightningCanvas.width = window.innerWidth;
-    lightningCanvas.height = window.innerHeight;
-
+    let lCtx = null;
     let thorToastTimeout;
 
-    window.addEventListener('resize', () => {
+    if (lightningCanvas) {
+        lCtx = lightningCanvas.getContext('2d');
         lightningCanvas.width = window.innerWidth;
         lightningCanvas.height = window.innerHeight;
-    });
+
+        window.addEventListener('resize', () => {
+            lightningCanvas.width = window.innerWidth;
+            lightningCanvas.height = window.innerHeight;
+        }, { passive: true });
+    }
 
     if (thorHammer) {
         addInstantTapListener(thorHammer, () => {
@@ -239,10 +259,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.style.background = '#030407';
             }, 100);
 
-            const count = isMobile ? 4 : 8;
+            const count = isMobile ? 3 : 6;
             for (let i = 0; i < count; i++) {
-                const targetX = Math.random() * lightningCanvas.width;
-                const targetY = Math.random() * lightningCanvas.height;
+                const targetX = Math.random() * (lightningCanvas ? lightningCanvas.width : window.innerWidth);
+                const targetY = Math.random() * (lightningCanvas ? lightningCanvas.height : window.innerHeight);
                 drawLightningBolt(startX, startY, targetX, targetY);
             }
 
@@ -266,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function drawLightningBolt(x1, y1, x2, y2) {
+        if (!lCtx || !lightningCanvas) return;
         let currentX = x1;
         let currentY = y1;
         const distance = Math.hypot(x2 - x1, y2 - y1);
@@ -291,13 +312,17 @@ document.addEventListener('DOMContentLoaded', () => {
         lCtx.stroke();
 
         setTimeout(() => {
-            lCtx.clearRect(0, 0, lightningCanvas.width, lightningCanvas.height);
+            if (lCtx && lightningCanvas) {
+                lCtx.clearRect(0, 0, lightningCanvas.width, lightningCanvas.height);
+            }
         }, 300);
     }
 
     function playThunderSound() {
         try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            const audioCtx = new AudioCtx();
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
 
@@ -366,7 +391,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function playDeadpoolLaughSound() {
         try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            const audioCtx = new AudioCtx();
             const now = audioCtx.currentTime;
             [0, 0.18, 0.36].forEach((delay, idx) => {
                 const osc = audioCtx.createOscillator();
@@ -394,14 +421,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. DOCTOR STRANGE SUBTLE ELDRITCH SPELL PULSE (NO SPARKLES)
     // ----------------------------------------------------
     const portalCanvas = document.getElementById('portal-canvas');
-    const pCtx = portalCanvas.getContext('2d');
-    portalCanvas.width = window.innerWidth;
-    portalCanvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
+    let pCtx = null;
+    if (portalCanvas) {
+        pCtx = portalCanvas.getContext('2d');
         portalCanvas.width = window.innerWidth;
         portalCanvas.height = window.innerHeight;
-    });
+
+        window.addEventListener('resize', () => {
+            portalCanvas.width = window.innerWidth;
+            portalCanvas.height = window.innerHeight;
+        }, { passive: true });
+    }
 
     const clickableChants = document.querySelectorAll('.clickable-chant');
 
@@ -422,12 +452,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function spawnDoctorStrangeSpellPulse(cx, cy) {
+        if (!pCtx || !portalCanvas) return;
         let radius = 10;
         let maxRadius = isMobile ? 180 : 320;
         let opacity = 1.0;
         let runeAngle = 0;
 
         function animateEldritchMandala() {
+            if (!pCtx || !portalCanvas) return;
             pCtx.clearRect(0, 0, portalCanvas.width, portalCanvas.height);
 
             if (opacity <= 0 || radius >= maxRadius) {
@@ -609,51 +641,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 9. 3D CARD TILT & HOVER MOTION EFFECT
+    // 9. 3D CARD TILT & HOVER MOTION EFFECT (DESKTOP ONLY HOVER GUARD)
     // ----------------------------------------------------
     const tiltCards = document.querySelectorAll('.tilt-card');
+    const hasHoverPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            if (window.innerWidth <= 768) return;
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    if (hasHoverPointer) {
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
 
-            const rotateX = (y - centerY) / 14;
-            const rotateY = (centerX - x) / 14;
+                const rotateX = (y - centerY) / 14;
+                const rotateY = (centerX - x) / 14;
 
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
         });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-        });
-    });
+    }
 
     // ----------------------------------------------------
-    // 10. ACTIVE NAVBAR HIGHLIGHT ON SCROLL
+    // 10. ACTIVE NAVBAR HIGHLIGHT ON SCROLL (THROTTLED WITH RAF FOR SILKY SCROLLING)
     // ----------------------------------------------------
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
+    let isScrollTicking = false;
 
     window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            if (pageYOffset >= sectionTop) {
-                current = section.getAttribute('id');
-            }
-        });
+        if (!isScrollTicking) {
+            window.requestAnimationFrame(() => {
+                let current = '';
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
 
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${current}`) {
-                item.classList.add('active');
-            }
-        });
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 180;
+                    if (scrollPos >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+
+                isScrollTicking = false;
+            });
+            isScrollTicking = true;
+        }
     }, { passive: true });
 });
