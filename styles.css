@@ -82,6 +82,71 @@ body.bg-section-contact {
     background-image: linear-gradient(135deg, #FAD6D6, #A7F3D0, #F9B4B4, #E8C6F0, #FFF1F1, #FAD6D6);
 }
 
+/* ==================== AMBIENT MOVING BACKGROUND OBJECTS ==================== */
+.bg-moving-objects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(55px);
+    opacity: 0.55;
+    will-change: transform;
+}
+
+.orb-1 {
+    width: clamp(200px, 35vw, 480px);
+    height: clamp(200px, 35vw, 480px);
+    background: radial-gradient(circle, #E85D5D, rgba(242, 155, 114, 0.4), transparent 70%);
+    top: -10%;
+    left: -10%;
+    animation: floatOrb1 24s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+    width: clamp(220px, 40vw, 520px);
+    height: clamp(220px, 40vw, 520px);
+    background: radial-gradient(circle, #C89BF2, rgba(244, 114, 182, 0.4), transparent 70%);
+    bottom: -15%;
+    right: -10%;
+    animation: floatOrb2 28s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+    width: clamp(180px, 30vw, 400px);
+    height: clamp(180px, 30vw, 400px);
+    background: radial-gradient(circle, #F29B72, rgba(254, 215, 170, 0.5), transparent 70%);
+    top: 40%;
+    left: 30%;
+    animation: floatOrb3 22s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb1 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(120px, 160px, 0) scale(1.18); }
+    100% { transform: translate3d(200px, 60px, 0) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-140px, -180px, 0) scale(1.22); }
+    100% { transform: translate3d(-220px, -80px, 0) scale(0.9); }
+}
+
+@keyframes floatOrb3 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-90px, 120px, 0) scale(1.15); }
+    100% { transform: translate3d(110px, -100px, 0) scale(1.05); }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
