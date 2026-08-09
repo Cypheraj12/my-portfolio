@@ -281,7 +281,7 @@ main.main-content {
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;
-    padding: 6px 14px;
+    padding: 6px 16px;
     border-radius: 7px;
     transition: all 0.2s ease;
     display: flex;
@@ -357,15 +357,19 @@ main.main-content {
     border-color: rgba(0, 122, 255, 0.2);
 }
 
-/* ==================== HERO SECTION ==================== */
+/* ==================== UNIFIED HERO & ABOUT SECTION (HOME) ==================== */
 .hero-section {
-    padding: 32px 0 56px;
+    padding: 16px 0 48px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     margin-bottom: 48px;
+    scroll-margin-top: 100px;
 }
 
-.hero-content {
-    max-width: 820px;
+.unified-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 36px;
+    align-items: center;
 }
 
 .role-badge {
@@ -376,7 +380,7 @@ main.main-content {
     border: 1px solid rgba(0, 122, 255, 0.18);
     padding: 5px 14px;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .role-icon {
@@ -392,13 +396,13 @@ main.main-content {
 }
 
 .hero-title {
-    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
     font-weight: 800;
     color: var(--text-primary);
     font-family: var(--font-heading);
     line-height: 1.15;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
+    margin-bottom: 18px;
+    letter-spacing: -0.8px;
 }
 
 .accent-text {
@@ -406,11 +410,21 @@ main.main-content {
 }
 
 .hero-description {
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     color: var(--text-secondary);
     line-height: 1.65;
-    margin-bottom: 32px;
-    max-width: 720px;
+    margin-bottom: 16px;
+}
+
+.hero-bio-summary {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 26px;
+    background: rgba(0, 0, 0, 0.025);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .hero-cta-group {
@@ -454,13 +468,6 @@ main.main-content {
 .btn-apple-secondary:hover {
     background: rgba(0, 0, 0, 0.08);
     transform: translateY(-2px);
-}
-
-/* ==================== ABOUT & SPECIALIZATION ==================== */
-.about-grid {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 24px;
 }
 
 .profile-tile {
@@ -524,27 +531,6 @@ main.main-content {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-primary);
-}
-
-.tile-heading {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.tile-heading i {
-    color: var(--accent-blue);
-}
-
-.bio-text {
-    font-size: 0.98rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: 14px;
 }
 
 /* ==================== PROJECTS FINDER WINDOW ==================== */
@@ -887,7 +873,7 @@ main.main-content {
     color: var(--text-tertiary);
 }
 
-/* ==================== iOS / macOS FLOATING DOCK ==================== */
+/* ==================== iOS / macOS FLOATING DESKTOP DOCK ==================== */
 .mac-desktop-dock {
     position: fixed;
     bottom: 20px;
@@ -954,7 +940,6 @@ main.main-content {
 }
 
 .icon-home { background: #007AFF; }
-.icon-about { background: #5856D6; }
 .icon-projects { background: #FF9500; }
 .icon-skills { background: #AF52DE; }
 .icon-resume { background: #FF3B30; }
@@ -971,7 +956,7 @@ main.main-content {
 
 /* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 1024px) {
-    .about-grid, .contact-mail-window {
+    .unified-hero-grid, .contact-mail-window {
         grid-template-columns: 1fr;
     }
 

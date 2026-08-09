@@ -63,7 +63,6 @@
             <div class="mac-app-nav-bar">
                 <nav class="mac-segment-nav" id="main-nav">
                     <a href="#hero" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
-                    <a href="#about" class="nav-item"><i class="fa-solid fa-user"></i> About</a>
                     <a href="#projects" class="nav-item"><i class="fa-solid fa-folder"></i> Projects</a>
                     <a href="#skills" class="nav-item"><i class="fa-solid fa-sliders"></i> Skills</a>
                     <a href="#contact" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
@@ -77,72 +76,60 @@
             <!-- Window Content Body -->
             <div class="mac-window-body">
                 
-                <!-- ==================== HERO SECTION (RECRUITER-FIRST POSITIONING) ==================== -->
+                <!-- ==================== UNIFIED HERO & ABOUT SECTION (ALL IN ONE HOME VIEW) ==================== -->
                 <section id="hero" class="hero-section">
-                    <div class="hero-content">
-                        <div class="role-badge">
-                            <span class="role-icon"><i class="fa-solid fa-code-branch"></i></span>
-                            <span class="role-text">AI/ML ENGINEER & DATA ANALYST</span>
-                        </div>
-                        
-                        <h1 class="hero-title">
-                            Building Intelligent <span class="accent-text">Data-Driven</span> & ML Systems.
-                        </h1>
-
-                        <p class="hero-description">
-                            Final Year B.Tech CSE student specializing in Data Science. Passionate about engineering production-ready machine learning models, computer vision systems, predictive analytics, and high-throughput REST APIs.
-                        </p>
-
-                        <div class="hero-cta-group">
-                            <a href="#projects" class="btn-apple btn-apple-primary"><i class="fa-solid fa-folder-open"></i> View Projects</a>
-                            <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="btn-apple btn-apple-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                            <a href="https://github.com/Cypheraj12" target="_blank" class="btn-apple btn-apple-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- ==================== ABOUT & PROFILE TILE SECTION ==================== -->
-                <section id="about" class="section-block about-section">
-                    <div class="section-header">
-                        <span class="section-subtitle">OVERVIEW</span>
-                        <h2 class="section-title">About & Specialization</h2>
-                    </div>
-
-                    <div class="about-grid">
-                        <!-- Profile Card Tile (Sole Photo Location) -->
-                        <div class="apple-tile profile-tile">
-                            <div class="avatar-wrapper">
-                                <img src="anant_photo.jpg" alt="Anant Joshi" class="profile-avatar">
+                    <div class="unified-hero-grid">
+                        <!-- Left Side: Hero Positioning & Introduction -->
+                        <div class="hero-text-col">
+                            <div class="role-badge">
+                                <span class="role-icon"><i class="fa-solid fa-code-branch"></i></span>
+                                <span class="role-text">AI/ML ENGINEER & DATA ANALYST</span>
                             </div>
-                            <h3 class="profile-name">Anant Joshi</h3>
-                            <p class="profile-role">Final Year B.Tech CSE (Data Science Specialization)</p>
+                            
+                            <h1 class="hero-title">
+                                Building Intelligent <span class="accent-text">Data-Driven</span> & ML Systems.
+                            </h1>
 
-                            <!-- Domain Pillar Badges -->
-                            <div class="domain-pillars">
-                                <div class="pillar-badge">
-                                    <i class="fa-solid fa-chart-line pillar-icon"></i>
-                                    <span>Data Analytics</span>
-                                </div>
-                                <div class="pillar-badge">
-                                    <i class="fa-solid fa-robot pillar-icon"></i>
-                                    <span>ML Engineer</span>
-                                </div>
-                                <div class="pillar-badge">
-                                    <i class="fa-solid fa-brain pillar-icon"></i>
-                                    <span>AI Systems</span>
-                                </div>
+                            <p class="hero-description">
+                                Final Year B.Tech CSE student specializing in Data Science. Passionate about engineering production-ready machine learning models, computer vision systems, predictive analytics, and high-throughput REST APIs.
+                            </p>
+
+                            <p class="hero-bio-summary">
+                                Focus areas include <strong>Predictive Analytics, Computer Vision, and Backend Systems</strong> — utilizing Python, TensorFlow, PyTorch, OpenCV, Scikit-Learn, FastAPI, and MongoDB to deliver reliable computational models.
+                            </p>
+
+                            <div class="hero-cta-group">
+                                <a href="#projects" class="btn-apple btn-apple-primary"><i class="fa-solid fa-folder-open"></i> View Projects</a>
+                                <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="btn-apple btn-apple-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                                <a href="https://github.com/Cypheraj12" target="_blank" class="btn-apple btn-apple-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
                             </div>
                         </div>
 
-                        <!-- Technical Capabilities Tile -->
-                        <div class="apple-tile bio-tile">
-                            <h3 class="tile-heading"><i class="fa-solid fa-layer-group"></i> Technical Background</h3>
-                            <p class="bio-text">
-                                As a final-year Computer Science & Engineering student with a Data Science specialization, my expertise centers on turning raw data into actionable insights and deploying machine learning solutions.
-                            </p>
-                            <p class="bio-text">
-                                Key areas of focus include <strong>Predictive Analytics, Computer Vision, and Backend Engineering</strong> — utilizing Python, Scikit-Learn, TensorFlow, OpenCV, FastAPI, and MongoDB to deliver reliable computational models.
-                            </p>
+                        <!-- Right Side: Profile Tile (Photo & Domain Pillars Integrated into Home) -->
+                        <div class="hero-profile-col">
+                            <div class="apple-tile profile-tile">
+                                <div class="avatar-wrapper">
+                                    <img src="anant_photo.jpg" alt="Anant Joshi" class="profile-avatar">
+                                </div>
+                                <h3 class="profile-name">Anant Joshi</h3>
+                                <p class="profile-role">Final Year B.Tech CSE (Data Science Specialization)</p>
+
+                                <!-- Domain Pillar Badges -->
+                                <div class="domain-pillars">
+                                    <div class="pillar-badge">
+                                        <i class="fa-solid fa-chart-line pillar-icon"></i>
+                                        <span>Data Analytics</span>
+                                    </div>
+                                    <div class="pillar-badge">
+                                        <i class="fa-solid fa-robot pillar-icon"></i>
+                                        <span>ML Engineer</span>
+                                    </div>
+                                    <div class="pillar-badge">
+                                        <i class="fa-solid fa-brain pillar-icon"></i>
+                                        <span>AI Systems</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -495,11 +482,6 @@
         <a href="#hero" class="dock-item" title="Home">
             <div class="dock-icon icon-home"><i class="fa-solid fa-house"></i></div>
             <span class="dock-tooltip">Home</span>
-        </a>
-
-        <a href="#about" class="dock-item" title="About">
-            <div class="dock-icon icon-about"><i class="fa-solid fa-user"></i></div>
-            <span class="dock-tooltip">About</span>
         </a>
 
         <a href="#projects" class="dock-item" title="Projects">
