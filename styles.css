@@ -62,6 +62,24 @@ body, html {
     min-height: 100vh;
     width: 100%;
     -webkit-font-smoothing: antialiased;
+    transition: background 1.4s ease-in-out;
+}
+
+/* DYNAMIC SCROLL SECTION BACKGROUND SHIFTS */
+body.bg-section-hero {
+    background-image: linear-gradient(135deg, #F58F8F, #FAD6D6, #E8C6F0, #F9B4B4, #FFF1F1, #D8B4F8, #F58F8F);
+}
+
+body.bg-section-projects {
+    background-image: linear-gradient(135deg, #F9B4B4, #F29B72, #FAD6D6, #FFE4E4, #FFF1F1, #F9B4B4);
+}
+
+body.bg-section-skills {
+    background-image: linear-gradient(135deg, #E8C6F0, #C89BF2, #FAD6D6, #F58F8F, #FFF1F1, #E8C6F0);
+}
+
+body.bg-section-contact {
+    background-image: linear-gradient(135deg, #FAD6D6, #A7F3D0, #F9B4B4, #E8C6F0, #FFF1F1, #FAD6D6);
 }
 
 /* Custom Scrollbar */

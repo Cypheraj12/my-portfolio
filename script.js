@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
+                if (current) {
+                    document.body.className = `bg-section-${current}`;
+                }
+
                 navItems.forEach(item => {
                     item.classList.remove('active');
                     if (item.getAttribute('href') === `#${current}`) {
