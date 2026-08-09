@@ -59,20 +59,21 @@
         </button>
     </header>
 
-    <!-- Live Dynamic Liquid Gradient & Particle Background Canvas in Shades of Pink & Purple -->
+    <!-- Live Lovable.dev Mesh Background Gradient Canvas -->
     <canvas id="bg-web-canvas"></canvas>
 
     <main class="main-content">
-        <!-- ==================== HERO SECTION (CLEAN CENTERED EXECUTIVE HERO) ==================== -->
-        <section id="hero" class="hero-section">
-            <div class="hero-container single-column-hero">
-                <div class="hero-text-side">
+        <!-- ==================== PARALLEL HERO & ABOUT SECTION (SIDE-BY-SIDE ABOVE THE FOLD) ==================== -->
+        <section id="hero" class="hero-about-parallel-section">
+            <div class="parallel-container">
+                <!-- Left Side: Home / Hero Column -->
+                <div class="parallel-left-hero">
                     <div class="status-pill">
-                        <span class="metric-dot"></span> AVAILABLE FOR AI & DATA SCIENCE OPPORTUNITIES
+                        <span class="pill-new-badge">NEW</span> AVAILABLE FOR AI & DATA SCIENCE OPPORTUNITIES <i class="fa-solid fa-arrow-right"></i>
                     </div>
                     
                     <h1 class="hero-title">
-                        BUILDING <span class="coral-highlight">INTELLIGENT DATA</span> & ML SYSTEMS.
+                        BUILDING <span class="lovable-highlight">INTELLIGENT DATA</span> & ML SYSTEMS.
                     </h1>
 
                     <p class="hero-description">
@@ -80,56 +81,41 @@
                     </p>
 
                     <div class="hero-cta-group">
-                        <a href="#projects" class="btn-macos btn-coral-primary"><i class="fa-solid fa-arrow-right"></i> Explore Projects</a>
-                        <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="btn-macos btn-glass-secondary"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-                        <a href="https://github.com/Cypheraj12" target="_blank" class="btn-macos btn-glass-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== ABOUT & DOSSIER SECTION (SOLE LOCATION OF USER PHOTO) ==================== -->
-        <section id="about" class="about-section">
-            <div class="section-header">
-                <div class="section-tag">// ENGINEERING PROFILE</div>
-                <h2 class="section-title">ABOUT & <span class="coral-highlight">SPECIALIZATION</span></h2>
-            </div>
-
-            <div class="about-grid">
-                <!-- Profile Card (Sole Photo Location on Site) -->
-                <div class="macos-card profile-card">
-                    <div class="avatar-macos">
-                        <img src="anant_photo.jpg" alt="Anant Joshi" class="avatar-img">
-                    </div>
-                    <h3 class="user-name">ANANT JOSHI</h3>
-                    <p class="user-title">Final Year B.Tech CSE (Data Science Specialization)</p>
-
-                    <!-- Domain Pillar Tags (Data Analytics, ML Engineer, AI Systems) -->
-                    <div class="metrics-grid">
-                        <div class="metric-box">
-                            <span class="metric-val"><i class="fa-solid fa-chart-pie"></i></span>
-                            <span class="metric-lbl">Data Analytics</span>
-                        </div>
-                        <div class="metric-box">
-                            <span class="metric-val"><i class="fa-solid fa-robot"></i></span>
-                            <span class="metric-lbl">ML Engineer</span>
-                        </div>
-                        <div class="metric-box">
-                            <span class="metric-val"><i class="fa-solid fa-brain"></i></span>
-                            <span class="metric-lbl">AI Systems</span>
-                        </div>
+                        <a href="#projects" class="btn-lovable btn-primary"><i class="fa-solid fa-arrow-right"></i> Explore Projects</a>
+                        <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="btn-lovable btn-secondary"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="https://github.com/Cypheraj12" target="_blank" class="btn-lovable btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
                     </div>
                 </div>
 
-                <!-- Bio Card -->
-                <div class="macos-card bio-card">
-                    <h3><i class="fa-solid fa-brain coral-highlight"></i> SUMMARY OF CAPABILITIES</h3>
-                    <p class="bio-p">
-                        I am a Final Year B.Tech Computer Science student specializing in Data Science. My core focus centers on engineering production-grade machine learning pipelines, predictive modeling, and scalable API systems.
-                    </p>
-                    <p class="bio-p">
-                        Equipped with hands-on experience in <strong>predictive analytics and computer vision</strong>, specializing in Python, TensorFlow, PyTorch, MobileNetV2, LSTM, XGBoost, FastAPI, Flask, and MongoDB.
-                    </p>
+                <!-- Right Side: About & Specialization Column (Side-by-Side Right on Opening!) -->
+                <div class="parallel-right-about" id="about">
+                    <div class="lovable-card profile-about-card">
+                        <div class="avatar-macos">
+                            <img src="anant_photo.jpg" alt="Anant Joshi" class="avatar-img">
+                        </div>
+                        <h2 class="user-name">ANANT JOSHI</h2>
+                        <p class="user-title">Final Year B.Tech CSE (Data Science Specialization)</p>
+
+                        <!-- Domain Pillar Tags -->
+                        <div class="metrics-grid">
+                            <div class="metric-box">
+                                <span class="metric-val"><i class="fa-solid fa-chart-pie"></i></span>
+                                <span class="metric-lbl">Data Analytics</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="metric-val"><i class="fa-solid fa-robot"></i></span>
+                                <span class="metric-lbl">ML Engineer</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="metric-val"><i class="fa-solid fa-brain"></i></span>
+                                <span class="metric-lbl">AI Systems</span>
+                            </div>
+                        </div>
+
+                        <div class="bio-summary">
+                            <p>I engineer production-grade machine learning pipelines, predictive modeling, and scalable backend API architectures specializing in Python, TensorFlow, PyTorch, MobileNetV2, LSTM, XGBoost, FastAPI, and MongoDB.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -138,7 +124,7 @@
         <section id="projects" class="projects-section">
             <div class="section-header">
                 <div class="section-tag">// FEATURED WORK</div>
-                <h2 class="section-title">ENGINEERING <span class="coral-highlight">SYSTEMS</span></h2>
+                <h2 class="section-title">ENGINEERING <span class="lovable-highlight">SYSTEMS</span></h2>
             </div>
 
             <div class="project-filters">
@@ -149,7 +135,7 @@
 
             <div class="projects-grid">
                 <!-- Project 1: Deepfake Detection -->
-                <article class="macos-card project-card" data-category="ml">
+                <article class="lovable-card project-card" data-category="ml">
                     <div class="card-header-bar">
                         <span class="category-tag">Computer Vision & DL</span>
                     </div>
@@ -177,7 +163,7 @@
                 </article>
 
                 <!-- Project 2: YouTube Video Fetcher API -->
-                <article class="macos-card project-card" data-category="backend">
+                <article class="lovable-card project-card" data-category="backend">
                     <div class="card-header-bar">
                         <span class="category-tag">High-Throughput API</span>
                     </div>
@@ -205,7 +191,7 @@
                 </article>
 
                 <!-- Project 3: Heart Disease ML Risk Predictor -->
-                <article class="macos-card project-card" data-category="ml">
+                <article class="lovable-card project-card" data-category="ml">
                     <div class="card-header-bar">
                         <span class="category-tag">Health Analytics</span>
                     </div>
@@ -232,7 +218,7 @@
                 </article>
 
                 <!-- Project 4: Predictive API Latency Forecasting -->
-                <article class="macos-card project-card" data-category="ml">
+                <article class="lovable-card project-card" data-category="ml">
                     <div class="card-header-bar">
                         <span class="category-tag">Time-Series ML</span>
                     </div>
@@ -259,7 +245,7 @@
                 </article>
 
                 <!-- Project 5: Laptop Price Analysis & Prediction -->
-                <article class="macos-card project-card" data-category="ml">
+                <article class="lovable-card project-card" data-category="ml">
                     <div class="card-header-bar">
                         <span class="category-tag">Data Analysis</span>
                     </div>
@@ -290,13 +276,13 @@
         <section id="skills" class="skills-section">
             <div class="section-header">
                 <div class="section-tag">// COMPETENCIES</div>
-                <h2 class="section-title">TECHNICAL <span class="coral-highlight">STACK</span></h2>
+                <h2 class="section-title">TECHNICAL <span class="lovable-highlight">STACK</span></h2>
             </div>
 
             <div class="skills-grid">
                 <!-- Group 1: Programming Languages -->
-                <div class="macos-card skills-group">
-                    <h3><i class="fa-solid fa-code coral-highlight"></i> Languages</h3>
+                <div class="lovable-card skills-group">
+                    <h3><i class="fa-solid fa-code lovable-highlight"></i> Languages</h3>
                     <div class="skills-flex">
                         <span class="glass-tech-pill"><i class="fa-brands fa-python"></i> Python</span>
                         <span class="glass-tech-pill"><i class="fa-solid fa-database"></i> SQL</span>
@@ -306,8 +292,8 @@
                 </div>
 
                 <!-- Group 2: Libraries & Frameworks -->
-                <div class="macos-card skills-group">
-                    <h3><i class="fa-solid fa-cubes coral-highlight"></i> Frameworks</h3>
+                <div class="lovable-card skills-group">
+                    <h3><i class="fa-solid fa-cubes lovable-highlight"></i> Frameworks</h3>
                     <div class="skills-flex">
                         <span class="glass-tech-pill">Pandas</span>
                         <span class="glass-tech-pill">NumPy</span>
@@ -321,8 +307,8 @@
                 </div>
 
                 <!-- Group 3: Tools & Infrastructure -->
-                <div class="macos-card skills-group">
-                    <h3><i class="fa-solid fa-screwdriver-wrench coral-highlight"></i> Infrastructure</h3>
+                <div class="lovable-card skills-group">
+                    <h3><i class="fa-solid fa-screwdriver-wrench lovable-highlight"></i> Infrastructure</h3>
                     <div class="skills-flex">
                         <span class="glass-tech-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
                         <span class="glass-tech-pill"><i class="fa-brands fa-github"></i> GitHub</span>
@@ -334,8 +320,8 @@
                 </div>
 
                 <!-- Group 4: Core Domains -->
-                <div class="macos-card skills-group">
-                    <h3><i class="fa-solid fa-brain coral-highlight"></i> Domains</h3>
+                <div class="lovable-card skills-group">
+                    <h3><i class="fa-solid fa-brain lovable-highlight"></i> Domains</h3>
                     <div class="skills-flex">
                         <span class="glass-tech-pill">Machine Learning</span>
                         <span class="glass-tech-pill">Data Analysis</span>
@@ -351,11 +337,11 @@
         <section id="contact" class="contact-section">
             <div class="section-header">
                 <div class="section-tag">// TRANSMISSION</div>
-                <h2 class="section-title">GET IN <span class="coral-highlight">TOUCH</span></h2>
+                <h2 class="section-title">GET IN <span class="lovable-highlight">TOUCH</span></h2>
             </div>
 
             <div class="contact-grid">
-                <div class="macos-card contact-info">
+                <div class="lovable-card contact-info">
                     <h3>Direct Comms Channel</h3>
                     <p>Have an exciting Data Science opportunity, ML engineering role, or backend challenge? Reach out anytime!</p>
 
@@ -368,7 +354,7 @@
                     </div>
                 </div>
 
-                <form class="macos-card contact-form" id="contact-form" action="https://formsubmit.co/anantajjoshi@gmail.com" method="POST">
+                <form class="lovable-card contact-form" id="contact-form" action="https://formsubmit.co/anantajjoshi@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="New Portfolio Message for Anant Joshi!">
                     <input type="hidden" name="_captcha" value="false">
 
@@ -387,7 +373,7 @@
                         <textarea id="sender-message" name="message" rows="4" placeholder="Describe the role or project..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn-macos btn-coral-primary" id="form-submit-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+                    <button type="submit" class="btn-lovable btn-primary" id="form-submit-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
                     <div id="form-status-msg" class="form-status-msg"></div>
                 </form>
             </div>

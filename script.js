@@ -1,4 +1,4 @@
-// ==================== EXECUTIVE macOS / iOS INTERACTIVITY ====================
+// ==================== EXECUTIVE LOVABLE.DEV & macOS INTERACTIVITY ====================
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateMacClock, 1000);
 
     // ----------------------------------------------------
-    // 2. LIVE DYNAMIC LIQUID GRADIENT & NEURAL MESH CANVAS (PINK & PURPLE PALETTE)
+    // 2. LIVE LOVABLE.DEV AMBIENT MESH ORBS & NEURAL CANVAS
     // ----------------------------------------------------
     const bgCanvas = document.getElementById('bg-web-canvas');
     if (bgCanvas) {
@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 24 : 55;
+        const particleCount = isMobile ? 24 : 50;
         const connectMaxDist = isMobile ? 95 : 145;
         const particles = [];
-        const colors = ['#C04899', '#E879F9', '#8B5CF6', '#F4A6C7', '#ffffff'];
+        const colors = ['#2563eb', '#ec4899', '#f43f5e', '#38bdf8', '#ffffff'];
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Live Liquid Orbs in Pink & Purple
+        // Live Lovable Liquid Mesh Orbs (Blue & Hot Pink)
         let orbAngle = 0;
         let mouseX = -1000;
         let mouseY = -1000;
@@ -64,26 +64,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
             bgCtx.clearRect(0, 0, bgWidth, bgHeight);
 
-            // Render Animated Ambient Liquid Orbs in Pink & Purple
+            // Render Animated Lovable Mesh Orbs (Sky Blue & Hot Pink)
             orbAngle += 0.005;
-            const ox1 = bgWidth * 0.25 + Math.sin(orbAngle) * 50;
-            const oy1 = bgHeight * 0.3 + Math.cos(orbAngle * 0.8) * 40;
-            const grad1 = bgCtx.createRadialGradient(ox1, oy1, 10, ox1, oy1, isMobile ? 180 : 360);
-            grad1.addColorStop(0, 'rgba(244, 166, 199, 0.32)');
-            grad1.addColorStop(1, 'rgba(250, 245, 255, 0)');
+            const ox1 = bgWidth * 0.2 + Math.sin(orbAngle) * 50;
+            const oy1 = bgHeight * 0.25 + Math.cos(orbAngle * 0.8) * 40;
+            const grad1 = bgCtx.createRadialGradient(ox1, oy1, 10, ox1, oy1, isMobile ? 180 : 380);
+            grad1.addColorStop(0, 'rgba(96, 165, 250, 0.35)');
+            grad1.addColorStop(1, 'rgba(255, 255, 255, 0)');
             bgCtx.fillStyle = grad1;
             bgCtx.beginPath();
-            bgCtx.arc(ox1, oy1, isMobile ? 180 : 360, 0, Math.PI * 2);
+            bgCtx.arc(ox1, oy1, isMobile ? 180 : 380, 0, Math.PI * 2);
             bgCtx.fill();
 
-            const ox2 = bgWidth * 0.75 - Math.cos(orbAngle * 0.7) * 60;
-            const oy2 = bgHeight * 0.65 + Math.sin(orbAngle * 0.9) * 50;
-            const grad2 = bgCtx.createRadialGradient(ox2, oy2, 10, ox2, oy2, isMobile ? 160 : 320);
-            grad2.addColorStop(0, 'rgba(216, 180, 248, 0.32)');
-            grad2.addColorStop(1, 'rgba(253, 240, 248, 0)');
+            const ox2 = bgWidth * 0.8 - Math.cos(orbAngle * 0.7) * 60;
+            const oy2 = bgHeight * 0.75 + Math.sin(orbAngle * 0.9) * 50;
+            const grad2 = bgCtx.createRadialGradient(ox2, oy2, 10, ox2, oy2, isMobile ? 160 : 340);
+            grad2.addColorStop(0, 'rgba(236, 72, 153, 0.35)');
+            grad2.addColorStop(1, 'rgba(255, 255, 255, 0)');
             bgCtx.fillStyle = grad2;
             bgCtx.beginPath();
-            bgCtx.arc(ox2, oy2, isMobile ? 160 : 320, 0, Math.PI * 2);
+            bgCtx.arc(ox2, oy2, isMobile ? 160 : 340, 0, Math.PI * 2);
             bgCtx.fill();
 
             // Render Interactive Particles & Network Lines
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < connectMaxDist) {
-                        bgCtx.strokeStyle = '#C04899';
+                        bgCtx.strokeStyle = '#ec4899';
                         bgCtx.globalAlpha = (1 - dist / connectMaxDist) * 0.28;
                         bgCtx.lineWidth = 0.8;
                         bgCtx.beginPath();
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 if (formStatusMsg) {
                     formStatusMsg.style.display = 'block';
-                    formStatusMsg.style.color = '#C04899';
+                    formStatusMsg.style.color = '#ec4899';
                     formStatusMsg.innerHTML = '⚠️ Transmission encounter. Opening email client...';
                 }
                 const name = document.getElementById('sender-name')?.value || '';
