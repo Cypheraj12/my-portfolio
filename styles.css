@@ -279,10 +279,9 @@ main.main-content {
 
 .title-name {
     font-weight: 900;
-    background: linear-gradient(135deg, var(--accent-coral-deep), var(--accent-coral));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #1D1D1F;
+    background: none;
+    -webkit-text-fill-color: initial;
     letter-spacing: 0.5px;
 }
 
@@ -1086,11 +1085,12 @@ main.main-content {
     }
 
     .title-role {
-        display: none;
+        display: inline;
+        font-size: 0.82em;
     }
 
     .title-divider {
-        display: none;
+        display: inline;
     }
 }
 
@@ -1122,13 +1122,14 @@ main.main-content {
     }
 
     .title-role, .title-divider {
-        display: none;
+        display: inline;
     }
 
     .mac-window-title {
-        font-size: 0.92rem;
+        font-size: clamp(0.75rem, 2.2vw, 0.95rem);
         justify-content: center;
         margin: 0;
+        flex-wrap: wrap;
     }
 
     .mac-subtle-badge {
