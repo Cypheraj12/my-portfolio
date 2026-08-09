@@ -3,12 +3,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------
-    // 1. HIGH-PERFORMANCE AMBIENT SOFT CORAL NEURAL DATA MESH CANVAS
+    // 1. LIVE macOS SYSTEM CLOCK UPDATER
+    // ----------------------------------------------------
+    const macClockEl = document.getElementById('mac-clock');
+    function updateMacClock() {
+        if (!macClockEl) return;
+        const now = new Date();
+        const options = { weekday: 'short', hour: 'numeric', minute: '2-digit', hour12: true };
+        macClockEl.innerText = now.toLocaleString('en-US', options);
+    }
+    updateMacClock();
+    setInterval(updateMacClock, 1000);
+
+    // ----------------------------------------------------
+    // 2. LIVE DYNAMIC LIQUID GRADIENT & NEURAL MESH BACKGROUND CANVAS
     // ----------------------------------------------------
     const bgCanvas = document.getElementById('bg-web-canvas');
     if (bgCanvas) {
         const bgCtx = bgCanvas.getContext('2d');
-        const getDpr = () => Math.min(window.devicePixelRatio || 1, 2);
         let bgWidth = bgCanvas.width = window.innerWidth;
         let bgHeight = bgCanvas.height = window.innerHeight;
 
@@ -18,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 22 : 50;
-        const connectMaxDist = isMobile ? 90 : 140;
+        const particleCount = isMobile ? 24 : 55;
+        const connectMaxDist = isMobile ? 95 : 145;
         const particles = [];
         const colors = ['#E85D5D', '#F29B72', '#F58F8F', '#ffffff'];
 
@@ -27,12 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
             particles.push({
                 x: Math.random() * bgWidth,
                 y: Math.random() * bgHeight,
-                vx: (Math.random() - 0.5) * 0.6,
-                vy: (Math.random() - 0.5) * 0.6,
-                size: Math.random() * 2.2 + 1,
+                vx: (Math.random() - 0.5) * 0.7,
+                vy: (Math.random() - 0.5) * 0.7,
+                size: Math.random() * 2.5 + 1,
                 color: colors[Math.floor(Math.random() * colors.length)]
             });
         }
+
+        // Live Liquid Orbs
+        let orbAngle = 0;
 
         let mouseX = -1000;
         let mouseY = -1000;
@@ -50,6 +65,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             bgCtx.clearRect(0, 0, bgWidth, bgHeight);
 
+            // Render Animated Ambient Liquid Orbs
+            orbAngle += 0.005;
+            const ox1 = bgWidth * 0.2 + Math.sin(orbAngle) * 50;
+            const oy1 = bgHeight * 0.3 + Math.cos(orbAngle * 0.8) * 40;
+            const grad1 = bgCtx.createRadialGradient(ox1, oy1, 10, ox1, oy1, isMobile ? 180 : 350);
+            grad1.addColorStop(0, 'rgba(245, 143, 143, 0.25)');
+            grad1.addColorStop(1, 'rgba(255, 241, 241, 0)');
+            bgCtx.fillStyle = grad1;
+            bgCtx.beginPath();
+            bgCtx.arc(ox1, oy1, isMobile ? 180 : 350, 0, Math.PI * 2);
+            bgCtx.fill();
+
+            const ox2 = bgWidth * 0.8 - Math.cos(orbAngle * 0.7) * 60;
+            const oy2 = bgHeight * 0.7 + Math.sin(orbAngle * 0.9) * 50;
+            const grad2 = bgCtx.createRadialGradient(ox2, oy2, 10, ox2, oy2, isMobile ? 160 : 300);
+            grad2.addColorStop(0, 'rgba(232, 93, 93, 0.18)');
+            grad2.addColorStop(1, 'rgba(249, 180, 180, 0)');
+            bgCtx.fillStyle = grad2;
+            bgCtx.beginPath();
+            bgCtx.arc(ox2, oy2, isMobile ? 160 : 300, 0, Math.PI * 2);
+            bgCtx.fill();
+
+            // Render Interactive Particles & Network Lines
             for (let i = 0; i < particleCount; i++) {
                 const p = particles[i];
                 p.x += p.vx;
@@ -58,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (p.x < 0 || p.x > bgWidth) p.vx *= -1;
                 if (p.y < 0 || p.y > bgHeight) p.vy *= -1;
 
-                // Subtle attraction to mouse
+                // Mouse interaction
                 const mdx = mouseX - p.x;
                 const mdy = mouseY - p.y;
                 const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                if (mdist < 150) {
-                    p.x += (mdx / mdist) * 0.4;
-                    p.y += (mdy / mdist) * 0.4;
+                if (mdist < 160) {
+                    p.x += (mdx / mdist) * 0.5;
+                    p.y += (mdy / mdist) * 0.5;
                 }
 
                 bgCtx.fillStyle = p.color;
@@ -80,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (dist < connectMaxDist) {
                         bgCtx.strokeStyle = '#E85D5D';
-                        bgCtx.globalAlpha = (1 - dist / connectMaxDist) * 0.25;
+                        bgCtx.globalAlpha = (1 - dist / connectMaxDist) * 0.28;
                         bgCtx.lineWidth = 0.8;
                         bgCtx.beginPath();
                         bgCtx.moveTo(p.x, p.y);
@@ -97,38 +135,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 2. iOS DOCK DIRECT RESUME PDF DOWNLOAD
+    // 3. DIRECT RESUME PDF DOWNLOAD (ATTACHED TO HEADER & DOCK BUTTONS)
     // ----------------------------------------------------
-    const dockResumeBtn = document.getElementById('dock-resume-btn');
-    if (dockResumeBtn) {
-        dockResumeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const cacheBusterUrl = 'Anant_Joshi_FinalYear_Resume.pdf?v=' + Date.now();
-            fetch(cacheBusterUrl, { cache: 'no-cache' })
-                .then(res => res.blob())
-                .then(blob => {
-                    const blobUrl = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = blobUrl;
-                    link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-                })
-                .catch(() => {
-                    const link = document.createElement('a');
-                    link.href = cacheBusterUrl;
-                    link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                });
-        });
+    function triggerResumeDownload(e) {
+        if (e) e.preventDefault();
+        const cacheBusterUrl = 'Anant_Joshi_FinalYear_Resume.pdf?v=' + Date.now();
+        fetch(cacheBusterUrl, { cache: 'no-cache' })
+            .then(res => res.blob())
+            .then(blob => {
+                const blobUrl = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+            })
+            .catch(() => {
+                const link = document.createElement('a');
+                link.href = cacheBusterUrl;
+                link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
     }
 
+    const headerResumeBtn = document.getElementById('header-resume-btn');
+    const dockResumeBtn = document.getElementById('dock-resume-btn');
+
+    if (headerResumeBtn) headerResumeBtn.addEventListener('click', triggerResumeDownload);
+    if (dockResumeBtn) dockResumeBtn.addEventListener('click', triggerResumeDownload);
+
     // ----------------------------------------------------
-    // 3. macOS TRAFFIC LIGHTS INTERACTIVITY
+    // 4. macOS TRAFFIC LIGHTS INTERACTIVITY
     // ----------------------------------------------------
     const macDots = document.querySelectorAll('.mac-dot');
     macDots.forEach(dot => {
@@ -142,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 4. PROJECT FILTERING INTERACTIVITY
+    // 5. PROJECT FILTERING INTERACTIVITY
     // ----------------------------------------------------
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -165,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 5. MOBILE NAV TOGGLE
+    // 6. MOBILE NAV TOGGLE
     // ----------------------------------------------------
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     const navLinks = document.getElementById('nav-links');
@@ -194,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 6. CONTACT FORM HANDLING VIA FORMSUBMIT
+    // 7. CONTACT FORM HANDLING VIA FORMSUBMIT
     // ----------------------------------------------------
     const contactForm = document.getElementById('contact-form');
     const formSubmitBtn = document.getElementById('form-submit-btn');
@@ -249,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 7. ACTIVE NAV ITEM SCROLL HIGHLIGHT
+    // 8. ACTIVE NAV ITEM SCROLL HIGHLIGHT
     // ----------------------------------------------------
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');

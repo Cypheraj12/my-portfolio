@@ -15,20 +15,32 @@
 </head>
 <body>
 
-    <!-- ==================== macOS WINDOW CONTROL TOP BAR ==================== -->
-    <div class="macos-window-bar">
-        <div class="mac-traffic-lights">
-            <span class="mac-dot red" title="Close Window"></span>
-            <span class="mac-dot yellow" title="Minimize Window"></span>
-            <span class="mac-dot green" title="Expand Window"></span>
+    <!-- ==================== macOS AUTHENTIC SYSTEM TOP MENU BAR ==================== -->
+    <div class="macos-system-bar">
+        <div class="mac-system-left">
+            <span class="mac-apple-icon" title="macOS System Menu"></span>
+            <span class="mac-menu-item active-app">Portfolio</span>
+            <span class="mac-menu-item desk-only">File</span>
+            <span class="mac-menu-item desk-only">View</span>
+            <span class="mac-menu-item desk-only">Window</span>
         </div>
+
         <div class="mac-address-bar">
             <i class="fa-solid fa-lock"></i> https://anantjoshi.dev/portfolio
         </div>
-        <div class="mac-user-tag">anant-joshi-portfolio.app</div>
+
+        <div class="mac-system-right">
+            <!-- Header Download Resume Action Button -->
+            <button id="header-resume-btn" class="mac-header-resume-btn" title="Download Final Year Resume (PDF)">
+                <i class="fa-solid fa-file-arrow-down"></i> <span>Resume (PDF)</span>
+            </button>
+            <span class="mac-sys-icon" title="Wi-Fi Signal"><i class="fa-solid fa-wifi"></i></span>
+            <span class="mac-sys-icon" title="Battery 100%"><i class="fa-solid fa-battery-full"></i></span>
+            <span id="mac-clock" class="mac-clock-time">Sun 8:00 PM</span>
+        </div>
     </div>
 
-    <!-- ==================== macOS FROSTED GLASS NAVIGATION ==================== -->
+    <!-- ==================== macOS FROSTED GLASS NAVIGATION HEADER ==================== -->
     <header class="macos-nav" id="main-nav">
         <a href="#hero" class="nav-brand">
             ANANT <span class="brand-accent">JOSHI</span>
@@ -47,13 +59,13 @@
         </button>
     </header>
 
-    <!-- Background Neural Data Mesh Canvas -->
+    <!-- Live Dynamic Liquid Gradient & Particle Background Canvas -->
     <canvas id="bg-web-canvas"></canvas>
 
     <main class="main-content">
-        <!-- ==================== HERO SECTION ==================== -->
+        <!-- ==================== HERO SECTION (SINGLE PHOTO REMOVED FOR CLEAN HERO) ==================== -->
         <section id="hero" class="hero-section">
-            <div class="hero-container">
+            <div class="hero-container single-column-hero">
                 <div class="hero-text-side">
                     <div class="status-pill">
                         <span class="metric-dot"></span> AVAILABLE FOR AI & DATA SCIENCE OPPORTUNITIES
@@ -74,15 +86,44 @@
                     </div>
                 </div>
 
-                <div class="hero-visual-side">
-                    <div class="photo-card-macos">
-                        <img src="anant_photo.jpg" alt="Anant Joshi" class="user-photo">
+                <!-- macOS System Dashboard Card (Replacing Second Photo for Clean Executive Feel) -->
+                <div class="hero-dashboard-card macos-card">
+                    <div class="card-window-header">
+                        <div class="mac-traffic-lights">
+                            <span class="mac-dot red"></span>
+                            <span class="mac-dot yellow"></span>
+                            <span class="mac-dot green"></span>
+                        </div>
+                        <span class="window-title">system_status.json</span>
+                    </div>
+
+                    <div class="dashboard-content">
+                        <div class="dash-row">
+                            <span class="dash-key"><i class="fa-solid fa-graduation-cap coral-highlight"></i> Academic Status:</span>
+                            <span class="dash-val">Final Year B.Tech CSE</span>
+                        </div>
+                        <div class="dash-row">
+                            <span class="dash-key"><i class="fa-solid fa-microchip coral-highlight"></i> Primary Focus:</span>
+                            <span class="dash-val">Data Science & ML Engineering</span>
+                        </div>
+                        <div class="dash-row">
+                            <span class="dash-key"><i class="fa-solid fa-server coral-highlight"></i> Backend Stack:</span>
+                            <span class="dash-val">FastAPI · Python · MongoDB · Docker</span>
+                        </div>
+                        <div class="dash-row">
+                            <span class="dash-key"><i class="fa-solid fa-layer-group coral-highlight"></i> AI Frameworks:</span>
+                            <span class="dash-val">TensorFlow · PyTorch · Scikit-Learn</span>
+                        </div>
+                        <div class="dash-row">
+                            <span class="dash-key"><i class="fa-solid fa-circle-check coral-highlight"></i> Live Status:</span>
+                            <span class="dash-val active-status">● System Operational & Ready</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== ABOUT & DOSSIER SECTION ==================== -->
+        <!-- ==================== ABOUT & DOSSIER SECTION (SOLE LOCATION OF USER PHOTO) ==================== -->
         <section id="about" class="about-section">
             <div class="section-header">
                 <div class="section-tag">// ENGINEERING PROFILE</div>
@@ -90,32 +131,32 @@
             </div>
 
             <div class="about-grid">
-                <!-- Profile card -->
+                <!-- Profile Card (Sole Photo Location on Site) -->
                 <div class="macos-card profile-card">
                     <div class="avatar-macos">
                         <img src="anant_photo.jpg" alt="Anant Joshi" class="avatar-img">
                     </div>
                     <h3 class="user-name">ANANT JOSHI</h3>
                     <p class="user-title">Final Year B.Tech CSE (Data Science Specialization)</p>
-                    <p class="user-location"><i class="fa-solid fa-location-dot"></i> Lucknow, Uttar Pradesh, India</p>
 
+                    <!-- Domain Pillar Tags (Data Analytics, ML Engineer, AI Systems) -->
                     <div class="metrics-grid">
                         <div class="metric-box">
-                            <span class="metric-val">95%</span>
-                            <span class="metric-lbl">Deepfake Acc.</span>
+                            <span class="metric-val"><i class="fa-solid fa-chart-pie"></i></span>
+                            <span class="metric-lbl">Data Analytics</span>
                         </div>
                         <div class="metric-box">
-                            <span class="metric-val">60%</span>
-                            <span class="metric-lbl">Latency Red.</span>
+                            <span class="metric-val"><i class="fa-solid fa-robot"></i></span>
+                            <span class="metric-lbl">ML Engineer</span>
                         </div>
                         <div class="metric-box">
-                            <span class="metric-val">99%</span>
-                            <span class="metric-lbl">API Availability</span>
+                            <span class="metric-val"><i class="fa-solid fa-brain"></i></span>
+                            <span class="metric-lbl">AI Systems</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Bio card -->
+                <!-- Bio Card -->
                 <div class="macos-card bio-card">
                     <h3><i class="fa-solid fa-brain coral-highlight"></i> SUMMARY OF CAPABILITIES</h3>
                     <p class="bio-p">
@@ -358,14 +399,6 @@
                         <div class="info-text">
                             <label>EMAIL TRANSMISSION</label>
                             <a href="mailto:anantajjoshi@gmail.com">anantajjoshi@gmail.com</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-                        <div class="info-text">
-                            <label>BASE LOCATION</label>
-                            <span>Lucknow, Uttar Pradesh, India</span>
                         </div>
                     </div>
                 </div>

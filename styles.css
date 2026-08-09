@@ -66,8 +66,8 @@ main.main-content {
     padding-bottom: 120px;
 }
 
-/* ==================== macOS WINDOW CONTROL HEADER BAR ==================== */
-.macos-window-bar {
+/* ==================== macOS SYSTEM TOP MENU BAR ==================== */
+.macos-system-bar {
     position: fixed;
     top: 0;
     left: 0;
@@ -80,32 +80,34 @@ main.main-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 18px;
+    padding: 0 16px;
     z-index: 1005;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-.mac-traffic-lights {
+.mac-system-left {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 14px;
 }
 
-.mac-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
+.mac-apple-icon {
+    font-size: 1.1rem;
+    color: var(--text-main);
     cursor: pointer;
-    transition: transform 0.2s ease;
 }
 
-.mac-dot:hover {
-    transform: scale(1.15);
+.mac-menu-item {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
-.mac-dot.red { background: #ff5f56; border: 1px solid #e0443e; }
-.mac-dot.yellow { background: #ffbd2e; border: 1px solid #dea123; }
-.mac-dot.green { background: #27c93f; border: 1px solid #1aab29; }
+.mac-menu-item.active-app {
+    color: var(--text-main);
+    font-weight: 800;
+}
 
 .mac-address-bar {
     background: rgba(37, 37, 37, 0.05);
@@ -125,11 +127,41 @@ main.main-content {
     font-size: 0.75rem;
 }
 
-.mac-user-tag {
+.mac-system-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mac-header-resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--accent-deep-coral), #d94b4b);
+    color: #ffffff;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 10px;
     font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(232, 93, 93, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.mac-header-resume-btn:hover {
+    transform: scale(1.05);
+}
+
+.mac-sys-icon {
     color: var(--text-muted);
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.mac-clock-time {
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 0.82rem;
 }
 
 /* ==================== macOS FROSTED GLASS NAVIGATION ==================== */
@@ -196,11 +228,11 @@ main.main-content {
 
 /* ==================== HERO SECTION ==================== */
 .hero-section {
-    min-height: 90vh;
+    min-height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 120px 40px 60px;
+    padding: 130px 40px 60px;
     position: relative;
 }
 
@@ -208,7 +240,7 @@ main.main-content {
     max-width: 1200px;
     width: 100%;
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 40px;
     align-items: center;
 }
@@ -217,7 +249,7 @@ main.main-content {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.75);
     border: 1px solid var(--border-glass);
     padding: 6px 16px;
     border-radius: 20px;
@@ -312,34 +344,80 @@ main.main-content {
     box-shadow: 0 8px 20px rgba(37, 37, 37, 0.1);
 }
 
-/* Hero Photo Frame */
-.hero-visual-side {
-    display: flex;
-    justify-content: center;
-}
-
-.photo-card-macos {
-    position: relative;
-    width: clamp(260px, 40vw, 340px);
-    height: clamp(320px, 50vw, 420px);
-    border-radius: 24px;
+/* macOS Hero System Dashboard Card */
+.hero-dashboard-card {
+    padding: 0 !important;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    background: rgba(255, 249, 247, 0.7);
-    box-shadow: 0 20px 40px rgba(232, 93, 93, 0.18);
-    backdrop-filter: blur(20px);
 }
 
-.user-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    transition: transform 0.5s ease;
+.card-window-header {
+    background: rgba(37, 37, 37, 0.04);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-.photo-card-macos:hover .user-photo {
-    transform: scale(1.04);
+.mac-traffic-lights {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mac-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.mac-dot.red { background: #ff5f56; }
+.mac-dot.yellow { background: #ffbd2e; }
+.mac-dot.green { background: #27c93f; }
+
+.window-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.dashboard-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.dash-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(37, 37, 37, 0.08);
+    font-size: 0.92rem;
+}
+
+.dash-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dash-key {
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dash-val {
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.dash-val.active-status {
+    color: #10b981;
 }
 
 /* ==================== SECTION HEADERS & GLASS CARDS ==================== */
@@ -399,8 +477,8 @@ main.main-content {
 }
 
 .avatar-macos {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     margin: 0 auto 20px;
     border-radius: 50%;
     overflow: hidden;
@@ -425,12 +503,6 @@ main.main-content {
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--accent-deep-coral);
-    margin-bottom: 6px;
-}
-
-.user-location {
-    font-size: 0.88rem;
-    color: var(--text-muted);
     margin-bottom: 24px;
 }
 
@@ -443,22 +515,22 @@ main.main-content {
 .metric-box {
     background: rgba(255, 255, 255, 0.65);
     border: 1px solid var(--border-glass);
-    padding: 12px 6px;
-    border-radius: 14px;
+    padding: 14px 6px;
+    border-radius: 16px;
     text-align: center;
 }
 
 .metric-val {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.4rem;
     color: var(--accent-deep-coral);
     display: block;
+    margin-bottom: 4px;
 }
 
 .metric-lbl {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-main);
+    font-weight: 700;
 }
 
 .bio-card h3 {
@@ -842,9 +914,25 @@ main.main-content {
     .about-grid, .contact-grid {
         grid-template-columns: 1fr;
     }
+
+    .desk-only {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
+    .macos-system-bar {
+        padding: 0 10px;
+    }
+
+    .mac-address-bar {
+        display: none;
+    }
+
+    .mac-header-resume-btn span {
+        display: none;
+    }
+
     .macos-nav {
         padding: 10px 20px;
     }
@@ -873,7 +961,7 @@ main.main-content {
     }
 
     .hero-section {
-        padding: 100px 20px 40px;
+        padding: 110px 20px 40px;
     }
 
     .about-section, .projects-section, .skills-section, .contact-section {
