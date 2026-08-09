@@ -1,4 +1,4 @@
-// ==================== PREMIUM macOS DESKTOP SPACES INTERACTIVITY ====================
+// ==================== PREMIUM macOS GLASS PORTFOLIO INTERACTIVITY ====================
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,202 +16,37 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateMacClock, 1000);
 
     // ----------------------------------------------------
-    // 2. DESKTOP SPACES NAVIGATION SYSTEM
+    // 2. ACTIVE NAV HIGHLIGHT ON SCROLL
     // ----------------------------------------------------
-    const spacesContainer = document.getElementById('desktop-spaces');
-    const desktopSpaces = document.querySelectorAll('.desktop-space');
+    const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.mac-segment-nav .nav-item');
-    const desktopDots = document.querySelectorAll('.desktop-dot');
-    const dockItems = document.querySelectorAll('.dock-item[data-space]');
-    const sectionIds = ['hero', 'projects', 'skills', 'contact'];
-    let currentSpace = 0;
-    let isScrolling = false;
+    let isScrollTicking = false;
 
-    // Check if we're on mobile
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
+    window.addEventListener('scroll', () => {
+        if (!isScrollTicking) {
+            window.requestAnimationFrame(() => {
+                let current = '';
+                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Navigate to a specific space
-    function goToSpace(index) {
-        if (index < 0 || index >= desktopSpaces.length || isScrolling) return;
-        currentSpace = index;
-
-        if (isMobile()) {
-            // On mobile, scroll vertically to the section
-            const target = document.getElementById(sectionIds[index]);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        } else {
-            // On desktop, scroll horizontally within the spaces container
-            isScrolling = true;
-            desktopSpaces[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            setTimeout(() => { isScrolling = false; }, 600);
-        }
-
-        updateActiveIndicators(index);
-    }
-
-    // Update active state on nav, dots, and dock
-    function updateActiveIndicators(index) {
-        // Nav items
-        navItems.forEach(item => item.classList.remove('active'));
-        navItems.forEach(item => {
-            const spaceIndex = item.getAttribute('data-space');
-            if (spaceIndex !== null && parseInt(spaceIndex) === index) {
-                item.classList.add('active');
-            }
-        });
-
-        // Desktop dots
-        desktopDots.forEach(dot => dot.classList.remove('active'));
-        desktopDots.forEach(dot => {
-            const spaceIndex = dot.getAttribute('data-space');
-            if (spaceIndex !== null && parseInt(spaceIndex) === index) {
-                dot.classList.add('active');
-            }
-        });
-    }
-
-    // Nav item clicks
-    navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const spaceIndex = item.getAttribute('data-space');
-            if (spaceIndex !== null) {
-                goToSpace(parseInt(spaceIndex));
-            }
-
-            // Close mobile nav if open
-            const mainNav = document.getElementById('main-nav');
-            if (mainNav) mainNav.classList.remove('active');
-            const mobileToggle = document.getElementById('mobile-nav-toggle');
-            if (mobileToggle) {
-                const icon = mobileToggle.querySelector('i');
-                if (icon) icon.className = 'fa-solid fa-bars';
-            }
-        });
-    });
-
-    // Desktop dot clicks
-    desktopDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const spaceIndex = dot.getAttribute('data-space');
-            if (spaceIndex !== null) {
-                goToSpace(parseInt(spaceIndex));
-            }
-        });
-    });
-
-    // Dock item clicks (with data-space)
-    dockItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const spaceIndex = item.getAttribute('data-space');
-            if (spaceIndex !== null) {
-                goToSpace(parseInt(spaceIndex));
-            }
-        });
-    });
-
-    // Hero CTA "View Projects" button
-    document.querySelectorAll('[data-space]').forEach(el => {
-        if (el.classList.contains('btn-apple') || el.classList.contains('dock-item') || el.classList.contains('nav-item') || el.classList.contains('desktop-dot')) {
-            // Already handled above
-        } else {
-            el.addEventListener('click', (e) => {
-                const spaceIndex = el.getAttribute('data-space');
-                if (spaceIndex !== null) {
-                    e.preventDefault();
-                    goToSpace(parseInt(spaceIndex));
-                }
-            });
-        }
-    });
-
-    // Scroll detection on the spaces container (desktop only)
-    if (spacesContainer) {
-        let scrollTimeout;
-        spacesContainer.addEventListener('scroll', () => {
-            if (isMobile() || isScrolling) return;
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                const scrollLeft = spacesContainer.scrollLeft;
-                const containerWidth = spacesContainer.clientWidth;
-                const newIndex = Math.round(scrollLeft / containerWidth);
-                if (newIndex !== currentSpace && newIndex >= 0 && newIndex < desktopSpaces.length) {
-                    currentSpace = newIndex;
-                    updateActiveIndicators(currentSpace);
-                }
-            }, 80);
-        }, { passive: true });
-    }
-
-    // Keyboard arrow navigation
-    document.addEventListener('keydown', (e) => {
-        if (isMobile()) return;
-        // Don't interfere with form inputs
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            e.preventDefault();
-            goToSpace(currentSpace + 1);
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-            e.preventDefault();
-            goToSpace(currentSpace - 1);
-        }
-    });
-
-    // Touch/Swipe support for the spaces container
-    if (spacesContainer) {
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        spacesContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        spacesContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    goToSpace(currentSpace + 1);
-                } else {
-                    goToSpace(currentSpace - 1);
-                }
-            }
-        }, { passive: true });
-    }
-
-    // Wheel event for horizontal scrolling (map vertical wheel to horizontal)
-    if (spacesContainer) {
-        let wheelTimeout;
-        let wheelDelta = 0;
-
-        spacesContainer.addEventListener('wheel', (e) => {
-            if (isMobile()) return;
-
-            // Prevent default vertical scroll
-            e.preventDefault();
-
-            wheelDelta += e.deltaY;
-
-            clearTimeout(wheelTimeout);
-            wheelTimeout = setTimeout(() => {
-                if (Math.abs(wheelDelta) > 50) {
-                    if (wheelDelta > 0) {
-                        goToSpace(currentSpace + 1);
-                    } else {
-                        goToSpace(currentSpace - 1);
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 140;
+                    if (scrollPos >= sectionTop) {
+                        current = section.getAttribute('id');
                     }
-                }
-                wheelDelta = 0;
-            }, 100);
-        }, { passive: false });
-    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+
+                isScrollTicking = false;
+            });
+            isScrollTicking = true;
+        }
+    }, { passive: true });
 
     // ----------------------------------------------------
     // 3. RESUME PDF DOWNLOAD HANDLER
@@ -307,6 +142,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+
+        const navLinks = mainNav.querySelectorAll('.nav-item');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                const icon = mobileNavToggle.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
+            });
+        });
     }
 
     // ----------------------------------------------------
@@ -365,18 +209,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 8. ENTRANCE ANIMATIONS
+    // 8. ENTRANCE STAGGER ANIMATIONS
     // ----------------------------------------------------
-    // Animate tiles appearing with staggered delay
     const allTiles = document.querySelectorAll('.apple-tile');
     allTiles.forEach((tile, i) => {
         tile.style.opacity = '0';
-        tile.style.transform = 'translateY(20px)';
-        tile.style.transition = `opacity 0.5s ease ${i * 0.06}s, transform 0.5s ease ${i * 0.06}s`;
+        tile.style.transform = 'translateY(18px)';
+        tile.style.transition = `opacity 0.45s ease ${i * 0.05}s, transform 0.45s ease ${i * 0.05}s`;
         setTimeout(() => {
             tile.style.opacity = '1';
             tile.style.transform = 'translateY(0)';
-        }, 100);
+        }, 80);
     });
 
 });
