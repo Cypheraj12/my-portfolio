@@ -1,4 +1,4 @@
-// ==================== EXECUTIVE APPLE LIQUID GLASS INTERACTIVITY ====================
+// ==================== PREMIUM macOS DESKTOP SPACES INTERACTIVITY ====================
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,100 +16,205 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateMacClock, 1000);
 
     // ----------------------------------------------------
-    // 2. CUPERTINO NEON ATMOSPHERIC CANVAS
+    // 2. DESKTOP SPACES NAVIGATION SYSTEM
     // ----------------------------------------------------
-    const bgCanvas = document.getElementById('bg-web-canvas');
-    if (bgCanvas) {
-        const bgCtx = bgCanvas.getContext('2d');
-        let bgWidth = bgCanvas.width = window.innerWidth;
-        let bgHeight = bgCanvas.height = window.innerHeight;
+    const spacesContainer = document.getElementById('desktop-spaces');
+    const desktopSpaces = document.querySelectorAll('.desktop-space');
+    const navItems = document.querySelectorAll('.mac-segment-nav .nav-item');
+    const desktopDots = document.querySelectorAll('.desktop-dot');
+    const dockItems = document.querySelectorAll('.dock-item[data-space]');
+    const sectionIds = ['hero', 'projects', 'skills', 'contact'];
+    let currentSpace = 0;
+    let isScrolling = false;
 
-        window.addEventListener('resize', () => {
-            bgWidth = bgCanvas.width = window.innerWidth;
-            bgHeight = bgCanvas.height = window.innerHeight;
-        }, { passive: true });
+    // Check if we're on mobile
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
 
-        const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 22 : 45;
-        const connectMaxDist = isMobile ? 95 : 140;
-        const particles = [];
-        const colors = ['rgba(56, 189, 248, 0.6)', 'rgba(192, 132, 252, 0.5)', 'rgba(0, 122, 255, 0.6)', 'rgba(255, 255, 255, 0.4)'];
+    // Navigate to a specific space
+    function goToSpace(index) {
+        if (index < 0 || index >= desktopSpaces.length || isScrolling) return;
+        currentSpace = index;
 
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * bgWidth,
-                y: Math.random() * bgHeight,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 2 + 1,
-                color: colors[Math.floor(Math.random() * colors.length)]
+        if (isMobile()) {
+            // On mobile, scroll vertically to the section
+            const target = document.getElementById(sectionIds[index]);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } else {
+            // On desktop, scroll horizontally within the spaces container
+            isScrolling = true;
+            desktopSpaces[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            setTimeout(() => { isScrolling = false; }, 600);
+        }
+
+        updateActiveIndicators(index);
+    }
+
+    // Update active state on nav, dots, and dock
+    function updateActiveIndicators(index) {
+        // Nav items
+        navItems.forEach(item => item.classList.remove('active'));
+        navItems.forEach(item => {
+            const spaceIndex = item.getAttribute('data-space');
+            if (spaceIndex !== null && parseInt(spaceIndex) === index) {
+                item.classList.add('active');
+            }
+        });
+
+        // Desktop dots
+        desktopDots.forEach(dot => dot.classList.remove('active'));
+        desktopDots.forEach(dot => {
+            const spaceIndex = dot.getAttribute('data-space');
+            if (spaceIndex !== null && parseInt(spaceIndex) === index) {
+                dot.classList.add('active');
+            }
+        });
+    }
+
+    // Nav item clicks
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const spaceIndex = item.getAttribute('data-space');
+            if (spaceIndex !== null) {
+                goToSpace(parseInt(spaceIndex));
+            }
+
+            // Close mobile nav if open
+            const mainNav = document.getElementById('main-nav');
+            if (mainNav) mainNav.classList.remove('active');
+            const mobileToggle = document.getElementById('mobile-nav-toggle');
+            if (mobileToggle) {
+                const icon = mobileToggle.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
+            }
+        });
+    });
+
+    // Desktop dot clicks
+    desktopDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const spaceIndex = dot.getAttribute('data-space');
+            if (spaceIndex !== null) {
+                goToSpace(parseInt(spaceIndex));
+            }
+        });
+    });
+
+    // Dock item clicks (with data-space)
+    dockItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const spaceIndex = item.getAttribute('data-space');
+            if (spaceIndex !== null) {
+                goToSpace(parseInt(spaceIndex));
+            }
+        });
+    });
+
+    // Hero CTA "View Projects" button
+    document.querySelectorAll('[data-space]').forEach(el => {
+        if (el.classList.contains('btn-apple') || el.classList.contains('dock-item') || el.classList.contains('nav-item') || el.classList.contains('desktop-dot')) {
+            // Already handled above
+        } else {
+            el.addEventListener('click', (e) => {
+                const spaceIndex = el.getAttribute('data-space');
+                if (spaceIndex !== null) {
+                    e.preventDefault();
+                    goToSpace(parseInt(spaceIndex));
+                }
             });
         }
+    });
 
-        let mouseX = -1000;
-        let mouseY = -1000;
+    // Scroll detection on the spaces container (desktop only)
+    if (spacesContainer) {
+        let scrollTimeout;
+        spacesContainer.addEventListener('scroll', () => {
+            if (isMobile() || isScrolling) return;
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollLeft = spacesContainer.scrollLeft;
+                const containerWidth = spacesContainer.clientWidth;
+                const newIndex = Math.round(scrollLeft / containerWidth);
+                if (newIndex !== currentSpace && newIndex >= 0 && newIndex < desktopSpaces.length) {
+                    currentSpace = newIndex;
+                    updateActiveIndicators(currentSpace);
+                }
+            }, 80);
+        }, { passive: true });
+    }
 
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+    // Keyboard arrow navigation
+    document.addEventListener('keydown', (e) => {
+        if (isMobile()) return;
+        // Don't interfere with form inputs
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            goToSpace(currentSpace + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            goToSpace(currentSpace - 1);
+        }
+    });
+
+    // Touch/Swipe support for the spaces container
+    if (spacesContainer) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        spacesContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        function renderAtmosphere() {
-            if (document.hidden) {
-                requestAnimationFrame(renderAtmosphere);
-                return;
-            }
-
-            bgCtx.clearRect(0, 0, bgWidth, bgHeight);
-
-            for (let i = 0; i < particleCount; i++) {
-                const p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > bgWidth) p.vx *= -1;
-                if (p.y < 0 || p.y > bgHeight) p.vy *= -1;
-
-                // Mouse interaction
-                const mdx = mouseX - p.x;
-                const mdy = mouseY - p.y;
-                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                if (mdist < 140) {
-                    p.x += (mdx / mdist) * 0.4;
-                    p.y += (mdy / mdist) * 0.4;
+        spacesContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    goToSpace(currentSpace + 1);
+                } else {
+                    goToSpace(currentSpace - 1);
                 }
+            }
+        }, { passive: true });
+    }
 
-                bgCtx.fillStyle = p.color;
-                bgCtx.beginPath();
-                bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                bgCtx.fill();
+    // Wheel event for horizontal scrolling (map vertical wheel to horizontal)
+    if (spacesContainer) {
+        let wheelTimeout;
+        let wheelDelta = 0;
 
-                for (let j = i + 1; j < particleCount; j++) {
-                    const p2 = particles[j];
-                    const dx = p.x - p2.x;
-                    const dy = p.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+        spacesContainer.addEventListener('wheel', (e) => {
+            if (isMobile()) return;
 
-                    if (dist < connectMaxDist) {
-                        bgCtx.strokeStyle = '#38BDF8';
-                        bgCtx.globalAlpha = (1 - dist / connectMaxDist) * 0.2;
-                        bgCtx.lineWidth = 0.8;
-                        bgCtx.beginPath();
-                        bgCtx.moveTo(p.x, p.y);
-                        bgCtx.lineTo(p2.x, p2.y);
-                        bgCtx.stroke();
-                        bgCtx.globalAlpha = 1;
+            // Prevent default vertical scroll
+            e.preventDefault();
+
+            wheelDelta += e.deltaY;
+
+            clearTimeout(wheelTimeout);
+            wheelTimeout = setTimeout(() => {
+                if (Math.abs(wheelDelta) > 50) {
+                    if (wheelDelta > 0) {
+                        goToSpace(currentSpace + 1);
+                    } else {
+                        goToSpace(currentSpace - 1);
                     }
                 }
-            }
-
-            requestAnimationFrame(renderAtmosphere);
-        }
-        renderAtmosphere();
+                wheelDelta = 0;
+            }, 100);
+        }, { passive: false });
     }
 
     // ----------------------------------------------------
-    // 3. HIGH PRIORITY DIRECT RESUME PDF DOWNLOAD HANDLER
+    // 3. RESUME PDF DOWNLOAD HANDLER
     // ----------------------------------------------------
     function triggerResumeDownload(e) {
         if (e) e.preventDefault();
@@ -161,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 5. FINDER PROJECT FILTERING INTERACTIVITY
+    // 5. FINDER PROJECT FILTERING
     // ----------------------------------------------------
     const filterChips = document.querySelectorAll('.filter-chip');
     const projectCards = document.querySelectorAll('.project-card');
@@ -202,15 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-
-        const navItems = mainNav.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                const icon = mobileNavToggle.querySelector('i');
-                if (icon) icon.className = 'fa-solid fa-bars';
-            });
-        });
     }
 
     // ----------------------------------------------------
@@ -242,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     if (formStatusMsg) {
                         formStatusMsg.style.display = 'block';
-                        formStatusMsg.style.color = '#34D399';
+                        formStatusMsg.style.color = '#16A34A';
                         formStatusMsg.innerHTML = '✓ Message sent successfully! Thank you.';
                     }
                     contactForm.reset();
@@ -252,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 if (formStatusMsg) {
                     formStatusMsg.style.display = 'block';
-                    formStatusMsg.style.color = '#38BDF8';
+                    formStatusMsg.style.color = '#E85D5D';
                     formStatusMsg.innerHTML = 'Opening default email client...';
                 }
                 const name = document.getElementById('sender-name')?.value || '';
@@ -269,35 +365,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 8. ACTIVE NAV ITEM SCROLL HIGHLIGHT
+    // 8. ENTRANCE ANIMATIONS
     // ----------------------------------------------------
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.mac-segment-nav .nav-item');
-    let isScrollTicking = false;
+    // Animate tiles appearing with staggered delay
+    const allTiles = document.querySelectorAll('.apple-tile');
+    allTiles.forEach((tile, i) => {
+        tile.style.opacity = '0';
+        tile.style.transform = 'translateY(20px)';
+        tile.style.transition = `opacity 0.5s ease ${i * 0.06}s, transform 0.5s ease ${i * 0.06}s`;
+        setTimeout(() => {
+            tile.style.opacity = '1';
+            tile.style.transform = 'translateY(0)';
+        }, 100);
+    });
 
-    window.addEventListener('scroll', () => {
-        if (!isScrollTicking) {
-            window.requestAnimationFrame(() => {
-                let current = '';
-                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 160;
-                    if (scrollPos >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href') === `#${current}`) {
-                        item.classList.add('active');
-                    }
-                });
-
-                isScrollTicking = false;
-            });
-            isScrollTicking = true;
-        }
-    }, { passive: true });
 });

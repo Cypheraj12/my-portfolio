@@ -1,22 +1,25 @@
-/* ==================== APPLE EXECUTIVE LIQUID GLASS DESIGN SYSTEM ==================== */
+/* ==================== PREMIUM macOS DESKTOP SPACES — WARM CORAL GLASS ==================== */
 :root {
-    /* Executive Apple Obsidian Dark/Glass Color Palette */
-    --bg-system: #0B0C10;
-    --text-primary: #FFFFFF;
-    --text-secondary: #94A3B8;
-    --text-tertiary: #64748B;
-    --surface-window: rgba(18, 22, 32, 0.82);
-    --surface-tile: rgba(28, 34, 48, 0.72);
-    --surface-tile-hover: rgba(36, 44, 62, 0.9);
-    --border-subtle: rgba(255, 255, 255, 0.1);
-    --border-light: rgba(255, 255, 255, 0.15);
-    
-    /* Accents - Cupertino Neon Electric Sky */
-    --accent-blue: #38BDF8;
-    --accent-blue-deep: #007AFF;
-    --accent-purple: #C084FC;
-    --accent-pink: #F43F5E;
-    --accent-cyan: #2DD4BF;
+    /* Warm Coral / Blush / Lavender Palette */
+    --bg-primary: #F58F8F;
+    --bg-light-coral: #F9B4B4;
+    --bg-secondary: #FAD6D6;
+    --bg-very-light: #FFF1F1;
+    --text-primary: #252525;
+    --text-secondary: #5F5555;
+    --text-tertiary: #8A7B7B;
+    --surface-window: rgba(255, 255, 255, 0.55);
+    --surface-tile: rgba(255, 249, 247, 0.72);
+    --surface-tile-hover: rgba(255, 255, 255, 0.88);
+    --border-subtle: rgba(255, 255, 255, 0.5);
+    --border-light: rgba(255, 255, 255, 0.6);
+
+    /* Accents */
+    --accent-coral: #E85D5D;
+    --accent-coral-deep: #D94848;
+    --accent-orange: #F29B72;
+    --accent-lavender: #C89BF2;
+    --accent-rose: #F472B6;
     --accent-green: #34D399;
 
     /* Traffic Lights */
@@ -27,88 +30,94 @@
     /* Typography & Elevation */
     --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
     --font-heading: 'Plus Jakarta Sans', var(--font-system);
-    --shadow-window: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 35px 70px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.1);
-    --shadow-tile: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 25px rgba(0, 0, 0, 0.25);
-    --shadow-tile-hover: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.35), 0 0 15px rgba(56, 189, 248, 0.15);
+    --shadow-window: 0 30px 60px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.08);
+    --shadow-tile: 0 8px 32px rgba(180, 100, 100, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    --shadow-tile-hover: 0 16px 48px rgba(180, 100, 100, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 0 0 1px rgba(232, 93, 93, 0.15);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Atmospheric Ambient Deep Space Background */
+/* ==================== ANIMATED GRADIENT BACKGROUND ==================== */
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    25%  { background-position: 100% 50%; }
+    50%  { background-position: 100% 0%; }
+    75%  { background-position: 0% 100%; }
+    100% { background-position: 0% 50%; }
+}
+
 body, html {
-    background-color: var(--bg-system);
-    background-image: 
-        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 20%, rgba(192, 132, 252, 0.1) 0%, transparent 45%),
-        radial-gradient(circle at 50% 85%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
-    background-attachment: fixed;
+    background: linear-gradient(-45deg,
+        #F58F8F,
+        #FAD6D6,
+        #E8C6F0,
+        #F9B4B4,
+        #FFF1F1,
+        #C89BF2,
+        #F58F8F
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
     color: var(--text-primary);
     font-family: var(--font-system);
-    overflow-x: hidden;
+    overflow: hidden;
     line-height: 1.6;
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — Hidden for horizontal scroll */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
+    height: 0px;
 }
 ::-webkit-scrollbar-track {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(232, 93, 93, 0.25);
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-blue);
-}
-
-/* Soft Ambient Background Canvas */
-#bg-web-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.65;
+    background: var(--accent-coral);
 }
 
 main.main-content {
     position: relative;
     z-index: 10;
-    padding: 58px 20px 100px;
-    max-width: 1280px;
+    padding: 46px 16px 0;
+    max-width: 1340px;
     margin: 0 auto;
+    height: calc(100vh - 46px);
+    display: flex;
+    flex-direction: column;
 }
 
-/* ==================== macOS TOP SYSTEM MENU BAR (UNCLUTTERED) ==================== */
+/* ==================== macOS TOP SYSTEM MENU BAR ==================== */
 .macos-system-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 38px;
-    background: rgba(11, 12, 16, 0.85);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    height: 36px;
+    background: rgba(255, 240, 240, 0.72);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 18px;
     z-index: 10005;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
 .mac-system-left {
@@ -118,7 +127,7 @@ main.main-content {
 }
 
 .mac-apple-icon {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--text-primary);
     cursor: pointer;
 }
@@ -126,26 +135,26 @@ main.main-content {
 .mac-menu-item.active-app {
     color: var(--text-primary);
     font-weight: 800;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     letter-spacing: -0.2px;
 }
 
 .mac-address-bar {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 3px 20px;
-    border-radius: 10px;
-    font-size: 0.78rem;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 3px 18px;
+    border-radius: 8px;
+    font-size: 0.76rem;
     color: var(--text-secondary);
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
 }
 
 .mac-address-bar i {
-    color: var(--accent-blue);
-    font-size: 0.72rem;
+    color: var(--accent-green);
+    font-size: 0.7rem;
 }
 
 .mac-system-right {
@@ -154,65 +163,71 @@ main.main-content {
     gap: 14px;
 }
 
-/* Native macOS Glowing Action Button for Resume (PDF) */
+/* Resume Button — top bar */
 .mac-header-resume-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg, #007AFF, #00C6FF);
+    gap: 5px;
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-orange));
     color: #FFFFFF;
     border: none;
-    padding: 4px 14px;
-    border-radius: 8px;
-    font-size: 0.78rem;
+    padding: 3px 12px;
+    border-radius: 7px;
+    font-size: 0.76rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 122, 255, 0.4);
+    box-shadow: 0 2px 8px rgba(232, 93, 93, 0.35);
     transition: all 0.2s ease;
 }
 
 .mac-header-resume-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 16px rgba(0, 198, 255, 0.5);
+    box-shadow: 0 4px 14px rgba(242, 155, 114, 0.5);
 }
 
 .mac-sys-icon {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
 }
 
 .mac-clock-time {
     color: var(--text-primary);
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
 }
 
-/* ==================== MACOS FLOATING APP WINDOW CONTAINER ==================== */
+/* ==================== macOS APPLICATION WINDOW ==================== */
 .mac-window-container {
     background: var(--surface-window);
-    backdrop-filter: blur(35px);
-    -webkit-backdrop-filter: blur(35px);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
     border: 1px solid var(--border-light);
-    border-radius: 24px;
+    border-radius: 16px;
     box-shadow: var(--shadow-window);
     overflow: hidden;
     width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .mac-window-header {
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 14px 22px;
+    background: rgba(255, 248, 246, 0.65);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-shrink: 0;
 }
 
 .mac-traffic-lights {
     display: flex;
     align-items: center;
     gap: 8px;
-    width: 120px;
+    width: 100px;
 }
 
 .mac-dot {
@@ -225,7 +240,7 @@ main.main-content {
 }
 
 .mac-dot:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.15);
 }
 
 .mac-dot.red { background: var(--mac-red); }
@@ -233,7 +248,7 @@ main.main-content {
 .mac-dot.green { background: var(--mac-green); }
 
 .mac-window-title {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-secondary);
     text-align: center;
@@ -241,70 +256,73 @@ main.main-content {
 }
 
 .mac-window-actions {
-    width: 180px;
+    width: 160px;
     display: flex;
     justify-content: flex-end;
 }
 
 .mac-subtle-badge {
-    font-size: 0.75rem;
-    color: var(--accent-green);
+    font-size: 0.72rem;
+    color: #16A34A;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(52, 211, 153, 0.1);
-    padding: 3px 10px;
-    border-radius: 12px;
-    border: 1px solid rgba(52, 211, 153, 0.2);
+    gap: 5px;
+    background: rgba(34, 197, 94, 0.12);
+    padding: 2px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 .mac-subtle-badge i {
-    font-size: 0.45rem;
+    font-size: 0.42rem;
 }
 
-/* macOS App Navigation Segment Control */
+/* macOS Segmented Nav Control */
 .mac-app-nav-bar {
-    background: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 10px 24px;
+    background: rgba(255, 245, 243, 0.5);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .mac-segment-nav {
     display: flex;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px;
-    border-radius: 12px;
-    gap: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.4);
+    padding: 3px;
+    border-radius: 10px;
+    gap: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .mac-segment-nav .nav-item {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    padding: 6px 18px;
-    border-radius: 9px;
-    transition: all 0.2s ease;
+    padding: 5px 16px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
+    cursor: pointer;
 }
 
 .mac-segment-nav .nav-item:hover {
     color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .mac-segment-nav .nav-item.active {
-    background: rgba(255, 255, 255, 0.12);
-    color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--accent-coral);
     font-weight: 700;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .mobile-nav-toggle {
@@ -312,37 +330,105 @@ main.main-content {
     background: transparent;
     border: none;
     color: var(--text-primary);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     cursor: pointer;
 }
 
-/* Window Content Body */
+/* ==================== DESKTOP SPACES HORIZONTAL SLIDER ==================== */
 .mac-window-body {
-    padding: 40px 48px 60px;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
 }
 
-/* ==================== APPLE TILES & SECTION HEADERS ==================== */
-.section-block {
-    margin-bottom: 64px;
-    scroll-margin-top: 100px;
+.desktop-spaces-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    height: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
+.desktop-spaces-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Each section = one desktop space */
+.desktop-space {
+    min-width: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    overflow-y: auto;
+    padding: 36px 44px 48px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(232, 93, 93, 0.2) transparent;
+}
+
+.desktop-space::-webkit-scrollbar {
+    width: 5px;
+}
+
+.desktop-space::-webkit-scrollbar-thumb {
+    background: rgba(232, 93, 93, 0.2);
+    border-radius: 3px;
+}
+
+/* ==================== DESKTOP DOTS INDICATOR ==================== */
+.desktop-dots {
+    position: fixed;
+    bottom: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10001;
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.desktop-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(95, 85, 85, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.desktop-dot.active {
+    background: var(--accent-coral);
+    width: 10px;
+    height: 10px;
+    box-shadow: 0 0 8px rgba(232, 93, 93, 0.5);
+}
+
+.desktop-dot:hover:not(.active) {
+    background: rgba(232, 93, 93, 0.4);
+    transform: scale(1.2);
+}
+
+/* ==================== SECTION HEADERS & TILES ==================== */
 .section-header {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 .section-subtitle {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 1.8px;
-    color: var(--accent-blue);
+    color: var(--accent-coral);
     text-transform: uppercase;
     display: block;
     margin-bottom: 4px;
 }
 
 .section-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-weight: 800;
     color: var(--text-primary);
     font-family: var(--font-heading);
@@ -351,105 +437,106 @@ main.main-content {
 
 .apple-tile {
     background: var(--surface-tile);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
     border: 1px solid var(--border-subtle);
-    border-radius: 18px;
-    padding: 28px;
+    border-radius: 16px;
+    padding: 26px;
     box-shadow: var(--shadow-tile);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .apple-tile:hover {
     background: var(--surface-tile-hover);
     box-shadow: var(--shadow-tile-hover);
-    border-color: rgba(56, 189, 248, 0.3);
-    transform: translateY(-3px);
+    transform: translateY(-4px) scale(1.01);
 }
 
-/* ==================== UNIFIED HERO & ABOUT SECTION (HOME) ==================== */
+/* ==================== HERO & ABOUT — UNIFIED HOME SPACE ==================== */
 .hero-section {
-    padding: 16px 0 48px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    margin-bottom: 48px;
-    scroll-margin-top: 100px;
+    padding: 0;
 }
 
 .unified-hero-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: 36px;
+    gap: 32px;
     align-items: center;
+    min-height: 100%;
 }
 
 .role-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    padding: 6px 16px;
-    border-radius: 20px;
-    margin-bottom: 20px;
+    gap: 7px;
+    background: rgba(232, 93, 93, 0.1);
+    border: 1px solid rgba(232, 93, 93, 0.25);
+    padding: 5px 14px;
+    border-radius: 18px;
+    margin-bottom: 18px;
 }
 
 .role-icon {
-    color: var(--accent-blue);
-    font-size: 0.85rem;
+    color: var(--accent-coral);
+    font-size: 0.82rem;
 }
 
 .role-text {
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 800;
     letter-spacing: 1px;
-    color: var(--accent-blue);
+    color: var(--accent-coral);
 }
 
 .hero-title {
-    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
     font-weight: 900;
     color: var(--text-primary);
     font-family: var(--font-heading);
     line-height: 1.12;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     letter-spacing: -0.8px;
 }
 
 .accent-text {
-    background: linear-gradient(135deg, #38BDF8, #818CF8, #C084FC);
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-lavender));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-description {
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--text-secondary);
     line-height: 1.65;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .hero-bio-summary {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 28px;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 14px 18px;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .hero-cta-group {
     display: flex;
-    gap: 14px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
 .btn-apple {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 0.92rem;
+    gap: 7px;
+    padding: 10px 22px;
+    border-radius: 11px;
+    font-size: 0.88rem;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.25s ease;
@@ -458,39 +545,41 @@ main.main-content {
 }
 
 .btn-apple-primary {
-    background: linear-gradient(135deg, #007AFF, #00C6FF);
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-orange));
     color: #FFFFFF;
-    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.35);
+    box-shadow: 0 4px 15px rgba(232, 93, 93, 0.35);
 }
 
 .btn-apple-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 198, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(242, 155, 114, 0.5);
 }
 
 .btn-apple-secondary {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     color: var(--text-primary);
+    backdrop-filter: blur(10px);
 }
 
 .btn-apple-secondary:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.75);
     transform: translateY(-2px);
 }
 
+/* Profile Tile */
 .profile-tile {
     text-align: center;
 }
 
 .avatar-wrapper {
-    width: 115px;
-    height: 115px;
-    margin: 0 auto 18px;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 16px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid rgba(56, 189, 248, 0.4);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 3px solid rgba(232, 93, 93, 0.35);
+    box-shadow: 0 8px 25px rgba(232, 93, 93, 0.15);
 }
 
 .profile-avatar {
@@ -501,99 +590,101 @@ main.main-content {
 }
 
 .profile-name {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
     font-weight: 800;
     color: var(--text-primary);
     font-family: var(--font-heading);
 }
 
 .profile-role {
-    font-size: 0.88rem;
-    color: var(--accent-blue);
+    font-size: 0.85rem;
+    color: var(--accent-coral);
     font-weight: 600;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .domain-pillars {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 8px;
 }
 
 .pillar-badge {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 12px 6px;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 6px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
+    backdrop-filter: blur(8px);
 }
 
 .pillar-icon {
-    font-size: 1.15rem;
-    color: var(--accent-blue);
+    font-size: 1.1rem;
+    color: var(--accent-coral);
 }
 
 .pillar-badge span {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
-/* ==================== PROJECTS FINDER WINDOW ==================== */
+/* ==================== PROJECTS FINDER ==================== */
 .finder-window {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 18px;
+    backdrop-filter: blur(10px);
 }
 
 .finder-toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
 }
 
 .finder-label {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-secondary);
 }
 
 .finder-filters {
     display: flex;
-    gap: 8px;
+    gap: 7px;
     flex-wrap: wrap;
 }
 
 .filter-chip {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     color: var(--text-secondary);
-    padding: 6px 16px;
-    border-radius: 10px;
-    font-size: 0.82rem;
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .filter-chip:hover, .filter-chip.active {
-    background: var(--accent-blue-deep);
+    background: var(--accent-coral);
     color: #FFFFFF;
-    border-color: var(--accent-blue);
-    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+    border-color: var(--accent-coral);
+    box-shadow: 0 3px 10px rgba(232, 93, 93, 0.3);
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
 }
 
 .project-card {
@@ -605,100 +696,101 @@ main.main-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .project-tag {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    color: var(--accent-blue);
+    color: var(--accent-coral);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .project-year {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--text-tertiary);
 }
 
 .project-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: var(--text-primary);
     font-family: var(--font-heading);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .project-desc {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .project-highlights {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 16px;
+    gap: 5px;
+    margin-bottom: 14px;
 }
 
 .highlight-chip {
-    font-size: 0.76rem;
+    font-size: 0.73rem;
     font-weight: 600;
-    background: rgba(56, 189, 248, 0.1);
-    color: var(--accent-blue);
-    padding: 4px 10px;
+    background: rgba(232, 93, 93, 0.1);
+    color: var(--accent-coral);
+    padding: 3px 9px;
     border-radius: 6px;
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(232, 93, 93, 0.2);
 }
 
 .tech-stack-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 20px;
+    gap: 5px;
+    margin-bottom: 18px;
 }
 
 .tech-tag {
-    font-size: 0.76rem;
-    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.73rem;
+    background: rgba(255, 255, 255, 0.45);
     color: var(--text-primary);
-    padding: 4px 10px;
+    padding: 3px 9px;
     border-radius: 6px;
     font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .project-card-footer {
     margin-top: auto;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .project-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.85rem;
+    gap: 5px;
+    font-size: 0.82rem;
     font-weight: 700;
-    color: var(--accent-blue);
+    color: var(--accent-coral);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .project-link:hover {
-    color: #FFFFFF;
+    color: var(--accent-coral-deep);
 }
 
 /* ==================== SKILLS SYSTEM SETTINGS ==================== */
 .settings-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
 }
 
 .setting-pane {
-    padding: 24px;
+    padding: 22px;
 }
 
 .setting-pane.span-full {
@@ -708,30 +800,30 @@ main.main-content {
 .pane-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 11px;
+    margin-bottom: 14px;
 }
 
 .pane-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #FFFFFF;
-    font-size: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-size: 0.95rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
-.icon-blue { background: linear-gradient(135deg, #007AFF, #38BDF8); }
-.icon-purple { background: linear-gradient(135deg, #AF52DE, #C084FC); }
-.icon-rose { background: linear-gradient(135deg, #FF375F, #F43F5E); }
-.icon-cyan { background: linear-gradient(135deg, #06B6D4, #2DD4BF); }
-.icon-dark { background: linear-gradient(135deg, #333336, #4B5563); }
+.icon-blue { background: linear-gradient(135deg, #E85D5D, #F29B72); }
+.icon-purple { background: linear-gradient(135deg, #AF52DE, #C89BF2); }
+.icon-rose { background: linear-gradient(135deg, #F472B6, #F9A8D4); }
+.icon-cyan { background: linear-gradient(135deg, #F58F8F, #FAD6D6); }
+.icon-dark { background: linear-gradient(135deg, #5F5555, #8A7B7B); }
 
 .pane-title {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 800;
     color: var(--text-primary);
 }
@@ -739,20 +831,26 @@ main.main-content {
 .skill-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 7px;
 }
 
 .skill-pill {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     color: var(--text-primary);
-    padding: 6px 14px;
-    border-radius: 9px;
-    font-size: 0.82rem;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
     font-weight: 600;
+    transition: all 0.2s ease;
 }
 
-/* ==================== CONTACT MAIL APP SECTION ==================== */
+.skill-pill:hover {
+    background: rgba(232, 93, 93, 0.1);
+    border-color: rgba(232, 93, 93, 0.25);
+}
+
+/* ==================== CONTACT MAIL SECTION ==================== */
 .contact-mail-window {
     display: grid;
     grid-template-columns: 0.85fr 1.15fr;
@@ -762,95 +860,98 @@ main.main-content {
 }
 
 .mail-sidebar {
-    background: rgba(0, 0, 0, 0.25);
-    border-right: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 32px;
+    background: rgba(255, 245, 243, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 28px;
+    backdrop-filter: blur(10px);
 }
 
 .mail-sidebar-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 8px;
 }
 
 .mail-desc {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
-    margin-bottom: 24px;
+    margin-bottom: 22px;
 }
 
 .mail-channel-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
+    gap: 11px;
+    margin-bottom: 16px;
 }
 
 .mail-icon {
-    font-size: 1.1rem;
-    color: var(--accent-blue);
-    width: 24px;
+    font-size: 1.05rem;
+    color: var(--accent-coral);
+    width: 22px;
 }
 
 .channel-label {
     display: block;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--text-tertiary);
     font-weight: 700;
 }
 
 .channel-value {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--text-primary);
     text-decoration: none;
 }
 
 .channel-value:hover {
-    color: var(--accent-blue);
+    color: var(--accent-coral);
 }
 
 .mail-compose-area {
-    padding: 32px;
+    padding: 28px;
 }
 
 .form-row {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
 }
 
 .form-row label {
-    width: 90px;
-    font-size: 0.82rem;
+    width: 85px;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-secondary);
 }
 
 .recipient-badge {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    color: var(--accent-blue);
+    color: var(--accent-coral);
 }
 
 .form-row input, .form-row textarea {
     flex: 1;
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.3);
+    padding: 9px 13px;
+    border-radius: 9px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
     font-family: var(--font-system);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-primary);
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .form-row input:focus, .form-row textarea:focus {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    border-color: var(--accent-coral);
+    box-shadow: 0 0 0 3px rgba(232, 93, 93, 0.15);
+    background: rgba(255, 255, 255, 0.75);
 }
 
 .textarea-row {
@@ -865,41 +966,41 @@ main.main-content {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 16px;
-    margin-top: 20px;
+    gap: 14px;
+    margin-top: 18px;
 }
 
 .form-status-msg {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    color: var(--accent-blue);
+    color: var(--accent-coral);
     display: none;
 }
 
 .mac-window-footer {
     text-align: center;
-    padding: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    font-size: 0.8rem;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.78rem;
     color: var(--text-tertiary);
 }
 
-/* ==================== iOS / macOS FLOATING DESKTOP DOCK ==================== */
+/* ==================== macOS FLOATING DOCK ==================== */
 .mac-desktop-dock {
     position: fixed;
-    bottom: 20px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(18, 22, 32, 0.85);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 6px 14px;
-    border-radius: 20px;
+    background: rgba(255, 248, 246, 0.72);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    padding: 5px 12px;
+    border-radius: 18px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    gap: 8px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
     z-index: 10000;
 }
 
@@ -912,20 +1013,20 @@ main.main-content {
 }
 
 .dock-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 11px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: #FFFFFF;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .dock-item:hover .dock-icon {
-    transform: translateY(-8px) scale(1.2);
+    transform: translateY(-8px) scale(1.22);
 }
 
 .dock-item:hover .dock-tooltip {
@@ -935,55 +1036,113 @@ main.main-content {
 
 .dock-tooltip {
     position: absolute;
-    top: -32px;
+    top: -30px;
     left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: #FFFFFF;
-    color: #0B0C10;
-    font-size: 0.72rem;
+    background: rgba(37, 37, 37, 0.88);
+    color: #FFFFFF;
+    font-size: 0.7rem;
     font-weight: 700;
     padding: 2px 8px;
-    border-radius: 6px;
+    border-radius: 5px;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
     transition: all 0.2s ease;
 }
 
-.icon-home { background: linear-gradient(135deg, #007AFF, #38BDF8); }
-.icon-projects { background: linear-gradient(135deg, #FF9500, #FBBF24); }
-.icon-skills { background: linear-gradient(135deg, #AF52DE, #C084FC); }
+.icon-home { background: linear-gradient(135deg, #E85D5D, #F29B72); }
+.icon-projects { background: linear-gradient(135deg, #F29B72, #FBBF24); }
+.icon-skills { background: linear-gradient(135deg, #AF52DE, #C89BF2); }
 .icon-resume { background: linear-gradient(135deg, #FF3B30, #F43F5E); }
 .icon-linkedin { background: linear-gradient(135deg, #0077B5, #0ea5e9); }
-.icon-github { background: linear-gradient(135deg, #333336, #1E293B); }
+.icon-github { background: linear-gradient(135deg, #5F5555, #252525); }
 .icon-contact { background: linear-gradient(135deg, #34C759, #2DD4BF); }
 
 .dock-separator {
     width: 1px;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.12);
+    height: 26px;
+    background: rgba(0, 0, 0, 0.08);
     margin: 0 2px;
 }
 
-/* ==================== RESPONSIVE DESIGN ==================== */
+/* ==================== SECTION BLOCK HELPER ==================== */
+.section-block {
+    scroll-margin-top: 0;
+}
+
+/* ==================== TRANSITION HINT ARROW ==================== */
+.space-hint {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.6;
+    animation: hintPulse 2s ease infinite;
+}
+
+@keyframes hintPulse {
+    0%, 100% { opacity: 0.4; transform: translateX(0); }
+    50% { opacity: 0.8; transform: translateX(4px); }
+}
+
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 1024px) {
     .unified-hero-grid, .contact-mail-window {
         grid-template-columns: 1fr;
     }
-
     .mail-sidebar {
         border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 }
 
 @media (max-width: 768px) {
+    body, html {
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: auto;
+    }
+
     main.main-content {
-        padding: 48px 10px 90px;
+        padding: 42px 8px 90px;
+        height: auto;
+    }
+
+    .mac-window-container {
+        flex: none;
     }
 
     .mac-window-body {
-        padding: 24px 18px 40px;
+        overflow: visible;
+    }
+
+    .desktop-spaces-container {
+        flex-direction: column;
+        overflow-x: visible;
+        overflow-y: visible;
+        scroll-snap-type: none;
+        height: auto;
+    }
+
+    .desktop-space {
+        min-width: 100%;
+        overflow-y: visible;
+        padding: 20px 14px 32px;
+        min-height: auto;
+    }
+
+    .desktop-dots {
+        display: none;
+    }
+
+    .space-hint {
+        display: none;
     }
 
     .mac-address-bar {
@@ -1000,16 +1159,16 @@ main.main-content {
 
     .mac-segment-nav {
         position: fixed;
-        top: 38px;
+        top: 36px;
         left: 0;
         width: 100vw;
-        background: rgba(18, 22, 32, 0.96);
+        background: rgba(255, 240, 240, 0.96);
         backdrop-filter: blur(25px);
         flex-direction: column;
-        padding: 14px;
+        padding: 12px;
         transform: translateY(-150%);
         transition: transform 0.3s ease;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         z-index: 9999;
     }
 
@@ -1022,14 +1181,18 @@ main.main-content {
     }
 
     .mac-desktop-dock {
-        bottom: 12px;
-        padding: 4px 10px;
-        gap: 6px;
+        bottom: 8px;
+        padding: 3px 8px;
+        gap: 5px;
     }
 
     .dock-icon {
-        width: 34px;
-        height: 34px;
-        font-size: 1rem;
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 }
