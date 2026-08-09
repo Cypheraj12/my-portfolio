@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateMacClock, 1000);
 
     // ----------------------------------------------------
-    // 2. LIVE DYNAMIC LIQUID GRADIENT & NEURAL MESH BACKGROUND CANVAS
+    // 2. LIVE DYNAMIC LIQUID GRADIENT & NEURAL MESH CANVAS (PINK & PURPLE PALETTE)
     // ----------------------------------------------------
     const bgCanvas = document.getElementById('bg-web-canvas');
     if (bgCanvas) {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const particleCount = isMobile ? 24 : 55;
         const connectMaxDist = isMobile ? 95 : 145;
         const particles = [];
-        const colors = ['#E85D5D', '#F29B72', '#F58F8F', '#ffffff'];
+        const colors = ['#C04899', '#E879F9', '#8B5CF6', '#F4A6C7', '#ffffff'];
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -46,9 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Live Liquid Orbs
+        // Live Liquid Orbs in Pink & Purple
         let orbAngle = 0;
-
         let mouseX = -1000;
         let mouseY = -1000;
 
@@ -65,26 +64,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
             bgCtx.clearRect(0, 0, bgWidth, bgHeight);
 
-            // Render Animated Ambient Liquid Orbs
+            // Render Animated Ambient Liquid Orbs in Pink & Purple
             orbAngle += 0.005;
-            const ox1 = bgWidth * 0.2 + Math.sin(orbAngle) * 50;
+            const ox1 = bgWidth * 0.25 + Math.sin(orbAngle) * 50;
             const oy1 = bgHeight * 0.3 + Math.cos(orbAngle * 0.8) * 40;
-            const grad1 = bgCtx.createRadialGradient(ox1, oy1, 10, ox1, oy1, isMobile ? 180 : 350);
-            grad1.addColorStop(0, 'rgba(245, 143, 143, 0.25)');
-            grad1.addColorStop(1, 'rgba(255, 241, 241, 0)');
+            const grad1 = bgCtx.createRadialGradient(ox1, oy1, 10, ox1, oy1, isMobile ? 180 : 360);
+            grad1.addColorStop(0, 'rgba(244, 166, 199, 0.32)');
+            grad1.addColorStop(1, 'rgba(250, 245, 255, 0)');
             bgCtx.fillStyle = grad1;
             bgCtx.beginPath();
-            bgCtx.arc(ox1, oy1, isMobile ? 180 : 350, 0, Math.PI * 2);
+            bgCtx.arc(ox1, oy1, isMobile ? 180 : 360, 0, Math.PI * 2);
             bgCtx.fill();
 
-            const ox2 = bgWidth * 0.8 - Math.cos(orbAngle * 0.7) * 60;
-            const oy2 = bgHeight * 0.7 + Math.sin(orbAngle * 0.9) * 50;
-            const grad2 = bgCtx.createRadialGradient(ox2, oy2, 10, ox2, oy2, isMobile ? 160 : 300);
-            grad2.addColorStop(0, 'rgba(232, 93, 93, 0.18)');
-            grad2.addColorStop(1, 'rgba(249, 180, 180, 0)');
+            const ox2 = bgWidth * 0.75 - Math.cos(orbAngle * 0.7) * 60;
+            const oy2 = bgHeight * 0.65 + Math.sin(orbAngle * 0.9) * 50;
+            const grad2 = bgCtx.createRadialGradient(ox2, oy2, 10, ox2, oy2, isMobile ? 160 : 320);
+            grad2.addColorStop(0, 'rgba(216, 180, 248, 0.32)');
+            grad2.addColorStop(1, 'rgba(253, 240, 248, 0)');
             bgCtx.fillStyle = grad2;
             bgCtx.beginPath();
-            bgCtx.arc(ox2, oy2, isMobile ? 160 : 300, 0, Math.PI * 2);
+            bgCtx.arc(ox2, oy2, isMobile ? 160 : 320, 0, Math.PI * 2);
             bgCtx.fill();
 
             // Render Interactive Particles & Network Lines
@@ -117,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < connectMaxDist) {
-                        bgCtx.strokeStyle = '#E85D5D';
+                        bgCtx.strokeStyle = '#C04899';
                         bgCtx.globalAlpha = (1 - dist / connectMaxDist) * 0.28;
                         bgCtx.lineWidth = 0.8;
                         bgCtx.beginPath();
@@ -273,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 if (formStatusMsg) {
                     formStatusMsg.style.display = 'block';
-                    formStatusMsg.style.color = '#E85D5D';
+                    formStatusMsg.style.color = '#C04899';
                     formStatusMsg.innerHTML = '⚠️ Transmission encounter. Opening email client...';
                 }
                 const name = document.getElementById('sender-name')?.value || '';
