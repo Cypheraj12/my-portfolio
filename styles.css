@@ -8,11 +8,11 @@
     --text-primary: #252525;
     --text-secondary: #5F5555;
     --text-tertiary: #8A7B7B;
-    --surface-window: rgba(255, 255, 255, 0.68);
-    --surface-tile: rgba(255, 249, 247, 0.78);
-    --surface-tile-hover: rgba(255, 255, 255, 0.94);
-    --border-subtle: rgba(255, 255, 255, 0.55);
-    --border-light: rgba(255, 255, 255, 0.7);
+    --surface-window: rgba(255, 255, 255, 0.72);
+    --surface-tile: rgba(255, 249, 247, 0.82);
+    --surface-tile-hover: rgba(255, 255, 255, 0.95);
+    --border-subtle: rgba(255, 255, 255, 0.6);
+    --border-light: rgba(255, 255, 255, 0.75);
 
     /* Accents */
     --accent-coral: #E85D5D;
@@ -97,7 +97,7 @@ body, html {
 main.main-content {
     position: relative;
     z-index: 10;
-    padding: 54px 18px 100px;
+    padding: 50px 18px 120px;
     max-width: 1280px;
     margin: 0 auto;
     width: 100%;
@@ -110,10 +110,10 @@ main.main-content {
     left: 0;
     width: 100%;
     height: 36px;
-    background: rgba(255, 242, 242, 0.82);
+    background: rgba(255, 242, 242, 0.88);
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.65);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -217,14 +217,13 @@ main.main-content {
 }
 
 .mac-window-header {
-    background: rgba(255, 248, 246, 0.8);
+    background: rgba(255, 248, 246, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
     padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    flex-wrap: wrap;
 }
 
 .mac-traffic-lights {
@@ -252,9 +251,9 @@ main.main-content {
 .mac-dot.yellow { background: var(--mac-yellow); }
 .mac-dot.green { background: var(--mac-green); }
 
-/* CATCHY & PROMINENT TOP TITLE LINE */
+/* TOP TITLE LINE */
 .mac-window-title {
-    font-size: clamp(0.92rem, 1.8vw, 1.25rem);
+    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
     font-weight: 800;
     color: var(--text-primary);
     text-align: center;
@@ -265,12 +264,11 @@ main.main-content {
     justify-content: center;
     gap: 8px;
     flex: 1;
-    min-width: 260px;
     line-height: 1.3;
 }
 
 .title-sparkle {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     animation: sparkleSpin 4s ease-in-out infinite;
 }
 
@@ -326,8 +324,8 @@ main.main-content {
 
 /* macOS Segmented Navigation Bar */
 .mac-app-nav-bar {
-    background: rgba(255, 245, 243, 0.65);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 245, 243, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
     padding: 8px 20px;
     display: flex;
     justify-content: space-between;
@@ -340,11 +338,11 @@ main.main-content {
 
 .mac-segment-nav {
     display: flex;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.55);
     padding: 4px;
     border-radius: 10px;
     gap: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.65);
 }
 
 .mac-segment-nav .nav-item {
@@ -367,7 +365,7 @@ main.main-content {
 }
 
 .mac-segment-nav .nav-item.active {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     color: var(--accent-coral);
     font-weight: 700;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -385,7 +383,7 @@ main.main-content {
 
 /* Window Content Body */
 .mac-window-body {
-    padding: 36px 40px 60px;
+    padding: 36px 40px 110px;
 }
 
 /* ==================== TILES & SECTIONS ==================== */
@@ -435,9 +433,9 @@ main.main-content {
 
 /* ==================== UNIFIED HERO & ABOUT (HOME) ==================== */
 .hero-section {
-    padding: 8px 0 40px;
+    padding: 8px 0 50px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.45);
-    margin-bottom: 48px;
+    margin-bottom: 56px;
     scroll-margin-top: 90px;
 }
 
@@ -511,6 +509,7 @@ main.main-content {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    margin-bottom: 16px;
 }
 
 .btn-apple {
@@ -974,19 +973,19 @@ main.main-content {
 /* ==================== macOS FLOATING DOCK ==================== */
 .mac-desktop-dock {
     position: fixed;
-    bottom: 16px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 246, 244, 0.82);
+    background: rgba(255, 246, 244, 0.88);
     backdrop-filter: blur(28px) saturate(180%);
     -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    padding: 5px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    padding: 6px 14px;
     border-radius: 18px;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
     z-index: 10000;
     max-width: 95vw;
 }
@@ -1055,17 +1054,17 @@ main.main-content {
     flex-shrink: 0;
 }
 
-/* ==================== COMPREHENSIVE RESPONSIVE DESIGN ==================== */
+/* ==================== TABLET & MOBILE RESPONSIVE AUDIT ==================== */
 
 /* Tablet (1024px and down) */
 @media (max-width: 1024px) {
     main.main-content {
-        padding: 50px 14px 90px;
+        padding: 48px 12px 140px;
     }
 
     .unified-hero-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 24px;
     }
 
     .contact-mail-window {
@@ -1075,46 +1074,66 @@ main.main-content {
     .mail-sidebar {
         border-right: none;
         border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        padding: 24px;
+        padding: 22px;
     }
 
     .mail-compose-area {
-        padding: 24px;
+        padding: 22px;
+    }
+
+    .mac-window-body {
+        padding: 26px 20px 100px;
+    }
+
+    .title-role {
+        display: none;
+    }
+
+    .title-divider {
+        display: none;
     }
 }
 
 /* Mobile & Small Tablet (768px and down) */
 @media (max-width: 768px) {
     main.main-content {
-        padding: 44px 8px 90px;
+        padding: 42px 6px 140px;
     }
 
     .mac-window-body {
-        padding: 20px 14px 40px;
+        padding: 18px 12px 90px;
     }
 
     .mac-address-bar {
         display: none;
     }
 
-    .mac-header-resume-btn span {
+    .mac-sys-icon {
         display: none;
     }
 
+    .mac-header-resume-btn span {
+        display: inline-block;
+    }
+
     .mac-window-header {
-        padding: 10px 14px;
-        flex-wrap: wrap;
-        gap: 8px;
+        padding: 8px 12px;
+        gap: 6px;
+    }
+
+    .title-role, .title-divider {
+        display: none;
     }
 
     .mac-window-title {
-        order: 3;
-        width: 100%;
-        min-width: 100%;
-        margin-top: 4px;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         justify-content: center;
-        flex-wrap: wrap;
+        margin: 0;
+    }
+
+    .mac-subtle-badge {
+        font-size: 0.68rem;
+        padding: 2px 8px;
     }
 
     .mobile-nav-toggle {
@@ -1126,14 +1145,17 @@ main.main-content {
         top: 36px;
         left: 0;
         width: 100vw;
-        background: rgba(255, 240, 240, 0.96);
+        background: rgba(255, 240, 240, 0.97);
         backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         flex-direction: column;
         padding: 12px;
-        transform: translateY(-150%);
-        transition: transform 0.3s ease;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        z-index: 9999;
+        transform: translateY(-160%);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        z-index: 10010;
+        border-radius: 0 0 16px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.8);
     }
 
     .mac-segment-nav.active {
@@ -1141,18 +1163,21 @@ main.main-content {
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.85rem;
         line-height: 1.2;
     }
 
     .hero-cta-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 8px;
+        width: 100%;
     }
 
     .btn-apple {
-        padding: 10px 14px;
-        font-size: 0.82rem;
-        flex: 1 1 auto;
+        padding: 9px 12px;
+        font-size: 0.8rem;
+        width: 100%;
     }
 
     .domain-pillars {
@@ -1192,12 +1217,14 @@ main.main-content {
         bottom: 8px;
         padding: 4px 8px;
         gap: 5px;
+        border-radius: 14px;
+        max-width: 96vw;
     }
 
     .dock-icon {
-        width: 34px;
-        height: 34px;
-        font-size: 0.95rem;
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
     }
 
     .form-row {
@@ -1217,21 +1244,16 @@ main.main-content {
         border-radius: 14px;
     }
 
+    .mac-subtle-badge {
+        display: none;
+    }
+
     .mac-window-title {
-        font-size: 0.88rem;
-        gap: 4px;
-    }
-
-    .title-name {
-        letter-spacing: 0;
-    }
-
-    .title-role {
-        font-size: 0.82em;
+        font-size: 0.86rem;
     }
 
     .hero-title {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 
     .domain-pillars {
@@ -1239,31 +1261,30 @@ main.main-content {
     }
 
     .hero-cta-group {
-        display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        width: 100%;
+        gap: 6px;
     }
 
     .btn-apple {
-        width: 100%;
+        padding: 8px 10px;
+        font-size: 0.76rem;
     }
 
     .mac-desktop-dock {
-        padding: 3px 6px;
-        gap: 4px;
-        border-radius: 14px;
+        padding: 3px 5px;
+        gap: 3px;
+        border-radius: 12px;
     }
 
     .dock-icon {
-        width: 30px;
-        height: 30px;
-        font-size: 0.85rem;
-        border-radius: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+        border-radius: 7px;
     }
 
     .dock-separator {
-        height: 20px;
+        height: 18px;
         margin: 0 1px;
     }
 }
