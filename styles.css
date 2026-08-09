@@ -1,23 +1,23 @@
-/* ==================== APPLE macOS / iOS PORTFOLIO DESIGN SYSTEM ==================== */
+/* ==================== APPLE EXECUTIVE LIQUID GLASS DESIGN SYSTEM ==================== */
 :root {
-    /* Colors strictly adhering to Apple Interface Guidelines */
-    --bg-system: #F5F5F7;
-    --text-primary: #1D1D1F;
-    --text-secondary: #6E6E73;
-    --text-tertiary: #86868B;
-    --surface-window: rgba(255, 255, 255, 0.88);
-    --surface-tile: rgba(255, 255, 255, 0.78);
-    --surface-tile-hover: #FFFFFF;
-    --border-subtle: rgba(0, 0, 0, 0.08);
-    --border-light: rgba(255, 255, 255, 0.8);
+    /* Executive Apple Obsidian Dark/Glass Color Palette */
+    --bg-system: #0B0C10;
+    --text-primary: #FFFFFF;
+    --text-secondary: #94A3B8;
+    --text-tertiary: #64748B;
+    --surface-window: rgba(18, 22, 32, 0.82);
+    --surface-tile: rgba(28, 34, 48, 0.72);
+    --surface-tile-hover: rgba(36, 44, 62, 0.9);
+    --border-subtle: rgba(255, 255, 255, 0.1);
+    --border-light: rgba(255, 255, 255, 0.15);
     
-    /* Accents */
-    --accent-blue: #007AFF;
-    --accent-blue-hover: #0066CC;
-    --accent-purple: #AF52DE;
-    --accent-pink: #FF375F;
-    --accent-cyan: #546E7A;
-    --accent-green: #34C759;
+    /* Accents - Cupertino Neon Electric Sky */
+    --accent-blue: #38BDF8;
+    --accent-blue-deep: #007AFF;
+    --accent-purple: #C084FC;
+    --accent-pink: #F43F5E;
+    --accent-cyan: #2DD4BF;
+    --accent-green: #34D399;
 
     /* Traffic Lights */
     --mac-red: #FF5F56;
@@ -27,9 +27,9 @@
     /* Typography & Elevation */
     --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
     --font-heading: 'Plus Jakarta Sans', var(--font-system);
-    --shadow-window: 0 30px 60px rgba(0, 0, 0, 0.09), 0 0 1px rgba(0, 0, 0, 0.12);
-    --shadow-tile: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.05);
-    --shadow-tile-hover: 0 12px 30px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-window: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 35px 70px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.1);
+    --shadow-tile: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 8px 25px rgba(0, 0, 0, 0.25);
+    --shadow-tile-hover: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.35), 0 0 15px rgba(56, 189, 248, 0.15);
 }
 
 * {
@@ -40,13 +40,13 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Subtle, restrained atmospheric background */
+/* Atmospheric Ambient Deep Space Background */
 body, html {
     background-color: var(--bg-system);
     background-image: 
-        radial-gradient(circle at 10% 10%, rgba(0, 122, 255, 0.06) 0%, transparent 40%),
-        radial-gradient(circle at 90% 15%, rgba(175, 82, 222, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 50% 80%, rgba(255, 55, 95, 0.04) 0%, transparent 50%);
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(192, 132, 252, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
     background-attachment: fixed;
     color: var(--text-primary);
     font-family: var(--font-system);
@@ -64,11 +64,11 @@ body, html {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--accent-blue);
 }
 
 /* Soft Ambient Background Canvas */
@@ -80,7 +80,7 @@ body, html {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.45;
+    opacity: 0.65;
 }
 
 main.main-content {
@@ -91,54 +91,50 @@ main.main-content {
     margin: 0 auto;
 }
 
-/* ==================== macOS TOP SYSTEM MENU BAR ==================== */
+/* ==================== macOS TOP SYSTEM MENU BAR (UNCLUTTERED) ==================== */
 .macos-system-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 38px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(11, 12, 16, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 16px;
+    padding: 0 18px;
     z-index: 10005;
-    font-size: 0.82rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .mac-system-left {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
 }
 
 .mac-apple-icon {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-primary);
     cursor: pointer;
-}
-
-.mac-menu-item {
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: color 0.2s ease;
 }
 
 .mac-menu-item.active-app {
     color: var(--text-primary);
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 0.88rem;
+    letter-spacing: -0.2px;
 }
 
 .mac-address-bar {
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 3px 18px;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3px 20px;
+    border-radius: 10px;
     font-size: 0.78rem;
     color: var(--text-secondary);
     font-weight: 500;
@@ -155,30 +151,29 @@ main.main-content {
 .mac-system-right {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
-/* Native macOS Action Button for Resume (PDF) */
+/* Native macOS Glowing Action Button for Resume (PDF) */
 .mac-header-resume-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--accent-blue);
+    background: linear-gradient(135deg, #007AFF, #00C6FF);
     color: #FFFFFF;
     border: none;
-    padding: 4px 12px;
-    border-radius: 7px;
+    padding: 4px 14px;
+    border-radius: 8px;
     font-size: 0.78rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 122, 255, 0.25);
+    box-shadow: 0 2px 10px rgba(0, 122, 255, 0.4);
     transition: all 0.2s ease;
 }
 
 .mac-header-resume-btn:hover {
-    background: var(--accent-blue-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.35);
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 198, 255, 0.5);
 }
 
 .mac-sys-icon {
@@ -188,26 +183,26 @@ main.main-content {
 
 .mac-clock-time {
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.8rem;
 }
 
 /* ==================== MACOS FLOATING APP WINDOW CONTAINER ==================== */
 .mac-window-container {
     background: var(--surface-window);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
     border: 1px solid var(--border-light);
-    border-radius: 20px;
+    border-radius: 24px;
     box-shadow: var(--shadow-window);
     overflow: hidden;
     width: 100%;
 }
 
 .mac-window-header {
-    background: rgba(245, 245, 247, 0.7);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -226,6 +221,11 @@ main.main-content {
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.mac-dot:hover {
+    filter: brightness(1.2);
 }
 
 .mac-dot.red { background: var(--mac-red); }
@@ -237,6 +237,7 @@ main.main-content {
     font-weight: 600;
     color: var(--text-secondary);
     text-align: center;
+    letter-spacing: -0.2px;
 }
 
 .mac-window-actions {
@@ -252,6 +253,10 @@ main.main-content {
     display: flex;
     align-items: center;
     gap: 6px;
+    background: rgba(52, 211, 153, 0.1);
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(52, 211, 153, 0.2);
 }
 
 .mac-subtle-badge i {
@@ -260,8 +265,8 @@ main.main-content {
 
 /* macOS App Navigation Segment Control */
 .mac-app-nav-bar {
-    background: rgba(255, 255, 255, 0.6);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     padding: 10px 24px;
     display: flex;
     justify-content: space-between;
@@ -270,19 +275,20 @@ main.main-content {
 
 .mac-segment-nav {
     display: flex;
-    background: rgba(0, 0, 0, 0.04);
+    background: rgba(255, 255, 255, 0.05);
     padding: 4px;
-    border-radius: 10px;
+    border-radius: 12px;
     gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .mac-segment-nav .nav-item {
     color: var(--text-secondary);
     text-decoration: none;
     font-size: 0.85rem;
-    font-weight: 500;
-    padding: 6px 16px;
-    border-radius: 7px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 9px;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
@@ -294,10 +300,11 @@ main.main-content {
 }
 
 .mac-segment-nav .nav-item.active {
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.12);
     color: var(--accent-blue);
-    font-weight: 600;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .mobile-nav-toggle {
@@ -326,8 +333,8 @@ main.main-content {
 
 .section-subtitle {
     font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
     color: var(--accent-blue);
     text-transform: uppercase;
     display: block;
@@ -345,22 +352,23 @@ main.main-content {
 .apple-tile {
     background: var(--surface-tile);
     border: 1px solid var(--border-subtle);
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 28px;
     box-shadow: var(--shadow-tile);
-    transition: all 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .apple-tile:hover {
     background: var(--surface-tile-hover);
     box-shadow: var(--shadow-tile-hover);
-    border-color: rgba(0, 122, 255, 0.2);
+    border-color: rgba(56, 189, 248, 0.3);
+    transform: translateY(-3px);
 }
 
 /* ==================== UNIFIED HERO & ABOUT SECTION (HOME) ==================== */
 .hero-section {
     padding: 16px 0 48px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     margin-bottom: 48px;
     scroll-margin-top: 100px;
 }
@@ -376,11 +384,11 @@ main.main-content {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0, 122, 255, 0.08);
-    border: 1px solid rgba(0, 122, 255, 0.18);
-    padding: 5px 14px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 6px 16px;
     border-radius: 20px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .role-icon {
@@ -390,23 +398,25 @@ main.main-content {
 
 .role-text {
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 1px;
     color: var(--accent-blue);
 }
 
 .hero-title {
     font-size: clamp(2rem, 3.8vw, 3.2rem);
-    font-weight: 800;
+    font-weight: 900;
     color: var(--text-primary);
     font-family: var(--font-heading);
-    line-height: 1.15;
-    margin-bottom: 18px;
+    line-height: 1.12;
+    margin-bottom: 20px;
     letter-spacing: -0.8px;
 }
 
 .accent-text {
-    color: var(--accent-blue);
+    background: linear-gradient(135deg, #38BDF8, #818CF8, #C084FC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
@@ -420,11 +430,11 @@ main.main-content {
     font-size: 0.92rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 26px;
-    background: rgba(0, 0, 0, 0.025);
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hero-cta-group {
@@ -437,36 +447,35 @@ main.main-content {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 22px;
-    border-radius: 10px;
+    padding: 12px 24px;
+    border-radius: 12px;
     font-size: 0.92rem;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
     border: none;
     cursor: pointer;
 }
 
 .btn-apple-primary {
-    background: var(--accent-blue);
+    background: linear-gradient(135deg, #007AFF, #00C6FF);
     color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.35);
 }
 
 .btn-apple-primary:hover {
-    background: var(--accent-blue-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 122, 255, 0.35);
+    box-shadow: 0 8px 20px rgba(0, 198, 255, 0.5);
 }
 
 .btn-apple-secondary {
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--text-primary);
 }
 
 .btn-apple-secondary:hover {
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);
 }
 
@@ -475,13 +484,13 @@ main.main-content {
 }
 
 .avatar-wrapper {
-    width: 110px;
-    height: 110px;
-    margin: 0 auto 16px;
+    width: 115px;
+    height: 115px;
+    margin: 0 auto 18px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid #FFFFFF;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(56, 189, 248, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .profile-avatar {
@@ -492,7 +501,7 @@ main.main-content {
 }
 
 .profile-name {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
     font-weight: 800;
     color: var(--text-primary);
     font-family: var(--font-heading);
@@ -502,20 +511,20 @@ main.main-content {
     font-size: 0.88rem;
     color: var(--accent-blue);
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .domain-pillars {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 10px;
 }
 
 .pillar-badge {
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    padding: 10px 4px;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px 6px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -523,21 +532,21 @@ main.main-content {
 }
 
 .pillar-icon {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--accent-blue);
 }
 
 .pillar-badge span {
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
 }
 
 /* ==================== PROJECTS FINDER WINDOW ==================== */
 .finder-window {
-    background: rgba(245, 245, 247, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
     padding: 20px;
 }
 
@@ -563,22 +572,22 @@ main.main-content {
 }
 
 .filter-chip {
-    background: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-secondary);
-    padding: 5px 14px;
-    border-radius: 8px;
+    padding: 6px 16px;
+    border-radius: 10px;
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .filter-chip:hover, .filter-chip.active {
-    background: var(--accent-blue);
+    background: var(--accent-blue-deep);
     color: #FFFFFF;
     border-color: var(--accent-blue);
-    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
 }
 
 .projects-grid {
@@ -614,7 +623,7 @@ main.main-content {
 
 .project-title {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
     font-family: var(--font-heading);
     margin-bottom: 10px;
@@ -637,10 +646,11 @@ main.main-content {
 .highlight-chip {
     font-size: 0.76rem;
     font-weight: 600;
-    background: rgba(0, 122, 255, 0.06);
+    background: rgba(56, 189, 248, 0.1);
     color: var(--accent-blue);
-    padding: 3px 10px;
+    padding: 4px 10px;
     border-radius: 6px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 .tech-stack-list {
@@ -652,17 +662,17 @@ main.main-content {
 
 .tech-tag {
     font-size: 0.76rem;
-    background: rgba(0, 0, 0, 0.04);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
-    padding: 3px 10px;
+    padding: 4px 10px;
     border-radius: 6px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .project-card-footer {
     margin-top: auto;
     padding-top: 14px;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .project-link {
@@ -670,14 +680,14 @@ main.main-content {
     align-items: center;
     gap: 6px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--accent-blue);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .project-link:hover {
-    color: var(--accent-blue-hover);
+    color: #FFFFFF;
 }
 
 /* ==================== SKILLS SYSTEM SETTINGS ==================== */
@@ -703,25 +713,26 @@ main.main-content {
 }
 
 .pane-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #FFFFFF;
     font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.icon-blue { background: var(--accent-blue); }
-.icon-purple { background: var(--accent-purple); }
-.icon-rose { background: var(--accent-pink); }
-.icon-cyan { background: var(--accent-cyan); }
-.icon-dark { background: #333336; }
+.icon-blue { background: linear-gradient(135deg, #007AFF, #38BDF8); }
+.icon-purple { background: linear-gradient(135deg, #AF52DE, #C084FC); }
+.icon-rose { background: linear-gradient(135deg, #FF375F, #F43F5E); }
+.icon-cyan { background: linear-gradient(135deg, #06B6D4, #2DD4BF); }
+.icon-dark { background: linear-gradient(135deg, #333336, #4B5563); }
 
 .pane-title {
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
 }
 
@@ -732,13 +743,13 @@ main.main-content {
 }
 
 .skill-pill {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
-    padding: 5px 12px;
-    border-radius: 8px;
+    padding: 6px 14px;
+    border-radius: 9px;
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* ==================== CONTACT MAIL APP SECTION ==================== */
@@ -751,14 +762,14 @@ main.main-content {
 }
 
 .mail-sidebar {
-    background: rgba(245, 245, 247, 0.6);
-    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(0, 0, 0, 0.25);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
     padding: 32px;
 }
 
 .mail-sidebar-title {
     font-size: 1.2rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 8px;
 }
@@ -773,7 +784,7 @@ main.main-content {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .mail-icon {
@@ -786,7 +797,7 @@ main.main-content {
     display: block;
     font-size: 0.72rem;
     color: var(--text-tertiary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .channel-value {
@@ -820,16 +831,16 @@ main.main-content {
 
 .recipient-badge {
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--accent-blue);
 }
 
 .form-row input, .form-row textarea {
     flex: 1;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background: #FFFFFF;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
     font-family: var(--font-system);
     font-size: 0.9rem;
     color: var(--text-primary);
@@ -839,7 +850,7 @@ main.main-content {
 
 .form-row input:focus, .form-row textarea:focus {
     border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
 
 .textarea-row {
@@ -868,7 +879,7 @@ main.main-content {
 .mac-window-footer {
     text-align: center;
     padding: 24px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     font-size: 0.8rem;
     color: var(--text-tertiary);
 }
@@ -879,16 +890,16 @@ main.main-content {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(18, 22, 32, 0.85);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 6px 14px;
     border-radius: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     z-index: 10000;
 }
 
@@ -909,7 +920,7 @@ main.main-content {
     justify-content: center;
     font-size: 1.15rem;
     color: #FFFFFF;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -927,10 +938,10 @@ main.main-content {
     top: -32px;
     left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: #1D1D1F;
-    color: #FFFFFF;
+    background: #FFFFFF;
+    color: #0B0C10;
     font-size: 0.72rem;
-    font-weight: 600;
+    font-weight: 700;
     padding: 2px 8px;
     border-radius: 6px;
     white-space: nowrap;
@@ -939,18 +950,18 @@ main.main-content {
     transition: all 0.2s ease;
 }
 
-.icon-home { background: #007AFF; }
-.icon-projects { background: #FF9500; }
-.icon-skills { background: #AF52DE; }
-.icon-resume { background: #FF3B30; }
-.icon-linkedin { background: #0077B5; }
-.icon-github { background: #24292E; }
-.icon-contact { background: #34C759; }
+.icon-home { background: linear-gradient(135deg, #007AFF, #38BDF8); }
+.icon-projects { background: linear-gradient(135deg, #FF9500, #FBBF24); }
+.icon-skills { background: linear-gradient(135deg, #AF52DE, #C084FC); }
+.icon-resume { background: linear-gradient(135deg, #FF3B30, #F43F5E); }
+.icon-linkedin { background: linear-gradient(135deg, #0077B5, #0ea5e9); }
+.icon-github { background: linear-gradient(135deg, #333336, #1E293B); }
+.icon-contact { background: linear-gradient(135deg, #34C759, #2DD4BF); }
 
 .dock-separator {
     width: 1px;
     height: 28px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.12);
     margin: 0 2px;
 }
 
@@ -962,11 +973,7 @@ main.main-content {
 
     .mail-sidebar {
         border-right: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .desk-only {
-        display: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 }
 
@@ -996,13 +1003,13 @@ main.main-content {
         top: 38px;
         left: 0;
         width: 100vw;
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(18, 22, 32, 0.96);
         backdrop-filter: blur(25px);
         flex-direction: column;
         padding: 14px;
         transform: translateY(-150%);
         transition: transform 0.3s ease;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         z-index: 9999;
     }
 

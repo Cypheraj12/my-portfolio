@@ -1,4 +1,4 @@
-// ==================== APPLE macOS / iOS PORTFOLIO INTERACTIVITY ====================
+// ==================== EXECUTIVE APPLE LIQUID GLASS INTERACTIVITY ====================
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateMacClock, 1000);
 
     // ----------------------------------------------------
-    // 2. SOFT AMBIENT ATMOSPHERIC BACKGROUND CANVAS
+    // 2. CUPERTINO NEON ATMOSPHERIC CANVAS
     // ----------------------------------------------------
     const bgCanvas = document.getElementById('bg-web-canvas');
     if (bgCanvas) {
@@ -30,16 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 18 : 36;
+        const particleCount = isMobile ? 22 : 45;
+        const connectMaxDist = isMobile ? 95 : 140;
         const particles = [];
-        const colors = ['rgba(0, 122, 255, 0.25)', 'rgba(175, 82, 222, 0.2)', 'rgba(255, 55, 95, 0.15)'];
+        const colors = ['rgba(56, 189, 248, 0.6)', 'rgba(192, 132, 252, 0.5)', 'rgba(0, 122, 255, 0.6)', 'rgba(255, 255, 255, 0.4)'];
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * bgWidth,
                 y: Math.random() * bgHeight,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
                 size: Math.random() * 2 + 1,
                 color: colors[Math.floor(Math.random() * colors.length)]
             });
@@ -69,10 +70,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (p.x < 0 || p.x > bgWidth) p.vx *= -1;
                 if (p.y < 0 || p.y > bgHeight) p.vy *= -1;
 
+                // Mouse interaction
+                const mdx = mouseX - p.x;
+                const mdy = mouseY - p.y;
+                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mdist < 140) {
+                    p.x += (mdx / mdist) * 0.4;
+                    p.y += (mdy / mdist) * 0.4;
+                }
+
                 bgCtx.fillStyle = p.color;
                 bgCtx.beginPath();
                 bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 bgCtx.fill();
+
+                for (let j = i + 1; j < particleCount; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectMaxDist) {
+                        bgCtx.strokeStyle = '#38BDF8';
+                        bgCtx.globalAlpha = (1 - dist / connectMaxDist) * 0.2;
+                        bgCtx.lineWidth = 0.8;
+                        bgCtx.beginPath();
+                        bgCtx.moveTo(p.x, p.y);
+                        bgCtx.lineTo(p2.x, p2.y);
+                        bgCtx.stroke();
+                        bgCtx.globalAlpha = 1;
+                    }
+                }
             }
 
             requestAnimationFrame(renderAtmosphere);
@@ -214,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     if (formStatusMsg) {
                         formStatusMsg.style.display = 'block';
-                        formStatusMsg.style.color = '#34C759';
+                        formStatusMsg.style.color = '#34D399';
                         formStatusMsg.innerHTML = '✓ Message sent successfully! Thank you.';
                     }
                     contactForm.reset();
@@ -224,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 if (formStatusMsg) {
                     formStatusMsg.style.display = 'block';
-                    formStatusMsg.style.color = '#007AFF';
+                    formStatusMsg.style.color = '#38BDF8';
                     formStatusMsg.innerHTML = 'Opening default email client...';
                 }
                 const name = document.getElementById('sender-name')?.value || '';
