@@ -1,4 +1,4 @@
-// ==================== EXECUTIVE LOVABLE.DEV & macOS INTERACTIVITY ====================
+// ==================== APPLE macOS / iOS PORTFOLIO INTERACTIVITY ====================
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateMacClock, 1000);
 
     // ----------------------------------------------------
-    // 2. LIVE LOVABLE.DEV AMBIENT MESH ORBS & NEURAL CANVAS
+    // 2. SOFT AMBIENT ATMOSPHERIC BACKGROUND CANVAS
     // ----------------------------------------------------
     const bgCanvas = document.getElementById('bg-web-canvas');
     if (bgCanvas) {
@@ -30,24 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 24 : 50;
-        const connectMaxDist = isMobile ? 95 : 145;
+        const particleCount = isMobile ? 18 : 36;
         const particles = [];
-        const colors = ['#2563eb', '#ec4899', '#f43f5e', '#38bdf8', '#ffffff'];
+        const colors = ['rgba(0, 122, 255, 0.25)', 'rgba(175, 82, 222, 0.2)', 'rgba(255, 55, 95, 0.15)'];
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * bgWidth,
                 y: Math.random() * bgHeight,
-                vx: (Math.random() - 0.5) * 0.7,
-                vy: (Math.random() - 0.5) * 0.7,
-                size: Math.random() * 2.5 + 1,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                size: Math.random() * 2 + 1,
                 color: colors[Math.floor(Math.random() * colors.length)]
             });
         }
 
-        // Live Lovable Liquid Mesh Orbs (Blue & Hot Pink)
-        let orbAngle = 0;
         let mouseX = -1000;
         let mouseY = -1000;
 
@@ -56,37 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
             mouseY = e.clientY;
         }, { passive: true });
 
-        function renderNeuralMesh() {
+        function renderAtmosphere() {
             if (document.hidden) {
-                requestAnimationFrame(renderNeuralMesh);
+                requestAnimationFrame(renderAtmosphere);
                 return;
             }
 
             bgCtx.clearRect(0, 0, bgWidth, bgHeight);
 
-            // Render Animated Lovable Mesh Orbs (Sky Blue & Hot Pink)
-            orbAngle += 0.005;
-            const ox1 = bgWidth * 0.2 + Math.sin(orbAngle) * 50;
-            const oy1 = bgHeight * 0.25 + Math.cos(orbAngle * 0.8) * 40;
-            const grad1 = bgCtx.createRadialGradient(ox1, oy1, 10, ox1, oy1, isMobile ? 180 : 380);
-            grad1.addColorStop(0, 'rgba(96, 165, 250, 0.35)');
-            grad1.addColorStop(1, 'rgba(255, 255, 255, 0)');
-            bgCtx.fillStyle = grad1;
-            bgCtx.beginPath();
-            bgCtx.arc(ox1, oy1, isMobile ? 180 : 380, 0, Math.PI * 2);
-            bgCtx.fill();
-
-            const ox2 = bgWidth * 0.8 - Math.cos(orbAngle * 0.7) * 60;
-            const oy2 = bgHeight * 0.75 + Math.sin(orbAngle * 0.9) * 50;
-            const grad2 = bgCtx.createRadialGradient(ox2, oy2, 10, ox2, oy2, isMobile ? 160 : 340);
-            grad2.addColorStop(0, 'rgba(236, 72, 153, 0.35)');
-            grad2.addColorStop(1, 'rgba(255, 255, 255, 0)');
-            bgCtx.fillStyle = grad2;
-            bgCtx.beginPath();
-            bgCtx.arc(ox2, oy2, isMobile ? 160 : 340, 0, Math.PI * 2);
-            bgCtx.fill();
-
-            // Render Interactive Particles & Network Lines
             for (let i = 0; i < particleCount; i++) {
                 const p = particles[i];
                 p.x += p.vx;
@@ -95,46 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (p.x < 0 || p.x > bgWidth) p.vx *= -1;
                 if (p.y < 0 || p.y > bgHeight) p.vy *= -1;
 
-                // Mouse interaction
-                const mdx = mouseX - p.x;
-                const mdy = mouseY - p.y;
-                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                if (mdist < 160) {
-                    p.x += (mdx / mdist) * 0.5;
-                    p.y += (mdy / mdist) * 0.5;
-                }
-
                 bgCtx.fillStyle = p.color;
                 bgCtx.beginPath();
                 bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 bgCtx.fill();
-
-                for (let j = i + 1; j < particleCount; j++) {
-                    const p2 = particles[j];
-                    const dx = p.x - p2.x;
-                    const dy = p.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < connectMaxDist) {
-                        bgCtx.strokeStyle = '#ec4899';
-                        bgCtx.globalAlpha = (1 - dist / connectMaxDist) * 0.28;
-                        bgCtx.lineWidth = 0.8;
-                        bgCtx.beginPath();
-                        bgCtx.moveTo(p.x, p.y);
-                        bgCtx.lineTo(p2.x, p2.y);
-                        bgCtx.stroke();
-                        bgCtx.globalAlpha = 1;
-                    }
-                }
             }
 
-            requestAnimationFrame(renderNeuralMesh);
+            requestAnimationFrame(renderAtmosphere);
         }
-        renderNeuralMesh();
+        renderAtmosphere();
     }
 
     // ----------------------------------------------------
-    // 3. DIRECT RESUME PDF DOWNLOAD (ATTACHED TO HEADER & DOCK BUTTONS)
+    // 3. HIGH PRIORITY DIRECT RESUME PDF DOWNLOAD HANDLER
     // ----------------------------------------------------
     function triggerResumeDownload(e) {
         if (e) e.preventDefault();
@@ -171,31 +118,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. macOS TRAFFIC LIGHTS INTERACTIVITY
     // ----------------------------------------------------
     const macDots = document.querySelectorAll('.mac-dot');
-    macDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            document.body.style.transition = 'transform 0.15s ease';
-            document.body.style.transform = 'scale(0.995)';
-            setTimeout(() => {
-                document.body.style.transform = 'scale(1)';
-            }, 150);
+    const macWindow = document.querySelector('.mac-window-container');
+    
+    if (macDots.length && macWindow) {
+        macDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                macWindow.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
+                macWindow.style.transform = 'scale(0.99)';
+                setTimeout(() => {
+                    macWindow.style.transform = 'scale(1)';
+                }, 200);
+            });
         });
-    });
+    }
 
     // ----------------------------------------------------
-    // 5. PROJECT FILTERING INTERACTIVITY
+    // 5. FINDER PROJECT FILTERING INTERACTIVITY
     // ----------------------------------------------------
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterChips = document.querySelectorAll('.filter-chip');
     const projectCards = document.querySelectorAll('.project-card');
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            filterChips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
 
-            const filter = btn.dataset.filter;
+            const filter = chip.dataset.filter;
 
             projectCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
+                const category = card.dataset.category || '';
+                if (filter === 'all' || category.includes(filter)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -208,14 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. MOBILE NAV TOGGLE
     // ----------------------------------------------------
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-    const navLinks = document.getElementById('nav-links');
+    const mainNav = document.getElementById('main-nav');
 
-    if (mobileNavToggle && navLinks) {
+    if (mobileNavToggle && mainNav) {
         mobileNavToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            mainNav.classList.toggle('active');
             const icon = mobileNavToggle.querySelector('i');
             if (icon) {
-                if (navLinks.classList.contains('active')) {
+                if (mainNav.classList.contains('active')) {
                     icon.className = 'fa-solid fa-xmark';
                 } else {
                     icon.className = 'fa-solid fa-bars';
@@ -223,10 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        const navItems = navLinks.querySelectorAll('.nav-item');
+        const navItems = mainNav.querySelectorAll('.nav-item');
         navItems.forEach(item => {
             item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+                mainNav.classList.remove('active');
                 const icon = mobileNavToggle.querySelector('i');
                 if (icon) icon.className = 'fa-solid fa-bars';
             });
@@ -246,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (formSubmitBtn) {
                 formSubmitBtn.disabled = true;
-                formSubmitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Transmitting...';
+                formSubmitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
             }
 
             try {
@@ -262,8 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     if (formStatusMsg) {
                         formStatusMsg.style.display = 'block';
-                        formStatusMsg.style.color = '#10b981';
-                        formStatusMsg.innerHTML = '⚡ Message transmitted successfully! Thank you.';
+                        formStatusMsg.style.color = '#34C759';
+                        formStatusMsg.innerHTML = '✓ Message sent successfully! Thank you.';
                     }
                     contactForm.reset();
                 } else {
@@ -272,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 if (formStatusMsg) {
                     formStatusMsg.style.display = 'block';
-                    formStatusMsg.style.color = '#ec4899';
-                    formStatusMsg.innerHTML = '⚠️ Transmission encounter. Opening email client...';
+                    formStatusMsg.style.color = '#007AFF';
+                    formStatusMsg.innerHTML = 'Opening default email client...';
                 }
                 const name = document.getElementById('sender-name')?.value || '';
                 const email = document.getElementById('sender-email')?.value || '';
@@ -292,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 8. ACTIVE NAV ITEM SCROLL HIGHLIGHT
     // ----------------------------------------------------
     const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-item');
+    const navItems = document.querySelectorAll('.mac-segment-nav .nav-item');
     let isScrollTicking = false;
 
     window.addEventListener('scroll', () => {
@@ -302,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
 
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
+                    const sectionTop = section.offsetTop - 160;
                     if (scrollPos >= sectionTop) {
                         current = section.getAttribute('id');
                     }

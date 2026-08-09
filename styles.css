@@ -1,15 +1,35 @@
-/* ==================== EXECUTIVE LOVABLE.DEV AESTHETIC STYLES ==================== */
+/* ==================== APPLE macOS / iOS PORTFOLIO DESIGN SYSTEM ==================== */
 :root {
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --accent-blue: #2563eb;
-    --accent-pink: #ec4899;
-    --accent-rose: #f43f5e;
-    --accent-cyan: #06b6d4;
-    --surface-glass: rgba(255, 255, 255, 0.85);
-    --border-glass: rgba(255, 255, 255, 0.9);
-    --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.06);
-    --font-main: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Colors strictly adhering to Apple Interface Guidelines */
+    --bg-system: #F5F5F7;
+    --text-primary: #1D1D1F;
+    --text-secondary: #6E6E73;
+    --text-tertiary: #86868B;
+    --surface-window: rgba(255, 255, 255, 0.88);
+    --surface-tile: rgba(255, 255, 255, 0.78);
+    --surface-tile-hover: #FFFFFF;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-light: rgba(255, 255, 255, 0.8);
+    
+    /* Accents */
+    --accent-blue: #007AFF;
+    --accent-blue-hover: #0066CC;
+    --accent-purple: #AF52DE;
+    --accent-pink: #FF375F;
+    --accent-cyan: #546E7A;
+    --accent-green: #34C759;
+
+    /* Traffic Lights */
+    --mac-red: #FF5F56;
+    --mac-yellow: #FFBD2E;
+    --mac-green: #27C93F;
+
+    /* Typography & Elevation */
+    --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', var(--font-system);
+    --shadow-window: 0 30px 60px rgba(0, 0, 0, 0.09), 0 0 1px rgba(0, 0, 0, 0.12);
+    --shadow-tile: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-tile-hover: 0 12px 30px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 * {
@@ -20,20 +40,20 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Authentic Lovable.dev Luminous Mesh Gradient Background */
+/* Subtle, restrained atmospheric background */
 body, html {
-    background: radial-gradient(circle at 15% 15%, #60a5fa 0%, transparent 45%),
-                radial-gradient(circle at 85% 15%, #38bdf8 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, #f472b6 0%, transparent 55%),
-                radial-gradient(circle at 15% 85%, #f43f5e 0%, transparent 50%),
-                radial-gradient(circle at 85% 85%, #ec4899 0%, transparent 50%),
-                linear-gradient(135deg, #e0f2fe 0%, #fce7f3 50%, #fda4af 100%);
+    background-color: var(--bg-system);
+    background-image: 
+        radial-gradient(circle at 10% 10%, rgba(0, 122, 255, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 15%, rgba(175, 82, 222, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(255, 55, 95, 0.04) 0%, transparent 50%);
     background-attachment: fixed;
-    color: var(--text-main);
-    font-family: var(--font-main);
+    color: var(--text-primary);
+    font-family: var(--font-system);
     overflow-x: hidden;
-    line-height: 1.65;
+    line-height: 1.6;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Custom Scrollbar */
@@ -41,17 +61,17 @@ body, html {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.5);
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: #ec4899;
+    background: rgba(0, 0, 0, 0.15);
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #2563eb;
+    background: rgba(0, 0, 0, 0.3);
 }
 
-/* Background Neural Canvas */
+/* Soft Ambient Background Canvas */
 #bg-web-canvas {
     position: fixed;
     top: 0;
@@ -60,65 +80,67 @@ body, html {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.65;
+    opacity: 0.45;
 }
 
 main.main-content {
     position: relative;
     z-index: 10;
-    padding-bottom: 120px;
+    padding: 58px 20px 100px;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
-/* ==================== macOS SYSTEM TOP MENU BAR ==================== */
+/* ==================== macOS TOP SYSTEM MENU BAR ==================== */
 .macos-system-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 38px;
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    z-index: 1005;
-    font-size: 0.85rem;
-    font-weight: 600;
+    z-index: 10005;
+    font-size: 0.82rem;
+    font-weight: 500;
 }
 
 .mac-system-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
 }
 
 .mac-apple-icon {
     font-size: 1.1rem;
-    color: var(--text-main);
+    color: var(--text-primary);
     cursor: pointer;
 }
 
 .mac-menu-item {
-    color: var(--text-muted);
+    color: var(--text-secondary);
     cursor: pointer;
     transition: color 0.2s ease;
 }
 
 .mac-menu-item.active-app {
-    color: var(--text-main);
-    font-weight: 800;
+    color: var(--text-primary);
+    font-weight: 700;
 }
 
 .mac-address-bar {
-    background: rgba(15, 23, 42, 0.05);
-    border: 1px solid rgba(15, 23, 42, 0.1);
-    padding: 3px 20px;
-    border-radius: 12px;
-    font-size: 0.82rem;
-    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 3px 18px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -126,8 +148,8 @@ main.main-content {
 }
 
 .mac-address-bar i {
-    color: var(--accent-pink);
-    font-size: 0.75rem;
+    color: var(--accent-blue);
+    font-size: 0.72rem;
 }
 
 .mac-system-right {
@@ -136,170 +158,259 @@ main.main-content {
     gap: 12px;
 }
 
+/* Native macOS Action Button for Resume (PDF) */
 .mac-header-resume-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: linear-gradient(135deg, #2563eb, #ec4899);
-    color: #ffffff;
+    background: var(--accent-blue);
+    color: #FFFFFF;
     border: none;
-    padding: 4px 14px;
-    border-radius: 10px;
-    font-size: 0.8rem;
-    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
-    transition: transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 122, 255, 0.25);
+    transition: all 0.2s ease;
 }
 
 .mac-header-resume-btn:hover {
-    transform: scale(1.05);
+    background: var(--accent-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.35);
 }
 
 .mac-sys-icon {
-    color: var(--text-muted);
-    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
 }
 
 .mac-clock-time {
-    color: var(--text-main);
-    font-weight: 700;
-    font-size: 0.82rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.8rem;
 }
 
-/* ==================== macOS FROSTED GLASS NAVIGATION ==================== */
-.macos-nav {
-    position: fixed;
-    top: 38px;
-    left: 0;
-    width: 100%;
-    padding: 12px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.75);
+/* ==================== MACOS FLOATING APP WINDOW CONTAINER ==================== */
+.mac-window-container {
+    background: var(--surface-window);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    box-shadow: var(--shadow-window);
+    overflow: hidden;
+    width: 100%;
 }
 
-.nav-brand {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--text-main);
+.mac-window-header {
+    background: rgba(245, 245, 247, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mac-traffic-lights {
     display: flex;
     align-items: center;
     gap: 8px;
-    text-decoration: none;
-    letter-spacing: -0.5px;
+    width: 120px;
 }
 
-.brand-accent {
-    color: var(--accent-pink);
+.mac-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.nav-links {
-    display: flex;
-    gap: 28px;
-}
+.mac-dot.red { background: var(--mac-red); }
+.mac-dot.yellow { background: var(--mac-yellow); }
+.mac-dot.green { background: var(--mac-green); }
 
-.nav-item {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
+.mac-window-title {
+    font-size: 0.85rem;
     font-weight: 600;
-    transition: all 0.25s ease;
-    padding: 6px 12px;
-    border-radius: 10px;
+    color: var(--text-secondary);
+    text-align: center;
 }
 
-.nav-item:hover, .nav-item.active {
-    color: var(--accent-pink);
-    background: rgba(236, 72, 153, 0.1);
+.mac-window-actions {
+    width: 180px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mac-subtle-badge {
+    font-size: 0.75rem;
+    color: var(--accent-green);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mac-subtle-badge i {
+    font-size: 0.45rem;
+}
+
+/* macOS App Navigation Segment Control */
+.mac-app-nav-bar {
+    background: rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mac-segment-nav {
+    display: flex;
+    background: rgba(0, 0, 0, 0.04);
+    padding: 4px;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+.mac-segment-nav .nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 7px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mac-segment-nav .nav-item:hover {
+    color: var(--text-primary);
+}
+
+.mac-segment-nav .nav-item.active {
+    background: #FFFFFF;
+    color: var(--accent-blue);
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .mobile-nav-toggle {
     display: none;
     background: transparent;
     border: none;
-    color: var(--text-main);
-    font-size: 1.4rem;
+    color: var(--text-primary);
+    font-size: 1.2rem;
     cursor: pointer;
 }
 
-/* ==================== PARALLEL HERO & ABOUT SECTION (SIDE-BY-SIDE ABOVE THE FOLD) ==================== */
-.hero-about-parallel-section {
-    min-height: calc(100vh - 38px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 110px 40px 40px;
-    position: relative;
+/* Window Content Body */
+.mac-window-body {
+    padding: 40px 48px 60px;
 }
 
-.parallel-container {
-    max-width: 1250px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-    align-items: center;
+/* ==================== APPLE TILES & SECTION HEADERS ==================== */
+.section-block {
+    margin-bottom: 64px;
+    scroll-margin-top: 100px;
 }
 
-.parallel-left-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.section-header {
+    margin-bottom: 28px;
 }
 
-.status-pill {
+.section-subtitle {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+}
+
+.apple-tile {
+    background: var(--surface-tile);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow-tile);
+    transition: all 0.25s ease;
+}
+
+.apple-tile:hover {
+    background: var(--surface-tile-hover);
+    box-shadow: var(--shadow-tile-hover);
+    border-color: rgba(0, 122, 255, 0.2);
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+    padding: 32px 0 56px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 48px;
+}
+
+.hero-content {
+    max-width: 820px;
+}
+
+.role-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 1);
-    padding: 6px 16px;
+    background: rgba(0, 122, 255, 0.08);
+    border: 1px solid rgba(0, 122, 255, 0.18);
+    padding: 5px 14px;
     border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 22px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
 }
 
-.pill-new-badge {
-    background: #2563eb;
-    color: #ffffff;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-size: 0.75rem;
-    font-weight: 800;
+.role-icon {
+    color: var(--accent-blue);
+    font-size: 0.85rem;
+}
+
+.role-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent-blue);
 }
 
 .hero-title {
-    font-size: clamp(2.3rem, 4.2vw, 3.8rem);
-    font-weight: 900;
-    color: var(--text-main);
-    line-height: 1.12;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    line-height: 1.15;
     margin-bottom: 20px;
     letter-spacing: -1px;
 }
 
-.lovable-highlight {
-    background: linear-gradient(135deg, #2563eb, #d946ef, #f43f5e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.accent-text {
+    color: var(--accent-blue);
 }
 
 .hero-description {
     font-size: 1.08rem;
-    color: var(--text-muted);
-    max-width: 580px;
+    color: var(--text-secondary);
+    line-height: 1.65;
     margin-bottom: 32px;
-    line-height: 1.68;
-    font-weight: 400;
+    max-width: 720px;
 }
 
 .hero-cta-group {
@@ -308,226 +419,186 @@ main.main-content {
     flex-wrap: wrap;
 }
 
-.btn-lovable {
+.btn-apple {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 28px;
-    border-radius: 16px;
-    font-weight: 700;
-    font-size: 0.96rem;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.2s ease;
     border: none;
     cursor: pointer;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #2563eb, #ec4899);
-    color: #ffffff;
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+.btn-apple-primary {
+    background: var(--accent-blue);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);
 }
 
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
+.btn-apple-primary:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 122, 255, 0.35);
 }
 
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 1);
-    color: var(--text-main);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+.btn-apple-secondary {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--text-primary);
 }
 
-.btn-secondary:hover {
-    background: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+.btn-apple-secondary:hover {
+    background: rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
-/* Lovable Glass Card */
-.lovable-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: var(--shadow-soft);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* ==================== ABOUT & SPECIALIZATION ==================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 24px;
 }
 
-.lovable-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 50px rgba(236, 72, 153, 0.15);
-    border-color: rgba(244, 114, 182, 0.5);
-}
-
-.profile-about-card {
+.profile-tile {
     text-align: center;
 }
 
-.avatar-macos {
-    width: 120px;
-    height: 120px;
+.avatar-wrapper {
+    width: 110px;
+    height: 110px;
     margin: 0 auto 16px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid #ec4899;
-    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3);
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.avatar-img {
+.profile-avatar {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top center;
 }
 
-.user-name {
-    font-size: 1.7rem;
+.profile-name {
+    font-size: 1.5rem;
     font-weight: 800;
-    color: var(--text-main);
+    color: var(--text-primary);
+    font-family: var(--font-heading);
 }
 
-.user-title {
-    font-size: 0.92rem;
+.profile-role {
+    font-size: 0.88rem;
+    color: var(--accent-blue);
     font-weight: 600;
-    color: #2563eb;
     margin-bottom: 20px;
 }
 
-.metrics-grid {
+.domain-pillars {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
 }
 
-.metric-box {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 1);
-    padding: 12px 4px;
-    border-radius: 16px;
-    text-align: center;
+.pillar-badge {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 10px 4px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
 }
 
-.metric-val {
-    font-size: 1.3rem;
-    color: #ec4899;
-    display: block;
-    margin-bottom: 3px;
+.pillar-icon {
+    font-size: 1.1rem;
+    color: var(--accent-blue);
 }
 
-.metric-lbl {
-    font-size: 0.78rem;
-    color: var(--text-main);
+.pillar-badge span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.tile-heading {
+    font-size: 1.2rem;
     font-weight: 700;
-}
-
-.bio-summary {
-    text-align: left;
-    font-size: 0.96rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    background: rgba(255, 255, 255, 0.6);
-    padding: 16px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-/* ==================== SECTION HEADERS ==================== */
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.section-tag {
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #ec4899;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-}
-
-.section-title {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 900;
-    color: var(--text-main);
-    letter-spacing: -0.5px;
-}
-
-/* ==================== GLASSMORPHIC TECH BADGES ==================== */
-.glass-tech-pill {
-    display: inline-flex;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 1);
-    color: var(--text-main);
-    padding: 6px 14px;
-    border-radius: 20px;
+}
+
+.tile-heading i {
+    color: var(--accent-blue);
+}
+
+.bio-text {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 14px;
+}
+
+/* ==================== PROJECTS FINDER WINDOW ==================== */
+.finder-window {
+    background: rgba(245, 245, 247, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.finder-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.finder-label {
     font-size: 0.85rem;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-    transition: all 0.25s ease;
+    color: var(--text-secondary);
 }
 
-.glass-tech-pill:hover {
-    background: #ffffff;
-    border-color: #ec4899;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
-}
-
-.pill-metric-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ec4899;
-    display: inline-block;
-}
-
-/* ==================== PROJECTS SHOWCASE ==================== */
-.projects-section {
-    padding: 80px 40px;
-    max-width: 1250px;
-    margin: 0 auto;
-}
-
-.project-filters {
+.finder-filters {
     display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 40px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
-.filter-btn {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    color: var(--text-muted);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.92rem;
-    font-weight: 600;
+.filter-chip {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: var(--text-secondary);
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
 }
 
-.filter-btn.active, .filter-btn:hover {
-    background: linear-gradient(135deg, #2563eb, #ec4899);
-    color: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+.filter-chip:hover, .filter-chip.active {
+    background: var(--accent-blue);
+    color: #FFFFFF;
+    border-color: var(--accent-blue);
+    font-weight: 600;
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 28px;
+    gap: 20px;
 }
 
 .project-card {
@@ -535,210 +606,304 @@ main.main-content {
     flex-direction: column;
 }
 
-.card-header-bar {
+.card-top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
-.category-tag {
-    font-size: 0.78rem;
+.project-tag {
+    font-size: 0.75rem;
     font-weight: 700;
-    color: #ec4899;
+    color: var(--accent-blue);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
+.project-year {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+}
+
 .project-title {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 12px;
-    line-height: 1.25;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    margin-bottom: 10px;
 }
 
 .project-desc {
-    font-size: 0.98rem;
-    color: var(--text-muted);
-    line-height: 1.65;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.project-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.highlight-chip {
+    font-size: 0.76rem;
+    font-weight: 600;
+    background: rgba(0, 122, 255, 0.06);
+    color: var(--accent-blue);
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+.tech-stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     margin-bottom: 20px;
 }
 
-.project-metrics-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 18px;
+.tech-tag {
+    font-size: 0.76rem;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 500;
 }
 
-.tech-badges-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 24px;
-}
-
-.project-footer {
+.project-card-footer {
     margin-top: auto;
-    padding-top: 16px;
+    padding-top: 14px;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.project-btn {
+.project-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-main);
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-blue);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.project-btn:hover {
-    color: #2563eb;
+.project-link:hover {
+    color: var(--accent-blue-hover);
 }
 
-/* ==================== SKILLS & TECH STACK SECTION ==================== */
-.skills-section {
-    padding: 80px 40px;
-    max-width: 1250px;
-    margin: 0 auto;
-}
-
-.skills-grid {
+/* ==================== SKILLS SYSTEM SETTINGS ==================== */
+.settings-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 24px;
+    gap: 20px;
 }
 
-.skills-group h3 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--text-main);
+.setting-pane {
+    padding: 24px;
+}
+
+.setting-pane.span-full {
+    grid-column: 1 / -1;
+}
+
+.pane-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
-.skills-flex {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-/* ==================== CONTACT SECTION ==================== */
-.contact-section {
-    padding: 80px 40px;
-    max-width: 1250px;
-    margin: 0 auto;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 32px;
-}
-
-.contact-info p {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 18px;
-}
-
-.info-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: rgba(236, 72, 153, 0.12);
-    color: #ec4899;
+.pane-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-}
-
-.info-text label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-muted);
-}
-
-.info-text a, .info-text span {
+    color: #FFFFFF;
     font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-main);
-    text-decoration: none;
 }
 
-.contact-form .form-group {
+.icon-blue { background: var(--accent-blue); }
+.icon-purple { background: var(--accent-purple); }
+.icon-rose { background: var(--accent-pink); }
+.icon-cyan { background: var(--accent-cyan); }
+.icon-dark { background: #333336; }
+
+.pane-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-pill {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: var(--text-primary);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+/* ==================== CONTACT MAIL APP SECTION ==================== */
+.contact-mail-window {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.mail-sidebar {
+    background: rgba(245, 245, 247, 0.6);
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 32px;
+}
+
+.mail-sidebar-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.mail-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.mail-channel-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 16px;
 }
 
-.contact-form label {
+.mail-icon {
+    font-size: 1.1rem;
+    color: var(--accent-blue);
+    width: 24px;
+}
+
+.channel-label {
     display: block;
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+.channel-value {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.channel-value:hover {
+    color: var(--accent-blue);
+}
+
+.mail-compose-area {
+    padding: 32px;
+}
+
+.form-row {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.form-row label {
+    width: 90px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.recipient-badge {
     font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--accent-blue);
 }
 
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    color: var(--text-main);
-    font-family: var(--font-main);
-    font-size: 0.95rem;
+.form-row input, .form-row textarea {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #FFFFFF;
+    font-family: var(--font-system);
+    font-size: 0.9rem;
+    color: var(--text-primary);
     outline: none;
-    transition: border-color 0.25s ease;
+    transition: border-color 0.2s ease;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
-    border-color: #ec4899;
-    background: #ffffff;
-    box-shadow: 0 0 12px rgba(236, 72, 153, 0.2);
+.form-row input:focus, .form-row textarea:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12);
+}
+
+.textarea-row {
+    align-items: flex-start;
+}
+
+.textarea-row label {
+    padding-top: 6px;
+}
+
+.form-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 20px;
 }
 
 .form-status-msg {
-    margin-top: 14px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    color: #ec4899;
-    text-align: center;
+    color: var(--accent-blue);
     display: none;
 }
 
-/* ==================== iOS / macOS LIQUID FLOATING DOCK ==================== */
-.ios-floating-dock {
+.mac-window-footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+/* ==================== iOS / macOS FLOATING DOCK ==================== */
+.mac-desktop-dock {
     position: fixed;
-    bottom: 24px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.9);
-    padding: 8px 16px;
-    border-radius: 26px;
+    padding: 6px 14px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 14px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     z-index: 10000;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .dock-item {
@@ -746,83 +911,73 @@ main.main-content {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: var(--text-main);
     position: relative;
-    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.dock-icon-box {
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
+.dock-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.25s ease;
+    font-size: 1.15rem;
+    color: #FFFFFF;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.dock-item:hover .dock-icon-box {
-    transform: translateY(-8px) scale(1.18);
+.dock-item:hover .dock-icon {
+    transform: translateY(-8px) scale(1.2);
 }
 
-.dock-item:hover .dock-label {
+.dock-item:hover .dock-tooltip {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
 
-.dock-label {
+.dock-tooltip {
     position: absolute;
-    top: -34px;
+    top: -32px;
     left: 50%;
-    transform: translateX(-50%) translateY(5px);
-    background: var(--text-main);
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 8px;
+    transform: translateX(-50%) translateY(4px);
+    background: #1D1D1F;
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.icon-resume { background: linear-gradient(135deg, #ec4899, #f43f5e); }
-.icon-linkedin { background: linear-gradient(135deg, #0077b5, #005580); }
-.icon-github { background: linear-gradient(135deg, #24292e, #111417); }
-.icon-email { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.icon-home { background: #007AFF; }
+.icon-about { background: #5856D6; }
+.icon-projects { background: #FF9500; }
+.icon-skills { background: #AF52DE; }
+.icon-resume { background: #FF3B30; }
+.icon-linkedin { background: #0077B5; }
+.icon-github { background: #24292E; }
+.icon-contact { background: #34C759; }
 
-/* ==================== FOOTER ==================== */
-.macos-footer {
-    text-align: center;
-    padding: 30px 20px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
+.dock-separator {
+    width: 1px;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 0 2px;
 }
 
 /* ==================== RESPONSIVE DESIGN ==================== */
 @media (max-width: 1024px) {
-    .parallel-container {
+    .about-grid, .contact-mail-window {
         grid-template-columns: 1fr;
-        gap: 30px;
     }
 
-    .parallel-left-hero {
-        align-items: center;
-        text-align: center;
-    }
-
-    .hero-cta-group {
-        justify-content: center;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
+    .mail-sidebar {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .desk-only {
@@ -831,8 +986,12 @@ main.main-content {
 }
 
 @media (max-width: 768px) {
-    .macos-system-bar {
-        padding: 0 10px;
+    main.main-content {
+        padding: 48px 10px 90px;
+    }
+
+    .mac-window-body {
+        padding: 24px 18px 40px;
     }
 
     .mac-address-bar {
@@ -843,50 +1002,42 @@ main.main-content {
         display: none;
     }
 
-    .macos-nav {
-        padding: 10px 20px;
-    }
-
     .mobile-nav-toggle {
         display: block;
     }
 
-    .nav-links {
+    .mac-segment-nav {
         position: fixed;
-        top: 76px;
+        top: 38px;
         left: 0;
         width: 100vw;
         background: rgba(255, 255, 255, 0.96);
         backdrop-filter: blur(25px);
         flex-direction: column;
-        padding: 20px;
-        gap: 14px;
+        padding: 14px;
         transform: translateY(-150%);
         transition: transform 0.3s ease;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        z-index: 9999;
     }
 
-    .nav-links.active {
+    .mac-segment-nav.active {
         transform: translateY(0);
     }
 
-    .hero-about-parallel-section {
-        padding: 100px 20px 40px;
+    .domain-pillars {
+        grid-template-columns: 1fr;
     }
 
-    .projects-section, .skills-section, .contact-section {
-        padding: 50px 20px;
+    .mac-desktop-dock {
+        bottom: 12px;
+        padding: 4px 10px;
+        gap: 6px;
     }
 
-    .ios-floating-dock {
-        bottom: 16px;
-        padding: 6px 12px;
-        gap: 10px;
-    }
-
-    .dock-icon-box {
-        width: 38px;
-        height: 38px;
-        font-size: 1.1rem;
+    .dock-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
     }
 }
