@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-theme="coral">
 
     <!-- ==================== macOS TOP SYSTEM MENU BAR ==================== -->
     <div class="macos-system-bar">
         <div class="mac-system-left">
-            <span class="mac-apple-icon" title="macOS System Menu"></span>
+            <span class="mac-apple-icon" id="apple-logo-trigger" title="About This Mac"></span>
             <span class="mac-menu-item active-app">Portfolio</span>
         </div>
 
@@ -27,12 +27,30 @@
         </div>
 
         <div class="mac-system-right">
+            <!-- Header Resume Action Button -->
             <button id="header-resume-btn" class="mac-header-resume-btn" title="Download Resume (PDF)">
                 <i class="fa-solid fa-file-arrow-down"></i> <span>Resume (PDF)</span>
             </button>
+            <span class="mac-sys-icon" id="spotlight-btn" title="Spotlight Search (⌘K)"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <span class="mac-sys-icon" id="control-center-btn" title="Control Center & Wallpapers"><i class="fa-solid fa-sliders"></i></span>
             <span class="mac-sys-icon" title="Wi-Fi Connected"><i class="fa-solid fa-wifi"></i></span>
-            <span class="mac-sys-icon" title="Battery 100%"><i class="fa-solid fa-battery-full"></i></span>
             <span id="mac-clock" class="mac-clock-time">Sun 8:00 PM</span>
+        </div>
+    </div>
+
+    <!-- macOS Control Center / Wallpaper Switcher Dropdown -->
+    <div id="control-center-dropdown" class="control-center-dropdown">
+        <div class="cc-header">
+            <i class="fa-solid fa-sliders"></i> <span>Control Center</span>
+        </div>
+        <div class="cc-section">
+            <span class="cc-section-title">Desktop Wallpapers</span>
+            <div class="wallpaper-options">
+                <button class="wp-btn active" data-theme="coral"><span class="wp-color wp-coral"></span> Warm Coral</button>
+                <button class="wp-btn" data-theme="sonoma"><span class="wp-color wp-sonoma"></span> Sonoma Dusk</button>
+                <button class="wp-btn" data-theme="ventura"><span class="wp-color wp-ventura"></span> Ventura Sky</button>
+                <button class="wp-btn" data-theme="sequoia"><span class="wp-color wp-sequoia"></span> Sequoia Glow</button>
+            </div>
         </div>
     </div>
 
@@ -70,7 +88,7 @@
                 </button>
             </div>
 
-            <!-- Window Content Body (Vertical Scroll) -->
+            <!-- Window Content Body -->
             <div class="mac-window-body">
                 
                 <!-- ==================== UNIFIED HERO & ABOUT (HOME) ==================== -->
@@ -303,6 +321,12 @@
                                 </div>
                             </article>
                         </div>
+
+                        <!-- macOS Finder Path Bar -->
+                        <div class="finder-path-bar">
+                            <i class="fa-solid fa-hard-drive"></i> 
+                            <span>Anant's Mac</span> &gt; <span>Macintosh HD</span> &gt; <span>Users</span> &gt; <span>AnantJoshi</span> &gt; <span class="path-current">Projects</span>
+                        </div>
                     </div>
                 </section>
 
@@ -467,19 +491,28 @@
 
     <!-- ==================== macOS FLOATING DESKTOP DOCK ==================== -->
     <div class="mac-desktop-dock">
-        <a href="#hero" class="dock-item" title="Home">
+        <a href="#hero" class="dock-item active" title="Home">
             <div class="dock-icon icon-home"><i class="fa-solid fa-house"></i></div>
             <span class="dock-tooltip">Home</span>
+            <span class="dock-dot"></span>
         </a>
 
         <a href="#projects" class="dock-item" title="Projects">
             <div class="dock-icon icon-projects"><i class="fa-solid fa-folder"></i></div>
             <span class="dock-tooltip">Projects</span>
+            <span class="dock-dot"></span>
         </a>
 
         <a href="#skills" class="dock-item" title="Skills">
             <div class="dock-icon icon-skills"><i class="fa-solid fa-sliders"></i></div>
             <span class="dock-tooltip">Skills</span>
+            <span class="dock-dot"></span>
+        </a>
+
+        <a href="#" id="launchpad-dock-btn" class="dock-item" title="Launchpad (All Apps)">
+            <div class="dock-icon icon-launchpad"><i class="fa-solid fa-grip"></i></div>
+            <span class="dock-tooltip">Launchpad</span>
+            <span class="dock-dot"></span>
         </a>
 
         <div class="dock-separator"></div>
@@ -487,6 +520,7 @@
         <a href="#" id="dock-resume-btn" class="dock-item" title="Download Resume (PDF)">
             <div class="dock-icon icon-resume"><i class="fa-solid fa-file-pdf"></i></div>
             <span class="dock-tooltip">Resume (PDF)</span>
+            <span class="dock-dot"></span>
         </a>
 
         <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" class="dock-item" title="LinkedIn">
@@ -502,7 +536,68 @@
         <a href="#contact" class="dock-item" title="Contact">
             <div class="dock-icon icon-contact"><i class="fa-solid fa-envelope"></i></div>
             <span class="dock-tooltip">Contact</span>
+            <span class="dock-dot"></span>
         </a>
+    </div>
+
+    <!-- ==================== macOS MODALS ==================== -->
+
+    <!-- 1. SPOTLIGHT SEARCH MODAL -->
+    <div id="spotlight-overlay" class="mac-modal-overlay">
+        <div class="spotlight-window">
+            <div class="spotlight-search-bar">
+                <i class="fa-solid fa-magnifying-glass spotlight-icon"></i>
+                <input type="text" id="spotlight-input" placeholder="Spotlight Search (Type project, skill, or resume...)" autocomplete="off">
+                <span class="spotlight-keyhint">ESC</span>
+            </div>
+            <div id="spotlight-results" class="spotlight-results">
+                <!-- Results dynamically rendered via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. ABOUT THIS MAC MODAL -->
+    <div id="about-mac-overlay" class="mac-modal-overlay">
+        <div class="about-mac-window apple-tile">
+            <div class="about-header">
+                <span class="mac-dot red modal-close" title="Close"></span>
+                <span class="about-window-title">About This Mac</span>
+            </div>
+            <div class="about-body">
+                <div class="about-avatar-wrapper">
+                    <img src="anant_photo.jpg" alt="Anant Joshi">
+                </div>
+                <h3 class="about-name">Anant Joshi</h3>
+                <p class="about-sub">Final Year B.Tech CSE (Data Science)</p>
+                <div class="about-specs">
+                    <div class="spec-row"><span class="spec-label">Processor</span> <span class="spec-val">High-Throughput ML &amp; Analytics Engine</span></div>
+                    <div class="spec-row"><span class="spec-label">Memory</span> <span class="spec-val">TensorFlow, PyTorch, FastAPI, MongoDB</span></div>
+                    <div class="spec-row"><span class="spec-label">Graphics</span> <span class="spec-val">Computer Vision (MobileNetV2, OpenCV)</span></div>
+                    <div class="spec-row"><span class="spec-label">Status</span> <span class="spec-val status-green">● Available for Opportunities</span></div>
+                </div>
+                <div class="about-footer">
+                    <button id="about-resume-btn" class="btn-apple btn-apple-primary"><i class="fa-solid fa-file-arrow-down"></i> Resume (PDF)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. LAUNCHPAD FULL-SCREEN OVERLAY -->
+    <div id="launchpad-overlay" class="launchpad-overlay">
+        <div class="launchpad-close" id="launchpad-close"><i class="fa-solid fa-xmark"></i></div>
+        <div class="launchpad-content">
+            <h2 class="launchpad-title">Launchpad — All Portfolio Apps</h2>
+            <div class="launchpad-grid">
+                <a href="#hero" class="lp-app-item"><div class="lp-icon icon-home"><i class="fa-solid fa-house"></i></div><span>Home</span></a>
+                <a href="#projects" class="lp-app-item"><div class="lp-icon icon-projects"><i class="fa-solid fa-folder"></i></div><span>Projects</span></a>
+                <a href="#skills" class="lp-app-item"><div class="lp-icon icon-skills"><i class="fa-solid fa-sliders"></i></div><span>Skills</span></a>
+                <a href="#contact" class="lp-app-item"><div class="lp-icon icon-contact"><i class="fa-solid fa-envelope"></i></div><span>Contact</span></a>
+                <a href="https://github.com/Cypheraj12/Deep_fake_detection_using_deep_learning" target="_blank" class="lp-app-item"><div class="lp-icon icon-blue"><i class="fa-solid fa-eye"></i></div><span>Deepfake Detection</span></a>
+                <a href="https://github.com/Cypheraj12/youtube-video-fetcher" target="_blank" class="lp-app-item"><div class="lp-icon icon-purple"><i class="fa-solid fa-server"></i></div><span>YouTube Fetcher API</span></a>
+                <a href="https://github.com/Cypheraj12/Heart_disease-prediction" target="_blank" class="lp-app-item"><div class="lp-icon icon-rose"><i class="fa-solid fa-heart-pulse"></i></div><span>Heart Disease ML</span></a>
+                <a href="https://github.com/Cypheraj12/laptop_price-analysis-and-prediction" target="_blank" class="lp-app-item"><div class="lp-icon icon-cyan"><i class="fa-solid fa-calculator"></i></div><span>Laptop Price EDA</span></a>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

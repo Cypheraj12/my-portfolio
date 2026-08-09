@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateMacClock, 1000);
 
     // ----------------------------------------------------
-    // 2. ACTIVE NAV HIGHLIGHT ON SCROLL
+    // 2. ACTIVE NAV & DOCK HIGHLIGHT ON SCROLL
     // ----------------------------------------------------
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.mac-segment-nav .nav-item');
+    const dockItems = document.querySelectorAll('.mac-desktop-dock .dock-item[href^="#"]');
     let isScrollTicking = false;
 
     window.addEventListener('scroll', () => {
@@ -42,6 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
+                dockItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
+
                 isScrollTicking = false;
             });
             isScrollTicking = true;
@@ -49,7 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     // ----------------------------------------------------
-    // 3. RESUME PDF DOWNLOAD HANDLER
+    // 3. DOCK ITEM BOUNCE ANIMATION ON CLICK
+    // ----------------------------------------------------
+    const allDockItems = document.querySelectorAll('.mac-desktop-dock .dock-item');
+    allDockItems.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.add('bouncing');
+            setTimeout(() => {
+                item.classList.remove('bouncing');
+            }, 600);
+        });
+    });
+
+    // ----------------------------------------------------
+    // 4. RESUME PDF DOWNLOAD HANDLER
     // ----------------------------------------------------
     function triggerResumeDownload(e) {
         if (e) e.preventDefault();
@@ -78,14 +99,194 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const headerResumeBtn = document.getElementById('header-resume-btn');
     const dockResumeBtn = document.getElementById('dock-resume-btn');
+    const aboutResumeBtn = document.getElementById('about-resume-btn');
 
     if (headerResumeBtn) headerResumeBtn.addEventListener('click', triggerResumeDownload);
     if (dockResumeBtn) dockResumeBtn.addEventListener('click', triggerResumeDownload);
+    if (aboutResumeBtn) aboutResumeBtn.addEventListener('click', triggerResumeDownload);
 
     // ----------------------------------------------------
-    // 4. macOS TRAFFIC LIGHTS INTERACTIVITY
+    // 5. CONTROL CENTER & WALLPAPER SWITCHER
     // ----------------------------------------------------
-    const macDots = document.querySelectorAll('.mac-dot');
+    const controlCenterBtn = document.getElementById('control-center-btn');
+    const controlCenterDropdown = document.getElementById('control-center-dropdown');
+    const wpBtns = document.querySelectorAll('.wp-btn');
+
+    if (controlCenterBtn && controlCenterDropdown) {
+        controlCenterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            controlCenterDropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!controlCenterDropdown.contains(e.target) && e.target !== controlCenterBtn) {
+                controlCenterDropdown.classList.remove('active');
+            }
+        });
+    }
+
+    wpBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            wpBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const theme = btn.dataset.theme;
+            document.body.dataset.theme = theme;
+        });
+    });
+
+    // ----------------------------------------------------
+    // 6. SPOTLIGHT SEARCH SYSTEM (⌘ + K)
+    // ----------------------------------------------------
+    const spotlightBtn = document.getElementById('spotlight-btn');
+    const spotlightOverlay = document.getElementById('spotlight-overlay');
+    const spotlightInput = document.getElementById('spotlight-input');
+    const spotlightResults = document.getElementById('spotlight-results');
+
+    const searchableItems = [
+        { title: 'Home / Profile', sub: 'Overview, Bio, Domain Pillars', href: '#hero', icon: 'fa-house' },
+        { title: 'Deepfake Detection Web App', sub: 'AI & ML • Python, TensorFlow, MobileNetV2', href: '#projects', icon: 'fa-eye' },
+        { title: 'YouTube Video Fetcher API', sub: 'Backend • FastAPI, MongoDB, Asyncio', href: '#projects', icon: 'fa-server' },
+        { title: 'Heart Disease ML Predictor', sub: 'Healthcare ML • Scikit-Learn, Streamlit', href: '#projects', icon: 'fa-heart-pulse' },
+        { title: 'Predictive API Latency Forecasting', sub: 'Time-Series • LSTM, XGBoost', href: '#projects', icon: 'fa-chart-line' },
+        { title: 'Laptop Price Analysis & EDA', sub: 'Data Analysis • Pandas, Regression', href: '#projects', icon: 'fa-chart-column' },
+        { title: 'Technical Skills & Competencies', sub: 'Languages, ML, Data Analytics, Databases', href: '#skills', icon: 'fa-sliders' },
+        { title: 'Download Resume (PDF)', sub: 'Official Resume Document', action: triggerResumeDownload, icon: 'fa-file-pdf' },
+        { title: 'Contact Anant Joshi', sub: 'Email: anantajjoshi@gmail.com', href: '#contact', icon: 'fa-envelope' }
+    ];
+
+    function openSpotlight() {
+        if (!spotlightOverlay) return;
+        spotlightOverlay.classList.add('active');
+        if (spotlightInput) {
+            spotlightInput.value = '';
+            spotlightInput.focus();
+            renderSpotlightResults('');
+        }
+    }
+
+    function closeSpotlight() {
+        if (spotlightOverlay) spotlightOverlay.classList.remove('active');
+    }
+
+    function renderSpotlightResults(query) {
+        if (!spotlightResults) return;
+        const q = query.toLowerCase().trim();
+        const filtered = searchableItems.filter(item => 
+            item.title.toLowerCase().includes(q) || item.sub.toLowerCase().includes(q)
+        );
+
+        if (filtered.length === 0) {
+            spotlightResults.innerHTML = `<div style="padding: 16px; text-align: center; color: var(--text-tertiary); font-size: 0.85rem;">No matching search results found.</div>`;
+            return;
+        }
+
+        spotlightResults.innerHTML = filtered.map((item, i) => `
+            <a href="${item.href || '#'}" class="spotlight-item ${i === 0 ? 'selected' : ''}" data-index="${i}">
+                <i class="fa-solid ${item.icon}"></i>
+                <div>
+                    <span class="spotlight-item-title">${item.title}</span>
+                    <span class="spotlight-item-sub">${item.sub}</span>
+                </div>
+            </a>
+        `).join('');
+
+        // Attach click events
+        const resultEls = spotlightResults.querySelectorAll('.spotlight-item');
+        resultEls.forEach((el, index) => {
+            el.addEventListener('click', (e) => {
+                const targetItem = filtered[index];
+                if (targetItem.action) {
+                    e.preventDefault();
+                    targetItem.action();
+                }
+                closeSpotlight();
+            });
+        });
+    }
+
+    if (spotlightBtn) spotlightBtn.addEventListener('click', openSpotlight);
+
+    if (spotlightInput) {
+        spotlightInput.addEventListener('input', (e) => {
+            renderSpotlightResults(e.target.value);
+        });
+    }
+
+    // Keyboard Shortcuts (⌘K / Ctrl+K / ESC)
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (spotlightOverlay && spotlightOverlay.classList.contains('active')) {
+                closeSpotlight();
+            } else {
+                openSpotlight();
+            }
+        } else if (e.key === 'Escape') {
+            closeSpotlight();
+            closeAboutMac();
+            closeLaunchpad();
+        }
+    });
+
+    if (spotlightOverlay) {
+        spotlightOverlay.addEventListener('click', (e) => {
+            if (e.target === spotlightOverlay) closeSpotlight();
+        });
+    }
+
+    // ----------------------------------------------------
+    // 7. ABOUT THIS MAC MODAL
+    // ----------------------------------------------------
+    const appleLogoTrigger = document.getElementById('apple-logo-trigger');
+    const aboutMacOverlay = document.getElementById('about-mac-overlay');
+    const aboutCloseBtn = aboutMacOverlay ? aboutMacOverlay.querySelector('.modal-close') : null;
+
+    function openAboutMac() {
+        if (aboutMacOverlay) aboutMacOverlay.classList.add('active');
+    }
+
+    function closeAboutMac() {
+        if (aboutMacOverlay) aboutMacOverlay.classList.remove('active');
+    }
+
+    if (appleLogoTrigger) appleLogoTrigger.addEventListener('click', openAboutMac);
+    if (aboutCloseBtn) aboutCloseBtn.addEventListener('click', closeAboutMac);
+
+    if (aboutMacOverlay) {
+        aboutMacOverlay.addEventListener('click', (e) => {
+            if (e.target === aboutMacOverlay) closeAboutMac();
+        });
+    }
+
+    // ----------------------------------------------------
+    // 8. LAUNCHPAD OVERLAY
+    // ----------------------------------------------------
+    const launchpadDockBtn = document.getElementById('launchpad-dock-btn');
+    const launchpadOverlay = document.getElementById('launchpad-overlay');
+    const launchpadClose = document.getElementById('launchpad-close');
+
+    function openLaunchpad(e) {
+        if (e) e.preventDefault();
+        if (launchpadOverlay) launchpadOverlay.classList.add('active');
+    }
+
+    function closeLaunchpad() {
+        if (launchpadOverlay) launchpadOverlay.classList.remove('active');
+    }
+
+    if (launchpadDockBtn) launchpadDockBtn.addEventListener('click', openLaunchpad);
+    if (launchpadClose) launchpadClose.addEventListener('click', closeLaunchpad);
+
+    if (launchpadOverlay) {
+        launchpadOverlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeLaunchpad);
+        });
+    }
+
+    // ----------------------------------------------------
+    // 9. macOS TRAFFIC LIGHTS INTERACTIVITY
+    // ----------------------------------------------------
+    const macDots = document.querySelectorAll('.mac-window-header .mac-dot');
     const macWindow = document.querySelector('.mac-window-container');
     
     if (macDots.length && macWindow) {
@@ -101,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 5. FINDER PROJECT FILTERING
+    // 10. FINDER PROJECT FILTERING
     // ----------------------------------------------------
     const filterChips = document.querySelectorAll('.filter-chip');
     const projectCards = document.querySelectorAll('.project-card');
@@ -125,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 6. MOBILE NAV TOGGLE
+    // 11. MOBILE NAV TOGGLE
     // ----------------------------------------------------
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     const mainNav = document.getElementById('main-nav');
@@ -154,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 7. CONTACT FORM HANDLING VIA FORMSUBMIT
+    // 12. CONTACT FORM HANDLING VIA FORMSUBMIT
     // ----------------------------------------------------
     const contactForm = document.getElementById('contact-form');
     const formSubmitBtn = document.getElementById('form-submit-btn');
@@ -209,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 8. ENTRANCE STAGGER ANIMATIONS
+    // 13. ENTRANCE STAGGER ANIMATIONS
     // ----------------------------------------------------
     const allTiles = document.querySelectorAll('.apple-tile');
     allTiles.forEach((tile, i) => {

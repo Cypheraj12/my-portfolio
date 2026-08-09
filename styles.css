@@ -43,30 +43,14 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-/* ==================== SMOOTH CONTINUOUS BACKGROUND ANIMATION ==================== */
+/* ==================== SMOOTH CONTINUOUS BACKGROUND ANIMATIONS & THEMES ==================== */
 @keyframes smoothBgShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 body, html {
-    background: linear-gradient(
-        135deg,
-        #F58F8F,
-        #FAD6D6,
-        #E8C6F0,
-        #F9B4B4,
-        #FFF1F1,
-        #D8B4F8,
-        #F58F8F
-    );
     background-size: 300% 300%;
     animation: smoothBgShift 28s ease-in-out infinite;
     background-attachment: fixed;
@@ -77,6 +61,36 @@ body, html {
     min-height: 100vh;
     width: 100%;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.8s ease;
+}
+
+/* Wallpaper Themes */
+body[data-theme="coral"], body {
+    background-image: linear-gradient(135deg, #F58F8F, #FAD6D6, #E8C6F0, #F9B4B4, #FFF1F1, #D8B4F8, #F58F8F);
+}
+
+body[data-theme="sonoma"] {
+    background-image: linear-gradient(135deg, #2e1065, #4c1d95, #831843, #be185d, #f472b6, #2e1065);
+    color: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --surface-window: rgba(30, 27, 75, 0.82);
+    --surface-tile: rgba(49, 46, 129, 0.75);
+    --surface-tile-hover: rgba(67, 56, 202, 0.9);
+}
+
+body[data-theme="ventura"] {
+    background-image: linear-gradient(135deg, #0284c7, #38bdf8, #818cf8, #c084fc, #f472b6, #0284c7);
+}
+
+body[data-theme="sequoia"] {
+    background-image: linear-gradient(135deg, #064e3b, #047857, #10b981, #f59e0b, #d97706, #064e3b);
+    color: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --surface-window: rgba(6, 78, 59, 0.82);
+    --surface-tile: rgba(4, 120, 87, 0.75);
+    --surface-tile-hover: rgba(16, 185, 129, 0.9);
 }
 
 /* Custom Scrollbar */
@@ -132,9 +146,14 @@ main.main-content {
 }
 
 .mac-apple-icon {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-primary);
     cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.mac-apple-icon:hover {
+    transform: scale(1.15);
 }
 
 .mac-menu-item.active-app {
@@ -194,7 +213,14 @@ main.main-content {
 
 .mac-sys-icon {
     color: var(--text-secondary);
-    font-size: 0.82rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mac-sys-icon:hover {
+    color: var(--accent-coral);
+    transform: scale(1.15);
 }
 
 .mac-clock-time {
@@ -203,6 +229,94 @@ main.main-content {
     font-size: 0.78rem;
     white-space: nowrap;
 }
+
+/* CONTROL CENTER DROPDOWN */
+.control-center-dropdown {
+    position: fixed;
+    top: 42px;
+    right: 16px;
+    width: 250px;
+    background: rgba(255, 248, 246, 0.92);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    z-index: 10008;
+    display: none;
+    animation: fadeInDown 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.control-center-dropdown.active {
+    display: block;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.cc-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.wallpaper-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wp-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wp-btn:hover, .wp-btn.active {
+    background: rgba(232, 93, 93, 0.15);
+    border-color: var(--accent-coral);
+    color: var(--accent-coral-deep);
+}
+
+.wp-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.wp-coral { background: linear-gradient(135deg, #F58F8F, #C89BF2); }
+.wp-sonoma { background: linear-gradient(135deg, #4c1d95, #f472b6); }
+.wp-ventura { background: linear-gradient(135deg, #38bdf8, #f472b6); }
+.wp-sequoia { background: linear-gradient(135deg, #047857, #f59e0b); }
 
 /* ==================== macOS APPLICATION WINDOW ==================== */
 .mac-window-container {
@@ -622,28 +736,6 @@ main.main-content {
     gap: 8px;
 }
 
-.pillar-badge {
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    padding: 10px 6px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.pillar-icon {
-    font-size: 1.1rem;
-    color: var(--accent-coral);
-}
-
-.pillar-badge span {
-    font-size: 0.74rem;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
 /* ==================== PROJECTS FINDER ==================== */
 .finder-window {
     background: rgba(255, 255, 255, 0.4);
@@ -793,6 +885,28 @@ main.main-content {
     color: var(--accent-coral-deep);
 }
 
+/* FINDER PATH BAR */
+.finder-path-bar {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 0.76rem;
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.finder-path-bar i {
+    color: var(--accent-coral);
+}
+
+.path-current {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
 /* ==================== SKILLS SYSTEM SETTINGS ==================== */
 .settings-grid {
     display: grid;
@@ -825,6 +939,7 @@ main.main-content {
     color: #FFFFFF;
     font-size: 0.95rem;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease;
 }
 
 .icon-blue { background: linear-gradient(135deg, #E85D5D, #F29B72); }
@@ -853,12 +968,6 @@ main.main-content {
     border-radius: 8px;
     font-size: 0.82rem;
     font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.skill-pill:hover {
-    background: rgba(232, 93, 93, 0.12);
-    border-color: rgba(232, 93, 93, 0.25);
 }
 
 /* ==================== CONTACT MAIL SECTION ==================== */
@@ -1001,7 +1110,7 @@ main.main-content {
     color: var(--text-tertiary);
 }
 
-/* ==================== macOS FLOATING DOCK ==================== */
+/* ==================== macOS FLOATING DOCK & BOUNCE ==================== */
 .mac-desktop-dock {
     position: fixed;
     bottom: 14px;
@@ -1047,6 +1156,36 @@ main.main-content {
     transform: translateY(-8px) scale(1.22);
 }
 
+/* Keyframe Dock Bounce */
+@keyframes dockBounce {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-16px); }
+    60% { transform: translateY(-6px); }
+}
+
+.dock-item.bouncing .dock-icon {
+    animation: dockBounce 0.6s ease;
+}
+
+.dock-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    position: absolute;
+    bottom: -6px;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+.dock-item.active .dock-dot {
+    opacity: 1;
+    background: var(--accent-coral);
+    transform: scale(1.4);
+}
+
+.icon-launchpad { background: linear-gradient(135deg, #6366f1, #a855f7); }
+
 .dock-item:hover .dock-tooltip {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -1069,25 +1208,308 @@ main.main-content {
     transition: all 0.2s ease;
 }
 
-.icon-home { background: linear-gradient(135deg, #E85D5D, #F29B72); }
-.icon-projects { background: linear-gradient(135deg, #F29B72, #FBBF24); }
-.icon-skills { background: linear-gradient(135deg, #AF52DE, #C89BF2); }
-.icon-resume { background: linear-gradient(135deg, #FF3B30, #F43F5E); }
-.icon-linkedin { background: linear-gradient(135deg, #0077B5, #0ea5e9); }
-.icon-github { background: linear-gradient(135deg, #5F5555, #252525); }
-.icon-contact { background: linear-gradient(135deg, #34C759, #2DD4BF); }
+/* ==================== macOS MODALS (SPOTLIGHT & ABOUT THIS MAC) ==================== */
+.mac-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 20000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
-.dock-separator {
-    width: 1px;
-    height: 26px;
-    background: rgba(0, 0, 0, 0.08);
-    margin: 0 2px;
-    flex-shrink: 0;
+.mac-modal-overlay.active {
+    display: flex;
+}
+
+/* Spotlight Window */
+.spotlight-window {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 248, 246, 0.95);
+    backdrop-filter: blur(35px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: spotlightPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes spotlightPop {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.spotlight-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.spotlight-icon {
+    font-size: 1.2rem;
+    color: var(--accent-coral);
+}
+
+.spotlight-search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    font-family: var(--font-system);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.spotlight-keyhint {
+    font-size: 0.7rem;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--text-tertiary);
+    padding: 3px 7px;
+    border-radius: 5px;
+}
+
+.spotlight-results {
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.spotlight-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.spotlight-item:hover, .spotlight-item.selected {
+    background: rgba(232, 93, 93, 0.12);
+}
+
+.spotlight-item i {
+    color: var(--accent-coral);
+    font-size: 1rem;
+    width: 20px;
+}
+
+.spotlight-item-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: block;
+}
+
+.spotlight-item-sub {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+}
+
+/* About This Mac Modal */
+.about-mac-window {
+    width: 100%;
+    max-width: 420px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+    animation: spotlightPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-header {
+    background: rgba(0, 0, 0, 0.03);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.modal-close {
+    cursor: pointer;
+}
+
+.about-window-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin: 0 auto;
+}
+
+.about-body {
+    padding: 24px;
+    text-align: center;
+}
+
+.about-avatar-wrapper {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent-coral);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.about-avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.about-name {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+}
+
+.about-sub {
+    font-size: 0.84rem;
+    color: var(--accent-coral);
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.about-specs {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    margin-bottom: 8px;
+}
+
+.spec-row:last-child {
+    margin-bottom: 0;
+}
+
+.spec-label {
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+.spec-val {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.status-green {
+    color: #16A34A;
+}
+
+.about-footer {
+    display: flex;
+    justify-content: center;
+}
+
+/* Launchpad Full Screen Overlay */
+.launchpad-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 240, 240, 0.88);
+    backdrop-filter: blur(35px) saturate(180%);
+    -webkit-backdrop-filter: blur(35px) saturate(180%);
+    z-index: 20000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.launchpad-overlay.active {
+    display: flex;
+    animation: fadeInDown 0.3s ease;
+}
+
+.launchpad-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.launchpad-close:hover {
+    transform: scale(1.2);
+}
+
+.launchpad-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    margin-bottom: 36px;
+}
+
+.launchpad-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 700px;
+    width: 100%;
+}
+
+.lp-app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lp-app-item:hover {
+    transform: scale(1.15);
+}
+
+.lp-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.lp-app-item span {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
 }
 
 /* ==================== TABLET & MOBILE RESPONSIVE AUDIT ==================== */
 
-/* Tablet (1024px and down) */
 @media (max-width: 1024px) {
     main.main-content {
         padding: 48px 12px 140px;
@@ -1116,17 +1538,16 @@ main.main-content {
         padding: 26px 20px 100px;
     }
 
-    .title-role {
+    .title-role, .title-divider {
         display: inline;
-        font-size: 0.82em;
     }
 
-    .title-divider {
-        display: inline;
+    .launchpad-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
     }
 }
 
-/* Mobile & Small Tablet (768px and down) */
 @media (max-width: 768px) {
     main.main-content {
         padding: 42px 6px 140px;
@@ -1140,21 +1561,9 @@ main.main-content {
         display: none;
     }
 
-    .mac-sys-icon {
-        display: none;
-    }
-
-    .mac-header-resume-btn span {
-        display: inline-block;
-    }
-
     .mac-window-header {
         padding: 8px 12px;
         gap: 6px;
-    }
-
-    .title-role, .title-divider {
-        display: inline;
     }
 
     .mac-window-title {
@@ -1162,11 +1571,6 @@ main.main-content {
         justify-content: center;
         margin: 0;
         flex-wrap: wrap;
-    }
-
-    .mac-subtle-badge {
-        font-size: 0.68rem;
-        padding: 2px 8px;
     }
 
     .mobile-nav-toggle {
@@ -1230,22 +1634,6 @@ main.main-content {
         grid-template-columns: 1fr;
     }
 
-    .finder-toolbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .finder-filters {
-        width: 100%;
-    }
-
-    .filter-chip {
-        flex: 1 1 auto;
-        text-align: center;
-        padding: 6px 10px;
-        font-size: 0.78rem;
-    }
-
     .mac-desktop-dock {
         bottom: 8px;
         padding: 4px 8px;
@@ -1260,18 +1648,12 @@ main.main-content {
         font-size: 0.9rem;
     }
 
-    .form-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .form-row label {
-        width: 100%;
+    .launchpad-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
 
-/* Extra Small Phones (480px and down) */
 @media (max-width: 480px) {
     .mac-window-container {
         border-radius: 14px;
@@ -1279,10 +1661,6 @@ main.main-content {
 
     .mac-subtle-badge {
         display: none;
-    }
-
-    .mac-window-title {
-        font-size: 0.86rem;
     }
 
     .hero-title {
@@ -1314,10 +1692,5 @@ main.main-content {
         height: 28px;
         font-size: 0.8rem;
         border-radius: 7px;
-    }
-
-    .dock-separator {
-        height: 18px;
-        margin: 0 1px;
     }
 }
