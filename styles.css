@@ -51,6 +51,7 @@
 }
 
 body, html {
+    background: linear-gradient(135deg, #F58F8F, #FAD6D6, #E8C6F0, #F9B4B4, #FFF1F1, #D8B4F8, #F58F8F);
     background-size: 300% 300%;
     animation: smoothBgShift 28s ease-in-out infinite;
     background-attachment: fixed;
@@ -61,36 +62,6 @@ body, html {
     min-height: 100vh;
     width: 100%;
     -webkit-font-smoothing: antialiased;
-    transition: background 0.8s ease;
-}
-
-/* Wallpaper Themes */
-body[data-theme="coral"], body {
-    background-image: linear-gradient(135deg, #F58F8F, #FAD6D6, #E8C6F0, #F9B4B4, #FFF1F1, #D8B4F8, #F58F8F);
-}
-
-body[data-theme="sonoma"] {
-    background-image: linear-gradient(135deg, #2e1065, #4c1d95, #831843, #be185d, #f472b6, #2e1065);
-    color: #ffffff;
-    --text-primary: #ffffff;
-    --text-secondary: #e2e8f0;
-    --surface-window: rgba(30, 27, 75, 0.82);
-    --surface-tile: rgba(49, 46, 129, 0.75);
-    --surface-tile-hover: rgba(67, 56, 202, 0.9);
-}
-
-body[data-theme="ventura"] {
-    background-image: linear-gradient(135deg, #0284c7, #38bdf8, #818cf8, #c084fc, #f472b6, #0284c7);
-}
-
-body[data-theme="sequoia"] {
-    background-image: linear-gradient(135deg, #064e3b, #047857, #10b981, #f59e0b, #d97706, #064e3b);
-    color: #ffffff;
-    --text-primary: #ffffff;
-    --text-secondary: #e2e8f0;
-    --surface-window: rgba(6, 78, 59, 0.82);
-    --surface-tile: rgba(4, 120, 87, 0.75);
-    --surface-tile-hover: rgba(16, 185, 129, 0.9);
 }
 
 /* Custom Scrollbar */
@@ -1147,10 +1118,23 @@ main.main-content {
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    color: #FFFFFF;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+.dock-icon i {
+    color: #FFFFFF !important;
+}
+
+.dock-icon.icon-home, .icon-home { background: linear-gradient(135deg, #FF5E57, #FF9500) !important; }
+.dock-icon.icon-projects, .icon-projects { background: linear-gradient(135deg, #FF9500, #FFCC00) !important; }
+.dock-icon.icon-skills, .icon-skills { background: linear-gradient(135deg, #AF52DE, #5856D6) !important; }
+.dock-icon.icon-launchpad, .icon-launchpad { background: linear-gradient(135deg, #6366f1, #a855f7) !important; }
+.dock-icon.icon-resume, .icon-resume { background: linear-gradient(135deg, #FF2D55, #FF3B30) !important; }
+.dock-icon.icon-linkedin, .icon-linkedin { background: linear-gradient(135deg, #007AFF, #0077B5) !important; }
+.dock-icon.icon-github, .icon-github { background: linear-gradient(135deg, #3A3A3C, #1C1C1E) !important; }
+.dock-icon.icon-contact, .icon-contact { background: linear-gradient(135deg, #34C759, #30D158) !important; }
 
 .dock-item:hover .dock-icon {
     transform: translateY(-8px) scale(1.22);

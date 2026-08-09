@@ -105,34 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dockResumeBtn) dockResumeBtn.addEventListener('click', triggerResumeDownload);
     if (aboutResumeBtn) aboutResumeBtn.addEventListener('click', triggerResumeDownload);
 
-    // ----------------------------------------------------
-    // 5. CONTROL CENTER & WALLPAPER SWITCHER
-    // ----------------------------------------------------
-    const controlCenterBtn = document.getElementById('control-center-btn');
-    const controlCenterDropdown = document.getElementById('control-center-dropdown');
-    const wpBtns = document.querySelectorAll('.wp-btn');
 
-    if (controlCenterBtn && controlCenterDropdown) {
-        controlCenterBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            controlCenterDropdown.classList.toggle('active');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!controlCenterDropdown.contains(e.target) && e.target !== controlCenterBtn) {
-                controlCenterDropdown.classList.remove('active');
-            }
-        });
-    }
-
-    wpBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            wpBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const theme = btn.dataset.theme;
-            document.body.dataset.theme = theme;
-        });
-    });
 
     // ----------------------------------------------------
     // 6. SPOTLIGHT SEARCH SYSTEM (⌘ + K)
