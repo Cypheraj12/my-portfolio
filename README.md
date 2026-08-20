@@ -5,7 +5,7 @@ Hey there! 👋 Welcome to my personal portfolio.
 I'm a final-year B.Tech CSE (Data Science) student passionate about engineering machine learning models, predictive analytics, computer vision, and backend APIs.
 
 ## Live Portfolio
-Check out the live website:[ [anantjoshi.dev](https://github.com/Cypheraj12/my-portfolio)](https://my-portfolio-psi-liart-71.vercel.app/)
+Check out the live website: https://my-portfolio-psi-liart-71.vercel.app/
 
 ## ✨ Highlights
 - **macOS Desktop UI**: Top system bar with live clock, segmented app navigation, and desktop dock.
