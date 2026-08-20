@@ -900,21 +900,24 @@ main.main-content {
 }
 
 .hero-description {
-    font-size: clamp(0.93rem, 1.5vw, 1.02rem);
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 14px;
+    font-family: 'Space Grotesk', var(--font-system);
+    font-size: clamp(0.96rem, 1.5vw, 1.06rem);
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    letter-spacing: 0.2px;
 }
 
 .hero-bio-summary {
+    font-family: 'Space Grotesk', var(--font-system);
     font-size: clamp(0.88rem, 1.4vw, 0.94rem);
     color: var(--text-secondary);
-    line-height: 1.65;
+    line-height: 1.6;
     margin-bottom: 28px;
-    background: rgba(124, 58, 237, 0.06);
+    background: rgba(124, 58, 237, 0.08);
     padding: 14px 18px;
     border-radius: 12px;
-    border: 1px solid rgba(168, 85, 247, 0.18);
+    border: 1px solid rgba(168, 85, 247, 0.22);
 }
 
 .hero-cta-group {
