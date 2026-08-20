@@ -4,7 +4,7 @@ Hey there! 👋 Welcome to my personal portfolio.
 
 I'm a final-year B.Tech CSE (Data Science) student passionate about engineering machine learning models, predictive analytics, computer vision, and backend APIs.
 
-## ⚡ Live Portfolio
+## Live Portfolio
 Check out the live website: [anantjoshi.dev](https://github.com/Cypheraj12/my-portfolio)
 
 ## ✨ Highlights
@@ -18,6 +18,3 @@ Check out the live website: [anantjoshi.dev](https://github.com/Cypheraj12/my-po
 - **Frontend**: HTML5, Vanilla CSS (Glassmorphism & Keyframe Animations), JavaScript (ES6+)
 - **Typography & Icons**: Space Grotesk, Plus Jakarta Sans, Inter, FontAwesome 6
 - **Core Skills**: Python, TensorFlow, PyTorch, Scikit-Learn, FastAPI, MongoDB, Pandas, NumPy
-
----
-*Crafted with ❤️ by [Anant Joshi](https://github.com/Cypheraj12)*
