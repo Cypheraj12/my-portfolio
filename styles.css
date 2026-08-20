@@ -998,12 +998,10 @@ main.main-content {
     border-radius: 22px !important;
     position: relative !important;
     overflow: visible !important;
-    /* Layered outer glow matching the reference */
+    /* Only depth shadow — no uniform side glow */
     box-shadow:
-        0 0 0 1px  rgba(168, 85, 247, 0.22),
-        0 0 40px   rgba(139, 92, 246, 0.40),
-        0 0 80px   rgba(59,  130, 246, 0.15),
-        0 24px 60px rgba(0,   0,   0,   0.55) !important;
+        0 0 0 1px  rgba(168, 85, 247, 0.18),
+        0 24px 60px rgba(0, 0, 0, 0.60) !important;
 }
 
 /* Conic gradient border glow aura */
@@ -1025,18 +1023,19 @@ main.main-content {
     z-index: 0;
 }
 
-/* Animated pulsing outer halo */
+/* Animated pulsing corner halo — offset-based so glow stays at corners only */
 .profile-tile::after {
     content: '';
     position: absolute;
-    inset: -4px;
+    inset: -3px;
     border-radius: 26px;
     background: transparent;
+    /* Each shadow offset pushes glow toward its corner */
     box-shadow:
-        -8px  -8px 40px rgba(124,58,237, 0.60),
-         8px  -8px 40px rgba(59, 130,246, 0.45),
-         8px   8px 40px rgba(168,85, 247, 0.55),
-        -8px   8px 40px rgba(6,  182,212, 0.35);
+        -10px -10px 28px 0px rgba(124, 58, 237, 0.70),
+         10px -10px 28px 0px rgba(59,  130, 246, 0.55),
+         10px  10px 28px 0px rgba(168,  85, 247, 0.65),
+        -10px  10px 28px 0px rgba(6,   182, 212, 0.48);
     pointer-events: none;
     z-index: -1;
     animation: neonCornerPulse 3.5s ease-in-out infinite alternate;
@@ -1045,17 +1044,17 @@ main.main-content {
 @keyframes neonCornerPulse {
     0% {
         box-shadow:
-            -8px  -8px 40px rgba(124,58,237, 0.60),
-             8px  -8px 40px rgba(59, 130,246, 0.45),
-             8px   8px 40px rgba(168,85, 247, 0.55),
-            -8px   8px 40px rgba(6,  182,212, 0.35);
+            -10px -10px 28px 0px rgba(124, 58, 237, 0.70),
+             10px -10px 28px 0px rgba(59,  130, 246, 0.55),
+             10px  10px 28px 0px rgba(168,  85, 247, 0.65),
+            -10px  10px 28px 0px rgba(6,   182, 212, 0.48);
     }
     100% {
         box-shadow:
-            -10px -10px 60px rgba(124,58,237, 0.85),
-              10px -10px 60px rgba(59, 130,246, 0.65),
-              10px  10px 60px rgba(168,85, 247, 0.75),
-            -10px  10px 60px rgba(6,  182,212, 0.50);
+            -12px -12px 38px 2px rgba(124, 58, 237, 0.88),
+             12px -12px 38px 2px rgba(59,  130, 246, 0.72),
+             12px  12px 38px 2px rgba(168,  85, 247, 0.82),
+            -12px  12px 38px 2px rgba(6,   182, 212, 0.62);
     }
 }
 
