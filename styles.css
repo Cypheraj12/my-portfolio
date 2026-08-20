@@ -1,9 +1,9 @@
-/* ==================== PREMIUM macOS GLASS PORTFOLIO — EXECUTIVE APPLE PALETTE ==================== */
+/* ==================== VIBRANT APPLE SKY BLUE / OCEAN AZURE PALETTE ==================== */
 :root {
-    /* Executive Apple Slate & Space Azure Palette */
-    --bg-primary: #0F172A;
-    --bg-slate: #1E293B;
-    --bg-azure: #0284C7;
+    /* Vibrant Apple Sky Blue & Ocean Azure Palette */
+    --bg-primary: #0284C7;
+    --bg-slate: #0369A1;
+    --bg-azure: #0EA5E9;
     --bg-blue: #2563EB;
     
     /* High Contrast Readability Typography */
@@ -13,8 +13,8 @@
     --text-muted: #94A3B8;
     
     /* Glass Surfaces */
-    --surface-window: rgba(248, 250, 252, 0.90);
-    --surface-tile: rgba(255, 255, 255, 0.94);
+    --surface-window: rgba(248, 250, 252, 0.94);
+    --surface-tile: rgba(255, 255, 255, 0.96);
     --surface-tile-hover: #FFFFFF;
     --border-subtle: rgba(226, 232, 240, 0.9);
     --border-light: rgba(255, 255, 255, 0.95);
@@ -36,9 +36,9 @@
     /* Typography & Elevation */
     --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
     --font-heading: 'Plus Jakarta Sans', var(--font-system);
-    --shadow-window: 0 25px 60px rgba(15, 23, 42, 0.25), 0 0 1px rgba(0, 0, 0, 0.15);
-    --shadow-tile: 0 8px 25px rgba(15, 23, 42, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9);
-    --shadow-tile-hover: 0 14px 40px rgba(2, 132, 199, 0.18), inset 0 1px 1px rgba(255, 255, 255, 1), 0 0 0 1px rgba(2, 132, 199, 0.25);
+    --shadow-window: 0 25px 60px rgba(2, 132, 199, 0.25), 0 0 1px rgba(0, 0, 0, 0.15);
+    --shadow-tile: 0 8px 25px rgba(2, 132, 199, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    --shadow-tile-hover: 0 14px 40px rgba(2, 132, 199, 0.22), inset 0 1px 1px rgba(255, 255, 255, 1), 0 0 0 1px rgba(2, 132, 199, 0.25);
 }
 
 * {
@@ -56,7 +56,7 @@
 }
 
 body, html {
-    background: linear-gradient(135deg, #0F172A, #1E3A8A, #0284C7, #1E293B, #0F172A);
+    background: linear-gradient(135deg, #0284C7, #0369A1, #0EA5E9, #1E40AF, #0284C7);
     background-size: 300% 300%;
     animation: smoothBgShift 28s ease-in-out infinite;
     background-attachment: fixed;
@@ -72,19 +72,19 @@ body, html {
 
 /* DYNAMIC SCROLL SECTION BACKGROUND SHIFTS */
 body.bg-section-hero {
-    background-image: linear-gradient(135deg, #0F172A, #1E3A8A, #0284C7, #1E293B, #0F172A);
+    background-image: linear-gradient(135deg, #0284C7, #0369A1, #0EA5E9, #1E40AF, #0284C7);
 }
 
 body.bg-section-projects {
-    background-image: linear-gradient(135deg, #1E293B, #1D4ED8, #0EA5E9, #0F172A, #1E293B);
+    background-image: linear-gradient(135deg, #0369A1, #1D4ED8, #0EA5E9, #0284C7, #0369A1);
 }
 
 body.bg-section-skills {
-    background-image: linear-gradient(135deg, #0F172A, #4338CA, #06B6D4, #1E1B4B, #0F172A);
+    background-image: linear-gradient(135deg, #0EA5E9, #4338CA, #0284C7, #1E40AF, #0EA5E9);
 }
 
 body.bg-section-contact {
-    background-image: linear-gradient(135deg, #0F172A, #047857, #0284C7, #065F46, #0F172A);
+    background-image: linear-gradient(135deg, #0284C7, #047857, #0EA5E9, #0369A1, #0284C7);
 }
 
 /* ==================== AMBIENT MOVING BACKGROUND OBJECTS ==================== */
