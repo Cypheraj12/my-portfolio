@@ -1,26 +1,32 @@
-/* ==================== PREMIUM macOS GLASS PORTFOLIO — WARM SMOOTH ANIMATED PALETTE ==================== */
+/* ==================== PREMIUM macOS GLASS PORTFOLIO — EXECUTIVE APPLE PALETTE ==================== */
 :root {
-    /* Warm Coral / Blush / Lavender Palette */
-    --bg-primary: #F58F8F;
-    --bg-light-coral: #F9B4B4;
-    --bg-secondary: #FAD6D6;
-    --bg-very-light: #FFF1F1;
-    --text-primary: #252525;
-    --text-secondary: #5F5555;
-    --text-tertiary: #8A7B7B;
-    --surface-window: rgba(255, 255, 255, 0.72);
-    --surface-tile: rgba(255, 249, 247, 0.82);
-    --surface-tile-hover: rgba(255, 255, 255, 0.95);
-    --border-subtle: rgba(255, 255, 255, 0.6);
-    --border-light: rgba(255, 255, 255, 0.75);
+    /* Executive Apple Slate & Space Azure Palette */
+    --bg-primary: #0F172A;
+    --bg-slate: #1E293B;
+    --bg-azure: #0284C7;
+    --bg-blue: #2563EB;
+    
+    /* High Contrast Readability Typography */
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-tertiary: #64748B;
+    --text-muted: #94A3B8;
+    
+    /* Glass Surfaces */
+    --surface-window: rgba(248, 250, 252, 0.90);
+    --surface-tile: rgba(255, 255, 255, 0.94);
+    --surface-tile-hover: #FFFFFF;
+    --border-subtle: rgba(226, 232, 240, 0.9);
+    --border-light: rgba(255, 255, 255, 0.95);
+    --border-accent: rgba(2, 132, 199, 0.35);
 
-    /* Accents */
-    --accent-coral: #E85D5D;
-    --accent-coral-deep: #D94848;
-    --accent-orange: #F29B72;
-    --accent-lavender: #C89BF2;
-    --accent-rose: #F472B6;
-    --accent-green: #34D399;
+    /* Apple Accents */
+    --accent-coral: #0284C7;
+    --accent-coral-deep: #0369A1;
+    --accent-orange: #0EA5E9;
+    --accent-lavender: #6366F1;
+    --accent-rose: #2563EB;
+    --accent-green: #10B981;
 
     /* Traffic Lights */
     --mac-red: #FF5F56;
@@ -30,9 +36,9 @@
     /* Typography & Elevation */
     --font-system: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
     --font-heading: 'Plus Jakarta Sans', var(--font-system);
-    --shadow-window: 0 25px 50px rgba(180, 80, 80, 0.12), 0 0 1px rgba(0, 0, 0, 0.08);
-    --shadow-tile: 0 8px 30px rgba(180, 90, 90, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.7);
-    --shadow-tile-hover: 0 14px 40px rgba(180, 90, 90, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 0 0 1px rgba(232, 93, 93, 0.15);
+    --shadow-window: 0 25px 60px rgba(15, 23, 42, 0.25), 0 0 1px rgba(0, 0, 0, 0.15);
+    --shadow-tile: 0 8px 25px rgba(15, 23, 42, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    --shadow-tile-hover: 0 14px 40px rgba(2, 132, 199, 0.18), inset 0 1px 1px rgba(255, 255, 255, 1), 0 0 0 1px rgba(2, 132, 199, 0.25);
 }
 
 * {
@@ -43,7 +49,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-/* ==================== SMOOTH CONTINUOUS BACKGROUND ANIMATIONS & THEMES ==================== */
 @keyframes smoothBgShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -51,7 +56,7 @@
 }
 
 body, html {
-    background: linear-gradient(135deg, #F58F8F, #FAD6D6, #E8C6F0, #F9B4B4, #FFF1F1, #D8B4F8, #F58F8F);
+    background: linear-gradient(135deg, #0F172A, #1E3A8A, #0284C7, #1E293B, #0F172A);
     background-size: 300% 300%;
     animation: smoothBgShift 28s ease-in-out infinite;
     background-attachment: fixed;
@@ -67,19 +72,19 @@ body, html {
 
 /* DYNAMIC SCROLL SECTION BACKGROUND SHIFTS */
 body.bg-section-hero {
-    background-image: linear-gradient(135deg, #F58F8F, #FAD6D6, #E8C6F0, #F9B4B4, #FFF1F1, #D8B4F8, #F58F8F);
+    background-image: linear-gradient(135deg, #0F172A, #1E3A8A, #0284C7, #1E293B, #0F172A);
 }
 
 body.bg-section-projects {
-    background-image: linear-gradient(135deg, #F9B4B4, #F29B72, #FAD6D6, #FFE4E4, #FFF1F1, #F9B4B4);
+    background-image: linear-gradient(135deg, #1E293B, #1D4ED8, #0EA5E9, #0F172A, #1E293B);
 }
 
 body.bg-section-skills {
-    background-image: linear-gradient(135deg, #E8C6F0, #C89BF2, #FAD6D6, #F58F8F, #FFF1F1, #E8C6F0);
+    background-image: linear-gradient(135deg, #0F172A, #4338CA, #06B6D4, #1E1B4B, #0F172A);
 }
 
 body.bg-section-contact {
-    background-image: linear-gradient(135deg, #FAD6D6, #A7F3D0, #F9B4B4, #E8C6F0, #FFF1F1, #FAD6D6);
+    background-image: linear-gradient(135deg, #0F172A, #047857, #0284C7, #065F46, #0F172A);
 }
 
 /* ==================== AMBIENT MOVING BACKGROUND OBJECTS ==================== */
@@ -98,14 +103,14 @@ body.bg-section-contact {
     position: absolute;
     border-radius: 50%;
     filter: blur(55px);
-    opacity: 0.55;
+    opacity: 0.45;
     will-change: transform;
 }
 
 .orb-1 {
     width: clamp(200px, 35vw, 480px);
     height: clamp(200px, 35vw, 480px);
-    background: radial-gradient(circle, #E85D5D, rgba(242, 155, 114, 0.4), transparent 70%);
+    background: radial-gradient(circle, #0284C7, rgba(56, 189, 248, 0.4), transparent 70%);
     top: -10%;
     left: -10%;
     animation: floatOrb1 24s ease-in-out infinite alternate;
@@ -114,10 +119,19 @@ body.bg-section-contact {
 .orb-2 {
     width: clamp(220px, 40vw, 520px);
     height: clamp(220px, 40vw, 520px);
-    background: radial-gradient(circle, #C89BF2, rgba(244, 114, 182, 0.4), transparent 70%);
+    background: radial-gradient(circle, #4F46E5, rgba(99, 102, 241, 0.4), transparent 70%);
     bottom: -15%;
     right: -10%;
     animation: floatOrb2 28s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+    width: clamp(180px, 30vw, 400px);
+    height: clamp(180px, 30vw, 400px);
+    background: radial-gradient(circle, #0D9488, rgba(45, 212, 191, 0.4), transparent 70%);
+    top: 40%;
+    left: 30%;
+    animation: floatOrb3 22s ease-in-out infinite alternate;
 }
 
 .orb-3 {
@@ -754,16 +768,26 @@ main.main-content {
 }
 
 .avatar-wrapper {
-    width: 115px;
-    height: 115px;
-    margin: 0 auto 16px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid rgba(232, 93, 93, 0.35);
-    box-shadow: 0 8px 25px rgba(232, 93, 93, 0.15);
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+    margin: 0 auto 16px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    border: 3px solid #0284C7 !important;
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.25) !important;
+    flex-shrink: 0 !important;
 }
 
 .profile-avatar {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+}
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1713,51 +1737,81 @@ main.main-content {
         width: 32px;
         height: 32px;
         font-size: 0.9rem;
+@media (max-width: 991px) {
+    main.main-content {
+        padding: 45px 12px 100px;
     }
 
-    .launchpad-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-}
-
-@media (max-width: 480px) {
     .mac-window-container {
-        border-radius: 14px;
+        border-radius: 16px;
     }
 
-    .mac-subtle-badge {
-        display: none;
+    .unified-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mac-window-body {
+        padding: 24px 16px 100px;
     }
 
     .hero-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+    }
+
+    .avatar-wrapper {
+        width: 110px !important;
+        height: 110px !important;
+        max-width: 110px !important;
+        max-height: 110px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .mac-window-title {
+        font-size: 0.88rem;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-cta-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .btn-apple {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 16px;
     }
 
     .domain-pillars {
         grid-template-columns: 1fr;
     }
 
-    .hero-cta-group {
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-    }
-
-    .btn-apple {
-        padding: 8px 10px;
-        font-size: 0.76rem;
-    }
-
     .mac-desktop-dock {
-        padding: 3px 5px;
-        gap: 3px;
-        border-radius: 12px;
+        padding: 4px 8px;
+        gap: 4px;
+        border-radius: 14px;
+        max-width: 95vw;
+        overflow-x: auto;
     }
 
     .dock-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 0.8rem;
-        border-radius: 7px;
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+        border-radius: 8px;
     }
 }
