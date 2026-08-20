@@ -102,10 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const headerResumeBtn = document.getElementById('header-resume-btn');
+    const heroResumeBtn = document.getElementById('hero-resume-btn');
     const dockResumeBtn = document.getElementById('dock-resume-btn');
     const aboutResumeBtn = document.getElementById('about-resume-btn');
 
     if (headerResumeBtn) headerResumeBtn.addEventListener('click', triggerResumeDownload);
+    if (heroResumeBtn) heroResumeBtn.addEventListener('click', triggerResumeDownload);
     if (dockResumeBtn) dockResumeBtn.addEventListener('click', triggerResumeDownload);
     if (aboutResumeBtn) aboutResumeBtn.addEventListener('click', triggerResumeDownload);
 
