@@ -1657,13 +1657,6 @@ main.main-content {
         gap: 6px;
     }
 
-    .mac-window-title {
-        font-size: clamp(0.75rem, 2.2vw, 0.95rem);
-        justify-content: center;
-        margin: 0;
-        flex-wrap: wrap;
-    }
-
     .mobile-nav-toggle {
         display: none !important;
     }
@@ -1672,9 +1665,9 @@ main.main-content {
     .mac-header-resume-btn {
         display: inline-flex !important;
         align-items: center !important;
-        gap: 4px !important;
+        gap: 3px !important;
         padding: 3px 8px !important;
-        font-size: 0.72rem !important;
+        font-size: 0.70rem !important;
         font-weight: 700 !important;
         white-space: nowrap !important;
     }
@@ -1695,47 +1688,54 @@ main.main-content {
         display: none !important;
     }
 
-    /* Clean Window Header Layout on Mobile & Tablet */
+    /* Clean Window Header Layout on Mobile & Tablet - ZERO OVERLAP */
     .mac-window-header {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        padding: 8px 12px !important;
-        gap: 4px !important;
+        padding: 10px 12px !important;
+        gap: 6px !important;
         position: relative !important;
     }
 
     .mac-traffic-lights {
-        position: absolute !important;
-        left: 12px !important;
-        top: 10px !important;
+        position: static !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin-bottom: 2px !important;
+        width: auto !important;
     }
 
     .mac-window-title {
-        font-size: 0.8rem !important;
+        font-size: 0.90rem !important;
         text-align: center !important;
         justify-content: center !important;
         width: 100% !important;
-        font-weight: 800 !important;
-        margin-top: 2px !important;
+        font-weight: 900 !important;
+        margin: 0 !important;
+        color: #0F172A !important;
+        flex-wrap: wrap !important;
     }
 
     .title-divider {
-        display: none !important;
+        display: inline-block !important;
+        margin: 0 4px !important;
+        color: var(--accent-coral) !important;
     }
 
     .title-role {
-        display: block !important;
-        font-size: 0.68rem !important;
-        color: var(--text-tertiary) !important;
-        font-weight: 600 !important;
-        margin-top: 1px !important;
+        display: inline-block !important;
+        font-size: 0.74rem !important;
+        color: var(--text-secondary) !important;
+        font-weight: 700 !important;
     }
 
     .mac-subtle-badge {
-        font-size: 0.66rem !important;
-        padding: 2px 8px !important;
+        font-size: 0.68rem !important;
+        padding: 3px 10px !important;
     }
 
     .hero-title {
@@ -1872,6 +1872,10 @@ main.main-content {
 @media (max-width: 576px) {
     .mac-header-resume-btn span {
         display: inline-block;
+    }
+
+    .mac-clock-time {
+        display: none !important; /* Hide clock on small screens under 576px so Resume button & icons have maximum space */
     }
 
     .hero-cta-group {
