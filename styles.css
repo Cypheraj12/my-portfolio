@@ -1665,29 +1665,20 @@ main.main-content {
     }
 
     .mobile-nav-toggle {
-        display: block;
+        display: none !important;
     }
 
-    .mac-segment-nav {
-        position: fixed;
-        top: 36px;
-        left: 0;
-        width: 100vw;
-        background: rgba(255, 240, 240, 0.97);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        flex-direction: column;
-        padding: 12px;
-        transform: translateY(-160%);
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-        z-index: 10010;
-        border-radius: 0 0 16px 16px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    /* Top Bar Mobile Optimization - Prevents Top Bar Overlap */
+    .mac-header-resume-btn {
+        display: none !important;
     }
 
-    .mac-segment-nav.active {
-        transform: translateY(0);
+    .macos-system-bar {
+        padding: 0 10px !important;
+    }
+
+    .mac-address-bar {
+        display: none !important;
     }
 
     .hero-title {
@@ -1737,6 +1728,9 @@ main.main-content {
         width: 32px;
         height: 32px;
         font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 991px) {
     main.main-content {
         padding: 45px 12px 100px;
@@ -1778,14 +1772,29 @@ main.main-content {
         padding: 6px 10px !important;
         justify-content: center !important;
         width: 100% !important;
+        position: sticky !important;
+        top: 36px !important;
+        z-index: 100 !important;
+        background: rgba(248, 250, 252, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
     }
 
     .mac-segment-nav {
+        display: flex !important;
+        position: static !important;
+        flex-direction: row !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
         width: 100% !important;
         max-width: 100% !important;
         justify-content: space-between !important;
         gap: 4px !important;
         padding: 4px !important;
+        border-radius: 12px !important;
+        background: rgba(226, 232, 240, 0.7) !important;
+        border: 1px solid rgba(203, 213, 225, 0.8) !important;
+        box-shadow: none !important;
     }
 
     .mac-segment-nav .nav-item {
@@ -1844,7 +1853,7 @@ main.main-content {
     }
 
     .mac-segment-nav .nav-item {
-        padding: 6px 6px !important;
+        padding: 6px 4px !important;
         font-size: 0.74rem !important;
         gap: 4px !important;
     }
@@ -1856,12 +1865,12 @@ main.main-content {
 
 @media (max-width: 380px) {
     .mac-segment-nav .nav-item {
-        padding: 5px 3px !important;
-        font-size: 0.7rem !important;
-        gap: 3px !important;
+        padding: 5px 2px !important;
+        font-size: 0.68rem !important;
+        gap: 2px !important;
     }
 
     .mac-segment-nav .nav-item i {
-        font-size: 0.65rem !important;
+        font-size: 0.62rem !important;
     }
 }
