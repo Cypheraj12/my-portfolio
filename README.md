@@ -1,21 +1,23 @@
-# 🚀 Anant Joshi —  Portfolio
+# 🌌 Anant Joshi — Personal Portfolio
 
-A high-performance, superhero-themed personal portfolio website built with HTML5, CSS3, JavaScript, Canvas 2D graphics, and custom SVG cursors.
+Hey there! 👋 Welcome to my personal portfolio.
 
-## 🌟 Highlights & Features
-- **Eye of Agamotto Time Stone**: Full-screen dynamic canvas background animation.
-- **Doctor Strange Chants**: Interactive chant banners with glowing `✦ CLICK ME!` side badges that vanish for 8s and trigger screen-filling electric purple & golden yellow sparkle star blasts.
-- **Captain America Shield**: Interactive gadget that flies smoothly towards the header on click, revealing vertical sidebar name `A N A N T   J O S H I` for 5 seconds.
-- **Thor Mjolnir**: Interactive hammer with real-time thunderbolt lightning flashes and audio synth.
-- **Iron Man Arc Reactor**: Navigation button with sliding LinkedIn & GitHub social links.
-- **Custom Superhero SVG Cursors**: Spidey & Eldritch target crosshairs replacing default browser pointers.
-- **Deadpool Theme**: Bold red outlined text and fire-flame inspired badges.
+I'm a final-year B.Tech CSE (Data Science) student passionate about engineering machine learning models, predictive analytics, computer vision, and backend APIs.
 
-## 🛠️ Tech Stack
-- HTML5 / CSS3 (Vanilla CSS with CSS Variables & Glassmorphism)
-- JavaScript (ES6+, Canvas API, Web Audio API)
-- Google Fonts (Bebas Neue, Cinzel, Outfit, Playfair Display)
-- FontAwesome 6 Icons
+## ⚡ Live Portfolio
+Check out the live website: [anantjoshi.dev](https://github.com/Cypheraj12/my-portfolio)
 
-## ⚡ Deployment
-This site is configured for 1-click deployment on [Vercel](https://vercel.com).
+## ✨ Highlights
+- **macOS Desktop UI**: Top system bar with live clock, segmented app navigation, and desktop dock.
+- **AI/Tech Glassmorphism**: Dark violet nebula theme with ambient floating aurora waves and glowing glass cards.
+- **Spotlight Search (`⌘ + K`)**: Interactive search overlay to jump anywhere or download my resume.
+- **Featured Projects**: Showcase for deepfake detection, API latency forecasting, YouTube fetcher API, and ML predictors.
+- **Contact Mailbox**: In-app interactive email form.
+
+## 🛠️ Built With
+- **Frontend**: HTML5, Vanilla CSS (Glassmorphism & Keyframe Animations), JavaScript (ES6+)
+- **Typography & Icons**: Space Grotesk, Plus Jakarta Sans, Inter, FontAwesome 6
+- **Core Skills**: Python, TensorFlow, PyTorch, Scikit-Learn, FastAPI, MongoDB, Pandas, NumPy
+
+---
+*Crafted with ❤️ by [Anant Joshi](https://github.com/Cypheraj12)*
