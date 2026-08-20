@@ -1696,56 +1696,65 @@ main.main-content {
         display: none !important;
     }
 
-    /* Clean Window Header Layout on Mobile & Tablet - Left Traffic Lights */
+    /* Clean Window Header Layout on Mobile & Tablet - Left Traffic Lights & Visible Role */
     .mac-window-header {
         display: flex !important;
-        flex-direction: row !important;
+        flex-direction: column !important;
         align-items: center !important;
-        justify-content: space-between !important;
-        padding: 10px 12px !important;
-        gap: 8px !important;
-        min-height: 42px !important;
+        justify-content: center !important;
+        padding: 10px 14px !important;
+        gap: 6px !important;
+        position: relative !important;
     }
 
     .mac-traffic-lights {
-        position: static !important;
+        position: absolute !important;
+        left: 14px !important;
+        top: 14px !important;
         display: flex !important;
-        justify-content: flex-start !important;
         align-items: center !important;
         gap: 6px !important;
         width: auto !important;
-        flex-shrink: 0 !important;
-        margin-right: 4px !important;
     }
 
     .mac-window-title {
-        font-size: 0.85rem !important;
-        text-align: left !important;
-        justify-content: flex-start !important;
-        flex: 1 !important;
+        font-size: 0.95rem !important;
+        text-align: center !important;
+        justify-content: center !important;
+        width: 100% !important;
         font-weight: 900 !important;
         margin: 0 !important;
         color: #0F172A !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important;
+    }
+
+    .title-name {
+        font-size: 1.05rem !important;
+        font-weight: 900 !important;
+        color: #0F172A !important;
+        letter-spacing: 0.5px !important;
     }
 
     .title-divider {
-        display: inline-block !important;
-        margin: 0 3px !important;
-        color: var(--accent-coral) !important;
+        display: none !important;
     }
 
     .title-role {
-        display: none !important; /* Hide long subtitle in window header bar on small mobile so title fits cleanly beside left traffic lights */
+        display: block !important;
+        font-size: 0.72rem !important;
+        color: #0284C7 !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.4px !important;
+        white-space: nowrap !important;
     }
 
     .mac-subtle-badge {
-        font-size: 0.65rem !important;
-        padding: 2px 7px !important;
-        flex-shrink: 0 !important;
-        white-space: nowrap !important;
+        font-size: 0.66rem !important;
+        padding: 3px 10px !important;
+        margin-top: 2px !important;
     }
 
     .hero-title {
