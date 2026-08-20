@@ -1905,14 +1905,36 @@ main.main-content {
         width: 100%;
     }
 
-    .btn-apple {
-        width: 100%;
-        justify-content: center;
-        padding: 10px 16px;
+    .profile-social-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        margin: 10px 0 16px !important;
+    }
+
+    .btn-apple-linkedin, .btn-apple-github {
+        width: auto !important;
+        padding: 6px 14px !important;
+        font-size: 0.78rem !important;
+        display: inline-flex !important;
     }
 
     .domain-pillars {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+    }
+
+    .pillar-badge {
+        padding: 8px 4px !important;
+        text-align: center !important;
+    }
+
+    .pillar-badge span {
+        font-size: 0.68rem !important;
     }
 
     .mac-desktop-dock {
