@@ -1773,6 +1773,34 @@ main.main-content {
         max-width: 110px !important;
         max-height: 110px !important;
     }
+
+    .mac-app-nav-bar {
+        padding: 6px 10px !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    .mac-segment-nav {
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: space-between !important;
+        gap: 4px !important;
+        padding: 4px !important;
+    }
+
+    .mac-segment-nav .nav-item {
+        padding: 6px 10px !important;
+        font-size: 0.78rem !important;
+        gap: 5px !important;
+        flex: 1 !important;
+        text-align: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+    }
+
+    .mobile-nav-toggle {
+        display: none !important;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1813,5 +1841,27 @@ main.main-content {
         height: 32px;
         font-size: 0.9rem;
         border-radius: 8px;
+    }
+
+    .mac-segment-nav .nav-item {
+        padding: 6px 6px !important;
+        font-size: 0.74rem !important;
+        gap: 4px !important;
+    }
+
+    .mac-segment-nav .nav-item i {
+        font-size: 0.7rem !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .mac-segment-nav .nav-item {
+        padding: 5px 3px !important;
+        font-size: 0.7rem !important;
+        gap: 3px !important;
+    }
+
+    .mac-segment-nav .nav-item i {
+        font-size: 0.65rem !important;
     }
 }
