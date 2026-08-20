@@ -1668,17 +1668,74 @@ main.main-content {
         display: none !important;
     }
 
-    /* Top Bar Mobile Optimization - Prevents Top Bar Overlap */
+    /* Top Bar Mobile Optimization - Keeps Resume (PDF) Visible on Mobile & Tablet */
     .mac-header-resume-btn {
-        display: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        padding: 3px 8px !important;
+        font-size: 0.72rem !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
     }
 
     .macos-system-bar {
-        padding: 0 10px !important;
+        padding: 0 8px !important;
+    }
+
+    .mac-system-left {
+        gap: 6px !important;
+    }
+
+    .mac-system-right {
+        gap: 6px !important;
     }
 
     .mac-address-bar {
         display: none !important;
+    }
+
+    /* Clean Window Header Layout on Mobile & Tablet */
+    .mac-window-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 8px 12px !important;
+        gap: 4px !important;
+        position: relative !important;
+    }
+
+    .mac-traffic-lights {
+        position: absolute !important;
+        left: 12px !important;
+        top: 10px !important;
+    }
+
+    .mac-window-title {
+        font-size: 0.8rem !important;
+        text-align: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        font-weight: 800 !important;
+        margin-top: 2px !important;
+    }
+
+    .title-divider {
+        display: none !important;
+    }
+
+    .title-role {
+        display: block !important;
+        font-size: 0.68rem !important;
+        color: var(--text-tertiary) !important;
+        font-weight: 600 !important;
+        margin-top: 1px !important;
+    }
+
+    .mac-subtle-badge {
+        font-size: 0.66rem !important;
+        padding: 2px 8px !important;
     }
 
     .hero-title {
@@ -1813,11 +1870,8 @@ main.main-content {
 }
 
 @media (max-width: 576px) {
-    .mac-window-title {
-        font-size: 0.88rem;
-        flex-wrap: wrap;
-        text-align: center;
-        justify-content: center;
+    .mac-header-resume-btn span {
+        display: inline-block;
     }
 
     .hero-cta-group {
