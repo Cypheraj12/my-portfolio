@@ -210,14 +210,4 @@
     });
   });
 
-  /* ══════════════════════════════════
-     8. ACCENT PALETTE TOGGLE (Emerald / Violet)
-  ══════════════════════════════════ */
-  const themeToggle = document.getElementById('theme-color-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('theme-violet');
-    });
-  }
-
 })();

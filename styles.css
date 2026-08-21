@@ -1,4 +1,4 @@
-/* ==================== CYBER EMERALD & MIDNIGHT INDIGO · DESIGNER THEME ==================== */
+/* ==================== VIOLET & FLAME ORANGE · HYBRID DESIGNER THEME ==================== */
 :root {
     /* Deep Obsidian Indigo base */
     --bg-primary: #070712;
@@ -8,24 +8,24 @@
     /* Primary — Deep Violet & Lavender */
     --accent-violet:       #7c3aed;
     --accent-violet-light: #a855f7;
-    --accent-violet-glow:  rgba(124, 58, 237, 0.4);
+    --accent-violet-glow:  rgba(124, 58, 237, 0.45);
 
-    /* Signature Highlight — Cyber Emerald & Electric Mint */
-    --accent-emerald:   #10b981;
-    --accent-mint:      #00f5a0;
-    --accent-blue:      #10b981;
-    --accent-cyan:      #00f5a0;
-    --accent-blue-deep: #059669;
+    /* Signature Highlight — Vivid Flame Orange & Solar Gold */
+    --accent-flame:     #ff4d00;
+    --accent-orange:    #ff5500;
+    --accent-gold:      #ffaa00;
+    --accent-blue:      #ff4d00;
+    --accent-cyan:      #ffaa00;
+    --accent-blue-deep: #e04400;
 
-    /* Legacy aliases mapped to Emerald/Violet palette */
+    /* Legacy aliases */
     --accent-purple:      #a855f7;
-    --accent-pink:        #10b981;
-    --accent-green:       #00f5a0;
-    --accent-coral:       #10b981;
+    --accent-pink:        #ff4d00;
+    --accent-green:       #ffaa00;
+    --accent-coral:       #ff4d00;
     --accent-coral-deep:  #7c3aed;
-    --accent-orange:      #00f5a0;
     --accent-lavender:    #a855f7;
-    --accent-rose:        #10b981;
+    --accent-rose:        #ff4d00;
 
     /* Text — Warm Pearl White & Muted Slate hierarchy */
     --text-primary:   #f8fafc;
@@ -39,24 +39,24 @@
     --surface-tile-profile:  rgba(14, 14, 26, 0.75);
     --surface-tile-hover:    rgba(255, 255, 255, 0.05);
 
-    /* Borders — refined emerald/violet semi-transparent */
-    --border-subtle: rgba(16, 185, 129, 0.22);
-    --border-light:  rgba(168, 85, 247, 0.16);
-    --border-accent: rgba(0, 245, 160, 0.28);
+    /* Borders — refined flame/violet semi-transparent */
+    --border-subtle: rgba(255, 77, 0, 0.22);
+    --border-light:  rgba(168, 85, 247, 0.18);
+    --border-accent: rgba(255, 170, 0, 0.30);
 
     /* Traffic Lights */
     --mac-red:    #FF5F56;
     --mac-yellow: #FFBD2E;
-    --mac-green:  #00f5a0;
+    --mac-green:  #27C93F;
 
     /* Typography */
     --font-system:  'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
 
     /* Elevation */
-    --shadow-window:     0 32px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(16,185,129,0.15), 0 0 80px rgba(124,58,237,0.10);
+    --shadow-window:     0 32px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,77,0,0.18), 0 0 80px rgba(124,58,237,0.12);
     --shadow-tile:       0 4px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04);
-    --shadow-tile-hover: 0 12px 40px rgba(16,185,129,0.22), 0 0 0 1px rgba(0,245,160,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+    --shadow-tile-hover: 0 12px 40px rgba(255,77,0,0.25), 0 0 0 1px rgba(255,170,0,0.38), inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
 /* ==================== GLOBAL RESET ==================== */
@@ -674,11 +674,11 @@ main.main-content {
 
 /* Gradient clip on key phrase */
 .accent-text {
-    background: linear-gradient(90deg, #a855f7 0%, #7c3aed 35%, #10b981 70%, #00f5a0 100%);
+    background: linear-gradient(90deg, #a855f7 0%, #7c3aed 35%, #ff4d00 70%, #ffaa00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 14px rgba(16,185,129,0.35));
+    filter: drop-shadow(0 0 14px rgba(255,77,0,0.35));
 }
 
 .hero-description {
@@ -696,10 +696,10 @@ main.main-content {
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 28px;
-    background: rgba(16, 185, 129, 0.06);
+    background: rgba(255, 77, 0, 0.06);
     padding: 14px 18px;
     border-radius: 12px;
-    border: 1px solid rgba(16, 185, 129, 0.20);
+    border: 1px solid rgba(255, 77, 0, 0.20);
 }
 
 .hero-cta-group {
@@ -727,15 +727,15 @@ main.main-content {
 }
 
 .btn-apple-primary {
-    background: linear-gradient(135deg, #7c3aed 0%, #10b981 60%, #00f5a0 100%);
-    color: #030712;
+    background: linear-gradient(135deg, #7c3aed 0%, #ff4d00 60%, #ffaa00 100%);
+    color: #FFFFFF;
     font-weight: 800;
-    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.45), 0 0 0 1px rgba(0,245,160,0.30);
+    box-shadow: 0 4px 20px rgba(255, 77, 0, 0.45), 0 0 0 1px rgba(255,170,0,0.30);
 }
 
 .btn-apple-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 245, 160, 0.50), 0 0 0 1px rgba(0,245,160,0.45);
+    box-shadow: 0 8px 30px rgba(255, 77, 0, 0.55), 0 0 0 1px rgba(255,170,0,0.45);
 }
 
 .btn-apple-secondary {
@@ -2343,9 +2343,9 @@ main.main-content {
    CATEGORIZED TECH TAGS
    ============================================================ */
 .tech-tag.tag-lang {
-    background: rgba(16, 185, 129, 0.12) !important;
-    color: #00f5a0 !important;
-    border: 1px solid rgba(16, 185, 129, 0.28) !important;
+    background: rgba(255, 77, 0, 0.12) !important;
+    color: #ff6b2b !important;
+    border: 1px solid rgba(255, 77, 0, 0.28) !important;
 }
 .tech-tag.tag-ml {
     background: rgba(124, 58, 237, 0.12) !important;
@@ -2353,9 +2353,9 @@ main.main-content {
     border: 1px solid rgba(168, 85, 247, 0.28) !important;
 }
 .tech-tag.tag-backend {
-    background: rgba(6, 182, 212, 0.12) !important;
-    color: #38bdf8 !important;
-    border: 1px solid rgba(6, 182, 212, 0.28) !important;
+    background: rgba(255, 170, 0, 0.12) !important;
+    color: #ffaa00 !important;
+    border: 1px solid rgba(255, 170, 0, 0.28) !important;
 }
 
 /* ============================================================
@@ -2370,7 +2370,7 @@ main.main-content {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, #7c3aed, #10b981, #00f5a0);
+    background: linear-gradient(90deg, #7c3aed, #ff4d00, #ffaa00);
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 16px 16px 0 0;
@@ -2390,14 +2390,14 @@ main.main-content {
     left: 50%;
     transform: translateX(-50%) translateY(20px);
     background: rgba(10, 8, 22, 0.95);
-    border: 1px solid rgba(16, 185, 129, 0.40);
-    color: #00f5a0;
+    border: 1px solid rgba(255, 77, 0, 0.40);
+    color: #ffaa00;
     padding: 10px 20px;
     border-radius: 20px;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,245,160,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(255,77,0,0.3);
     z-index: 999999;
     opacity: 0;
     visibility: hidden;
@@ -2411,36 +2411,5 @@ main.main-content {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
-}
-
-/* ============================================================
-   THEME PALETTE TOGGLE BUTTON
-   ============================================================ */
-.theme-toggle-btn {
-    cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-.theme-toggle-btn:hover {
-    transform: scale(1.15);
-    color: #00f5a0;
-}
-
-/* Violet Theme Mode Override */
-body.theme-violet {
-    --accent-emerald:   #a855f7;
-    --accent-mint:      #c084fc;
-    --accent-blue:      #a855f7;
-    --border-subtle:    rgba(168, 85, 247, 0.25);
-    --border-accent:    rgba(168, 85, 247, 0.35);
-}
-body.theme-violet .accent-text {
-    background: linear-gradient(90deg, #3b82f6 0%, #7c3aed 50%, #a855f7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-body.theme-violet .btn-apple-primary {
-    background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 60%, #a855f7 100%);
-    color: #ffffff;
 }
 
