@@ -221,8 +221,8 @@
     /* Skip expensive outer halo on low-power */
     if (!LOW()) {
       const halo = ctx.createRadialGradient(mx, my, mr * 0.9, mx, my, mr * 3.0);
-      halo.addColorStop(0.0, 'rgba(110,50,220,0.13)');
-      halo.addColorStop(0.5, 'rgba(70,20,170,0.05)');
+      halo.addColorStop(0.0, 'rgba(255,77,0,0.18)');
+      halo.addColorStop(0.5, 'rgba(255,140,0,0.06)');
       halo.addColorStop(1.0, 'transparent');
       ctx.fillStyle = halo;
       ctx.beginPath();
@@ -232,19 +232,19 @@
 
     /* Moon body */
     const body = ctx.createRadialGradient(mx - mr * 0.22, my - mr * 0.18, mr * 0.08, mx, my, mr);
-    body.addColorStop(0.0, '#3a1868');
-    body.addColorStop(0.5, '#200e44');
-    body.addColorStop(1.0, '#100728');
+    body.addColorStop(0.0, '#4a1408');
+    body.addColorStop(0.5, '#280b05');
+    body.addColorStop(1.0, '#140502');
     ctx.fillStyle = body;
     ctx.beginPath();
     ctx.arc(mx, my, mr, 0, Math.PI * 2);
     ctx.fill();
-    ctx.strokeStyle = 'rgba(150,70,255,0.38)';
+    ctx.strokeStyle = 'rgba(255,77,0,0.40)';
     ctx.lineWidth   = 1.8;
     ctx.stroke();
 
     /* Crescent shadow */
-    ctx.fillStyle = 'rgba(3,3,12,0.80)';
+    ctx.fillStyle = 'rgba(6,6,12,0.82)';
     ctx.beginPath();
     ctx.arc(mx + mr * 0.30, my - mr * 0.04, mr * 0.84, 0, Math.PI * 2);
     ctx.fill();
@@ -263,11 +263,11 @@
     ctx.lineTo(W * 0.30,  H * 0.56);
     ctx.closePath();
     const gL = ctx.createLinearGradient(0, H * 0.18, W * 0.3, H * 0.56);
-    gL.addColorStop(0, 'rgba(28,8,55,0.97)');
-    gL.addColorStop(1, 'rgba(8,4,20,0.99)');
+    gL.addColorStop(0, 'rgba(28,8,14,0.97)');
+    gL.addColorStop(1, 'rgba(10,4,8,0.99)');
     ctx.fillStyle = gL;
     ctx.fill();
-    ctx.strokeStyle = 'rgba(140,0,255,0.22)';
+    ctx.strokeStyle = 'rgba(255,77,0,0.25)';
     ctx.lineWidth   = 1.2;
     ctx.stroke();
 
@@ -283,11 +283,11 @@
     ctx.lineTo(W * 0.70,   H * 0.56);
     ctx.closePath();
     const gR = ctx.createLinearGradient(W * 0.7, H * 0.17, W, H * 0.56);
-    gR.addColorStop(0, 'rgba(8,4,20,0.99)');
-    gR.addColorStop(1, 'rgba(28,8,55,0.97)');
+    gR.addColorStop(0, 'rgba(10,4,8,0.99)');
+    gR.addColorStop(1, 'rgba(28,8,14,0.97)');
     ctx.fillStyle = gR;
     ctx.fill();
-    ctx.strokeStyle = 'rgba(140,0,255,0.22)';
+    ctx.strokeStyle = 'rgba(255,77,0,0.25)';
     ctx.lineWidth   = 1.2;
     ctx.stroke();
   }
@@ -316,15 +316,15 @@
       if (b.antennaMark) {
         const ax = b.x + b.w / 2;
         const ay = b.y;
-        ctx.strokeStyle = 'rgba(140,50,255,0.45)';
+        ctx.strokeStyle = 'rgba(255,77,0,0.45)';
         ctx.lineWidth   = 1;
         ctx.beginPath();
         ctx.moveTo(ax, ay);
         ctx.lineTo(ax, ay - 22);
         ctx.stroke();
         const pulse = 0.55 + 0.45 * Math.sin(time * 2.8 + b.x);
-        ctx.fillStyle   = `rgba(255,60,180,${pulse.toFixed(2)})`;
-        ctx.shadowColor = 'rgba(255,60,180,0.8)';
+        ctx.fillStyle   = `rgba(255,140,0,${pulse.toFixed(2)})`;
+        ctx.shadowColor = 'rgba(255,140,0,0.8)';
         ctx.shadowBlur  = 6;
         ctx.beginPath();
         ctx.arc(ax, ay - 22, 2.2, 0, Math.PI * 2);
@@ -340,15 +340,15 @@
 
     /* Floor fill */
     const floorG = ctx.createLinearGradient(0, gy, 0, gb);
-    floorG.addColorStop(0.00, '#0e0030');
-    floorG.addColorStop(0.20, '#09001e');
-    floorG.addColorStop(1.00, '#04000e');
+    floorG.addColorStop(0.00, '#0e0508');
+    floorG.addColorStop(0.20, '#090306');
+    floorG.addColorStop(1.00, '#040103');
     ctx.fillStyle = floorG;
     ctx.fillRect(0, gy, W, gb - gy);
 
     /* Horizon glow strip */
     const hg = ctx.createLinearGradient(0, gy, 0, gy + (gb - gy) * 0.32);
-    hg.addColorStop(0.0, 'rgba(255,40,190,0.14)');
+    hg.addColorStop(0.0, 'rgba(255,77,0,0.18)');
     hg.addColorStop(1.0, 'transparent');
     ctx.fillStyle = hg;
     ctx.fillRect(0, gy, W, (gb - gy) * 0.32);
@@ -360,7 +360,7 @@
     for (let i = 0; i <= Q.gridV; i++) {
       const t  = i / Q.gridV;
       const bx = t * W;
-      ctx.strokeStyle = `rgba(160,0,255,${0.09 + (Math.abs(t - 0.5) < 0.15 ? 0.06 : 0)})`;
+      ctx.strokeStyle = `rgba(255,77,0,${0.09 + (Math.abs(t - 0.5) < 0.15 ? 0.06 : 0)})`;
       ctx.lineWidth   = 0.7;
       ctx.beginPath();
       ctx.moveTo(vpX + (bx - vpX) * 0.008, gy);
@@ -377,7 +377,7 @@
       if (y < gy) continue;
 
       const progress = (y - gy) / (gb - gy);
-      ctx.strokeStyle = `rgba(210,30,255,${(0.05 + progress * 0.30).toFixed(2)})`;
+      ctx.strokeStyle = `rgba(255,107,0,${(0.05 + progress * 0.30).toFixed(2)})`;
       ctx.lineWidth   = 0.4 + progress * 1.5;
       ctx.beginPath();
       ctx.moveTo(0, y);
@@ -386,7 +386,7 @@
     }
 
     /* Bright horizon line */
-    ctx.strokeStyle = 'rgba(255,50,210,0.55)';
+    ctx.strokeStyle = 'rgba(255,107,0,0.65)';
     ctx.lineWidth   = 1.6;
     ctx.beginPath();
     ctx.moveTo(0, gy);
