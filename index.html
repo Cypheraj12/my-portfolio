@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anant Joshi — AI/ML Engineer & Data Analyst</title>
-    <meta name="description" content="Portfolio of Anant Joshi — Final Year B.Tech CSE (Data Science Specialization). Experienced AI/ML Engineer & Data Analyst specializing in Machine Learning, Computer Vision, Predictive Analytics, and High-Throughput REST APIs.">
+    <meta name="description" content="Portfolio of Anant Joshi — Final Year B.Tech CSE (Data Science Specialization). AI/ML Engineer &amp; Data Analyst specializing in Machine Learning, Computer Vision, Predictive Analytics, and REST APIs.">
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://cypheraj12.github.io/my-portfolio/">
+    <meta property="og:title"       content="Anant Joshi — AI/ML Engineer &amp; Data Analyst">
+    <meta property="og:description" content="Final-year B.Tech CSE (Data Science) student. Building ML models, data pipelines, computer vision systems, and scalable APIs with Python, TensorFlow, PyTorch, FastAPI &amp; MongoDB.">
+    <meta property="og:image"       content="https://cypheraj12.github.io/my-portfolio/assets/og-preview.png">
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Anant Joshi — AI/ML Engineer &amp; Data Analyst">
+    <meta name="twitter:description" content="Final-year B.Tech CSE (Data Science) student. Building ML models, computer vision systems, and scalable APIs.">
+    <meta name="twitter:image"       content="https://cypheraj12.github.io/my-portfolio/assets/og-preview.png">
     <!-- Google Fonts: Inter & Plus Jakarta Sans for Apple System Feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +23,26 @@
     <!-- FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body data-theme="coral">
+    <!-- ==================== CUSTOM CURSOR ==================== -->
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+
+    <!-- ==================== LOADING SCREEN ==================== -->
+    <div id="loading-screen" aria-hidden="true">
+        <div class="loader-grid-wrap">
+            <canvas id="loader-canvas"></canvas>
+        </div>
+        <div class="loader-content">
+            <div class="loader-name">ANANT JOSHI</div>
+            <div class="loader-role">AI / ML Engineer &amp; Data Analyst</div>
+            <div class="loader-bar-track"><div class="loader-bar-fill" id="loader-bar"></div></div>
+            <div class="loader-pct" id="loader-pct">0%</div>
+        </div>
+    </div>
 
     <!-- ==================== SYNTHWAVE CANVAS BACKGROUND ==================== -->
     <canvas id="bg-canvas" aria-hidden="true"></canvas>
@@ -105,6 +134,24 @@
                             <div class="hero-cta-group">
                                 <a href="#projects" class="btn-apple btn-apple-primary"><i class="fa-solid fa-folder-open"></i> View Projects <i class="fa-solid fa-arrow-right"></i></a>
                                 <button id="hero-resume-btn" class="btn-apple btn-apple-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</button>
+                            </div>
+
+                            <!-- Stats Counters -->
+                            <div class="hero-stats-row">
+                                <div class="stat-item">
+                                    <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
+                                    <span class="stat-label">Projects</span>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat-item">
+                                    <span class="stat-num" data-target="15">0</span><span class="stat-suffix">+</span>
+                                    <span class="stat-label">Technologies</span>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat-item">
+                                    <span class="stat-num" data-target="2">0</span><span class="stat-suffix"> yrs</span>
+                                    <span class="stat-label">Coding in Python</span>
+                                </div>
                             </div>
                         </div>
 
@@ -600,5 +647,6 @@
 
     <script src="bg-canvas.js"></script>
     <script src="script.js"></script>
+    <script src="enhancements.js"></script>
 </body>
 </html>
