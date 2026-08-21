@@ -415,11 +415,23 @@
     ctx.fillRect(0, 0, W, H * 0.6);
   }
 
+  /* Pause canvas ticks during touch scroll on mobile for 60fps scrolling */
+  let isScrolling = false;
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    if (LOW() || MID()) {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => { isScrolling = false; }, 120);
+    }
+  }, { passive: true });
+
   /* ══════════════════════════════════
      MAIN LOOP — FPS throttled
   ══════════════════════════════════ */
   function tick(ts) {
     requestAnimationFrame(tick);
+    if (isScrolling) return;
 
     /* FPS cap */
     const elapsed = ts - lastFrameTime;
