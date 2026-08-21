@@ -185,4 +185,39 @@
     });
   }
 
+  /* ══════════════════════════════════
+     7. CLICK TO COPY EMAIL WITH TOAST
+  ══════════════════════════════════ */
+  const emailTargets = document.querySelectorAll('a[href^="mailto:"], .channel-value[href^="mailto:"]');
+  const toast = document.getElementById('copy-toast');
+  let toastTimer;
+
+  emailTargets.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const mail = 'anantajjoshi@gmail.com';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(mail).then(() => {
+          if (toast) {
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 2200);
+          }
+        });
+      } else {
+        window.location.href = `mailto:${mail}`;
+      }
+    });
+  });
+
+  /* ══════════════════════════════════
+     8. ACCENT PALETTE TOGGLE (Emerald / Violet)
+  ══════════════════════════════════ */
+  const themeToggle = document.getElementById('theme-color-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('theme-violet');
+    });
+  }
+
 })();
