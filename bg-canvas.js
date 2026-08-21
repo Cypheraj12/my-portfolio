@@ -81,9 +81,13 @@
     canvas.height       = H * dpr;
     canvas.style.width  = W + 'px';
     canvas.style.height = H + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    phoenix.scale = Math.min(W, H) / (LOW() ? 480 : 380);
+    phoenix.vx    = LOW() ? 2.2 : 3.4;
 
-    phoenix.scale = Math.min(W, H) / (LOW() ? 850 : 650);  /* ══════════════════════════════════
+    buildStars();
+  }
+
+  /* ══════════════════════════════════
      DRAW PHOENIX (Grounded in Reference Images 1, 2 & 3)
   ══════════════════════════════════ */
   function drawPhoenix(x, y, scale, wingPhase) {
@@ -91,11 +95,12 @@
     ctx.translate(x, y);
     ctx.scale(scale, scale);
 
+    /* Wing flap angle calculation */
     const flap = Math.sin(wingPhase);
-    const wingElevation = flap * 28;
+    const wingElevation = flap * 32;
 
-    /* Opacity — clear background visibility without distracting text */
-    ctx.globalAlpha = LOW() ? 0.22 : 0.28;
+    /* Opacity — vibrant & 100% clearly visible soaring bird */
+    ctx.globalAlpha = LOW() ? 0.62 : 0.75;
 
     /* ── Radiant Fire Aura Core ── */
     const aura = ctx.createRadialGradient(0, -10, 8, 0, -10, 110);
