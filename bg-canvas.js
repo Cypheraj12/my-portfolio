@@ -1,7 +1,8 @@
 /* =====================================================
-   SYNTHWAVE CITYSCAPE — Canvas Background Animation
-   Performance-adaptive: full quality on desktop,
-   lightweight (30fps, reduced elements) on mobile/tablet
+   DYNAMIC PHOENIX BIRD — Canvas Background Animation
+   Features an elegant, soaring Phoenix bird with flowing flame tail
+   and floating ember particle trails drifting behind it.
+   Subtle opacity (18-22%) so text remains crisp and readable.
    ===================================================== */
 (function () {
   'use strict';
@@ -10,63 +11,69 @@
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  /* ── Adaptive quality based on screen width ── */
-  const LOW  = () => window.innerWidth <= 768;   // phone
-  const MID  = () => window.innerWidth <= 1024;  // tablet
+  const LOW = () => window.innerWidth <= 768;
+  const MID = () => window.innerWidth <= 1024;
 
-  function getQ() {
-    if (LOW()) return {
-      stars: 70, buildings: 12, gridH: 9, gridV: 12,
-      fps: 24, dpr: 1, milky: false, nebula: false, antennas: false
-    };
-    if (MID()) return {
-      stars: 120, buildings: 18, gridH: 12, gridV: 18,
-      fps: 30, dpr: Math.min(window.devicePixelRatio || 1, 1.5),
-      milky: false, nebula: false, antennas: true
-    };
-    return {
-      stars: 220, buildings: 26, gridH: 22, gridV: 28,
-      fps: 60, dpr: Math.min(window.devicePixelRatio || 1, 2),
-      milky: true, nebula: true, antennas: true
-    };
-  }
-
-  let Q = getQ();
   let W, H, time = 0, lastTs = 0;
-
-  /* FPS limiter */
-  let fpsInterval   = 1000 / Q.fps;
+  let fpsInterval = 1000 / 45;
   let lastFrameTime = 0;
 
-  /* ── Stars ── */
+  /* ── Background Ambient Stars ── */
   let stars = [];
+  function buildStars() {
+    stars = [];
+    const count = LOW() ? 40 : 80;
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.2 + 0.3,
+        alpha: Math.random() * 0.35 + 0.1,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.8 + 0.2
+      });
+    }
+  }
 
-  /* ── Buildings ── */
-  let buildings = [];
-  let offCity   = null;   // offscreen canvas for static building bodies
-  let cityDirty = true;   // re-bake when resized
+  /* ── Phoenix State ── */
+  let phoenix = {
+    x: -150,
+    y: 200,
+    vx: 1.8,
+    scale: 1,
+    wingPhase: 0,
+    trail: []
+  };
 
-  const BUILD_COLS = [
-    'rgba(14,6,12,1)',  'rgba(18,8,16,1)',  'rgba(12,5,10,1)',
-    'rgba(22,10,18,1)', 'rgba(10,4,8,1)',   'rgba(16,7,14,1)'
-  ];
-  const WIN_COLS = [
-    'rgba(255,77,0,',    'rgba(255,170,0,',
-    'rgba(255,107,43,',  'rgba(255,255,255,',
-    'rgba(225,29,72,',   'rgba(255,140,0,'
-  ];
+  /* ── Embers Array ── */
+  let embers = [];
 
-  /* ── Grid ── */
-  const GRID_SPEED = 0.35;
+  function spawnEmber(x, y) {
+    if (embers.length > (LOW() ? 30 : 60)) return;
+    const colors = [
+      'rgba(255,77,0,',    // Flame Orange
+      'rgba(255,170,0,',   // Solar Gold
+      'rgba(255,107,43,',  // Amber
+      'rgba(225,29,72,'    // Crimson
+    ];
+    embers.push({
+      x: x + (Math.random() - 0.5) * 16,
+      y: y + (Math.random() - 0.5) * 16,
+      vx: -(Math.random() * 1.5 + 0.5),
+      vy: (Math.random() - 0.6) * 1.2,
+      size: Math.random() * 2.8 + 0.8,
+      alpha: Math.random() * 0.7 + 0.3,
+      life: 1.0,
+      decay: Math.random() * 0.015 + 0.008,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
 
   /* ══════════════════════════════════
      RESIZE
   ══════════════════════════════════ */
   function resize() {
-    Q           = getQ();
-    fpsInterval = 1000 / Q.fps;
-
-    const dpr = Q.dpr;
+    const dpr = Math.min(window.devicePixelRatio || 1, LOW() ? 1 : 1.5);
     W = window.innerWidth;
     H = window.innerHeight;
 
@@ -76,346 +83,199 @@
     canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    phoenix.scale = Math.min(W, H) / (LOW() ? 850 : 650);
+    phoenix.vx    = LOW() ? 1.2 : 1.7;
+
     buildStars();
-    buildCity();
-    cityDirty = true;
-  }
-
-  /* ── Star init ── */
-  function buildStars() {
-    stars = [];
-    for (let i = 0; i < Q.stars; i++) {
-      const milky = Q.milky && i < Math.floor(Q.stars * 0.27);
-      stars.push({
-        x:     milky ? W * (0.35 + Math.random() * 0.55) : Math.random() * W,
-        y:     milky ? Math.random() * H * 0.5            : Math.random() * H * 0.62,
-        r:     milky ? Math.random() * 0.7                : Math.random() * 1.5 + 0.2,
-        alpha: milky ? Math.random() * 0.3                : Math.random() * 0.65 + 0.3,
-        phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.7 + 0.3,
-        milky
-      });
-    }
-  }
-
-  /* ── Building init ── */
-  function buildCity() {
-    buildings = [];
-    const hy    = H * 0.52;
-    const totalW = W * 0.64;
-    const startX = W * 0.18;
-    const slotW  = totalW / Q.buildings;
-
-    for (let i = 0; i < Q.buildings; i++) {
-      const bw = slotW * (0.52 + Math.random() * 0.48);
-      const bh = 30 + Math.random() * 200;
-      const bx = startX + slotW * i + (slotW - bw) / 2;
-      const by = hy - bh;
-      const antennaMark = Q.antennas && bh > 100 && Math.random() > 0.45;
-
-      /* Fewer windows on low-power to cut fillRect calls */
-      const winRatio = LOW() ? 0.30 : MID() ? 0.38 : 0.45;
-      const colStep  = LOW() ? 12 : 9;
-      const rowStep  = LOW() ? 16 : 13;
-      const wins = [];
-      const cols = Math.max(1, Math.floor(bw / colStep));
-      const rows = Math.max(1, Math.floor(bh / rowStep));
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          if (Math.random() < winRatio) {
-            wins.push({
-              cx: c * colStep + 2,
-              cy: r * rowStep + 4,
-              w:  colStep - 5,
-              h:  rowStep - 7,
-              col:    WIN_COLS[Math.floor(Math.random() * WIN_COLS.length)],
-              alpha:  0.25 + Math.random() * 0.70,
-              flicker: !LOW() && Math.random() < 0.06,
-              phase:   Math.random() * Math.PI * 2
-            });
-          }
-        }
-      }
-      buildings.push({ x: bx, y: by, w: bw, h: bh, antennaMark, wins });
-    }
-    cityDirty = true;
-  }
-
-  /* ── Bake static building shapes to an offscreen canvas ── */
-  function bakeCityOffscreen() {
-    offCity        = document.createElement('canvas');
-    offCity.width  = Math.ceil(W);
-    offCity.height = Math.ceil(H);
-    const oc = offCity.getContext('2d');
-    const hy = H * 0.52;
-
-    /* Horizon glow bloom — baked once */
-    const bloom = oc.createRadialGradient(W / 2, hy, 0, W / 2, hy, W * 0.55);
-    bloom.addColorStop(0.0, 'rgba(255,77,0,0.22)');
-    bloom.addColorStop(0.3, 'rgba(255,170,0,0.12)');
-    bloom.addColorStop(0.6, 'rgba(225,29,72,0.06)');
-    bloom.addColorStop(1.0, 'transparent');
-    oc.fillStyle = bloom;
-    oc.fillRect(0, hy - 60, W, 100);
-
-    /* Building bodies */
-    for (const b of buildings) {
-      oc.fillStyle = BUILD_COLS[Math.floor(b.x) % BUILD_COLS.length];
-      oc.fillRect(b.x, b.y, b.w, b.h);
-      oc.strokeStyle = 'rgba(255,77,0,0.12)';
-      oc.lineWidth   = 0.5;
-      oc.strokeRect(b.x, b.y, b.w, b.h);
-    }
-    cityDirty = false;
   }
 
   /* ══════════════════════════════════
-     DRAW FUNCTIONS
+     DRAW PHOENIX
+  ══════════════════════════════════ */
+  function drawPhoenix(x, y, scale, wingPhase) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+
+    /* Wing flap angle calculation */
+    const flap = Math.sin(wingPhase);
+    const wingY = flap * 45; // vertical wing elevation
+
+    /* Overall opacity — subtle background presence */
+    const baseAlpha = LOW() ? 0.18 : 0.24;
+    ctx.globalAlpha = baseAlpha;
+
+    /* Body Glow Halo */
+    const aura = ctx.createRadialGradient(0, 0, 5, 0, 0, 90);
+    aura.addColorStop(0.0, 'rgba(255,77,0,0.35)');
+    aura.addColorStop(0.4, 'rgba(255,170,0,0.18)');
+    aura.addColorStop(1.0, 'transparent');
+    ctx.fillStyle = aura;
+    ctx.beginPath();
+    ctx.arc(0, 0, 90, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* ── Tail Feathers (Flowing Streamers) ── */
+    const numTails = 5;
+    for (let t = 0; t < numTails; t++) {
+      const offsetAngle = (t - (numTails - 1) / 2) * 0.18;
+      const tailLen = 140 + t * 15;
+      const wave = Math.sin(time * 3 + t * 0.8) * 22;
+
+      ctx.beginPath();
+      ctx.moveTo(-15, 0);
+      ctx.quadraticCurveTo(
+        -tailLen * 0.5, wave,
+        -tailLen, wave * 1.4 + offsetAngle * 50
+      );
+
+      const tailG = ctx.createLinearGradient(0, 0, -tailLen, wave);
+      tailG.addColorStop(0,   'rgba(255,170,0,0.7)');
+      tailG.addColorStop(0.5, 'rgba(255,77,0,0.5)');
+      tailG.addColorStop(1,   'transparent');
+      ctx.strokeStyle = tailG;
+      ctx.lineWidth   = 3.5 - t * 0.4;
+      ctx.lineCap     = 'round';
+      ctx.stroke();
+    }
+
+    /* ── Left Wing ── */
+    ctx.beginPath();
+    ctx.moveTo(10, -5);
+    ctx.bezierCurveTo(
+      -20, -50 + wingY,
+      -80, -90 + wingY * 1.3,
+      -120, -40 + wingY * 0.8
+    );
+    ctx.bezierCurveTo(
+      -80, -20 + wingY * 0.5,
+      -30, -10,
+      0, 0
+    );
+    const leftWingG = ctx.createLinearGradient(10, 0, -120, -90 + wingY);
+    leftWingG.addColorStop(0,   'rgba(255,170,0,0.8)');
+    leftWingG.addColorStop(0.5, 'rgba(255,77,0,0.6)');
+    leftWingG.addColorStop(1,   'rgba(225,29,72,0.2)');
+    ctx.fillStyle = leftWingG;
+    ctx.fill();
+
+    /* Left Wing Feather Lines */
+    for (let f = 1; f <= 4; f++) {
+      const fx = -f * 25;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.quadraticCurveTo(fx * 0.8, -60 + wingY, fx * 1.2, -45 + wingY * 0.9);
+      ctx.strokeStyle = `rgba(255,200,80,${0.3 - f * 0.05})`;
+      ctx.lineWidth   = 1.2;
+      ctx.stroke();
+    }
+
+    /* ── Right Wing ── */
+    ctx.beginPath();
+    ctx.moveTo(10, -5);
+    ctx.bezierCurveTo(
+      -10, -60 - wingY * 0.8,
+      -60, -110 - wingY * 1.1,
+      -110, -60 - wingY * 0.7
+    );
+    ctx.bezierCurveTo(
+      -70, -30 - wingY * 0.4,
+      -25, -10,
+      0, 0
+    );
+    const rightWingG = ctx.createLinearGradient(10, 0, -110, -110 - wingY);
+    rightWingG.addColorStop(0,   'rgba(255,200,100,0.85)');
+    rightWingG.addColorStop(0.5, 'rgba(255,100,0,0.65)');
+    rightWingG.addColorStop(1,   'rgba(200,20,60,0.2)');
+    ctx.fillStyle = rightWingG;
+    ctx.fill();
+
+    /* ── Phoenix Body & Head ── */
+    ctx.beginPath();
+    ctx.ellipse(5, 0, 32, 12, 0.15, 0, Math.PI * 2);
+    const bodyG = ctx.createRadialGradient(10, 0, 2, 0, 0, 35);
+    bodyG.addColorStop(0,   '#ffffff');
+    bodyG.addColorStop(0.3, '#ffcc00');
+    bodyG.addColorStop(0.7, '#ff4d00');
+    bodyG.addColorStop(1,   '#b91c1c');
+    ctx.fillStyle = bodyG;
+    ctx.fill();
+
+    /* Head & Crown Crest */
+    ctx.beginPath();
+    ctx.arc(32, -4, 9, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffeedd';
+    ctx.fill();
+
+    /* Beak */
+    ctx.beginPath();
+    ctx.moveTo(39, -4);
+    ctx.lineTo(50, -2);
+    ctx.lineTo(39, 1);
+    ctx.closePath();
+    ctx.fillStyle = '#ffaa00';
+    ctx.fill();
+
+    /* Crown Feathers */
+    ctx.beginPath();
+    ctx.moveTo(32, -11);
+    ctx.quadraticCurveTo(36, -24, 44, -28);
+    ctx.quadraticCurveTo(34, -20, 30, -12);
+    ctx.fillStyle = 'rgba(255,170,0,0.9)';
+    ctx.fill();
+
+    /* Eye Glow */
+    ctx.beginPath();
+    ctx.arc(35, -5, 1.8, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  /* ══════════════════════════════════
+     DRAW EMBERS & BACKGROUND
   ══════════════════════════════════ */
 
-  function drawSky() {
-    const g = ctx.createLinearGradient(0, 0, 0, H * 0.53);
-    g.addColorStop(0.00, '#06060a');
-    g.addColorStop(0.25, '#0c0712');
-    g.addColorStop(0.55, '#160918');
-    g.addColorStop(0.78, '#240b18');
-    g.addColorStop(1.00, '#360c16');
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, W, H * 0.53);
-  }
+  function drawBackground() {
+    /* Clean dark charcoal background */
+    ctx.fillStyle = '#08080d';
+    ctx.fillRect(0, 0, W, H);
 
-  function drawMilkyWay() {
-    if (!Q.milky) return;
-    ctx.save();
-    ctx.globalAlpha = 0.055 + 0.015 * Math.sin(time * 0.18);
-    const gm = ctx.createLinearGradient(W * 0.28, 0, W * 0.92, H * 0.38);
-    gm.addColorStop(0,   'transparent');
-    gm.addColorStop(0.3, 'rgba(180,150,255,1)');
-    gm.addColorStop(0.5, 'rgba(160,130,240,1)');
-    gm.addColorStop(0.7, 'rgba(180,150,255,1)');
-    gm.addColorStop(1,   'transparent');
-    ctx.fillStyle = gm;
-    ctx.beginPath();
-    ctx.ellipse(W * 0.60, H * 0.17, W * 0.34, H * 0.09, -0.38, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function drawStars() {
+    /* Ambient background stars */
     for (const s of stars) {
-      const tw = 0.35 + 0.65 * Math.abs(Math.sin(s.phase + time * s.speed));
+      const tw = 0.4 + 0.6 * Math.abs(Math.sin(s.phase + time * s.speed));
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.milky
-        ? `rgba(200,185,255,${(s.alpha * tw * 0.6).toFixed(2)})`
-        : `rgba(255,255,255,${(s.alpha * tw).toFixed(2)})`;
+      ctx.fillStyle = `rgba(255,230,200,${(s.alpha * tw).toFixed(2)})`;
       ctx.fill();
     }
   }
 
-  function drawMoon() {
-    const mx = W * 0.135;
-    const my = H * 0.165;
-    const mr = Math.min(W, H) * (LOW() ? 0.07 : 0.092);
+  function updateAndDrawEmbers(dt) {
+    for (let i = embers.length - 1; i >= 0; i--) {
+      const e = embers[i];
+      e.x += e.vx;
+      e.y += e.vy;
+      e.life -= e.decay;
 
-    /* Skip expensive outer halo on low-power */
-    if (!LOW()) {
-      const halo = ctx.createRadialGradient(mx, my, mr * 0.9, mx, my, mr * 3.0);
-      halo.addColorStop(0.0, 'rgba(255,77,0,0.18)');
-      halo.addColorStop(0.5, 'rgba(255,140,0,0.06)');
-      halo.addColorStop(1.0, 'transparent');
-      ctx.fillStyle = halo;
+      if (e.life <= 0) {
+        embers.splice(i, 1);
+        continue;
+      }
+
+      const currentAlpha = (e.alpha * e.life * (LOW() ? 0.25 : 0.35)).toFixed(2);
       ctx.beginPath();
-      ctx.arc(mx, my, mr * 3.0, 0, Math.PI * 2);
+      ctx.arc(e.x, e.y, e.size * e.life, 0, Math.PI * 2);
+      ctx.fillStyle   = `${e.color}${currentAlpha})`;
+      ctx.shadowColor = 'rgba(255,100,0,0.5)';
+      ctx.shadowBlur  = 4;
       ctx.fill();
-    }
-
-    /* Moon body */
-    const body = ctx.createRadialGradient(mx - mr * 0.22, my - mr * 0.18, mr * 0.08, mx, my, mr);
-    body.addColorStop(0.0, '#4a1408');
-    body.addColorStop(0.5, '#280b05');
-    body.addColorStop(1.0, '#140502');
-    ctx.fillStyle = body;
-    ctx.beginPath();
-    ctx.arc(mx, my, mr, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,77,0,0.40)';
-    ctx.lineWidth   = 1.8;
-    ctx.stroke();
-
-    /* Crescent shadow */
-    ctx.fillStyle = 'rgba(6,6,12,0.82)';
-    ctx.beginPath();
-    ctx.arc(mx + mr * 0.30, my - mr * 0.04, mr * 0.84, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  function drawMountains() {
-    /* Left */
-    ctx.beginPath();
-    ctx.moveTo(0, H * 0.56);
-    ctx.lineTo(0,         H * 0.37);
-    ctx.lineTo(W * 0.055, H * 0.26);
-    ctx.lineTo(W * 0.10,  H * 0.33);
-    ctx.lineTo(W * 0.16,  H * 0.20);
-    ctx.lineTo(W * 0.22,  H * 0.32);
-    ctx.lineTo(W * 0.28,  H * 0.38);
-    ctx.lineTo(W * 0.30,  H * 0.56);
-    ctx.closePath();
-    const gL = ctx.createLinearGradient(0, H * 0.18, W * 0.3, H * 0.56);
-    gL.addColorStop(0, 'rgba(28,8,14,0.97)');
-    gL.addColorStop(1, 'rgba(10,4,8,0.99)');
-    ctx.fillStyle = gL;
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,77,0,0.25)';
-    ctx.lineWidth   = 1.2;
-    ctx.stroke();
-
-    /* Right */
-    ctx.beginPath();
-    ctx.moveTo(W,          H * 0.56);
-    ctx.lineTo(W,          H * 0.35);
-    ctx.lineTo(W * 0.945,  H * 0.24);
-    ctx.lineTo(W * 0.90,   H * 0.32);
-    ctx.lineTo(W * 0.84,   H * 0.19);
-    ctx.lineTo(W * 0.78,   H * 0.32);
-    ctx.lineTo(W * 0.72,   H * 0.38);
-    ctx.lineTo(W * 0.70,   H * 0.56);
-    ctx.closePath();
-    const gR = ctx.createLinearGradient(W * 0.7, H * 0.17, W, H * 0.56);
-    gR.addColorStop(0, 'rgba(10,4,8,0.99)');
-    gR.addColorStop(1, 'rgba(28,8,14,0.97)');
-    ctx.fillStyle = gR;
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(255,77,0,0.25)';
-    ctx.lineWidth   = 1.2;
-    ctx.stroke();
-  }
-
-  function drawCity() {
-    /* Blit the static pre-rendered city */
-    if (cityDirty) bakeCityOffscreen();
-    ctx.drawImage(offCity, 0, 0, W, H);
-
-    /* Dynamic-only: flickering windows + antenna blink */
-    for (const b of buildings) {
-      for (const w of b.wins) {
-        /* On low-power skip flicker entirely */
-        if (!w.flicker && LOW()) {
-          ctx.fillStyle = `${w.col}${w.alpha.toFixed(2)})`;
-          ctx.fillRect(b.x + w.cx, b.y + w.cy, w.w, w.h);
-        } else {
-          let a = w.alpha;
-          if (w.flicker) a *= 0.5 + 0.5 * Math.abs(Math.sin(w.phase + time * 4.5));
-          ctx.fillStyle = `${w.col}${a.toFixed(2)})`;
-          ctx.fillRect(b.x + w.cx, b.y + w.cy, w.w, w.h);
-        }
-      }
-
-      /* Antenna pulse */
-      if (b.antennaMark) {
-        const ax = b.x + b.w / 2;
-        const ay = b.y;
-        ctx.strokeStyle = 'rgba(255,77,0,0.45)';
-        ctx.lineWidth   = 1;
-        ctx.beginPath();
-        ctx.moveTo(ax, ay);
-        ctx.lineTo(ax, ay - 22);
-        ctx.stroke();
-        const pulse = 0.55 + 0.45 * Math.sin(time * 2.8 + b.x);
-        ctx.fillStyle   = `rgba(255,140,0,${pulse.toFixed(2)})`;
-        ctx.shadowColor = 'rgba(255,140,0,0.8)';
-        ctx.shadowBlur  = 6;
-        ctx.beginPath();
-        ctx.arc(ax, ay - 22, 2.2, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
+      ctx.shadowBlur  = 0;
     }
   }
 
-  function drawGrid() {
-    const gy = H * 0.52;
-    const gb = H;
-
-    /* Floor fill */
-    const floorG = ctx.createLinearGradient(0, gy, 0, gb);
-    floorG.addColorStop(0.00, '#0e0508');
-    floorG.addColorStop(0.20, '#090306');
-    floorG.addColorStop(1.00, '#040103');
-    ctx.fillStyle = floorG;
-    ctx.fillRect(0, gy, W, gb - gy);
-
-    /* Horizon glow strip */
-    const hg = ctx.createLinearGradient(0, gy, 0, gy + (gb - gy) * 0.32);
-    hg.addColorStop(0.0, 'rgba(255,77,0,0.18)');
-    hg.addColorStop(1.0, 'transparent');
-    ctx.fillStyle = hg;
-    ctx.fillRect(0, gy, W, (gb - gy) * 0.32);
-
-    const vpX = W / 2;
-    ctx.save();
-
-    /* Vertical converging lines */
-    for (let i = 0; i <= Q.gridV; i++) {
-      const t  = i / Q.gridV;
-      const bx = t * W;
-      ctx.strokeStyle = `rgba(255,77,0,${0.09 + (Math.abs(t - 0.5) < 0.15 ? 0.06 : 0)})`;
-      ctx.lineWidth   = 0.7;
-      ctx.beginPath();
-      ctx.moveTo(vpX + (bx - vpX) * 0.008, gy);
-      ctx.lineTo(bx, gb);
-      ctx.stroke();
-    }
-
-    /* Horizontal moving lines */
-    const offset = (time * GRID_SPEED) % 1;
-    for (let i = 0; i < Q.gridH; i++) {
-      const t       = (i + offset) / Q.gridH;
-      const perspT  = Math.pow(t, 2.8);
-      const y       = gy + perspT * (gb - gy);
-      if (y < gy) continue;
-
-      const progress = (y - gy) / (gb - gy);
-      ctx.strokeStyle = `rgba(255,107,0,${(0.05 + progress * 0.30).toFixed(2)})`;
-      ctx.lineWidth   = 0.4 + progress * 1.5;
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(W, y);
-      ctx.stroke();
-    }
-
-    /* Bright horizon line */
-    ctx.strokeStyle = 'rgba(255,107,0,0.65)';
-    ctx.lineWidth   = 1.6;
-    ctx.beginPath();
-    ctx.moveTo(0, gy);
-    ctx.lineTo(W, gy);
-    ctx.stroke();
-
-    ctx.restore();
-  }
-
-  function drawNebulaWisps() {
-    if (!Q.nebula) return;
-    const w1x = W * (0.42 + 0.04 * Math.sin(time * 0.09));
-    const w1y = H * (0.32 + 0.02 * Math.sin(time * 0.13));
-    const g1  = ctx.createRadialGradient(w1x, w1y, 0, w1x, w1y, W * 0.22);
-    g1.addColorStop(0, `rgba(90,20,180,${(0.07 + 0.02 * Math.sin(time * 0.3)).toFixed(2)})`);
-    g1.addColorStop(1, 'transparent');
-    ctx.fillStyle = g1;
-    ctx.fillRect(0, 0, W, H * 0.6);
-
-    const w2x = W * (0.65 + 0.05 * Math.cos(time * 0.07));
-    const w2y = H * (0.24 + 0.03 * Math.cos(time * 0.11));
-    const g2  = ctx.createRadialGradient(w2x, w2y, 0, w2x, w2y, W * 0.18);
-    g2.addColorStop(0, `rgba(40,10,140,${(0.06 + 0.02 * Math.cos(time * 0.25)).toFixed(2)})`);
-    g2.addColorStop(1, 'transparent');
-    ctx.fillStyle = g2;
-    ctx.fillRect(0, 0, W, H * 0.6);
-  }
-
-  /* Pause canvas ticks during touch scroll on mobile for 60fps scrolling */
+  /* Pause rendering ticks during active touch scroll */
   let isScrolling = false;
   let scrollTimeout;
   window.addEventListener('scroll', () => {
@@ -427,13 +287,12 @@
   }, { passive: true });
 
   /* ══════════════════════════════════
-     MAIN LOOP — FPS throttled
+     MAIN ANIMATION TICK
   ══════════════════════════════════ */
   function tick(ts) {
     requestAnimationFrame(tick);
     if (isScrolling) return;
 
-    /* FPS cap */
     const elapsed = ts - lastFrameTime;
     if (elapsed < fpsInterval) return;
     lastFrameTime = ts - (elapsed % fpsInterval);
@@ -442,19 +301,32 @@
     lastTs   = ts;
     time    += dt;
 
-    ctx.clearRect(0, 0, W, H);
+    drawBackground();
 
-    drawSky();
-    drawMilkyWay();
-    drawNebulaWisps();
-    drawStars();
-    drawMoon();
-    drawMountains();
-    drawCity();
-    drawGrid();
+    /* ── Move Phoenix in smooth soaring flight ── */
+    phoenix.x += phoenix.vx;
+    phoenix.wingPhase += dt * 5.5;
+
+    /* Undulating wave trajectory */
+    phoenix.y = H * 0.38 + Math.sin(time * 0.7) * (H * 0.18) + Math.cos(time * 1.3) * 25;
+
+    /* Reset loop when phoenix flies off-screen right */
+    if (phoenix.x > W + 220) {
+      phoenix.x = -220;
+      phoenix.y = H * 0.40;
+    }
+
+    /* Spawn tail embers */
+    spawnEmber(phoenix.x - 30 * phoenix.scale, phoenix.y);
+    if (Math.random() < 0.6) {
+      spawnEmber(phoenix.x - 60 * phoenix.scale, phoenix.y + (Math.random() - 0.5) * 20);
+    }
+
+    updateAndDrawEmbers(dt);
+    drawPhoenix(phoenix.x, phoenix.y, phoenix.scale, phoenix.wingPhase);
   }
 
-  /* Handle resize — debounced */
+  /* Handle resize */
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
