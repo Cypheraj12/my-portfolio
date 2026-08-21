@@ -15,14 +15,8 @@
 </head>
 <body data-theme="coral">
 
-    <!-- ==================== AMBIENT AURORA WAVE-DRIFT ORBS ==================== -->
-    <div class="bg-moving-objects" aria-hidden="true">
-        <div class="bg-orb orb-1" style="animation-delay: 0s"></div>
-        <div class="bg-orb orb-2" style="animation-delay: -8s"></div>
-        <div class="bg-orb orb-3" style="animation-delay: -4s"></div>
-        <div class="bg-orb orb-4" style="animation-delay: -14s"></div>
-        <div class="bg-orb orb-5" style="animation-delay: -20s"></div>
-    </div>
+    <!-- ==================== SYNTHWAVE CANVAS BACKGROUND ==================== -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
     <!-- ==================== macOS TOP SYSTEM MENU BAR ==================== -->
     <div class="macos-system-bar">
@@ -604,6 +598,7 @@
         </div>
     </div>
 
+    <script src="bg-canvas.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
