@@ -1,113 +1,27 @@
 /* =====================================================
    PORTFOLIO ENHANCEMENTS
-   - Loading screen with animated grid
    - Typewriter effect on hero accent text
    - Custom glow cursor
    - Scroll reveal (Intersection Observer)
    - Animated stats counters
    - 3D card tilt on mouse move
-   - EmailJS contact form
    ===================================================== */
 (function () {
   'use strict';
 
-  /* ══════════════════════════════════
-     1. LOADING SCREEN
-  ══════════════════════════════════ */
-  const loader    = document.getElementById('loading-screen');
-  const loaderBar = document.getElementById('loader-bar');
-  const loaderPct = document.getElementById('loader-pct');
-  const lCanvas   = document.getElementById('loader-canvas');
-
-  if (loader && lCanvas) {
-    const lCtx = lCanvas.getContext('2d');
-    let lW, lH, lTime = 0, lLast = 0;
-
-    function resizeLoader() {
-      lW = lCanvas.width  = lCanvas.offsetWidth;
-      lH = lCanvas.height = lCanvas.offsetHeight;
-    }
-    resizeLoader();
-
-    /* Animate a small synthwave grid in the loader */
-    function drawLoaderGrid(ts) {
-      const dt = Math.min((ts - lLast) / 1000, 0.05);
-      lLast = ts;
-      lTime += dt;
-
-      lCtx.clearRect(0, 0, lW, lH);
-
-      const gy = lH * 0.58;
-      const gB = lH;
-
-      /* Floor */
-      const fg = lCtx.createLinearGradient(0, gy, 0, gB);
-      fg.addColorStop(0, '#0e0030');
-      fg.addColorStop(1, '#04000e');
-      lCtx.fillStyle = fg;
-      lCtx.fillRect(0, gy, lW, gB - gy);
-
-      /* Horizon */
-      lCtx.strokeStyle = 'rgba(255,50,210,0.50)';
-      lCtx.lineWidth   = 1.5;
-      lCtx.beginPath();
-      lCtx.moveTo(0, gy); lCtx.lineTo(lW, gy);
-      lCtx.stroke();
-
-      const vp = lW / 2;
-      const numV = 18, numH = 14;
-      const offset = (lTime * 0.4) % 1;
-
-      lCtx.save();
-      for (let i = 0; i <= numV; i++) {
-        const t  = i / numV;
-        const bx = t * lW;
-        lCtx.strokeStyle = 'rgba(140,0,255,0.10)';
-        lCtx.lineWidth   = 0.7;
-        lCtx.beginPath();
-        lCtx.moveTo(vp + (bx - vp) * 0.01, gy);
-        lCtx.lineTo(bx, gB);
-        lCtx.stroke();
-      }
-      for (let i = 0; i < numH; i++) {
-        const t = (i + offset) / numH;
-        const pT = Math.pow(t, 2.8);
-        const y  = gy + pT * (gB - gy);
-        if (y < gy) continue;
-        const p  = (y - gy) / (gB - gy);
-        lCtx.strokeStyle = `rgba(200,30,255,${(0.04 + p * 0.28).toFixed(2)})`;
-        lCtx.lineWidth   = 0.4 + p * 1.4;
-        lCtx.beginPath();
-        lCtx.moveTo(0, y); lCtx.lineTo(lW, y);
-        lCtx.stroke();
-      }
-      lCtx.restore();
-
-      if (loader && !loader.classList.contains('hidden')) {
-        requestAnimationFrame(drawLoaderGrid);
-      }
-    }
-    requestAnimationFrame(drawLoaderGrid);
-
-    /* Progress bar animation — fills over ~1.6s then hides */
-    let pct = 0;
-    const fillSpeed = 100 / 25; // 25 ticks → 100%
-    const ticker = setInterval(() => {
-      pct = Math.min(pct + fillSpeed + Math.random() * 3, 100);
-      if (loaderBar) loaderBar.style.width = pct + '%';
-      if (loaderPct) loaderPct.textContent = Math.floor(pct) + '%';
-      if (pct >= 100) {
-        clearInterval(ticker);
-        setTimeout(() => {
-          loader.classList.add('hidden');
-          /* Trigger reveals after loader hides */
-          triggerReveal();
-          startTypewriter();
-          animateStats();
-        }, 300);
-      }
-    }, 55);
+  // Run initial animations immediately on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
   }
+
+  function initAll() {
+    triggerReveal();
+    startTypewriter();
+    animateStats();
+  }
+
 
   /* ══════════════════════════════════
      2. TYPEWRITER EFFECT on hero accent
