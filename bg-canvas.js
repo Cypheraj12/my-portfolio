@@ -83,152 +83,191 @@
     canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    phoenix.scale = Math.min(W, H) / (LOW() ? 850 : 650);
-    phoenix.vx    = LOW() ? 1.2 : 1.7;
-
-    buildStars();
-  }
-
-  /* ══════════════════════════════════
-     DRAW PHOENIX
+    phoenix.scale = Math.min(W, H) / (LOW() ? 850 : 650);  /* ══════════════════════════════════
+     DRAW PHOENIX (Grounded in Reference Images 1, 2 & 3)
   ══════════════════════════════════ */
   function drawPhoenix(x, y, scale, wingPhase) {
     ctx.save();
     ctx.translate(x, y);
     ctx.scale(scale, scale);
 
-    /* Wing flap angle calculation */
     const flap = Math.sin(wingPhase);
-    const wingY = flap * 45; // vertical wing elevation
+    const wingElevation = flap * 28;
 
-    /* Overall opacity — subtle background presence */
-    const baseAlpha = LOW() ? 0.18 : 0.24;
-    ctx.globalAlpha = baseAlpha;
+    /* Opacity — clear background visibility without distracting text */
+    ctx.globalAlpha = LOW() ? 0.22 : 0.28;
 
-    /* Body Glow Halo */
-    const aura = ctx.createRadialGradient(0, 0, 5, 0, 0, 90);
-    aura.addColorStop(0.0, 'rgba(255,77,0,0.35)');
-    aura.addColorStop(0.4, 'rgba(255,170,0,0.18)');
+    /* ── Radiant Fire Aura Core ── */
+    const aura = ctx.createRadialGradient(0, -10, 8, 0, -10, 110);
+    aura.addColorStop(0.0, 'rgba(255, 235, 150, 0.45)');
+    aura.addColorStop(0.25, 'rgba(255, 170, 0, 0.30)');
+    aura.addColorStop(0.60, 'rgba(255, 77, 0, 0.18)');
     aura.addColorStop(1.0, 'transparent');
     ctx.fillStyle = aura;
     ctx.beginPath();
-    ctx.arc(0, 0, 90, 0, Math.PI * 2);
+    ctx.arc(0, -10, 110, 0, Math.PI * 2);
     ctx.fill();
 
-    /* ── Tail Feathers (Flowing Streamers) ── */
-    const numTails = 5;
-    for (let t = 0; t < numTails; t++) {
-      const offsetAngle = (t - (numTails - 1) / 2) * 0.18;
-      const tailLen = 140 + t * 15;
-      const wave = Math.sin(time * 3 + t * 0.8) * 22;
+    /* ── Tail Plumes (Long Flowing Flame Ribbons like Ref 1, 2 & 3) ── */
+    const tailPlumes = [
+      { len: 180, offsety: 0,   thick: 4.5, speed: 2.8 },
+      { len: 210, offsety: -12, thick: 3.5, speed: 3.2 },
+      { len: 190, offsety: 12,  thick: 3.8, speed: 2.5 },
+      { len: 230, offsety: -24, thick: 2.8, speed: 3.6 },
+      { len: 200, offsety: 22,  thick: 3.0, speed: 3.0 }
+    ];
+
+    tailPlumes.forEach((p, idx) => {
+      const wave = Math.sin(time * p.speed + idx * 0.7) * 28;
+      const endX = -p.len;
+      const endY = p.offsety + wave * 1.3;
 
       ctx.beginPath();
-      ctx.moveTo(-15, 0);
-      ctx.quadraticCurveTo(
-        -tailLen * 0.5, wave,
-        -tailLen, wave * 1.4 + offsetAngle * 50
+      ctx.moveTo(-10, 5);
+      ctx.bezierCurveTo(
+        -p.len * 0.4, p.offsety + wave * 0.6,
+        -p.len * 0.75, p.offsety + wave * 1.1,
+        endX, endY
       );
 
-      const tailG = ctx.createLinearGradient(0, 0, -tailLen, wave);
-      tailG.addColorStop(0,   'rgba(255,170,0,0.7)');
-      tailG.addColorStop(0.5, 'rgba(255,77,0,0.5)');
-      tailG.addColorStop(1,   'transparent');
-      ctx.strokeStyle = tailG;
-      ctx.lineWidth   = 3.5 - t * 0.4;
+      const tailGrad = ctx.createLinearGradient(-10, 0, endX, endY);
+      tailGrad.addColorStop(0.0, '#fff0aa');
+      tailGrad.addColorStop(0.3, '#ffaa00');
+      tailGrad.addColorStop(0.7, '#ff4d00');
+      tailGrad.addColorStop(1.0, 'rgba(225, 29, 72, 0.0)');
+
+      ctx.strokeStyle = tailGrad;
+      ctx.lineWidth   = p.thick;
       ctx.lineCap     = 'round';
       ctx.stroke();
-    }
 
-    /* ── Left Wing ── */
-    ctx.beginPath();
-    ctx.moveTo(10, -5);
-    ctx.bezierCurveTo(
-      -20, -50 + wingY,
-      -80, -90 + wingY * 1.3,
-      -120, -40 + wingY * 0.8
-    );
-    ctx.bezierCurveTo(
-      -80, -20 + wingY * 0.5,
-      -30, -10,
-      0, 0
-    );
-    const leftWingG = ctx.createLinearGradient(10, 0, -120, -90 + wingY);
-    leftWingG.addColorStop(0,   'rgba(255,170,0,0.8)');
-    leftWingG.addColorStop(0.5, 'rgba(255,77,0,0.6)');
-    leftWingG.addColorStop(1,   'rgba(225,29,72,0.2)');
-    ctx.fillStyle = leftWingG;
-    ctx.fill();
-
-    /* Left Wing Feather Lines */
-    for (let f = 1; f <= 4; f++) {
-      const fx = -f * 25;
+      /* Flame tip spark */
       ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.quadraticCurveTo(fx * 0.8, -60 + wingY, fx * 1.2, -45 + wingY * 0.9);
-      ctx.strokeStyle = `rgba(255,200,80,${0.3 - f * 0.05})`;
-      ctx.lineWidth   = 1.2;
-      ctx.stroke();
+      ctx.arc(endX, endY, p.thick * 1.2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,170,0,0.6)';
+      ctx.fill();
+    });
+
+    /* Helper for Layered Sweeping Wings (References 1, 2 & 3) */
+    function drawLayeredWing(sideMultiplier) {
+      const wingGrad = ctx.createLinearGradient(0, 0, -60 * sideMultiplier, -130 + wingElevation);
+      wingGrad.addColorStop(0.0, 'rgba(255, 240, 180, 0.95)');
+      wingGrad.addColorStop(0.3, 'rgba(255, 170, 0, 0.85)');
+      wingGrad.addColorStop(0.7, 'rgba(255, 77, 0, 0.65)');
+      wingGrad.addColorStop(1.0, 'rgba(225, 29, 72, 0.25)');
+
+      /* Main Wing Outline Path */
+      ctx.beginPath();
+      ctx.moveTo(5, -10);
+      ctx.bezierCurveTo(
+        -30 * sideMultiplier, -70 + wingElevation,
+        -75 * sideMultiplier, -130 + wingElevation * 1.2,
+        -115 * sideMultiplier, -145 + wingElevation * 1.4
+      );
+      ctx.bezierCurveTo(
+        -105 * sideMultiplier, -100 + wingElevation * 0.9,
+        -80 * sideMultiplier,  -65  + wingElevation * 0.6,
+        -50 * sideMultiplier,  -30  + wingElevation * 0.3
+      );
+      ctx.bezierCurveTo(
+        -30 * sideMultiplier, -15,
+        -10 * sideMultiplier, -5,
+        0, 0
+      );
+      ctx.fillStyle = wingGrad;
+      ctx.fill();
+
+      /* Individual Flame Feather Plumes */
+      const featherTips = [
+        { tx: -115, ty: -145, len: 45 },
+        { tx: -95,  ty: -125, len: 40 },
+        { tx: -75,  ty: -105, len: 35 },
+        { tx: -55,  ty: -80,  len: 30 },
+        { tx: -38,  ty: -55,  len: 25 }
+      ];
+
+      featherTips.forEach(tip => {
+        const fx = tip.tx * sideMultiplier;
+        const fy = tip.ty + wingElevation * 1.2;
+        ctx.beginPath();
+        ctx.moveTo(fx, fy);
+        ctx.quadraticCurveTo(
+          fx - 15 * sideMultiplier, fy - tip.len * 0.5,
+          fx - 22 * sideMultiplier, fy - tip.len
+        );
+        ctx.quadraticCurveTo(
+          fx - 8 * sideMultiplier, fy - tip.len * 0.6,
+          fx + 8 * sideMultiplier, fy + 12
+        );
+        ctx.fillStyle = 'rgba(255, 170, 0, 0.7)';
+        ctx.fill();
+      });
     }
 
-    /* ── Right Wing ── */
+    /* Left & Right Wings spread */
+    drawLayeredWing(1);  // Left wing
+    drawLayeredWing(-1); // Right wing
+
+    /* ── Torso & Chest (Golden Flame Core) ── */
     ctx.beginPath();
-    ctx.moveTo(10, -5);
-    ctx.bezierCurveTo(
-      -10, -60 - wingY * 0.8,
-      -60, -110 - wingY * 1.1,
-      -110, -60 - wingY * 0.7
-    );
-    ctx.bezierCurveTo(
-      -70, -30 - wingY * 0.4,
-      -25, -10,
-      0, 0
-    );
-    const rightWingG = ctx.createLinearGradient(10, 0, -110, -110 - wingY);
-    rightWingG.addColorStop(0,   'rgba(255,200,100,0.85)');
-    rightWingG.addColorStop(0.5, 'rgba(255,100,0,0.65)');
-    rightWingG.addColorStop(1,   'rgba(200,20,60,0.2)');
-    ctx.fillStyle = rightWingG;
+    ctx.ellipse(0, -5, 24, 45, 0.05, 0, Math.PI * 2);
+    const chestGrad = ctx.createRadialGradient(0, -10, 3, 0, -5, 28);
+    chestGrad.addColorStop(0.0, '#ffffff');
+    chestGrad.addColorStop(0.3, '#ffea75');
+    chestGrad.addColorStop(0.75, '#ff4d00');
+    chestGrad.addColorStop(1.0, '#9f1239');
+    ctx.fillStyle = chestGrad;
     ctx.fill();
 
-    /* ── Phoenix Body & Head ── */
+    /* ── Head, Falcon Beak & Crown Crest Plumes (Ref 1, 2, 3) ── */
     ctx.beginPath();
-    ctx.ellipse(5, 0, 32, 12, 0.15, 0, Math.PI * 2);
-    const bodyG = ctx.createRadialGradient(10, 0, 2, 0, 0, 35);
-    bodyG.addColorStop(0,   '#ffffff');
-    bodyG.addColorStop(0.3, '#ffcc00');
-    bodyG.addColorStop(0.7, '#ff4d00');
-    bodyG.addColorStop(1,   '#b91c1c');
-    ctx.fillStyle = bodyG;
+    ctx.arc(0, -48, 12, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff5cc';
     ctx.fill();
 
-    /* Head & Crown Crest */
+    /* Curved Sharp Beak */
     ctx.beginPath();
-    ctx.arc(32, -4, 9, 0, Math.PI * 2);
-    ctx.fillStyle = '#ffeedd';
-    ctx.fill();
-
-    /* Beak */
-    ctx.beginPath();
-    ctx.moveTo(39, -4);
-    ctx.lineTo(50, -2);
-    ctx.lineTo(39, 1);
+    ctx.moveTo(6, -48);
+    ctx.quadraticCurveTo(18, -46, 20, -38);
+    ctx.quadraticCurveTo(10, -40, 4, -42);
     ctx.closePath();
     ctx.fillStyle = '#ffaa00';
     ctx.fill();
 
-    /* Crown Feathers */
+    /* Eye */
     ctx.beginPath();
-    ctx.moveTo(32, -11);
-    ctx.quadraticCurveTo(36, -24, 44, -28);
-    ctx.quadraticCurveTo(34, -20, 30, -12);
-    ctx.fillStyle = 'rgba(255,170,0,0.9)';
+    ctx.arc(4, -50, 2.2, 0, Math.PI * 2);
+    ctx.fillStyle = '#111827';
     ctx.fill();
-
-    /* Eye Glow */
     ctx.beginPath();
-    ctx.arc(35, -5, 1.8, 0, Math.PI * 2);
+    ctx.arc(4.8, -50.8, 0.8, 0, Math.PI * 2);
     ctx.fillStyle = '#ffffff';
     ctx.fill();
+
+    /* 3 Flowing Crown Crest Plumes (Ref 1 & 2) */
+    const crests = [
+      { len: 45, curvey: -75, angle: -0.35 },
+      { len: 55, curvey: -85, angle: -0.15 },
+      { len: 42, curvey: -72, angle: 0.05 }
+    ];
+    crests.forEach(c => {
+      ctx.beginPath();
+      ctx.moveTo(0, -56);
+      ctx.quadraticCurveTo(
+        -15 + c.angle * 20, c.curvey,
+        -35 + c.angle * 30, c.curvey - 12
+      );
+      ctx.quadraticCurveTo(
+        -15 + c.angle * 10, c.curvey + 10,
+        2, -50
+      );
+      const crestGrad = ctx.createLinearGradient(0, -56, -35, c.curvey);
+      crestGrad.addColorStop(0, '#ffffff');
+      crestGrad.addColorStop(0.5, '#ffaa00');
+      crestGrad.addColorStop(1, 'rgba(255,77,0,0.2)');
+      ctx.fillStyle = crestGrad;
+      ctx.fill();
+    });
 
     ctx.restore();
   }
