@@ -1,62 +1,62 @@
-/* ==================== VIOLET & FLAME ORANGE · HYBRID DESIGNER THEME ==================== */
+/* ==================== CYBER BLAZE & DARK CHARCOAL · EDITORIAL SWISS THEME ==================== */
 :root {
-    /* Deep Obsidian Indigo base */
-    --bg-primary: #070712;
-    --bg-navy:    #090918;
-    --bg-surface: #0e0e1e;
+    /* Matte Charcoal base */
+    --bg-primary: #09090e;
+    --bg-navy:    #0d0d14;
+    --bg-surface: #12121c;
 
-    /* Primary — Deep Violet & Lavender */
-    --accent-violet:       #7c3aed;
-    --accent-violet-light: #a855f7;
-    --accent-violet-glow:  rgba(124, 58, 237, 0.45);
+    /* Primary — Electric Flame Orange & Crimson Amber */
+    --accent-flame:        #ff4d00;
+    --accent-orange:       #ff5500;
+    --accent-gold:         #ffaa00;
+    --accent-violet:       #ff4d00;
+    --accent-violet-light: #ff6b2b;
+    --accent-violet-glow:  rgba(255, 77, 0, 0.45);
 
-    /* Signature Highlight — Vivid Flame Orange & Solar Gold */
-    --accent-flame:     #ff4d00;
-    --accent-orange:    #ff5500;
-    --accent-gold:      #ffaa00;
-    --accent-blue:      #ff4d00;
+    /* Secondary — Solar Amber & Crimson Rose */
+    --accent-blue:      #ff5500;
     --accent-cyan:      #ffaa00;
-    --accent-blue-deep: #e04400;
+    --accent-blue-deep: #cc3d00;
 
-    /* Legacy aliases */
-    --accent-purple:      #a855f7;
+    /* Legacy aliases mapped to Flame Orange theme */
+    --accent-purple:      #ff6b2b;
     --accent-pink:        #ff4d00;
     --accent-green:       #ffaa00;
     --accent-coral:       #ff4d00;
-    --accent-coral-deep:  #7c3aed;
-    --accent-lavender:    #a855f7;
+    --accent-coral-deep:  #e04400;
+    --accent-lavender:    #ffaa00;
     --accent-rose:        #ff4d00;
 
-    /* Text — Warm Pearl White & Muted Slate hierarchy */
+    /* Text — Warm Off-White & Muted Slate */
     --text-primary:   #f8fafc;
     --text-secondary: #94a3b8;
     --text-tertiary:  #64748b;
     --text-muted:     #475569;
 
-    /* Glass Surfaces — subtle, crisp dark slate */
-    --surface-window:        rgba(10, 10, 20, 0.88);
-    --surface-tile:          rgba(255, 255, 255, 0.025);
-    --surface-tile-profile:  rgba(14, 14, 26, 0.75);
-    --surface-tile-hover:    rgba(255, 255, 255, 0.05);
+    /* Glass Surfaces — matte charcoal slate */
+    --surface-window:        rgba(12, 12, 18, 0.90);
+    --surface-tile:          rgba(255, 255, 255, 0.028);
+    --surface-tile-profile:  rgba(16, 16, 24, 0.78);
+    --surface-tile-hover:    rgba(255, 255, 255, 0.06);
 
-    /* Borders — refined flame/violet semi-transparent */
-    --border-subtle: rgba(255, 77, 0, 0.22);
-    --border-light:  rgba(168, 85, 247, 0.18);
-    --border-accent: rgba(255, 170, 0, 0.30);
+    /* Borders — fiery orange/gold semi-transparent */
+    --border-subtle: rgba(255, 77, 0, 0.25);
+    --border-light:  rgba(255, 170, 0, 0.20);
+    --border-accent: rgba(255, 85, 0, 0.35);
 
     /* Traffic Lights */
     --mac-red:    #FF5F56;
     --mac-yellow: #FFBD2E;
-    --mac-green:  #27C93F;
+    --mac-green:  #ffaa00;
 
     /* Typography */
     --font-system:  'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
 
     /* Elevation */
-    --shadow-window:     0 32px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,77,0,0.18), 0 0 80px rgba(124,58,237,0.12);
+    --shadow-window:     0 32px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,77,0,0.20), 0 0 80px rgba(255,77,0,0.14);
     --shadow-tile:       0 4px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04);
-    --shadow-tile-hover: 0 12px 40px rgba(255,77,0,0.25), 0 0 0 1px rgba(255,170,0,0.38), inset 0 1px 0 rgba(255,255,255,0.06);
+    --shadow-tile-hover: 0 12px 40px rgba(255,77,0,0.30), 0 0 0 1px rgba(255,170,0,0.40), inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
 /* ==================== GLOBAL RESET ==================== */
@@ -674,11 +674,11 @@ main.main-content {
 
 /* Gradient clip on key phrase */
 .accent-text {
-    background: linear-gradient(90deg, #a855f7 0%, #7c3aed 35%, #ff4d00 70%, #ffaa00 100%);
+    background: linear-gradient(90deg, #ff4d00 0%, #ff6b00 45%, #ffaa00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 14px rgba(255,77,0,0.35));
+    filter: drop-shadow(0 0 16px rgba(255,77,0,0.50));
 }
 
 .hero-description {
@@ -696,10 +696,10 @@ main.main-content {
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 28px;
-    background: rgba(255, 77, 0, 0.06);
+    background: rgba(255, 77, 0, 0.08);
     padding: 14px 18px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 77, 0, 0.20);
+    border: 1px solid rgba(255, 77, 0, 0.25);
 }
 
 .hero-cta-group {
@@ -727,15 +727,15 @@ main.main-content {
 }
 
 .btn-apple-primary {
-    background: linear-gradient(135deg, #7c3aed 0%, #ff4d00 60%, #ffaa00 100%);
-    color: #FFFFFF;
-    font-weight: 800;
-    box-shadow: 0 4px 20px rgba(255, 77, 0, 0.45), 0 0 0 1px rgba(255,170,0,0.30);
+    background: linear-gradient(135deg, #ff4d00 0%, #ff6b00 50%, #ffaa00 100%);
+    color: #08080c;
+    font-weight: 900;
+    box-shadow: 0 4px 20px rgba(255, 77, 0, 0.50), 0 0 0 1px rgba(255,170,0,0.35);
 }
 
 .btn-apple-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255, 77, 0, 0.55), 0 0 0 1px rgba(255,170,0,0.45);
+    box-shadow: 0 8px 32px rgba(255, 77, 0, 0.65), 0 0 0 1px rgba(255,170,0,0.50);
 }
 
 .btn-apple-secondary {

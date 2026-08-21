@@ -47,13 +47,13 @@
   let cityDirty = true;   // re-bake when resized
 
   const BUILD_COLS = [
-    'rgba(6,4,22,1)',  'rgba(8,4,28,1)',  'rgba(5,3,18,1)',
-    'rgba(10,5,30,1)', 'rgba(4,3,16,1)',  'rgba(7,4,24,1)'
+    'rgba(14,6,12,1)',  'rgba(18,8,16,1)',  'rgba(12,5,10,1)',
+    'rgba(22,10,18,1)', 'rgba(10,4,8,1)',   'rgba(16,7,14,1)'
   ];
   const WIN_COLS = [
-    'rgba(16,185,129,',   'rgba(0,245,160,',
-    'rgba(168,85,247,',   'rgba(255,255,255,',
-    'rgba(99,102,241,',   'rgba(52,211,153,'
+    'rgba(255,77,0,',    'rgba(255,170,0,',
+    'rgba(255,107,43,',  'rgba(255,255,255,',
+    'rgba(225,29,72,',   'rgba(255,140,0,'
   ];
 
   /* ── Grid ── */
@@ -151,9 +151,9 @@
 
     /* Horizon glow bloom — baked once */
     const bloom = oc.createRadialGradient(W / 2, hy, 0, W / 2, hy, W * 0.55);
-    bloom.addColorStop(0.0, 'rgba(255,50,180,0.18)');
-    bloom.addColorStop(0.3, 'rgba(100,60,255,0.10)');
-    bloom.addColorStop(0.6, 'rgba(160,30,220,0.06)');
+    bloom.addColorStop(0.0, 'rgba(255,77,0,0.22)');
+    bloom.addColorStop(0.3, 'rgba(255,170,0,0.12)');
+    bloom.addColorStop(0.6, 'rgba(225,29,72,0.06)');
     bloom.addColorStop(1.0, 'transparent');
     oc.fillStyle = bloom;
     oc.fillRect(0, hy - 60, W, 100);
@@ -162,7 +162,7 @@
     for (const b of buildings) {
       oc.fillStyle = BUILD_COLS[Math.floor(b.x) % BUILD_COLS.length];
       oc.fillRect(b.x, b.y, b.w, b.h);
-      oc.strokeStyle = 'rgba(168,85,247,0.10)';
+      oc.strokeStyle = 'rgba(255,77,0,0.12)';
       oc.lineWidth   = 0.5;
       oc.strokeRect(b.x, b.y, b.w, b.h);
     }
@@ -175,11 +175,11 @@
 
   function drawSky() {
     const g = ctx.createLinearGradient(0, 0, 0, H * 0.53);
-    g.addColorStop(0.00, '#030310');
-    g.addColorStop(0.25, '#060620');
-    g.addColorStop(0.55, '#0b0630');
-    g.addColorStop(0.78, '#160844');
-    g.addColorStop(1.00, '#220a58');
+    g.addColorStop(0.00, '#06060a');
+    g.addColorStop(0.25, '#0c0712');
+    g.addColorStop(0.55, '#160918');
+    g.addColorStop(0.78, '#240b18');
+    g.addColorStop(1.00, '#360c16');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H * 0.53);
   }
