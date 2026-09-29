@@ -19,10 +19,10 @@
     const count = isMobile ? 35 : 70;
 
     const colors = [
-      'rgba(255, 77, 0,',   // Flame Orange
-      'rgba(255, 170, 0,',  // Solar Gold
-      'rgba(255, 107, 43,', // Amber
-      'rgba(248, 250, 252,' // Warm Pearl Star
+      'rgba(234, 88, 12,',   // Flame Orange
+      'rgba(249, 115, 22,',  // Solar Amber
+      'rgba(217, 119, 6,',   // Gold Accent
+      'rgba(148, 163, 184,'  // Muted Slate Star
     ];
 
     for (let i = 0; i < count; i++) {
@@ -32,7 +32,7 @@
         r: Math.random() * 1.5 + 0.4,
         vx: (Math.random() - 0.5) * 0.4,
         vy: -(Math.random() * 0.5 + 0.15),
-        alpha: Math.random() * 0.45 + 0.1,
+        alpha: Math.random() * 0.35 + 0.1,
         color: colors[Math.floor(Math.random() * colors.length)],
         phase: Math.random() * Math.PI * 2,
         speed: Math.random() * 0.02 + 0.005
@@ -58,8 +58,8 @@
   function tick() {
     time += 0.016;
 
-    /* Clean dark charcoal slate fill */
-    ctx.fillStyle = '#08080d';
+    /* Clean Light Pearl Slate fill */
+    ctx.fillStyle = '#f8fafc';
     ctx.fillRect(0, 0, W, H);
 
     /* Render soft floating embers and stars */
