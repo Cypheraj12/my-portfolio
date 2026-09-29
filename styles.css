@@ -909,8 +909,8 @@ main.main-content {
 }
 
 .filter-chip {
-    background: rgba(255, 77, 0, 0.07);
-    border: 1px solid rgba(255, 170, 0, 0.20);
+    background: rgba(241, 245, 249, 0.90);
+    border: 1px solid rgba(203, 213, 225, 0.80);
     color: var(--text-secondary);
     padding: 6px 14px;
     border-radius: 8px;
@@ -922,10 +922,10 @@ main.main-content {
 }
 
 .filter-chip:hover, .filter-chip.active {
-    background: linear-gradient(135deg, rgba(255,77,0,0.35), rgba(255,170,0,0.25));
-    color: #f8fafc;
-    border-color: rgba(255, 170, 0, 0.45);
-    box-shadow: 0 3px 16px rgba(255, 77, 0, 0.30);
+    background: linear-gradient(135deg, #ea580c, #f97316);
+    color: #ffffff;
+    border-color: rgba(234, 88, 12, 0.60);
+    box-shadow: 0 3px 14px rgba(234, 88, 12, 0.25);
 }
 
 .projects-grid {
@@ -937,6 +937,17 @@ main.main-content {
 .project-card {
     display: flex;
     flex-direction: column;
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.90) !important;
+    border-radius: 16px !important;
+    padding: 22px !important;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.project-card:hover {
+    box-shadow: 0 12px 32px rgba(249, 115, 22, 0.15) !important;
+    border-color: rgba(234, 88, 12, 0.35) !important;
 }
 
 .card-top-bar {
@@ -949,7 +960,7 @@ main.main-content {
 .project-tag {
     font-size: 0.74rem;
     font-weight: 700;
-    color: #ffaa00;
+    color: #ea580c;
     text-transform: uppercase;
     letter-spacing: 0.8px;
 }
@@ -984,11 +995,11 @@ main.main-content {
 .highlight-chip {
     font-size: 0.74rem;
     font-weight: 600;
-    background: rgba(255, 77, 0, 0.10);
-    color: #ffaa00;
+    background: rgba(254, 243, 199, 0.85);
+    color: #d97706;
     padding: 4px 10px;
     border-radius: 6px;
-    border: 1px solid rgba(255, 170, 0, 0.25);
+    border: 1px solid rgba(245, 158, 11, 0.30);
 }
 
 .tech-stack-list {
@@ -1000,25 +1011,25 @@ main.main-content {
 
 .tech-tag {
     font-size: 0.74rem;
-    background: rgba(255, 255, 255, 0.04);
-    color: #cbd5e1;
+    background: rgba(241, 245, 249, 0.90);
+    color: #475569;
     padding: 4px 10px;
     border-radius: 6px;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(203, 213, 225, 0.80);
     transition: all 0.2s ease;
 }
 
 .tech-tag:hover {
-    background: rgba(255, 77, 0, 0.12);
-    color: #ffaa00;
-    border-color: rgba(255, 170, 0, 0.30);
+    background: rgba(254, 215, 170, 0.50);
+    color: #ea580c;
+    border-color: rgba(249, 115, 22, 0.40);
 }
 
 .project-card-footer {
     margin-top: auto;
     padding-top: 12px;
-    border-top: 1px solid rgba(255, 170, 0, 0.12);
+    border-top: 1px solid rgba(226, 232, 240, 0.85);
 }
 
 .project-link {
@@ -1027,13 +1038,13 @@ main.main-content {
     gap: 6px;
     font-size: 0.84rem;
     font-weight: 700;
-    color: #ffaa00;
+    color: #ea580c;
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
 .project-link:hover {
-    color: #ffffff;
+    color: #c2410c;
     transform: translateX(2px);
 }
 
@@ -1041,7 +1052,7 @@ main.main-content {
 .finder-path-bar {
     margin-top: 18px;
     padding-top: 14px;
-    border-top: 1px solid rgba(255, 170, 0, 0.12);
+    border-top: 1px solid rgba(226, 232, 240, 0.85);
     font-size: 0.76rem;
     color: var(--text-tertiary);
     display: flex;
@@ -1051,7 +1062,7 @@ main.main-content {
 }
 
 .finder-path-bar i {
-    color: #ffaa00;
+    color: #ea580c;
 }
 
 .path-current {
@@ -1095,7 +1106,7 @@ main.main-content {
 }
 
 .icon-blue { background: linear-gradient(135deg, #3B82FF, #60A5FA); }
-.icon-purple { background: linear-gradient(135deg, #8B5CF6, #A78BFA); }
+.icon-purple { background: linear-gradient(135deg, #ea580c, #f97316); }
 .icon-rose { background: linear-gradient(135deg, #EC4899, #F472B6); }
 .icon-cyan { background: linear-gradient(135deg, #06B6D4, #67E8F9); }
 .icon-dark { background: linear-gradient(135deg, #334155, #475569); }
@@ -1113,9 +1124,9 @@ main.main-content {
 }
 
 .skill-pill {
-    background: rgba(124, 58, 237, 0.08);
-    border: 1px solid rgba(168, 85, 247, 0.20);
-    color: var(--text-secondary);
+    background: rgba(241, 245, 249, 0.90);
+    border: 1px solid rgba(203, 213, 225, 0.80);
+    color: #334155;
     padding: 5px 13px;
     border-radius: 8px;
     font-size: 0.82rem;
@@ -1129,24 +1140,28 @@ main.main-content {
     gap: 0;
     padding: 0;
     overflow: hidden;
+    background: #ffffff !important;
+    border: 1px solid rgba(226, 232, 240, 0.90) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06) !important;
 }
 
 .mail-sidebar {
-    background: rgba(10, 8, 24, 0.65);
-    border-right: 1px solid rgba(168, 85, 247, 0.14);
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border-right: 1px solid rgba(226, 232, 240, 0.20);
     padding: 30px;
 }
 
 .mail-sidebar-title {
     font-size: 1.18rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: #ffffff;
     margin-bottom: 8px;
 }
 
 .mail-desc {
     font-size: 0.88rem;
-    color: var(--text-secondary);
+    color: #94a3b8;
     margin-bottom: 22px;
 }
 
@@ -1160,7 +1175,7 @@ main.main-content {
 
 .mail-icon {
     font-size: 1.05rem;
-    color: var(--accent-coral);
+    color: #ea580c;
     width: 22px;
     flex-shrink: 0;
 }
@@ -1168,24 +1183,25 @@ main.main-content {
 .channel-label {
     display: block;
     font-size: 0.72rem;
-    color: var(--text-tertiary);
+    color: #64748b;
     font-weight: 700;
 }
 
 .channel-value {
     font-size: 0.88rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #f8fafc;
     text-decoration: none;
     word-break: break-all;
 }
 
 .channel-value:hover {
-    color: var(--accent-coral);
+    color: #ea580c;
 }
 
 .mail-compose-area {
     padding: 30px;
+    background: #ffffff;
 }
 
 .form-row {
@@ -1199,14 +1215,14 @@ main.main-content {
     width: 85px;
     font-size: 0.82rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: #334155;
     flex-shrink: 0;
 }
 
 .recipient-badge {
     font-size: 0.84rem;
     font-weight: 700;
-    color: var(--accent-coral);
+    color: #ea580c;
     word-break: break-all;
 }
 
@@ -1215,20 +1231,23 @@ main.main-content {
     width: 100%;
     padding: 10px 14px;
     border-radius: 9px;
-    border: 1px solid rgba(168, 85, 247, 0.18);
-    background: rgba(10, 8, 22, 0.60);
-    backdrop-filter: blur(8px);
+    border: 1px solid rgba(203, 213, 225, 0.90);
+    background: rgba(248, 250, 252, 0.90);
     font-family: var(--font-system);
     font-size: 0.88rem;
-    color: var(--text-primary);
+    color: #0f172a;
     outline: none;
     transition: all 0.2s ease;
 }
 
+.form-row input::placeholder, .form-row textarea::placeholder {
+    color: #94a3b8;
+}
+
 .form-row input:focus, .form-row textarea:focus {
-    border-color: rgba(168, 85, 247, 0.55);
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
-    background: rgba(15, 12, 35, 0.80);
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+    background: #ffffff;
 }
 
 .textarea-row {
@@ -2292,19 +2311,19 @@ main.main-content {
    CATEGORIZED TECH TAGS
    ============================================================ */
 .tech-tag.tag-lang {
-    background: rgba(255, 77, 0, 0.12) !important;
-    color: #ff6b2b !important;
-    border: 1px solid rgba(255, 77, 0, 0.28) !important;
+    background: rgba(254, 215, 170, 0.40) !important;
+    color: #c2410c !important;
+    border: 1px solid rgba(249, 115, 22, 0.35) !important;
 }
 .tech-tag.tag-ml {
-    background: rgba(255, 170, 0, 0.10) !important;
-    color: #fde047 !important;
-    border: 1px solid rgba(255, 170, 0, 0.25) !important;
+    background: rgba(254, 243, 199, 0.90) !important;
+    color: #b45309 !important;
+    border: 1px solid rgba(245, 158, 11, 0.35) !important;
 }
 .tech-tag.tag-backend {
-    background: rgba(255, 107, 43, 0.12) !important;
-    color: #ffaa00 !important;
-    border: 1px solid rgba(255, 107, 43, 0.28) !important;
+    background: rgba(241, 245, 249, 0.90) !important;
+    color: #334155 !important;
+    border: 1px solid rgba(203, 213, 225, 0.90) !important;
 }
 
 /* ============================================================
