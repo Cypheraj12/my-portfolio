@@ -1,4 +1,4 @@
-# 🌌 Anant Joshi — Personal Portfolio
+# Anant Joshi — Personal Portfolio
 
 Hey there! 👋 Welcome to my personal portfolio.
 
