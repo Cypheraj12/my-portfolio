@@ -13,7 +13,7 @@ const PORTFOLIO_DATA = {
     github: "https://github.com/Cypheraj12",
     linkedin: "https://linkedin.com/in/anant-joshi-52a6ab2a7/",
     resumeUrl: "Anant_Joshi_Resume.pdf",
-    bio: "Final-year B.Tech CSE (Data Science) student passionate about engineering intelligent ML models, data pipelines, and scalable APIs.\n\nFocus: AI/ML, Data Analytics, Computer Vision & Backend APIs — built with Python, TensorFlow, PyTorch, Scikit-Learn, FastAPI & MongoDB.",
+    bio: "I like taking a dataset, breaking it down, finding what matters, and turning it into something that actually works. My work sits across data analysis, machine learning, and AI application development.\n\nMost of my projects are built with Python and tools like Scikit-learn, XGBoost, Pandas, FastAPI, and Streamlit—moving from raw data and models to usable applications.",
     photo: "anant_photo.jpg"
   },
 
