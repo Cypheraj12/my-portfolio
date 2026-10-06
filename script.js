@@ -1,405 +1,537 @@
-// ==================== PREMIUM macOS GLASS PORTFOLIO INTERACTIVITY ====================
+/**
+ * ANANT JOSHI — PORTFOLIO SCRIPT
+ * macOS Desktop Window Manager & iOS Home Screen Experience
+ * Uses PORTFOLIO_DATA from data.js
+ */
 
-document.addEventListener('DOMContentLoaded', () => {
-
-    // ----------------------------------------------------
-    // 1. LIVE macOS SYSTEM CLOCK UPDATER
-    // ----------------------------------------------------
-    const macClockEl = document.getElementById('mac-clock');
-    function updateMacClock() {
-        if (!macClockEl) return;
-        const now = new Date();
-        const options = { weekday: 'short', hour: 'numeric', minute: '2-digit', hour12: true };
-        macClockEl.innerText = now.toLocaleString('en-US', options);
-    }
-    updateMacClock();
-    setInterval(updateMacClock, 1000);
-
-    // ----------------------------------------------------
-    // 2. ACTIVE NAV & DOCK HIGHLIGHT ON SCROLL
-    // ----------------------------------------------------
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.mac-segment-nav .nav-item');
-    const dockItems = document.querySelectorAll('.mac-desktop-dock .dock-item[href^="#"]');
-    let isScrollTicking = false;
-
-    window.addEventListener('scroll', () => {
-        if (!isScrollTicking) {
-            window.requestAnimationFrame(() => {
-                let current = '';
-                const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 140;
-                    if (scrollPos >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                if (current) {
-                    document.body.className = `bg-section-${current}`;
-                }
-
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href') === `#${current}`) {
-                        item.classList.add('active');
-                    }
-                });
-
-                dockItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href') === `#${current}`) {
-                        item.classList.add('active');
-                    }
-                });
-
-                isScrollTicking = false;
-            });
-            isScrollTicking = true;
-        }
-    }, { passive: true });
-
-    // ----------------------------------------------------
-    // 3. DOCK ITEM BOUNCE ANIMATION ON CLICK
-    // ----------------------------------------------------
-    const allDockItems = document.querySelectorAll('.mac-desktop-dock .dock-item');
-    allDockItems.forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.add('bouncing');
-            setTimeout(() => {
-                item.classList.remove('bouncing');
-            }, 600);
-        });
-    });
-
-    // ----------------------------------------------------
-    // 4. RESUME PDF DOWNLOAD HANDLER
-    // ----------------------------------------------------
-    function triggerResumeDownload(e) {
-        if (e) e.preventDefault();
-        const cacheBusterUrl = 'Anant_Joshi_FinalYear_Resume.pdf?v=' + Date.now();
-        fetch(cacheBusterUrl, { cache: 'no-cache' })
-            .then(res => res.blob())
-            .then(blob => {
-                const blobUrl = URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = blobUrl;
-                link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-            })
-            .catch(() => {
-                const link = document.createElement('a');
-                link.href = cacheBusterUrl;
-                link.download = 'Anant_Joshi_FinalYear_Resume.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            });
+document.addEventListener("DOMContentLoaded", () => {
+    // Check data availability
+    if (typeof PORTFOLIO_DATA === "undefined") {
+        console.error("PORTFOLIO_DATA configuration not loaded.");
+        return;
     }
 
-    const headerResumeBtn = document.getElementById('header-resume-btn');
-    const heroResumeBtn = document.getElementById('hero-resume-btn');
-    const dockResumeBtn = document.getElementById('dock-resume-btn');
-    const aboutResumeBtn = document.getElementById('about-resume-btn');
+    const { personal, projects, skills, contact } = PORTFOLIO_DATA;
 
-    if (headerResumeBtn) headerResumeBtn.addEventListener('click', triggerResumeDownload);
-    if (heroResumeBtn) heroResumeBtn.addEventListener('click', triggerResumeDownload);
-    if (dockResumeBtn) dockResumeBtn.addEventListener('click', triggerResumeDownload);
-    if (aboutResumeBtn) aboutResumeBtn.addEventListener('click', triggerResumeDownload);
+    // State
+    let topZIndex = 100;
+    const windows = {
+        about: document.getElementById("win-about"),
+        projects: document.getElementById("win-projects"),
+        skills: document.getElementById("win-skills"),
+        contact: document.getElementById("win-contact"),
+        resume: document.getElementById("win-resume")
+    };
 
+    // ==========================================================================
+    // 1. DATA RENDERING (PROJECTS & SKILLS)
+    // ==========================================================================
 
+    const renderDesktopProjects = (filter = "all") => {
+        const grid = document.getElementById("desktop-projects-grid");
+        if (!grid) return;
 
-    // ----------------------------------------------------
-    // 6. SPOTLIGHT SEARCH SYSTEM (⌘ + K)
-    // ----------------------------------------------------
-    const spotlightBtn = document.getElementById('spotlight-btn');
-    const spotlightOverlay = document.getElementById('spotlight-overlay');
-    const spotlightInput = document.getElementById('spotlight-input');
-    const spotlightResults = document.getElementById('spotlight-results');
+        const filtered = filter === "all" 
+            ? projects 
+            : projects.filter(p => p.category === filter || (filter === "ml" && p.category.includes("ml")));
 
-    const searchableItems = [
-        { title: 'Home / Profile', sub: 'Overview, Bio, Domain Pillars', href: '#hero', icon: 'fa-house' },
-        { title: 'Deepfake Detection Web App', sub: 'AI & ML • Python, TensorFlow, MobileNetV2', href: '#projects', icon: 'fa-eye' },
-        { title: 'YouTube Video Fetcher API', sub: 'Backend • FastAPI, MongoDB, Asyncio', href: '#projects', icon: 'fa-server' },
-        { title: 'Heart Disease ML Predictor', sub: 'Healthcare ML • Scikit-Learn, Streamlit', href: '#projects', icon: 'fa-heart-pulse' },
-        { title: 'Predictive API Latency Forecasting', sub: 'Time-Series • LSTM, XGBoost', href: '#projects', icon: 'fa-chart-line' },
-        { title: 'Laptop Price Analysis & EDA', sub: 'Data Analysis • Pandas, Regression', href: '#projects', icon: 'fa-chart-column' },
-        { title: 'Technical Skills & Competencies', sub: 'Languages, ML, Data Analytics, Databases', href: '#skills', icon: 'fa-sliders' },
-        { title: 'Download Resume (PDF)', sub: 'Official Resume Document', action: triggerResumeDownload, icon: 'fa-file-pdf' },
-        { title: 'Contact Anant Joshi', sub: 'Email: anantajjoshi@gmail.com', href: '#contact', icon: 'fa-envelope' }
-    ];
-
-    function openSpotlight() {
-        if (!spotlightOverlay) return;
-        spotlightOverlay.classList.add('active');
-        if (spotlightInput) {
-            spotlightInput.value = '';
-            spotlightInput.focus();
-            renderSpotlightResults('');
-        }
-    }
-
-    function closeSpotlight() {
-        if (spotlightOverlay) spotlightOverlay.classList.remove('active');
-    }
-
-    function renderSpotlightResults(query) {
-        if (!spotlightResults) return;
-        const q = query.toLowerCase().trim();
-        const filtered = searchableItems.filter(item => 
-            item.title.toLowerCase().includes(q) || item.sub.toLowerCase().includes(q)
-        );
-
-        if (filtered.length === 0) {
-            spotlightResults.innerHTML = `<div style="padding: 16px; text-align: center; color: var(--text-tertiary); font-size: 0.85rem;">No matching search results found.</div>`;
-            return;
-        }
-
-        spotlightResults.innerHTML = filtered.map((item, i) => `
-            <a href="${item.href || '#'}" class="spotlight-item ${i === 0 ? 'selected' : ''}" data-index="${i}">
-                <i class="fa-solid ${item.icon}"></i>
+        grid.innerHTML = filtered.map(p => `
+            <article class="project-finder-card" data-id="${p.id}" tabindex="0">
                 <div>
-                    <span class="spotlight-item-title">${item.title}</span>
-                    <span class="spotlight-item-sub">${item.sub}</span>
+                    <div class="project-header-row">
+                        <span class="project-tag-pill">${escapeHtml(p.tag)}</span>
+                        <span class="project-year">${escapeHtml(p.year)}</span>
+                    </div>
+                    <h4 class="project-title">${escapeHtml(p.title)}</h4>
+                    <p class="project-desc">${escapeHtml(p.description)}</p>
+                    <div class="project-highlights-list">
+                        ${p.highlights.map(h => `<div class="highlight-row"><span>${escapeHtml(h)}</span></div>`).join("")}
+                    </div>
+                    <div class="project-tags-row">
+                        ${p.stack.map(s => `<span class="tech-tag">${escapeHtml(s)}</span>`).join("")}
+                    </div>
                 </div>
-            </a>
-        `).join('');
+                <div class="project-card-footer">
+                    <a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener noreferrer" class="project-link-btn" onclick="event.stopPropagation();">
+                        <span>View Source Code</span>
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><path d="M10.5 1.5H7a.5.5 0 0 0 0 1h2.793L4.146 8.146a.5.5 0 1 0 .708.708L10.5 3.207V6a.5.5 0 0 0 1 0V1.5a.5.5 0 0 0-.5-.5z"/><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2H5a.5.5 0 0 1 0 1H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v2.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 1 10.5v-7z"/></svg>
+                    </a>
+                </div>
+            </article>
+        `).join("");
+    };
 
-        // Attach click events
-        const resultEls = spotlightResults.querySelectorAll('.spotlight-item');
-        resultEls.forEach((el, index) => {
-            el.addEventListener('click', (e) => {
-                const targetItem = filtered[index];
-                if (targetItem.action) {
-                    e.preventDefault();
-                    targetItem.action();
+    const renderDesktopSkills = () => {
+        const container = document.getElementById("desktop-skills-content");
+        if (!container) return;
+
+        container.innerHTML = skills.map(cat => `
+            <div class="skill-category-box">
+                <div class="skill-category-title">
+                    <span>${escapeHtml(cat.category)}</span>
+                    <span class="skill-category-count">${cat.items.length} items</span>
+                </div>
+                <div class="skills-plain-list">
+                    ${cat.items.map(item => `<span class="skill-item-tag">${escapeHtml(item)}</span>`).join("")}
+                </div>
+            </div>
+        `).join("");
+    };
+
+    renderDesktopProjects();
+    renderDesktopSkills();
+
+    // Project filtering in finder
+    const filterChips = document.querySelectorAll(".finder-chip");
+    filterChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+            filterChips.forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
+            const filter = chip.getAttribute("data-filter");
+            renderDesktopProjects(filter);
+        });
+    });
+
+    // ==========================================================================
+    // 2. DESKTOP WINDOW MANAGEMENT
+    // ==========================================================================
+
+    const updateDockIndicators = () => {
+        Object.keys(windows).forEach(key => {
+            const win = windows[key];
+            const dockItem = document.querySelector(`.dock-item[data-open-window="${key}"]`);
+            if (dockItem && win) {
+                if (win.classList.contains("open") && !win.classList.contains("minimized")) {
+                    dockItem.classList.add("running");
+                } else {
+                    dockItem.classList.remove("running");
                 }
-                closeSpotlight();
-            });
-        });
-    }
-
-    if (spotlightBtn) spotlightBtn.addEventListener('click', openSpotlight);
-
-    if (spotlightInput) {
-        spotlightInput.addEventListener('input', (e) => {
-            renderSpotlightResults(e.target.value);
-        });
-    }
-
-    // Keyboard Shortcuts (⌘K / Ctrl+K / ESC)
-    document.addEventListener('keydown', (e) => {
-        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-            e.preventDefault();
-            if (spotlightOverlay && spotlightOverlay.classList.contains('active')) {
-                closeSpotlight();
-            } else {
-                openSpotlight();
             }
-        } else if (e.key === 'Escape') {
-            closeSpotlight();
-            closeAboutMac();
-            closeLaunchpad();
+        });
+    };
+
+    const focusWindow = (win) => {
+        if (!win) return;
+        topZIndex += 1;
+        win.style.zIndex = topZIndex;
+
+        Object.values(windows).forEach(w => {
+            if (w) w.classList.remove("active");
+        });
+        win.classList.add("active");
+    };
+
+    const openWindow = (name) => {
+        const win = windows[name];
+        if (!win) return;
+
+        win.classList.remove("minimized");
+        win.classList.add("open");
+        focusWindow(win);
+        updateDockIndicators();
+    };
+
+    const closeWindow = (win) => {
+        if (!win) return;
+        win.classList.remove("open", "active", "maximized");
+        updateDockIndicators();
+    };
+
+    const minimizeWindow = (win) => {
+        if (!win) return;
+        win.classList.add("minimized");
+        win.classList.remove("active");
+        updateDockIndicators();
+    };
+
+    const toggleMaximizeWindow = (win) => {
+        if (!win) return;
+        win.classList.toggle("maximized");
+    };
+
+    // Attach click handlers to desktop icons
+    document.querySelectorAll("[data-open-window]").forEach(trigger => {
+        trigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            const winName = trigger.getAttribute("data-open-window");
+            const win = windows[winName];
+
+            if (win && win.classList.contains("open") && !win.classList.contains("minimized") && win.classList.contains("active")) {
+                // If user clicks dock icon while already active, minimize it
+                if (trigger.classList.contains("dock-item")) {
+                    minimizeWindow(win);
+                    return;
+                }
+            }
+            openWindow(winName);
+        });
+    });
+
+    // Window traffic lights & clicking to focus
+    Object.values(windows).forEach(win => {
+        if (!win) return;
+
+        win.addEventListener("mousedown", () => focusWindow(win));
+        win.addEventListener("touchstart", () => focusWindow(win), { passive: true });
+
+        const closeBtn = win.querySelector(".traffic-light.close");
+        if (closeBtn) {
+            closeBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                closeWindow(win);
+            });
+        }
+
+        const minBtn = win.querySelector(".traffic-light.minimize");
+        if (minBtn) {
+            minBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                minimizeWindow(win);
+            });
+        }
+
+        const maxBtn = win.querySelector(".traffic-light.maximize");
+        if (maxBtn) {
+            maxBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleMaximizeWindow(win);
+            });
         }
     });
 
-    if (spotlightOverlay) {
-        spotlightOverlay.addEventListener('click', (e) => {
-            if (e.target === spotlightOverlay) closeSpotlight();
-        });
+    // Draggable Window Logic
+    Object.values(windows).forEach(win => {
+        if (!win) return;
+        const titlebar = win.querySelector(".window-titlebar");
+        if (!titlebar) return;
+
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        let origLeft = 0, origTop = 0;
+
+        const onMouseDown = (e) => {
+            // Ignore traffic light clicks
+            if (e.target.closest(".traffic-lights") || e.target.closest("button")) return;
+            if (win.classList.contains("maximized")) return;
+
+            isDragging = true;
+            focusWindow(win);
+
+            startX = e.clientX || (e.touches && e.touches[0].clientX);
+            startY = e.clientY || (e.touches && e.touches[0].clientY);
+
+            const rect = win.getBoundingClientRect();
+            origLeft = rect.left;
+            origTop = rect.top;
+
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+            document.addEventListener("touchmove", onMouseMove, { passive: false });
+            document.addEventListener("touchend", onMouseUp);
+        };
+
+        const onMouseMove = (e) => {
+            if (!isDragging) return;
+            if (e.cancelable) e.preventDefault();
+
+            const curX = e.clientX || (e.touches && e.touches[0].clientX);
+            const curY = e.clientY || (e.touches && e.touches[0].clientY);
+
+            const deltaX = curX - startX;
+            const deltaY = curY - startY;
+
+            let newLeft = origLeft + deltaX;
+            let newTop = origTop + deltaY;
+
+            // Restrict bounds so title bar stays visible
+            const maxLeft = window.innerWidth - 120;
+            const maxTop = window.innerHeight - 80;
+            newLeft = Math.max(10, Math.min(newLeft, maxLeft));
+            newTop = Math.max(30, Math.min(newTop, maxTop));
+
+            win.style.left = `${newLeft}px`;
+            win.style.top = `${newTop}px`;
+        };
+
+        const onMouseUp = () => {
+            isDragging = false;
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
+            document.removeEventListener("touchmove", onMouseMove);
+            document.removeEventListener("touchend", onMouseUp);
+        };
+
+        titlebar.addEventListener("mousedown", onMouseDown);
+        titlebar.addEventListener("touchstart", onMouseDown, { passive: true });
+    });
+
+    // Keyboard Shortcuts: ESC closes the active window
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            const activeWin = document.querySelector(".mac-window.active.open");
+            if (activeWin) {
+                closeWindow(activeWin);
+            }
+        }
+    });
+
+    // Default open window on desktop load
+    if (window.innerWidth >= 1024) {
+        openWindow("about");
     }
 
-    // ----------------------------------------------------
-    // 7. ABOUT THIS MAC MODAL
-    // ----------------------------------------------------
-    const appleLogoTrigger = document.getElementById('apple-logo-trigger');
-    const aboutMacOverlay = document.getElementById('about-mac-overlay');
-    const aboutCloseBtn = aboutMacOverlay ? aboutMacOverlay.querySelector('.modal-close') : null;
+    // ==========================================================================
+    // 3. DOCK HOVER MAGNIFICATION EFFECT
+    // ==========================================================================
 
-    function openAboutMac() {
-        if (aboutMacOverlay) aboutMacOverlay.classList.add('active');
-    }
+    const dock = document.getElementById("mac-dock");
+    if (dock) {
+        const dockItems = dock.querySelectorAll(".dock-item");
 
-    function closeAboutMac() {
-        if (aboutMacOverlay) aboutMacOverlay.classList.remove('active');
-    }
+        dock.addEventListener("mousemove", (e) => {
+            const mouseX = e.clientX;
 
-    if (appleLogoTrigger) appleLogoTrigger.addEventListener('click', openAboutMac);
-    if (aboutCloseBtn) aboutCloseBtn.addEventListener('click', closeAboutMac);
+            dockItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const itemCenterX = rect.left + rect.width / 2;
+                const distance = Math.abs(mouseX - itemCenterX);
+                const maxDistance = 140;
 
-    if (aboutMacOverlay) {
-        aboutMacOverlay.addEventListener('click', (e) => {
-            if (e.target === aboutMacOverlay) closeAboutMac();
-        });
-    }
-
-    // ----------------------------------------------------
-    // 8. LAUNCHPAD OVERLAY
-    // ----------------------------------------------------
-    const launchpadDockBtn = document.getElementById('launchpad-dock-btn');
-    const launchpadOverlay = document.getElementById('launchpad-overlay');
-    const launchpadClose = document.getElementById('launchpad-close');
-
-    function openLaunchpad(e) {
-        if (e) e.preventDefault();
-        if (launchpadOverlay) launchpadOverlay.classList.add('active');
-    }
-
-    function closeLaunchpad() {
-        if (launchpadOverlay) launchpadOverlay.classList.remove('active');
-    }
-
-    if (launchpadDockBtn) launchpadDockBtn.addEventListener('click', openLaunchpad);
-    if (launchpadClose) launchpadClose.addEventListener('click', closeLaunchpad);
-
-    if (launchpadOverlay) {
-        launchpadOverlay.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeLaunchpad);
-        });
-    }
-
-    // ----------------------------------------------------
-    // 9. macOS TRAFFIC LIGHTS INTERACTIVITY
-    // ----------------------------------------------------
-    const macDots = document.querySelectorAll('.mac-window-header .mac-dot');
-    const macWindow = document.querySelector('.mac-window-container');
-    
-    if (macDots.length && macWindow) {
-        macDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                macWindow.style.transition = 'transform 0.2s ease, opacity 0.2s ease';
-                macWindow.style.transform = 'scale(0.99)';
-                setTimeout(() => {
-                    macWindow.style.transform = 'scale(1)';
-                }, 200);
-            });
-        });
-    }
-
-    // ----------------------------------------------------
-    // 10. FINDER PROJECT FILTERING
-    // ----------------------------------------------------
-    const filterChips = document.querySelectorAll('.filter-chip');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            filterChips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-
-            const filter = chip.dataset.filter;
-
-            projectCards.forEach(card => {
-                const category = card.dataset.category || '';
-                if (filter === 'all' || category.includes(filter)) {
-                    card.style.display = 'flex';
+                if (distance < maxDistance) {
+                    const norm = 1 - distance / maxDistance;
+                    const scale = 1 + 0.28 * Math.sin((norm * Math.PI) / 2);
+                    item.style.transform = `scale(${scale.toFixed(3)})`;
                 } else {
-                    card.style.display = 'none';
+                    item.style.transform = "scale(1)";
                 }
             });
+        });
+
+        dock.addEventListener("mouseleave", () => {
+            dockItems.forEach(item => {
+                item.style.transform = "scale(1)";
+            });
+        });
+    }
+
+    // ==========================================================================
+    // 4. MOBILE iOS EXPERIENCE (< 768px)
+    // ==========================================================================
+
+    const sheetOverlay = document.getElementById("ios-sheet-overlay");
+    const sheetTitle = document.getElementById("ios-sheet-title");
+    const sheetBody = document.getElementById("ios-sheet-body");
+    const sheetCloseBtn = document.getElementById("ios-sheet-close-btn");
+
+    const getSheetContent = (key) => {
+        switch (key) {
+            case "about":
+                return {
+                    title: "About Me",
+                    html: `
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <img src="${personal.photo}" alt="${personal.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-medium); margin-bottom: 12px;">
+                            <h2 style="font-size: 18px; font-weight: 600; color: #FFF; margin-bottom: 4px;">${personal.name}</h2>
+                            <p style="font-size: 13px; color: var(--accent); margin-bottom: 8px;">${personal.role}</p>
+                            <p style="font-size: 12px; color: var(--text-muted);">${personal.degree} • ${personal.specialization}</p>
+                        </div>
+                        <h4 style="font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase;">Overview</h4>
+                        <p style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 20px;">${personal.bio}</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <a href="Anant_Joshi_Resume.pdf" download="Anant_Joshi_Resume.pdf" class="btn-macos btn-macos-primary" style="width: 100%; padding: 10px;">Download Resume (PDF)</a>
+                            <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="btn-macos btn-macos-secondary" style="width: 100%; padding: 10px;">Visit LinkedIn</a>
+                            <a href="https://github.com/Cypheraj12" target="_blank" rel="noopener noreferrer" class="btn-macos btn-macos-secondary" style="width: 100%; padding: 10px;">Visit GitHub</a>
+                        </div>
+                    `
+                };
+            case "projects":
+                return {
+                    title: "Projects",
+                    html: `
+                        <div style="display: flex; flex-direction: column; gap: 14px;">
+                            ${projects.map(p => `
+                                <div style="background: var(--base-dark-elevated); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 16px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                        <span class="project-tag-pill">${escapeHtml(p.tag)}</span>
+                                        <span class="project-year">${escapeHtml(p.year)}</span>
+                                    </div>
+                                    <h4 style="font-size: 15px; font-weight: 600; color: #FFF; margin-bottom: 6px;">${escapeHtml(p.title)}</h4>
+                                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;">${escapeHtml(p.description)}</p>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px;">
+                                        ${p.stack.map(s => `<span class="tech-tag">${escapeHtml(s)}</span>`).join("")}
+                                    </div>
+                                    <a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: var(--accent); font-weight: 500; text-decoration: underline;">View on GitHub →</a>
+                                </div>
+                            `).join("")}
+                        </div>
+                    `
+                };
+            case "skills":
+                return {
+                    title: "Technical Skills",
+                    html: `
+                        <div style="display: flex; flex-direction: column; gap: 14px;">
+                            ${skills.map(cat => `
+                                <div style="background: var(--base-dark-elevated); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 16px;">
+                                    <h4 style="font-size: 13px; font-weight: 600; color: #FFF; margin-bottom: 10px;">${escapeHtml(cat.category)}</h4>
+                                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                        ${cat.items.map(i => `<span class="skill-item-tag">${escapeHtml(i)}</span>`).join("")}
+                                    </div>
+                                </div>
+                            `).join("")}
+                        </div>
+                    `
+                };
+            case "contact":
+                return {
+                    title: "Contact",
+                    html: `
+                        <div style="margin-bottom: 20px;">
+                            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Direct channels for professional opportunities and technical inquiries:</p>
+                            <div style="background: var(--base-dark-elevated); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 14px; margin-bottom: 16px;">
+                                <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); margin-bottom: 2px;">EMAIL</div>
+                                <a href="mailto:anantajjoshi@gmail.com" style="color: var(--accent); font-size: 13px; word-break: break-all;">anantajjoshi@gmail.com</a>
+                            </div>
+                        </div>
+                        <form action="https://formsubmit.co/anantajjoshi@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+                            <input type="hidden" name="_subject" value="Mobile Portfolio Message">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="text" name="name" placeholder="Your Name" required style="background: var(--base-dark-elevated); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 10px; color: #FFF; font-size: 13px;">
+                            <input type="email" name="email" placeholder="Your Email" required style="background: var(--base-dark-elevated); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 10px; color: #FFF; font-size: 13px;">
+                            <textarea name="message" rows="4" placeholder="Your Message..." required style="background: var(--base-dark-elevated); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 10px; color: #FFF; font-size: 13px; resize: none;"></textarea>
+                            <button type="submit" class="btn-macos btn-macos-primary" style="padding: 10px;">Send Message</button>
+                        </form>
+                    `
+                };
+            case "resume":
+                return {
+                    title: "Resume",
+                    html: `
+                        <div style="text-align: center; padding: 20px 0;">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="#74D0FA" style="margin-bottom: 12px;">
+                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            </svg>
+                            <h3 style="font-size: 16px; color: #FFF; margin-bottom: 6px;">Anant Joshi — Resume</h3>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Final-Year B.Tech CSE (Data Science) • 217 KB PDF</p>
+                            <a href="Anant_Joshi_Resume.pdf" download="Anant_Joshi_Resume.pdf" class="btn-macos btn-macos-primary" style="display: block; width: 100%; padding: 12px; font-size: 14px;">Download PDF</a>
+                        </div>
+                    `
+                };
+            default:
+                return { title: "Sheet", html: "" };
+        }
+    };
+
+    const openSheet = (key) => {
+        if (!sheetOverlay || !sheetBody || !sheetTitle) return;
+        const data = getSheetContent(key);
+        sheetTitle.textContent = data.title;
+        sheetBody.innerHTML = data.html;
+        sheetOverlay.classList.add("active");
+    };
+
+    const closeSheet = () => {
+        if (!sheetOverlay) return;
+        sheetOverlay.classList.remove("active");
+    };
+
+    document.querySelectorAll("[data-open-sheet]").forEach(item => {
+        item.addEventListener("click", () => {
+            const sheetKey = item.getAttribute("data-open-sheet");
+            openSheet(sheetKey);
         });
     });
 
-    // ----------------------------------------------------
-    // 11. MOBILE NAV TOGGLE
-    // ----------------------------------------------------
-    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
-    const mainNav = document.getElementById('main-nav');
-
-    if (mobileNavToggle && mainNav) {
-        mobileNavToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            const icon = mobileNavToggle.querySelector('i');
-            if (icon) {
-                if (mainNav.classList.contains('active')) {
-                    icon.className = 'fa-solid fa-xmark';
-                } else {
-                    icon.className = 'fa-solid fa-bars';
-                }
-            }
-        });
-
-        const navLinks = mainNav.querySelectorAll('.nav-item');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                const icon = mobileNavToggle.querySelector('i');
-                if (icon) icon.className = 'fa-solid fa-bars';
-            });
+    if (sheetCloseBtn) {
+        sheetCloseBtn.addEventListener("click", closeSheet);
+    }
+    if (sheetOverlay) {
+        sheetOverlay.addEventListener("click", (e) => {
+            if (e.target === sheetOverlay) closeSheet();
         });
     }
 
-    // ----------------------------------------------------
-    // 12. CONTACT FORM HANDLING VIA FORMSUBMIT
-    // ----------------------------------------------------
-    const contactForm = document.getElementById('contact-form');
-    const formSubmitBtn = document.getElementById('form-submit-btn');
-    const formStatusMsg = document.getElementById('form-status-msg');
+    // ==========================================================================
+    // 5. CLOCKS & LIVE SYSTEM TIME
+    // ==========================================================================
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+    const updateSystemClocks = () => {
+        const now = new Date();
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const day = days[now.getDay()];
+        const hours24 = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+
+        // Format: Sun 19:45
+        const timeStr = `${day} ${hours24}:${minutes}`;
+        const macClock = document.getElementById("mac-clock-display");
+        if (macClock) macClock.textContent = timeStr;
+
+        // iOS format: 9:41 or 19:41
+        const iosClock = document.getElementById("ios-clock-display");
+        if (iosClock) iosClock.textContent = `${now.getHours()}:${minutes}`;
+    };
+
+    updateSystemClocks();
+    setInterval(updateSystemClocks, 1000);
+
+    // ==========================================================================
+    // 6. TOAST NOTIFICATIONS & EMAIL COPY
+    // ==========================================================================
+
+    const showToast = (message) => {
+        const toast = document.getElementById("os-toast");
+        const msgEl = document.getElementById("os-toast-msg");
+        if (!toast || !msgEl) return;
+
+        msgEl.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2400);
+    };
+
+    const copyEmailBtn = document.getElementById("copy-email-btn");
+    if (copyEmailBtn) {
+        copyEmailBtn.addEventListener("click", (e) => {
             e.preventDefault();
-
-            if (formSubmitBtn) {
-                formSubmitBtn.disabled = true;
-                formSubmitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-            }
-
-            try {
-                const formData = new FormData(contactForm);
-                const response = await fetch('https://formsubmit.co/ajax/anantajjoshi@gmail.com', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    if (formStatusMsg) {
-                        formStatusMsg.style.display = 'block';
-                        formStatusMsg.style.color = '#16A34A';
-                        formStatusMsg.innerHTML = '✓ Message sent successfully! Thank you.';
-                    }
-                    contactForm.reset();
-                } else {
-                    throw new Error('Transmission failed');
-                }
-            } catch (err) {
-                if (formStatusMsg) {
-                    formStatusMsg.style.display = 'block';
-                    formStatusMsg.style.color = '#E85D5D';
-                    formStatusMsg.innerHTML = 'Opening default email client...';
-                }
-                const name = document.getElementById('sender-name')?.value || '';
-                const email = document.getElementById('sender-email')?.value || '';
-                const msg = document.getElementById('sender-message')?.value || '';
-                window.location.href = `mailto:anantajjoshi@gmail.com?subject=Portfolio Message from ${encodeURIComponent(name)}&body=Sender Email: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(msg)}`;
-            } finally {
-                if (formSubmitBtn) {
-                    formSubmitBtn.disabled = false;
-                    formSubmitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
-                }
-            }
+            navigator.clipboard.writeText("anantajjoshi@gmail.com")
+                .then(() => showToast("Copied anantajjoshi@gmail.com to clipboard"))
+                .catch(() => window.location.href = "mailto:anantajjoshi@gmail.com");
         });
     }
 
-    // ----------------------------------------------------
-    // 13. ENTRANCE STAGGER ANIMATIONS
-    // ----------------------------------------------------
-    const allTiles = document.querySelectorAll('.apple-tile');
-    allTiles.forEach((tile, i) => {
-        tile.style.opacity = '0';
-        tile.style.transform = 'translateY(18px)';
-        tile.style.transition = `opacity 0.45s ease ${i * 0.05}s, transform 0.45s ease ${i * 0.05}s`;
-        setTimeout(() => {
-            tile.style.opacity = '1';
-            tile.style.transform = 'translateY(0)';
-        }, 80);
-    });
+    // ==========================================================================
+    // 7. DESKTOP CONTACT FORM SUBMISSION FEEDBACK
+    // ==========================================================================
 
+    const contactForm = document.getElementById("desktop-contact-form");
+    if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+            const submitBtn = document.getElementById("send-mail-btn");
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Sending...";
+            }
+            // Allow form to submit naturally to formsubmit.co
+        });
+    }
+
+    // Apple Menu Logo Handler
+    const appleLogo = document.getElementById("mac-apple-menu");
+    if (appleLogo) {
+        appleLogo.addEventListener("click", () => {
+            openWindow("about");
+        });
+    }
 });
+
+// Helper for escaping strings into HTML
+function escapeHtml(str) {
+    if (typeof str !== "string") return str;
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
