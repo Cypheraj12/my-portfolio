@@ -7,13 +7,13 @@ const PORTFOLIO_DATA = {
     role: "AI/ML Engineer & Data Analyst",
     degree: "Final-Year B.Tech in Computer Science and Engineering",
     specialization: "Data Science Specialization",
-    status: "Graduating 2026 • Open to Full-Time & Engineering Roles",
+    status: "Graduating 2027 • Open to Full-Time & Engineering Roles",
     location: "India",
     email: "anantajjoshi@gmail.com",
     github: "https://github.com/Cypheraj12",
     linkedin: "https://linkedin.com/in/anant-joshi-52a6ab2a7/",
     resumeUrl: "Anant_Joshi_Resume.pdf",
-    bio: "I am a final-year Computer Science undergraduate specializing in Data Science. My work focuses on building end-to-end machine learning workflows, computer vision models, time-series predictive systems, and high-throughput backend APIs with Python, FastAPI, and modern ML frameworks. I care about writing clean, production-grade code that solves concrete problems.",
+    bio: "Final-year B.Tech CSE (Data Science) student passionate about engineering intelligent ML models, data pipelines, and scalable APIs.\n\nFocus: AI/ML, Data Analytics, Computer Vision & Backend APIs — built with Python, TensorFlow, PyTorch, Scikit-Learn, FastAPI & MongoDB.",
     photo: "anant_photo.jpg"
   },
 

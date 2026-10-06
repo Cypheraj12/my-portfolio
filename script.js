@@ -454,10 +454,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             <img src="${personal.photo}" alt="${personal.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-medium); margin-bottom: 12px;">
                             <h2 style="font-size: 18px; font-weight: 600; color: #FFF; margin-bottom: 4px;">${personal.name}</h2>
                             <p style="font-size: 13px; color: var(--accent); margin-bottom: 8px;">${personal.role}</p>
-                            <p style="font-size: 12px; color: var(--text-muted);">${personal.degree} • ${personal.specialization}</p>
+                            <p style="font-size: 12px; color: var(--text-muted);">${personal.degree} • ${personal.specialization} • Class of 2027</p>
                         </div>
                         <h4 style="font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase;">Overview</h4>
-                        <p style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 20px;">${personal.bio}</p>
+                        <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 20px; white-space: pre-line;">${personal.bio}</div>
                         
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                             <a href="Anant_Joshi_Resume.pdf" download="Anant_Joshi_Resume.pdf" class="btn-macos btn-macos-primary" style="width: 100%; padding: 10px;">Download Resume (PDF)</a>
