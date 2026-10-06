@@ -123,8 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Position About Window on the RIGHT side (~48px margin, vertically centered above dock)
         const winAbout = windows.about;
         if (winAbout) {
-            const aboutWidth = Math.min(700, window.innerWidth - 120);
-            const aboutHeight = Math.min(520, window.innerHeight - 130);
+            const aboutWidth = Math.min(780, window.innerWidth - 120);
+            const aboutHeight = Math.min(560, window.innerHeight - 130);
             winAbout.style.width = `${aboutWidth}px`;
             winAbout.style.height = `${aboutHeight}px`;
 
@@ -140,8 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Other windows open offset from center-left, cascading by 24px so they never cover About window
-        const otherWidth = Math.min(740, window.innerWidth - 180);
-        const otherHeight = Math.min(510, window.innerHeight - 140);
+        const otherWidth = Math.min(760, window.innerWidth - 160);
+        const otherHeight = Math.min(540, window.innerHeight - 140);
 
         const baseLeft = Math.max(110, Math.floor((window.innerWidth - otherWidth) / 2) - 100);
         const baseTop = Math.max(48, Math.floor((window.innerHeight - otherHeight) / 2) - 40);
@@ -453,8 +453,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div style="text-align: center; margin-bottom: 20px;">
                             <img src="${personal.photo}" alt="${personal.name}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-medium); margin-bottom: 12px;">
                             <h2 style="font-size: 18px; font-weight: 600; color: #FFF; margin-bottom: 4px;">${personal.name}</h2>
-                            <p style="font-size: 13px; color: var(--accent); margin-bottom: 8px;">${personal.role}</p>
-                            <p style="font-size: 12px; color: var(--text-muted);">${personal.degree} • ${personal.specialization} • Class of 2027</p>
+                            <p style="font-size: 13px; color: var(--accent); margin-bottom: 4px;">${personal.role}</p>
+                            <p style="font-size: 12px; color: var(--text-muted);">${personal.degree} • ${personal.specialization}</p>
                         </div>
                         <h4 style="font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase;">Overview</h4>
                         <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 20px; white-space: pre-line;">${personal.bio}</div>
@@ -574,7 +574,315 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 6. CLOCKS & LIVE SYSTEM TIME
+    // 6. DESKTOP FILE & GO MENUS & PROJECT NAVIGATION
+    // ==========================================================================
+
+    const fileWrap = document.getElementById("file-menu-wrap");
+    const goWrap = document.getElementById("go-menu-wrap");
+    const fileBtn = document.getElementById("mac-file-btn");
+    const goBtn = document.getElementById("mac-go-btn");
+
+    const closeAllDropdowns = () => {
+        if (fileWrap) fileWrap.classList.remove("open");
+        if (goWrap) goWrap.classList.remove("open");
+    };
+
+    if (fileBtn) {
+        fileBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isOpen = fileWrap.classList.contains("open");
+            closeAllDropdowns();
+            if (!isOpen) fileWrap.classList.add("open");
+        });
+    }
+
+    if (goBtn) {
+        goBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isOpen = goWrap.classList.contains("open");
+            closeAllDropdowns();
+            if (!isOpen) goWrap.classList.add("open");
+        });
+    }
+
+    const focusAndScrollToProject = (projectId) => {
+        openWindow("projects");
+        // Reset filter chips to "all" if the project is filtered out
+        const allFilterChip = document.querySelector('.finder-chip[data-filter="all"]');
+        if (allFilterChip && !allFilterChip.classList.contains("active")) {
+            const filterChips = document.querySelectorAll(".finder-chip");
+            filterChips.forEach(c => c.classList.remove("active"));
+            allFilterChip.classList.add("active");
+            renderDesktopProjects("all");
+        }
+
+        setTimeout(() => {
+            const card = document.querySelector(`.project-finder-card[data-id="${projectId}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: "smooth", block: "center" });
+                card.focus();
+                card.style.outline = "2px solid var(--accent)";
+                card.style.boxShadow = "0 0 24px rgba(116, 208, 250, 0.45)";
+                setTimeout(() => {
+                    card.style.outline = "";
+                    card.style.boxShadow = "";
+                }, 2200);
+            }
+        }, 120);
+    };
+
+    document.querySelectorAll("[data-open-project]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const projId = btn.getAttribute("data-open-project");
+            closeAllDropdowns();
+            focusAndScrollToProject(projId);
+        });
+    });
+
+    document.querySelectorAll("[data-go-target]").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const target = btn.getAttribute("data-go-target");
+            closeAllDropdowns();
+            openWindow(target);
+        });
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".mac-dropdown-wrap")) {
+            closeAllDropdowns();
+        }
+    });
+
+    // ==========================================================================
+    // 7. FINDER GLOBAL SEARCH (⌘K / Ctrl+K / Finder button / Search icon)
+    // ==========================================================================
+
+    const searchModal = document.getElementById("finder-search-modal");
+    const searchInput = document.getElementById("finder-search-input");
+    const searchResultsContainer = document.getElementById("finder-search-results");
+    const searchBackdrop = document.getElementById("finder-search-backdrop");
+    const searchEscBtn = document.getElementById("finder-search-esc-btn");
+    const finderMenuBtn = document.getElementById("mac-menu-finder");
+    const searchTrigger = document.getElementById("mac-search-trigger");
+
+    let activeResultIdx = 0;
+    let currentResults = [];
+
+    // Comprehensive portfolio search index
+    const searchIndex = [
+        ...projects.map(p => ({
+            id: p.id,
+            type: "Project",
+            title: p.title,
+            subtitle: `${p.tag} • ${p.stack.slice(0, 3).join(", ")}`,
+            content: `${p.title} ${p.description} ${p.tag} ${p.category} ${p.stack.join(" ")} ${p.highlights.join(" ")}`,
+            icon: `<svg viewBox="0 0 16 16" width="16" height="16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h3.293a1.5 1.5 0 0 1 1.06.44L8.207 3.8a.5.5 0 0 0 .354.15H13.5A1.5 1.5 0 0 1 15 5.45V12.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" fill="#74D0FA"/></svg>`,
+            action: () => focusAndScrollToProject(p.id)
+        })),
+        ...skills.map(s => ({
+            id: s.category,
+            type: "Skill Category",
+            title: s.category,
+            subtitle: s.items.join(", "),
+            content: `${s.category} ${s.items.join(" ")}`,
+            icon: `<svg viewBox="0 0 16 16" width="16" height="16"><path d="M4.5 5.5l3 3-3 3M9.5 11.5h3" stroke="#74D0FA" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`,
+            action: () => openWindow("skills")
+        })),
+        {
+            id: "about-me-section",
+            type: "About",
+            title: "About Anant Joshi",
+            subtitle: "AI/ML Engineer & Data Analyst • Core background and principles",
+            content: "about anant joshi bio data science machine learning model optimization",
+            icon: `<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0-2.5-3-4-6-4s-6 1.5-6 4v1h12v-1z" fill="#74D0FA"/></svg>`,
+            action: () => openWindow("about")
+        },
+        {
+            id: "resume-doc",
+            type: "Resume",
+            title: "Anant_Joshi_Resume.pdf",
+            subtitle: "Preview resume document or download PDF (217 KB)",
+            content: "resume cv pdf download credentials experience education",
+            icon: `<svg viewBox="0 0 16 16" width="16" height="16"><path d="M4 1.5h5.5L13 5v9.5H4V1.5z" stroke="#74D0FA" fill="none"/><path d="M9.5 1.5V5H13" stroke="#74D0FA" fill="none"/></svg>`,
+            action: () => openWindow("resume")
+        },
+        {
+            id: "contact-direct-email",
+            type: "Contact",
+            title: "Direct Email — anantajjoshi@gmail.com",
+            subtitle: "Compose message or copy email address",
+            content: "email anantajjoshi@gmail.com message contact hire get in touch",
+            icon: `<svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4zm1.5.5v.382l4.5 2.812 4.5-2.812V4.5h-9zm9 7V6.118l-4.235 2.647a.5.5 0 0 1-.53 0L3.5 6.118v5.382h9z" fill="#74D0FA"/></svg>`,
+            action: () => openWindow("contact")
+        },
+        {
+            id: "contact-linkedin-link",
+            type: "Social",
+            title: "LinkedIn Profile",
+            subtitle: "anant-joshi-52a6ab2a7",
+            content: "linkedin profile connect network",
+            icon: `<svg viewBox="0 0 16 16" width="16" height="16"><path d="M14 2H2v12h12V2zM5.5 12.5H3.7V6.7h1.8v5.8zm-.9-6.6a1 1 0 1 1 0-2.1 1 1 0 0 1 0 2.1zm8 6.6h-1.8V9.6c0-.7-.3-1.2-1-1.2-.5 0-.8.3-.9.7v3.4H7V6.7h1.8v.8c.3-.4.8-1 1.8-1 1.3 0 2.3.8 2.3 2.6v3.4z" fill="#74D0FA"/></svg>`,
+            action: () => window.open(personal.linkedin, "_blank")
+        },
+        {
+            id: "contact-github-link",
+            type: "Social",
+            title: "GitHub Profile",
+            subtitle: "github.com/Cypheraj12",
+            content: "github code repositories git cypheraj12",
+            icon: `<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.5C4.4 1.5 1.5 4.4 1.5 8c0 2.9 1.9 5.3 4.5 6.2.3.1.4-.1.4-.3v-1.2c-1.8.4-2.2-.9-2.2-.9-.3-.8-.7-1-.7-1-.6-.4 0-.4 0-.4.7 0 1 .7 1 .7.6 1 1.5.7 1.9.5.1-.4.2-.7.4-.9-1.4-.2-3-.7-3-3.2 0-.7.3-1.3.7-1.8-.1-.2-.3-.8.1-1.7 0 0 .6-.2 1.8.7.5-.1 1.1-.2 1.6-.2s1.1.1 1.6.2c1.2-.8 1.8-.7 1.8-.7.4.9.1 1.6.1 1.7.4.5.7 1.1.7 1.8 0 2.5-1.5 3-3 3.2.2.2.4.6.4 1.2v1.8c0 .2.2.4.4.3 2.6-.9 4.5-3.3 4.5-6.2 0-3.6-2.9-6.5-6.5-6.5z" fill="#74D0FA"/></svg>`,
+            action: () => window.open(personal.github, "_blank")
+        }
+    ];
+
+    const updateSelectedResult = () => {
+        if (!searchResultsContainer) return;
+        const items = searchResultsContainer.querySelectorAll(".finder-result-item");
+        items.forEach((item, idx) => {
+            if (idx === activeResultIdx) {
+                item.classList.add("selected");
+                item.setAttribute("aria-selected", "true");
+                item.scrollIntoView({ block: "nearest" });
+            } else {
+                item.classList.remove("selected");
+                item.setAttribute("aria-selected", "false");
+            }
+        });
+    };
+
+    const executeSearchResult = (idx) => {
+        const item = currentResults[idx];
+        if (!item) return;
+        closeFinderSearch();
+        if (typeof item.action === "function") {
+            item.action();
+        }
+    };
+
+    const renderSearchResults = (query = "") => {
+        if (!searchResultsContainer) return;
+        const q = query.trim().toLowerCase();
+        if (!q) {
+            currentResults = searchIndex.slice(0, 8);
+        } else {
+            currentResults = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(q) ||
+                item.subtitle.toLowerCase().includes(q) ||
+                item.content.toLowerCase().includes(q) ||
+                item.type.toLowerCase().includes(q)
+            );
+        }
+        activeResultIdx = 0;
+
+        if (currentResults.length === 0) {
+            searchResultsContainer.innerHTML = `<div class="finder-search-empty">No results found for "${escapeHtml(query)}"</div>`;
+            return;
+        }
+
+        searchResultsContainer.innerHTML = currentResults.map((item, idx) => `
+            <button class="finder-result-item ${idx === 0 ? 'selected' : ''}" data-idx="${idx}" role="option" aria-selected="${idx === 0}">
+                <div class="finder-result-left">
+                    <div class="finder-result-icon">${item.icon}</div>
+                    <div class="finder-result-info">
+                        <span class="finder-result-title">${escapeHtml(item.title)}</span>
+                        <span class="finder-result-subtitle">${escapeHtml(item.subtitle)}</span>
+                    </div>
+                </div>
+                <span class="finder-result-badge">${escapeHtml(item.type)}</span>
+            </button>
+        `).join("");
+
+        searchResultsContainer.querySelectorAll(".finder-result-item").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const idx = parseInt(btn.getAttribute("data-idx"), 10);
+                executeSearchResult(idx);
+            });
+        });
+    };
+
+    const openFinderSearch = () => {
+        closeAllDropdowns();
+        if (!searchModal) return;
+        searchModal.classList.add("open");
+        if (searchInput) {
+            searchInput.value = "";
+            searchInput.focus();
+        }
+        renderSearchResults("");
+    };
+
+    const closeFinderSearch = () => {
+        if (!searchModal) return;
+        searchModal.classList.remove("open");
+    };
+
+    if (finderMenuBtn) {
+        finderMenuBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openFinderSearch();
+        });
+    }
+
+    if (searchTrigger) {
+        searchTrigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            openFinderSearch();
+        });
+    }
+
+    if (searchBackdrop) {
+        searchBackdrop.addEventListener("click", closeFinderSearch);
+    }
+    if (searchEscBtn) {
+        searchEscBtn.addEventListener("click", closeFinderSearch);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            renderSearchResults(e.target.value);
+        });
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (currentResults.length > 0) {
+                    activeResultIdx = (activeResultIdx + 1) % currentResults.length;
+                    updateSelectedResult();
+                }
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (currentResults.length > 0) {
+                    activeResultIdx = (activeResultIdx - 1 + currentResults.length) % currentResults.length;
+                    updateSelectedResult();
+                }
+            } else if (e.key === "Enter") {
+                e.preventDefault();
+                executeSearchResult(activeResultIdx);
+            } else if (e.key === "Escape") {
+                e.preventDefault();
+                closeFinderSearch();
+            }
+        });
+    }
+
+    // Global shortcut keys (⌘K / Ctrl+K and ESC)
+    window.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+            e.preventDefault();
+            if (searchModal && searchModal.classList.contains("open")) {
+                closeFinderSearch();
+            } else {
+                openFinderSearch();
+            }
+        } else if (e.key === "Escape") {
+            closeFinderSearch();
+            closeAllDropdowns();
+        }
+    });
+
+    // ==========================================================================
+    // 8. CLOCKS & LIVE SYSTEM TIME
     // ==========================================================================
 
     const updateSystemClocks = () => {
@@ -589,6 +897,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const macClock = document.getElementById("mac-clock-display");
         if (macClock) macClock.textContent = timeStr;
 
+        // Tablet format: 19:45
+        const tabletClock = document.getElementById("tablet-clock-display");
+        if (tabletClock) tabletClock.textContent = `${hours24}:${minutes}`;
+
         // iOS format: 9:41 or 19:41
         const iosClock = document.getElementById("ios-clock-display");
         if (iosClock) iosClock.textContent = `${now.getHours()}:${minutes}`;
@@ -598,7 +910,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateSystemClocks, 1000);
 
     // ==========================================================================
-    // 7. TOAST NOTIFICATIONS & EMAIL COPY
+    // 9. TOAST NOTIFICATIONS & EMAIL COPY
     // ==========================================================================
 
     const showToast = (message) => {
@@ -622,7 +934,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 8. DESKTOP CONTACT FORM SUBMISSION FEEDBACK
+    // 10. DESKTOP CONTACT FORM SUBMISSION FEEDBACK
     // ==========================================================================
 
     const contactForm = document.getElementById("desktop-contact-form");

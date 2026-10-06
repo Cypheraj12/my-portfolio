@@ -188,20 +188,68 @@
         <header class="mac-menu-bar" role="banner">
             <div class="mac-menu-left">
                 <span class="mac-apple-logo" id="mac-apple-menu" title="About This Mac" aria-label="Apple Menu"></span>
-                <span class="mac-app-name">Finder</span>
+                <button class="mac-app-name-btn" id="mac-menu-finder" title="Global Portfolio Search (⌘K)">Finder</button>
                 <div class="mac-menu-items">
-                    <span class="mac-menu-item">File</span>
-                    <span class="mac-menu-item">Edit</span>
-                    <span class="mac-menu-item">View</span>
-                    <span class="mac-menu-item">Go</span>
-                    <span class="mac-menu-item">Window</span>
-                    <span class="mac-menu-item">Help</span>
+                    <!-- File Menu with Dropdown -->
+                    <div class="mac-dropdown-wrap" id="file-menu-wrap">
+                        <button class="mac-menu-item" id="mac-file-btn" aria-haspopup="true" aria-expanded="false">File</button>
+                        <div class="mac-dropdown-menu" id="file-dropdown-menu" role="menu">
+                            <div class="mac-dropdown-header">Project Folders</div>
+                            <button class="mac-dropdown-item" role="menuitem" data-open-project="deepfake-detection">
+                                <svg class="mac-folder-icon" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h3.293a1.5 1.5 0 0 1 1.06.44L8.207 3.8a.5.5 0 0 0 .354.15H13.5A1.5 1.5 0 0 1 15 5.45V12.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" fill="#74D0FA"/></svg>
+                                <span>Deepfake Detection Web App</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-open-project="youtube-fetcher">
+                                <svg class="mac-folder-icon" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h3.293a1.5 1.5 0 0 1 1.06.44L8.207 3.8a.5.5 0 0 0 .354.15H13.5A1.5 1.5 0 0 1 15 5.45V12.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" fill="#74D0FA"/></svg>
+                                <span>Scalable YouTube Video Fetcher API</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-open-project="heart-disease">
+                                <svg class="mac-folder-icon" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h3.293a1.5 1.5 0 0 1 1.06.44L8.207 3.8a.5.5 0 0 0 .354.15H13.5A1.5 1.5 0 0 1 15 5.45V12.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" fill="#74D0FA"/></svg>
+                                <span>Heart Disease ML Risk Predictor</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-open-project="predictive-latency">
+                                <svg class="mac-folder-icon" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h3.293a1.5 1.5 0 0 1 1.06.44L8.207 3.8a.5.5 0 0 0 .354.15H13.5A1.5 1.5 0 0 1 15 5.45V12.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" fill="#74D0FA"/></svg>
+                                <span>Predictive API Latency Forecasting</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-open-project="laptop-price">
+                                <svg class="mac-folder-icon" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h3.293a1.5 1.5 0 0 1 1.06.44L8.207 3.8a.5.5 0 0 0 .354.15H13.5A1.5 1.5 0 0 1 15 5.45V12.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" fill="#74D0FA"/></svg>
+                                <span>Laptop Price Analysis &amp; Prediction</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Go Menu with Dropdown -->
+                    <div class="mac-dropdown-wrap" id="go-menu-wrap">
+                        <button class="mac-menu-item" id="mac-go-btn" aria-haspopup="true" aria-expanded="false">Go</button>
+                        <div class="mac-dropdown-menu" id="go-dropdown-menu" role="menu">
+                            <button class="mac-dropdown-item" role="menuitem" data-go-target="about">
+                                <svg class="mac-menu-icon" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0-2.5-3-4-6-4s-6 1.5-6 4v1h12v-1z" fill="currentColor"/></svg>
+                                <span>Home / About</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-go-target="projects">
+                                <svg class="mac-folder-icon" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h3.293a1.5 1.5 0 0 1 1.06.44L8.207 3.8a.5.5 0 0 0 .354.15H13.5A1.5 1.5 0 0 1 15 5.45V12.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z" fill="#74D0FA"/></svg>
+                                <span>Projects</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-go-target="skills">
+                                <svg class="mac-menu-icon" viewBox="0 0 16 16"><path d="M4.5 5.5l3 3-3 3M9.5 11.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+                                <span>Skills</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-go-target="resume">
+                                <svg class="mac-menu-icon" viewBox="0 0 16 16"><path d="M4 1.5h5.5L13 5v9.5H4V1.5z" stroke="currentColor" fill="none"/><path d="M9.5 1.5V5H13" stroke="currentColor" fill="none"/></svg>
+                                <span>Resume</span>
+                            </button>
+                            <button class="mac-dropdown-item" role="menuitem" data-go-target="contact">
+                                <svg class="mac-menu-icon" viewBox="0 0 16 16"><path d="M2 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4zm1.5.5v.382l4.5 2.812 4.5-2.812V4.5h-9zm9 7V6.118l-4.235 2.647a.5.5 0 0 1-.53 0L3.5 6.118v5.382h9z" fill="currentColor"/></svg>
+                                <span>Contact</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="mac-menu-right">
-                <span class="mac-menu-status-icon" title="Spotlight Search">
+                <button class="mac-menu-status-icon mac-search-btn" id="mac-search-trigger" title="Global Search (⌘K)" aria-label="Open Finder Search">
                     <svg viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-                </span>
+                </button>
                 <span class="mac-menu-status-icon" title="Wi-Fi Active">
                     <svg viewBox="0 0 16 16"><path d="M15.384 6.115a.485.485 0 0 0-.047-.732A12.444 12.444 0 0 0 8 4c-2.73 0-5.26 1.054-7.337 2.883a.485.485 0 0 0-.047.732l.745.745a.485.485 0 0 0 .686.002A10.428 10.428 0 0 1 8 6.5c2.316 0 4.45.896 6.047 2.362a.485.485 0 0 0 .686-.002l.745-.745zm-2.828 2.828a.485.485 0 0 0-.053-.707 8.429 8.429 0 0 0-8.995 0 .485.485 0 0 0-.053.707l.745.745a.485.485 0 0 0 .674.015 6.427 6.427 0 0 1 7.26 0 .485.485 0 0 0 .674-.015l.745-.745zm-2.828 2.828a.485.485 0 0 0-.056-.69 4.43 4.43 0 0 0-3.344 0 .485.485 0 0 0-.056.69l1.455 1.455a.485.485 0 0 0 .686 0l1.455-1.455z"/></svg>
                 </span>
@@ -308,7 +356,7 @@
                                 </div>
                                 <h2 class="about-name">Anant Joshi</h2>
                                 <div class="about-role">AI/ML Engineer & Data Analyst</div>
-                                <p class="about-sub">Final-Year B.Tech CSE<br>Data Science Specialization</p>
+                                <p class="about-sub">Final-Year B.Tech CSE<br>Data Science</p>
                                 <div class="about-quick-links">
                                     <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="about-link-row">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
@@ -335,15 +383,11 @@
                                     </div>
                                     <div class="detail-card">
                                         <div class="detail-card-label">Specialization</div>
-                                        <div class="detail-card-val">Data Science Specialization</div>
+                                        <div class="detail-card-val">Data Science</div>
                                     </div>
                                     <div class="detail-card">
                                         <div class="detail-card-label">Primary Stack</div>
                                         <div class="detail-card-val">Python, TensorFlow, PyTorch, FastAPI</div>
-                                    </div>
-                                    <div class="detail-card">
-                                        <div class="detail-card-label">Graduation</div>
-                                        <div class="detail-card-val">Class of 2027</div>
                                     </div>
                                 </div>
                             </div>
@@ -593,10 +637,177 @@
                 </a>
             </div>
         </nav>
+
+        <!-- Finder Global Search Modal (⌘K or click Finder) -->
+        <div class="finder-search-modal" id="finder-search-modal" role="dialog" aria-modal="true" aria-label="Global Search">
+            <div class="finder-search-backdrop" id="finder-search-backdrop"></div>
+            <div class="finder-search-panel">
+                <div class="finder-search-input-wrap">
+                    <svg class="finder-search-icon" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                    <input type="text" id="finder-search-input" class="finder-search-input" placeholder="Search projects, skills, about, resume, contact..." autocomplete="off" spellcheck="false">
+                    <kbd class="finder-search-esc" id="finder-search-esc-btn">ESC</kbd>
+                </div>
+                <div class="finder-search-results" id="finder-search-results" role="listbox">
+                    <!-- Populated dynamically -->
+                </div>
+                <div class="finder-search-footer">
+                    <span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
+                    <span><kbd>↵</kbd> Select</span>
+                    <span><kbd>ESC</kbd> Close</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ==========================================================================
-         2. MOBILE iOS ENVIRONMENT (Screen Width < 768px)
+         2. TABLET iPadOS ENVIRONMENT (Screen Width 768px – 1023px)
+         ========================================================================== -->
+    <div class="tablet-os" id="tablet-os" aria-label="iPadOS Tablet Experience">
+        <!-- iPadOS Top Safari Address Bar -->
+        <header class="tablet-safari-bar" role="banner">
+            <div class="tablet-safari-nav-btns">
+                <span class="safari-nav-circle"></span>
+                <span class="safari-nav-circle"></span>
+                <span class="safari-nav-circle"></span>
+            </div>
+            <div class="tablet-safari-pill">
+                <svg class="safari-lock-icon" width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M10 5V3.5C10 1.57 8.43 0 6.5 0S3 1.57 3 3.5V5H1v9h11V5h-2zM4.5 3.5C4.5 2.4 5.4 1.5 6.5 1.5S8.5 2.4 8.5 3.5V5h-4V3.5z"/></svg>
+                <span class="safari-domain">anantjoshiportfolio.com</span>
+                <button class="safari-reload-btn" title="Reload Page" aria-label="Reload">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+                </button>
+            </div>
+            <div class="tablet-safari-actions">
+                <span class="safari-action-btn">aA</span>
+                <span class="tablet-clock" id="tablet-clock-display">18:00</span>
+            </div>
+        </header>
+
+        <!-- iPadOS Home Screen Grid -->
+        <main class="tablet-home-screen">
+            <div class="tablet-apps-grid">
+                <!-- App 1: About -->
+                <button class="tablet-app-item" data-open-sheet="about" aria-label="About Anant Joshi">
+                    <div class="tablet-app-icon app-icon-about">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">About</span>
+                </button>
+
+                <!-- App 2: Projects -->
+                <button class="tablet-app-item" data-open-sheet="projects" aria-label="View Projects">
+                    <div class="tablet-app-icon app-icon-projects">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">Projects</span>
+                </button>
+
+                <!-- App 3: Skills -->
+                <button class="tablet-app-item" data-open-sheet="skills" aria-label="View Skills">
+                    <div class="tablet-app-icon app-icon-skills">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">Skills</span>
+                </button>
+
+                <!-- App 4: Contact -->
+                <button class="tablet-app-item" data-open-sheet="contact" aria-label="Contact Information">
+                    <div class="tablet-app-icon app-icon-contact">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">Contact</span>
+                </button>
+
+                <!-- App 5: Resume -->
+                <button class="tablet-app-item" data-open-sheet="resume" aria-label="Preview Resume PDF">
+                    <div class="tablet-app-icon app-icon-resume">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">Resume</span>
+                </button>
+
+                <!-- App 6: LinkedIn -->
+                <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="tablet-app-item" aria-label="LinkedIn Profile">
+                    <div class="tablet-app-icon app-icon-linkedin">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">LinkedIn</span>
+                </a>
+
+                <!-- App 7: GitHub -->
+                <a href="https://github.com/Cypheraj12" target="_blank" rel="noopener noreferrer" class="tablet-app-item" aria-label="GitHub Profile">
+                    <div class="tablet-app-icon app-icon-github">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">GitHub</span>
+                </a>
+
+                <!-- App 8: Email -->
+                <a href="mailto:anantajjoshi@gmail.com" class="tablet-app-item" aria-label="Email Anant Joshi">
+                    <div class="tablet-app-icon app-icon-mail">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <span class="tablet-app-label">Mail</span>
+                </a>
+            </div>
+        </main>
+
+        <!-- iPadOS Dock -->
+        <footer class="tablet-dock-wrapper" aria-label="iPadOS Application Dock">
+            <div class="tablet-dock">
+                <button class="tablet-dock-item" data-open-sheet="about" aria-label="About Me">
+                    <div class="tablet-dock-icon app-icon-about">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                </button>
+                <button class="tablet-dock-item" data-open-sheet="projects" aria-label="Projects">
+                    <div class="tablet-dock-icon app-icon-projects">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                    </div>
+                </button>
+                <button class="tablet-dock-item" data-open-sheet="skills" aria-label="Skills">
+                    <div class="tablet-dock-icon app-icon-skills">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                    </div>
+                </button>
+                <button class="tablet-dock-item" data-open-sheet="contact" aria-label="Contact">
+                    <div class="tablet-dock-icon app-icon-contact">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                    </div>
+                </button>
+                <div class="tablet-dock-separator"></div>
+                <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="tablet-dock-item" aria-label="LinkedIn">
+                    <div class="tablet-dock-icon app-icon-linkedin">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    </div>
+                </a>
+                <a href="https://github.com/Cypheraj12" target="_blank" rel="noopener noreferrer" class="tablet-dock-item" aria-label="GitHub">
+                    <div class="tablet-dock-icon app-icon-github">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                    </div>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==========================================================================
+         3. MOBILE iOS ENVIRONMENT (Screen Width < 768px)
          ========================================================================== -->
     <div class="ios-os" id="ios-os" aria-label="iOS Home Screen Experience">
         <!-- iOS Status Bar (Visible only when installed in standalone PWA mode) -->
@@ -624,59 +835,59 @@
         <main class="ios-home-screen">
             <div class="ios-apps-grid">
                 <!-- App 1: About -->
-                <div class="ios-app-item" data-open-sheet="about">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#74D0FA">
+                <button class="ios-app-item" data-open-sheet="about" aria-label="About Me">
+                    <div class="ios-app-icon app-icon-about">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
                             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
                     </div>
                     <span class="ios-app-label">About</span>
-                </div>
+                </button>
 
                 <!-- App 2: Projects -->
-                <div class="ios-app-item" data-open-sheet="projects">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#74D0FA">
+                <button class="ios-app-item" data-open-sheet="projects" aria-label="Projects">
+                    <div class="ios-app-icon app-icon-projects">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
                             <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
                         </svg>
                     </div>
                     <span class="ios-app-label">Projects</span>
-                </div>
+                </button>
 
                 <!-- App 3: Skills -->
-                <div class="ios-app-item" data-open-sheet="skills">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#74D0FA">
+                <button class="ios-app-item" data-open-sheet="skills" aria-label="Skills">
+                    <div class="ios-app-icon app-icon-skills">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
                             <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
                         </svg>
                     </div>
                     <span class="ios-app-label">Skills</span>
-                </div>
+                </button>
 
                 <!-- App 4: Contact -->
-                <div class="ios-app-item" data-open-sheet="contact">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#74D0FA">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                <button class="ios-app-item" data-open-sheet="contact" aria-label="Contact">
+                    <div class="ios-app-icon app-icon-contact">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
                         </svg>
                     </div>
                     <span class="ios-app-label">Contact</span>
-                </div>
+                </button>
 
                 <!-- App 5: Resume -->
-                <div class="ios-app-item" data-open-sheet="resume">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#F2F4F5">
+                <button class="ios-app-item" data-open-sheet="resume" aria-label="Resume">
+                    <div class="ios-app-icon app-icon-resume">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
                             <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
                         </svg>
                     </div>
                     <span class="ios-app-label">Resume</span>
-                </div>
+                </button>
 
                 <!-- App 6: LinkedIn -->
-                <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="ios-app-item">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#74D0FA">
+                <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="ios-app-item" aria-label="LinkedIn">
+                    <div class="ios-app-icon app-icon-linkedin">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#FFFFFF">
                             <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
                         </svg>
                     </div>
@@ -684,9 +895,9 @@
                 </a>
 
                 <!-- App 7: GitHub -->
-                <a href="https://github.com/Cypheraj12" target="_blank" rel="noopener noreferrer" class="ios-app-item">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#F2F4F5">
+                <a href="https://github.com/Cypheraj12" target="_blank" rel="noopener noreferrer" class="ios-app-item" aria-label="GitHub">
+                    <div class="ios-app-icon app-icon-github">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
                             <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
                         </svg>
                     </div>
@@ -694,10 +905,10 @@
                 </a>
 
                 <!-- App 8: Email -->
-                <a href="mailto:anantajjoshi@gmail.com" class="ios-app-item">
-                    <div class="ios-app-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="#74D0FA">
-                            <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
+                <a href="mailto:anantajjoshi@gmail.com" class="ios-app-item" aria-label="Mail">
+                    <div class="ios-app-icon app-icon-mail">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
                     </div>
                     <span class="ios-app-label">Mail</span>
@@ -707,24 +918,24 @@
             <!-- iOS Bottom Dock -->
             <div class="ios-dock-wrapper">
                 <div class="ios-dock">
-                    <div class="ios-app-item" data-open-sheet="about">
-                        <div class="ios-app-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#74D0FA"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <button class="ios-dock-item" data-open-sheet="about" aria-label="About Me">
+                        <div class="ios-dock-icon app-icon-about">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                         </div>
-                    </div>
-                    <div class="ios-app-item" data-open-sheet="projects">
-                        <div class="ios-app-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#74D0FA"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                    </button>
+                    <button class="ios-dock-item" data-open-sheet="projects" aria-label="Projects">
+                        <div class="ios-dock-icon app-icon-projects">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
                         </div>
-                    </div>
-                    <div class="ios-app-item" data-open-sheet="contact">
-                        <div class="ios-app-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#74D0FA"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </button>
+                    <button class="ios-dock-item" data-open-sheet="contact" aria-label="Contact">
+                        <div class="ios-dock-icon app-icon-contact">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
                         </div>
-                    </div>
-                    <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="ios-app-item">
-                        <div class="ios-app-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#74D0FA"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    </button>
+                    <a href="https://linkedin.com/in/anant-joshi-52a6ab2a7/" target="_blank" rel="noopener noreferrer" class="ios-dock-item" aria-label="LinkedIn">
+                        <div class="ios-dock-icon app-icon-linkedin">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                         </div>
                     </a>
                 </div>
@@ -732,11 +943,11 @@
         </main>
 
         <!-- iOS Bottom Safari Bar (Matching Reference Mockup) -->
-        <footer class="ios-safari-bar">
+        <footer class="ios-safari-bar" role="contentinfo">
             <span class="safari-btn" style="font-weight: 500; font-size: 13px;">aA</span>
             <div class="safari-pill">
                 <svg width="11" height="13" viewBox="0 0 12 14" fill="currentColor"><path d="M10 5V3.5C10 1.57 8.43 0 6.5 0S3 1.57 3 3.5V5H1v9h11V5h-2zM4.5 3.5C4.5 2.4 5.4 1.5 6.5 1.5S8.5 2.4 8.5 3.5V5h-4V3.5z"/></svg>
-                <span>anantjoshi.dev</span>
+                <span class="safari-domain">anantjoshiportfolio.com</span>
             </div>
             <svg class="safari-btn" width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-7.068 2H.534a.25.25 0 0 1-.192-.41l1.966-2.36a.25.25 0 0 1 .384 0l1.966 2.36a.25.25 0 0 1-.192.41z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
         </footer>
