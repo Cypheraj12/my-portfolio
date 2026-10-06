@@ -4,11 +4,15 @@
    STRICT PALETTE:
      - Accent: #74D0FA
      - Base Dark: #1C1E1F
+     - Wallpaper Sculpted Tones: #23272A, #2A3238, #35505F
      - Derived Neutrals: rgba(255, 255, 255, 0.06 - 0.12)
      - Text: #FFFFFF / #F2F4F5
    ========================================================================== */
 
 :root {
+  /* Customizable Wallpaper: Set to url('path-to-photo.jpg') to swap vector art for a photo */
+  --wallpaper: none;
+
   --accent: #74D0FA;
   --accent-muted: rgba(116, 208, 250, 0.15);
   --accent-border: rgba(116, 208, 250, 0.4);
@@ -31,11 +35,11 @@
   --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Layered Depth Shadows (No glowing radial blooms) */
-  --shadow-window-active: 0 1px 2px rgba(0, 0, 0, 0.3), 0 24px 60px rgba(0, 0, 0, 0.45);
-  --shadow-window-inactive: 0 1px 2px rgba(0, 0, 0, 0.25), 0 12px 30px rgba(0, 0, 0, 0.32);
-  --shadow-dock: 0 1px 2px rgba(0, 0, 0, 0.3), 0 20px 48px rgba(0, 0, 0, 0.5);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-icon: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-window-active: 0 2px 4px rgba(0, 0, 0, 0.35), 0 32px 80px rgba(0, 0, 0, 0.45);
+  --shadow-window-inactive: 0 2px 4px rgba(0, 0, 0, 0.25), 0 16px 48px rgba(0, 0, 0, 0.35);
+  --shadow-dock: 0 1px 2px rgba(0, 0, 0, 0.35), 0 20px 48px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-icon: 0 2px 6px rgba(0, 0, 0, 0.45);
 
   --radius-window: 12px;
   --radius-card: 8px;
@@ -101,6 +105,60 @@ button {
 }
 
 /* ==========================================================================
+   FIGMA-STYLE 3D VECTOR WALLPAPER BACKDROP
+   ========================================================================== */
+.system-wallpaper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--base-dark);
+}
+
+.wallpaper-photo-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--wallpaper);
+  background-size: cover;
+  background-position: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.wallpaper-vector-art {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform-origin: center center;
+}
+
+.wallpaper-layer {
+  transition: transform 600ms cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Subtle idle drift loop on mobile (60s loop) */
+@keyframes mobileWallpaperDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.04);
+  }
+  50% {
+    transform: translate3d(-12px, -8px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.04);
+  }
+}
+
+/* ==========================================================================
    DESKTOP ENVIRONMENT (>= 1024px)
    ========================================================================== */
 .desktop-os {
@@ -108,11 +166,10 @@ button {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--base-dark);
-  /* Subtle macOS wallpaper treatment: dark tone with soft center-light vignette, 0% glow */
-  background-image: radial-gradient(130% 110% at 50% 20%, #26292B 0%, #1C1E1F 65%, #151718 100%);
+  background: transparent;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 /* Top macOS Menu Bar */
@@ -212,14 +269,15 @@ button {
   overflow: hidden;
 }
 
-/* Right-aligned Desktop Icons Column (matching reference) */
+/* Left-aligned Desktop Icons Column (24px left edge, 96px row spacing) */
 .desktop-icons-col {
   position: absolute;
-  top: 20px;
-  right: 28px;
+  top: 40px;
+  left: 24px;
+  right: auto;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 28px;
   z-index: 10;
 }
 
@@ -228,11 +286,13 @@ button {
   flex-direction: column;
   align-items: center;
   width: 74px;
-  padding: 6px 4px;
+  height: 68px;
+  padding: 4px;
   border-radius: 6px;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background-color 150ms ease, border-color 150ms ease;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 120ms ease;
+  position: relative;
 }
 
 .desktop-icon-item:hover {
@@ -252,8 +312,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  margin-bottom: 4px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
   transition: transform 120ms ease-out;
 }
 .desktop-icon-item:active .desktop-icon-graphic {
@@ -289,7 +349,7 @@ button {
   border-radius: var(--radius-window);
   background: var(--base-dark);
   border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-window-inactive);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow-window-inactive);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -308,8 +368,13 @@ button {
 
 .mac-window.active {
   border-color: var(--accent-border);
-  box-shadow: var(--shadow-window-active);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow-window-active);
   z-index: 100;
+}
+
+.mac-window#win-about {
+  transform-style: preserve-3d;
+  transition: opacity 180ms ease-out, box-shadow 150ms ease, transform 200ms ease-out;
 }
 
 .mac-window.minimized {
@@ -332,6 +397,7 @@ button {
   height: 38px;
   background: rgba(36, 39, 41, 0.95);
   border-bottom: 1px solid var(--border-subtle);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -419,8 +485,7 @@ button {
 
 .window-body {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: var(--base-dark);
   color: var(--text-secondary);
   position: relative;
@@ -435,7 +500,7 @@ button {
   display: grid;
   grid-template-columns: 240px 1fr;
   height: 100%;
-  min-height: 480px;
+  min-height: 0;
 }
 
 .about-sidebar {
@@ -449,13 +514,13 @@ button {
 }
 
 .about-photo-wrapper {
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--border-medium);
   box-shadow: var(--shadow-card);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .about-photo {
@@ -466,7 +531,7 @@ button {
 }
 
 .about-name {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 4px;
@@ -477,14 +542,14 @@ button {
   font-size: 12px;
   font-weight: 500;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .about-sub {
   font-size: 11px;
   color: var(--text-muted);
   line-height: 1.4;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .about-quick-links {
@@ -512,51 +577,53 @@ button {
 }
 
 .about-content-main {
-  padding: 28px 32px;
+  padding: 24px 28px;
   overflow-y: auto;
+  height: 100%;
+  scroll-behavior: auto;
 }
 
 .content-section-title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-family: var(--font-mono);
 }
 
 .about-bio-text {
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 13.5px;
+  line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .about-detail-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 .detail-card {
   background: var(--base-dark-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-card);
-  padding: 14px 16px;
+  padding: 12px 14px;
 }
 
 .detail-card-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-dim);
   margin-bottom: 4px;
   text-transform: uppercase;
 }
 
 .detail-card-val {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--text-primary);
 }
@@ -617,6 +684,8 @@ button {
 
 .projects-content-area {
   padding: 20px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .projects-grid {
@@ -742,6 +811,8 @@ button {
 /* 3. SKILLS WINDOW */
 .skills-window-content {
   padding: 24px;
+  height: 100%;
+  overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
@@ -794,7 +865,7 @@ button {
   display: grid;
   grid-template-columns: 260px 1fr;
   height: 100%;
-  min-height: 440px;
+  min-height: 0;
 }
 
 .mail-sidebar {
@@ -837,6 +908,8 @@ button {
   flex-direction: column;
   gap: 16px;
   background: var(--base-dark);
+  height: 100%;
+  overflow-y: auto;
 }
 
 .mail-field-row {
@@ -871,7 +944,7 @@ button {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 180px;
+  min-height: 160px;
 }
 
 .mail-textarea {
@@ -885,7 +958,7 @@ button {
   font-family: var(--font-sans);
   font-size: 13px;
   resize: vertical;
-  min-height: 140px;
+  min-height: 120px;
 }
 .mail-textarea:focus {
   outline: none;
@@ -981,7 +1054,10 @@ button {
   background: rgba(28, 30, 31, 0.65);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow-dock);
   border-radius: 18px;
   padding: 6px 10px;
@@ -989,6 +1065,8 @@ button {
   align-items: flex-end;
   gap: 8px;
   height: 64px;
+  transform-style: preserve-3d;
+  transition: transform 200ms ease-out;
 }
 
 .dock-item {
@@ -1007,11 +1085,17 @@ button {
   height: 44px;
   border-radius: var(--radius-dock-icon);
   background: var(--base-dark-surface);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.45);
   position: relative;
   overflow: hidden;
 }
@@ -1078,15 +1162,15 @@ button {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: var(--base-dark);
-  background-image: radial-gradient(120% 90% at 50% 15%, #272A2C 0%, #1C1E1F 70%, #141617 100%);
+  background: transparent;
   flex-direction: column;
+  z-index: 1;
 }
 
-/* iOS Dynamic Status Bar */
+/* Hide fake status bar in regular mobile browser (no double status bar) */
 .ios-status-bar {
+  display: none;
   height: 44px;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
@@ -1094,6 +1178,13 @@ button {
   font-weight: 600;
   color: var(--text-primary);
   z-index: 100;
+}
+
+/* Show status bar only when installed as PWA in standalone display mode */
+@media (display-mode: standalone) {
+  .ios-status-bar {
+    display: flex;
+  }
 }
 
 .ios-time {
@@ -1108,10 +1199,13 @@ button {
   font-size: 13px;
 }
 
-/* iOS Home Screen App Grid */
+/* iOS Home Screen App Grid with Safe-Area Padding */
 .ios-home-screen {
   flex: 1;
-  padding: 24px 20px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  padding-left: max(18px, env(safe-area-inset-left));
+  padding-right: max(18px, env(safe-area-inset-right));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1138,11 +1232,17 @@ button {
   height: 60px;
   border-radius: var(--radius-dock-icon);
   background: var(--base-dark-surface);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 4px 12px rgba(0, 0, 0, 0.4);
   margin-bottom: 6px;
   transition: transform 120ms ease;
 }
@@ -1163,13 +1263,15 @@ button {
 /* iOS Bottom Dock */
 .ios-dock-wrapper {
   margin-bottom: 12px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
 }
 
 .ios-dock {
   background: rgba(28, 30, 31, 0.7);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 30px;
   padding: 12px 18px;
   display: grid;
@@ -1178,7 +1280,7 @@ button {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* iOS Bottom Safari URL Bar (Matching Reference Mockup) */
+/* iOS Bottom Safari URL Bar */
 .ios-safari-bar {
   height: 52px;
   background: rgba(24, 26, 27, 0.92);
@@ -1303,6 +1405,9 @@ button {
   .ios-os {
     display: flex !important;
   }
+  .wallpaper-vector-art {
+    animation: mobileWallpaperDrift 60s ease-in-out infinite alternate;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -1400,5 +1505,13 @@ noscript li {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .wallpaper-vector-art,
+  .wallpaper-layer,
+  .mac-window,
+  .mac-dock {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Anant Joshi — AI/ML Engineer & Data Analyst</title>
     <meta name="description" content="Portfolio of Anant Joshi — Final Year B.Tech CSE (Data Science Specialization). AI/ML Engineer & Data Analyst specializing in Machine Learning, Computer Vision, Predictive Analytics, and REST APIs.">
     
@@ -86,6 +86,100 @@
     </noscript>
 
     <!-- ==========================================================================
+         MACOS/IOS + FIGMA-STYLE LAYERED 3D VECTOR WALLPAPER COMPONENT
+         Single reusable component. Swap with custom photo anytime via --wallpaper.
+         ========================================================================== -->
+    <div id="system-wallpaper" class="system-wallpaper" aria-hidden="true">
+        <!-- Optional custom photo overlay activated when --wallpaper: url(...) is defined -->
+        <div class="wallpaper-photo-layer" id="wallpaper-photo-layer"></div>
+
+        <!-- Sculpted 3D Vector Layers -->
+        <svg class="wallpaper-vector-art" id="wallpaper-vector-art" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Soft directional shadows for sculpted physical depth -->
+                <filter id="shadow-deep" x="-15%" y="-15%" width="130%" height="130%">
+                    <feDropShadow dx="0" dy="24" stdDeviation="36" flood-color="#000000" flood-opacity="0.55"/>
+                </filter>
+                <filter id="shadow-mid" x="-15%" y="-15%" width="130%" height="130%">
+                    <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#000000" flood-opacity="0.48"/>
+                </filter>
+                <filter id="shadow-foreground" x="-15%" y="-15%" width="130%" height="130%">
+                    <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.42"/>
+                </filter>
+
+                <!-- Subtle film grain noise filter at ~3.5% opacity to avoid digital banding -->
+                <filter id="subtle-film-grain" x="0%" y="0%" width="100%" height="100%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" result="noise"/>
+                    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.035 0"/>
+                </filter>
+                
+                <!-- Sculpted surface tones from existing palette -->
+                <linearGradient id="wp-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#23272A"/>
+                    <stop offset="100%" stop-color="#1C1E1F"/>
+                </linearGradient>
+                <linearGradient id="wp-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2A3238"/>
+                    <stop offset="100%" stop-color="#212629"/>
+                </linearGradient>
+                <linearGradient id="wp-grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#35505F"/>
+                    <stop offset="100%" stop-color="#25353F"/>
+                </linearGradient>
+                <!-- Subtle #74D0FA crest edge highlight (15-30% opacity) -->
+                <linearGradient id="wp-accent-edge" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#74D0FA" stop-opacity="0.05"/>
+                    <stop offset="40%" stop-color="#74D0FA" stop-opacity="0.28"/>
+                    <stop offset="80%" stop-color="#74D0FA" stop-opacity="0.14"/>
+                    <stop offset="100%" stop-color="#74D0FA" stop-opacity="0.02"/>
+                </linearGradient>
+
+                <!-- Faint corner vignette -->
+                <radialGradient id="wp-vignette" cx="50%" cy="50%" r="70%">
+                    <stop offset="45%" stop-color="#000000" stop-opacity="0"/>
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0.35"/>
+                </radialGradient>
+            </defs>
+
+            <!-- Base Dark Vector Plane (#1C1E1F) -->
+            <rect width="1920" height="1080" fill="#1C1E1F"/>
+
+            <!-- Layer 1: Deep sculpted curved plane (Shifts ~4px on parallax) -->
+            <g class="wallpaper-layer layer-1" id="wp-layer-1">
+                <path d="M-100 1180 L-100 360 C320 250, 680 520, 1080 390 C1460 280, 1740 160, 2040 240 L2040 1180 Z" fill="url(#wp-grad-1)" filter="url(#shadow-deep)"/>
+                <!-- 1px inner top highlight edge -->
+                <path d="M-100 360 C320 250, 680 520, 1080 390 C1460 280, 1740 160, 2040 240" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.2" fill="none"/>
+            </g>
+
+            <!-- Layer 2: Mid-level folded ribbon surface (Shifts ~8px on parallax) -->
+            <g class="wallpaper-layer layer-2" id="wp-layer-2">
+                <path d="M-100 1180 L-100 540 C280 460, 640 710, 1040 600 C1440 490, 1700 340, 2040 420 L2040 1180 Z" fill="url(#wp-grad-2)" filter="url(#shadow-mid)"/>
+                <!-- Subtle inner top edge -->
+                <path d="M-100 540 C280 460, 640 710, 1040 600 C1440 490, 1700 340, 2040 420" stroke="rgba(255, 255, 255, 0.09)" stroke-width="1.2" fill="none"/>
+            </g>
+
+            <!-- Layer 3: Distinct ribbon layer (#35505F) with #74D0FA edge crest (Shifts ~11px on parallax) -->
+            <g class="wallpaper-layer layer-3" id="wp-layer-3">
+                <path d="M-100 1180 L-100 730 C340 660, 740 860, 1160 740 C1540 630, 1780 510, 2040 570 L2040 1180 Z" fill="url(#wp-grad-3)" filter="url(#shadow-foreground)"/>
+                <!-- Subtle #74D0FA edge highlight at 28% opacity -->
+                <path d="M-100 730 C340 660, 740 860, 1160 740 C1540 630, 1780 510, 2040 570" stroke="url(#wp-accent-edge)" stroke-width="1.6" fill="none"/>
+            </g>
+
+            <!-- Layer 4: Foreground geometric fold facet (Shifts ~14px on parallax) -->
+            <g class="wallpaper-layer layer-4" id="wp-layer-4">
+                <path d="M-100 1180 L-100 910 C420 870, 840 980, 1280 890 C1620 810, 1850 740, 2040 780 L2040 1180 Z" fill="#23272A" opacity="0.96"/>
+                <path d="M-100 910 C420 870, 840 980, 1280 890 C1620 810, 1850 740, 2040 780" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" fill="none"/>
+            </g>
+
+            <!-- Faint corner vignette overlay -->
+            <rect width="1920" height="1080" fill="url(#wp-vignette)"/>
+
+            <!-- Light film grain overlay (3.5% opacity) -->
+            <rect width="1920" height="1080" filter="url(#subtle-film-grain)" opacity="0.45"/>
+        </svg>
+    </div>
+
+    <!-- ==========================================================================
          1. DESKTOP macOS ENVIRONMENT (Screen Width >= 1024px)
          ========================================================================== -->
     <div class="desktop-os" id="desktop-os" aria-label="macOS Desktop Experience">
@@ -119,7 +213,7 @@
 
         <!-- Main Desktop Workspace -->
         <main class="desktop-space">
-            <!-- Right-Hand Desktop Icons Column (matching reference) -->
+            <!-- Left-Hand Desktop Icons Column (24px left edge, 96px row spacing) -->
             <div class="desktop-icons-col" role="region" aria-label="Desktop Folders and Files">
                 <!-- Projects Folder -->
                 <button class="desktop-icon-item" data-open-window="projects" title="Open Projects Folder">
@@ -191,8 +285,8 @@
             <!-- Windows Workspace Layer -->
             <div class="windows-layer" id="windows-layer">
                 
-                <!-- 1. ABOUT WINDOW -->
-                <section class="mac-window" id="win-about" style="top: 70px; left: 80px; width: 720px; height: 500px;" aria-labelledby="about-win-title">
+                <!-- 1. ABOUT WINDOW (Opened on RIGHT side by default) -->
+                <section class="mac-window" id="win-about" aria-labelledby="about-win-title">
                     <div class="window-titlebar" data-drag-handle="true">
                         <div class="traffic-lights">
                             <span class="traffic-light close" data-action="close" title="Close"></span>
@@ -258,7 +352,7 @@
                 </section>
 
                 <!-- 2. PROJECTS FINDER WINDOW -->
-                <section class="mac-window" id="win-projects" style="top: 100px; left: 140px; width: 840px; height: 530px;" aria-labelledby="projects-win-title">
+                <section class="mac-window" id="win-projects" aria-labelledby="projects-win-title">
                     <div class="window-titlebar" data-drag-handle="true">
                         <div class="traffic-lights">
                             <span class="traffic-light close" data-action="close" title="Close"></span>
@@ -298,7 +392,7 @@
                 </section>
 
                 <!-- 3. SKILLS WINDOW -->
-                <section class="mac-window" id="win-skills" style="top: 120px; left: 200px; width: 760px; height: 490px;" aria-labelledby="skills-win-title">
+                <section class="mac-window" id="win-skills" aria-labelledby="skills-win-title">
                     <div class="window-titlebar" data-drag-handle="true">
                         <div class="traffic-lights">
                             <span class="traffic-light close" data-action="close" title="Close"></span>
@@ -319,7 +413,7 @@
                 </section>
 
                 <!-- 4. CONTACT / MAIL WINDOW -->
-                <section class="mac-window" id="win-contact" style="top: 90px; left: 160px; width: 720px; height: 470px;" aria-labelledby="contact-win-title">
+                <section class="mac-window" id="win-contact" aria-labelledby="contact-win-title">
                     <div class="window-titlebar" data-drag-handle="true">
                         <div class="traffic-lights">
                             <span class="traffic-light close" data-action="close" title="Close"></span>
@@ -381,7 +475,7 @@
                 </section>
 
                 <!-- 5. RESUME WINDOW -->
-                <section class="mac-window" id="win-resume" style="top: 80px; left: 180px; width: 780px; height: 530px;" aria-labelledby="resume-win-title">
+                <section class="mac-window" id="win-resume" aria-labelledby="resume-win-title">
                     <div class="window-titlebar" data-drag-handle="true">
                         <div class="traffic-lights">
                             <span class="traffic-light close" data-action="close" title="Close"></span>
@@ -505,7 +599,7 @@
          2. MOBILE iOS ENVIRONMENT (Screen Width < 768px)
          ========================================================================== -->
     <div class="ios-os" id="ios-os" aria-label="iOS Home Screen Experience">
-        <!-- iOS Status Bar -->
+        <!-- iOS Status Bar (Visible only when installed in standalone PWA mode) -->
         <header class="ios-status-bar">
             <span class="ios-time" id="ios-clock-display">9:41</span>
             <div class="ios-status-icons">

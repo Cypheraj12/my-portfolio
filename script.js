@@ -1,6 +1,6 @@
 /**
  * ANANT JOSHI — PORTFOLIO SCRIPT
- * macOS Desktop Window Manager & iOS Home Screen Experience
+ * macOS Desktop Window Manager, Subtle 3D Parallax & iOS Home Screen Experience
  * Uses PORTFOLIO_DATA from data.js
  */
 
@@ -13,8 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { personal, projects, skills, contact } = PORTFOLIO_DATA;
 
+    // Reduced motion preference check
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     // State
     let topZIndex = 100;
+    let isDraggingAnyWindow = false;
+
     const windows = {
         about: document.getElementById("win-about"),
         projects: document.getElementById("win-projects"),
@@ -22,6 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
         contact: document.getElementById("win-contact"),
         resume: document.getElementById("win-resume")
     };
+
+    // Wallpaper layers for mouse parallax
+    const wpLayer1 = document.getElementById("wp-layer-1");
+    const wpLayer2 = document.getElementById("wp-layer-2");
+    const wpLayer3 = document.getElementById("wp-layer-3");
+    const wpLayer4 = document.getElementById("wp-layer-4");
+    const dock = document.getElementById("mac-dock");
 
     // ==========================================================================
     // 1. DATA RENDERING (PROJECTS & SKILLS)
@@ -93,8 +105,66 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================================================
-    // 2. DESKTOP WINDOW MANAGEMENT
+    // 2. DESKTOP WINDOW POSITIONING & MANAGEMENT
     // ==========================================================================
+
+    const resetWindowScroll = (win) => {
+        if (!win) return;
+        win.scrollTop = 0;
+        const body = win.querySelector(".window-body");
+        if (body) body.scrollTop = 0;
+        const main = win.querySelector(".about-content-main");
+        if (main) main.scrollTop = 0;
+    };
+
+    const positionWindowsOnDesktop = () => {
+        if (window.innerWidth < 1024) return;
+
+        // Position About Window on the RIGHT side (~48px margin, vertically centered above dock)
+        const winAbout = windows.about;
+        if (winAbout) {
+            const aboutWidth = Math.min(700, window.innerWidth - 120);
+            const aboutHeight = Math.min(520, window.innerHeight - 130);
+            winAbout.style.width = `${aboutWidth}px`;
+            winAbout.style.height = `${aboutHeight}px`;
+
+            const rightMargin = 48;
+            const leftPos = Math.max(120, window.innerWidth - aboutWidth - rightMargin);
+
+            const availableHeight = window.innerHeight - 28 - 80;
+            const topPos = Math.max(38, Math.floor(28 + (availableHeight - aboutHeight) / 2));
+
+            winAbout.style.left = `${leftPos}px`;
+            winAbout.style.top = `${topPos}px`;
+            resetWindowScroll(winAbout);
+        }
+
+        // Other windows open offset from center-left, cascading by 24px so they never cover About window
+        const otherWidth = Math.min(740, window.innerWidth - 180);
+        const otherHeight = Math.min(510, window.innerHeight - 140);
+
+        const baseLeft = Math.max(110, Math.floor((window.innerWidth - otherWidth) / 2) - 100);
+        const baseTop = Math.max(48, Math.floor((window.innerHeight - otherHeight) / 2) - 40);
+
+        const cascadeOrder = ["projects", "skills", "contact", "resume"];
+        cascadeOrder.forEach((name, idx) => {
+            const win = windows[name];
+            if (win) {
+                win.style.width = `${otherWidth}px`;
+                win.style.height = `${otherHeight}px`;
+                win.style.left = `${baseLeft + idx * 24}px`;
+                win.style.top = `${baseTop + idx * 24}px`;
+                resetWindowScroll(win);
+            }
+        });
+    };
+
+    positionWindowsOnDesktop();
+    window.addEventListener("resize", () => {
+        if (!isDraggingAnyWindow) {
+            positionWindowsOnDesktop();
+        }
+    });
 
     const updateDockIndicators = () => {
         Object.keys(windows).forEach(key => {
@@ -128,12 +198,14 @@ document.addEventListener("DOMContentLoaded", () => {
         win.classList.remove("minimized");
         win.classList.add("open");
         focusWindow(win);
+        resetWindowScroll(win);
         updateDockIndicators();
     };
 
     const closeWindow = (win) => {
         if (!win) return;
         win.classList.remove("open", "active", "maximized");
+        win.style.transform = "";
         updateDockIndicators();
     };
 
@@ -141,15 +213,19 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!win) return;
         win.classList.add("minimized");
         win.classList.remove("active");
+        win.style.transform = "";
         updateDockIndicators();
     };
 
     const toggleMaximizeWindow = (win) => {
         if (!win) return;
         win.classList.toggle("maximized");
+        if (win.classList.contains("maximized")) {
+            win.style.transform = "";
+        }
     };
 
-    // Attach click handlers to desktop icons
+    // Attach click handlers to desktop icons and dock triggers
     document.querySelectorAll("[data-open-window]").forEach(trigger => {
         trigger.addEventListener("click", (e) => {
             e.preventDefault();
@@ -157,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const win = windows[winName];
 
             if (win && win.classList.contains("open") && !win.classList.contains("minimized") && win.classList.contains("active")) {
-                // If user clicks dock icon while already active, minimize it
                 if (trigger.classList.contains("dock-item")) {
                     minimizeWindow(win);
                     return;
@@ -210,12 +285,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let origLeft = 0, origTop = 0;
 
         const onMouseDown = (e) => {
-            // Ignore traffic light clicks
             if (e.target.closest(".traffic-lights") || e.target.closest("button")) return;
             if (win.classList.contains("maximized")) return;
 
             isDragging = true;
+            isDraggingAnyWindow = true;
             focusWindow(win);
+            win.style.transform = "";
 
             startX = e.clientX || (e.touches && e.touches[0].clientX);
             startY = e.clientY || (e.touches && e.touches[0].clientY);
@@ -243,7 +319,6 @@ document.addEventListener("DOMContentLoaded", () => {
             let newLeft = origLeft + deltaX;
             let newTop = origTop + deltaY;
 
-            // Restrict bounds so title bar stays visible
             const maxLeft = window.innerWidth - 120;
             const maxTop = window.innerHeight - 80;
             newLeft = Math.max(10, Math.min(newLeft, maxLeft));
@@ -255,6 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const onMouseUp = () => {
             isDragging = false;
+            isDraggingAnyWindow = false;
             document.removeEventListener("mousemove", onMouseMove);
             document.removeEventListener("mouseup", onMouseUp);
             document.removeEventListener("touchmove", onMouseMove);
@@ -275,16 +351,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Default open window on desktop load
+    // Default open About window on desktop load
     if (window.innerWidth >= 1024) {
         openWindow("about");
     }
 
     // ==========================================================================
-    // 3. DOCK HOVER MAGNIFICATION EFFECT
+    // 3. WALLPAPER MOUSE PARALLAX & SUBTLE 3D PERSPECTIVE TILT
     // ==========================================================================
 
-    const dock = document.getElementById("mac-dock");
+    if (!prefersReducedMotion && window.innerWidth >= 1024) {
+        window.addEventListener("mousemove", (e) => {
+            const normX = (e.clientX / window.innerWidth) - 0.5;
+            const normY = (e.clientY / window.innerHeight) - 0.5;
+
+            // Wallpaper layers shift 4px to 14px at different depths (with 600ms ease-out via CSS transition)
+            if (wpLayer1) wpLayer1.style.transform = `translate3d(${(normX * 4).toFixed(1)}px, ${(normY * 4).toFixed(1)}px, 0)`;
+            if (wpLayer2) wpLayer2.style.transform = `translate3d(${(normX * 8).toFixed(1)}px, ${(normY * 8).toFixed(1)}px, 0)`;
+            if (wpLayer3) wpLayer3.style.transform = `translate3d(${(normX * 11).toFixed(1)}px, ${(normY * 11).toFixed(1)}px, 0)`;
+            if (wpLayer4) wpLayer4.style.transform = `translate3d(${(normX * 14).toFixed(1)}px, ${(normY * 14).toFixed(1)}px, 0)`;
+
+            // Subtle perspective tilt (max 2.5deg) on About window when open, not maximized, and not dragging
+            const aboutWin = windows.about;
+            if (aboutWin && aboutWin.classList.contains("open") && !aboutWin.classList.contains("maximized") && !isDraggingAnyWindow) {
+                const tiltX = (-normY * 2.5).toFixed(2);
+                const tiltY = (normX * 2.5).toFixed(2);
+                aboutWin.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            }
+
+            // Subtle perspective tilt on dock
+            if (dock) {
+                const dockTiltX = (-normY * 1.8).toFixed(2);
+                const dockTiltY = (normX * 1.8).toFixed(2);
+                dock.style.transform = `perspective(800px) rotateX(${dockTiltX}deg) rotateY(${dockTiltY}deg)`;
+            }
+        });
+    }
+
+    // Mobile device tilt (if permitted)
+    if (!prefersReducedMotion && window.innerWidth < 1024 && window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", (e) => {
+            if (e.gamma === null || e.beta === null) return;
+            const tiltGamma = Math.max(-20, Math.min(20, e.gamma)) / 20; // -1 to 1
+            const tiltBeta = Math.max(-20, Math.min(20, e.beta - 40)) / 20;
+
+            if (wpLayer1) wpLayer1.style.transform = `translate3d(${(tiltGamma * 4).toFixed(1)}px, ${(tiltBeta * 4).toFixed(1)}px, 0)`;
+            if (wpLayer2) wpLayer2.style.transform = `translate3d(${(tiltGamma * 8).toFixed(1)}px, ${(tiltBeta * 8).toFixed(1)}px, 0)`;
+            if (wpLayer3) wpLayer3.style.transform = `translate3d(${(tiltGamma * 11).toFixed(1)}px, ${(tiltBeta * 11).toFixed(1)}px, 0)`;
+            if (wpLayer4) wpLayer4.style.transform = `translate3d(${(tiltGamma * 14).toFixed(1)}px, ${(tiltBeta * 14).toFixed(1)}px, 0)`;
+        }, { passive: true });
+    }
+
+    // ==========================================================================
+    // 4. DOCK HOVER MAGNIFICATION EFFECT
+    // ==========================================================================
+
     if (dock) {
         const dockItems = dock.querySelectorAll(".dock-item");
 
@@ -315,7 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 4. MOBILE iOS EXPERIENCE (< 768px)
+    // 5. MOBILE iOS EXPERIENCE (< 768px)
     // ==========================================================================
 
     const sheetOverlay = document.getElementById("ios-sheet-overlay");
@@ -453,7 +574,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 5. CLOCKS & LIVE SYSTEM TIME
+    // 6. CLOCKS & LIVE SYSTEM TIME
     // ==========================================================================
 
     const updateSystemClocks = () => {
@@ -477,7 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateSystemClocks, 1000);
 
     // ==========================================================================
-    // 6. TOAST NOTIFICATIONS & EMAIL COPY
+    // 7. TOAST NOTIFICATIONS & EMAIL COPY
     // ==========================================================================
 
     const showToast = (message) => {
@@ -501,18 +622,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 7. DESKTOP CONTACT FORM SUBMISSION FEEDBACK
+    // 8. DESKTOP CONTACT FORM SUBMISSION FEEDBACK
     // ==========================================================================
 
     const contactForm = document.getElementById("desktop-contact-form");
     if (contactForm) {
-        contactForm.addEventListener("submit", (e) => {
+        contactForm.addEventListener("submit", () => {
             const submitBtn = document.getElementById("send-mail-btn");
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.textContent = "Sending...";
             }
-            // Allow form to submit naturally to formsubmit.co
         });
     }
 
