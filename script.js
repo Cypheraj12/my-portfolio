@@ -120,18 +120,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const positionWindowsOnDesktop = () => {
         if (window.innerWidth < 1024) return;
 
-        // Position About Window on the RIGHT side (~48px margin, vertically centered above dock)
+        // Position About Window PROMINENTLY in the CENTER of the desktop
         const winAbout = windows.about;
         if (winAbout) {
-            const aboutWidth = Math.min(780, window.innerWidth - 120);
-            const aboutHeight = Math.min(560, window.innerHeight - 130);
+            // Noticeably larger dimensions: 940px wide x 620px tall, responsive to screen
+            const aboutWidth = Math.min(940, Math.max(740, window.innerWidth - 220));
+            const availableHeight = window.innerHeight - 28 - 84; // Space between top menu bar (28px) and dock
+            const aboutHeight = Math.min(620, Math.max(500, availableHeight - 32));
+
             winAbout.style.width = `${aboutWidth}px`;
             winAbout.style.height = `${aboutHeight}px`;
 
-            const rightMargin = 48;
-            const leftPos = Math.max(120, window.innerWidth - aboutWidth - rightMargin);
+            // Prominently centered horizontally on the desktop
+            const leftPos = Math.max(124, Math.floor((window.innerWidth - aboutWidth) / 2));
 
-            const availableHeight = window.innerHeight - 28 - 80;
+            // Visually centered vertically between top menu bar and bottom dock
             const topPos = Math.max(38, Math.floor(28 + (availableHeight - aboutHeight) / 2));
 
             winAbout.style.left = `${leftPos}px`;
@@ -139,12 +142,12 @@ document.addEventListener("DOMContentLoaded", () => {
             resetWindowScroll(winAbout);
         }
 
-        // Other windows open offset from center-left, cascading by 24px so they never cover About window
-        const otherWidth = Math.min(760, window.innerWidth - 160);
-        const otherHeight = Math.min(540, window.innerHeight - 140);
+        // Other windows open offset and cascade cleanly
+        const otherWidth = Math.min(780, window.innerWidth - 180);
+        const otherHeight = Math.min(550, window.innerHeight - 150);
 
-        const baseLeft = Math.max(110, Math.floor((window.innerWidth - otherWidth) / 2) - 100);
-        const baseTop = Math.max(48, Math.floor((window.innerHeight - otherHeight) / 2) - 40);
+        const baseLeft = Math.max(120, Math.floor((window.innerWidth - otherWidth) / 2) - 40);
+        const baseTop = Math.max(48, Math.floor((window.innerHeight - otherHeight) / 2) - 30);
 
         const cascadeOrder = ["projects", "skills", "contact", "resume"];
         cascadeOrder.forEach((name, idx) => {
