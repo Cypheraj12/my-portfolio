@@ -955,6 +955,35 @@ document.addEventListener("DOMContentLoaded", () => {
             openWindow("about");
         });
     }
+
+    // ==========================================================================
+    // 11. SAFARI URL BAR & LOADING PROGRESS INTERACTION
+    // ==========================================================================
+    const triggerSafariLoading = () => {
+        const loadingBars = document.querySelectorAll(".safari-loading-progress");
+        loadingBars.forEach(bar => {
+            bar.style.animation = "none";
+            void bar.offsetWidth; // Force CSS reflow
+            bar.style.animation = "safariLoadProgress 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards";
+        });
+    };
+
+    // Reload buttons on Tablet header and iOS footer
+    document.querySelectorAll(".safari-reload-btn, .safari-reload-action-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            triggerSafariLoading();
+            showToast("Reloaded anantjoshiportfolio.com");
+        });
+    });
+
+    // Tapping URL pill re-triggers loading animation smoothly
+    document.querySelectorAll(".safari-pill, .tablet-safari-pill").forEach(pill => {
+        pill.addEventListener("click", () => {
+            triggerSafariLoading();
+        });
+    });
 });
 
 // Helper for escaping strings into HTML

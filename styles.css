@@ -1257,6 +1257,7 @@ button {
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: transparent;
   flex-direction: column;
@@ -1298,13 +1299,15 @@ button {
 /* iOS Home Screen App Grid with Safe-Area Padding */
 .ios-home-screen {
   flex: 1;
+  min-height: 0;
   padding-top: max(20px, env(safe-area-inset-top));
-  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  padding-bottom: 74px; /* Space for the bottom Safari bar */
   padding-left: max(18px, env(safe-area-inset-left));
   padding-right: max(18px, env(safe-area-inset-right));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
 }
 
 .ios-apps-grid {
@@ -1348,12 +1351,12 @@ button {
 }
 
 .ios-app-label {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-primary);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #FFFFFF;
   text-align: center;
   line-height: 1.2;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .ios-app-item {
@@ -1453,35 +1456,120 @@ button {
 
 /* iOS Bottom Safari URL Bar */
 .ios-safari-bar {
-  height: 52px;
-  background: rgba(24, 26, 27, 0.92);
-  border-top: 1px solid var(--border-subtle);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 54px;
+  background: rgba(24, 26, 28, 0.95);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   color: var(--text-secondary);
+  z-index: 9999;
   flex-shrink: 0;
+}
+
+/* Safari Loading Indicator Bar */
+.safari-loading-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ios-safari-bar .safari-loading-bar {
+  top: 0;
+}
+
+.tablet-safari-bar .safari-loading-bar {
+  bottom: 0;
+}
+
+.safari-loading-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #74D0FA, #38BDF8, #74D0FA);
+  box-shadow: 0 0 8px rgba(116, 208, 250, 0.85);
+  animation: safariLoadProgress 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes safariLoadProgress {
+  0% { width: 0%; opacity: 1; }
+  35% { width: 58%; opacity: 1; }
+  75% { width: 88%; opacity: 1; }
+  92% { width: 100%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
 }
 
 .safari-pill {
   flex: 1;
   margin: 0 12px;
   height: 36px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--border-subtle);
+  background: rgba(36, 40, 44, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 12px;
-  color: var(--text-primary);
+  font-size: 12.5px;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.safari-pill:hover,
+.safari-pill:active {
+  background: rgba(48, 53, 58, 0.98);
+  border-color: rgba(116, 208, 250, 0.6);
 }
 
 .safari-btn {
   color: var(--accent);
   font-size: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 120ms ease;
+}
+
+.safari-btn:active {
+  opacity: 0.7;
+}
+
+.safari-lock-icon {
+  width: 11px;
+  height: 13px;
+  fill: var(--accent);
+  flex-shrink: 0;
+}
+
+.safari-domain {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+}
+
+.safari-reload-mini {
+  fill: var(--accent);
+  opacity: 0.9;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1681,30 +1769,37 @@ button {
 }
 
 /* ==========================================================================
-   TABLET iPadOS ENVIRONMENT (768px – 1023px)
+   TABLET iPadOS ENVIRONMENT (768px – 1180px)
    ========================================================================== */
 .tablet-os {
   display: none;
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   flex-direction: column;
   z-index: 1;
 }
 
 .tablet-safari-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 52px;
   padding: 0 20px;
-  background: rgba(28, 30, 31, 0.82);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border-subtle);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(24, 26, 28, 0.95);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  z-index: 100;
+  z-index: 9999;
   flex-shrink: 0;
 }
 
@@ -1723,38 +1818,39 @@ button {
 .tablet-safari-pill {
   flex: 1;
   max-width: 520px;
-  height: 34px;
+  height: 36px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--border-medium);
-  border-radius: 17px;
+  background: rgba(36, 40, 44, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   font-size: 13px;
-  color: var(--text-primary);
+  color: #FFFFFF;
   padding: 0 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
 }
-.safari-lock-icon {
-  width: 11px;
-  height: 13px;
-  fill: var(--accent);
+.tablet-safari-pill:hover {
+  background: rgba(48, 53, 58, 0.98);
+  border-color: rgba(116, 208, 250, 0.6);
 }
-.safari-domain {
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
+
 .safari-reload-btn {
-  color: var(--text-muted);
+  color: var(--accent);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   background: none;
   border: none;
+  padding: 0;
+  transition: opacity 120ms ease;
 }
 .safari-reload-btn:hover {
-  color: var(--text-primary);
+  opacity: 0.8;
 }
 
 .tablet-safari-actions {
@@ -1780,7 +1876,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 24px;
+  padding: calc(52px + 28px) 24px 24px;
   overflow: hidden;
 }
 
@@ -1818,9 +1914,9 @@ button {
 
 .tablet-app-label {
   font-size: 12.5px;
-  font-weight: 500;
+  font-weight: 600;
   color: #FFFFFF;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .tablet-dock-wrapper {
@@ -1975,14 +2071,14 @@ button {
     display: flex !important;
   }
   #system-wallpaper {
-    background-image: linear-gradient(rgba(18, 20, 22, 0.18), rgba(18, 20, 22, 0.38)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85');
+    background-image: url('ios_wallpaper.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1180px) {
   .desktop-os {
     display: none !important;
   }
@@ -1993,14 +2089,14 @@ button {
     display: flex !important;
   }
   #system-wallpaper {
-    background-image: linear-gradient(rgba(18, 20, 22, 0.22), rgba(18, 20, 22, 0.42)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=85');
+    background-image: url('ios_wallpaper.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1181px) {
   .desktop-os {
     display: flex !important;
   }

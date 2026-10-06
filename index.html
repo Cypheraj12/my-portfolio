@@ -665,6 +665,9 @@
     <div class="tablet-os" id="tablet-os" aria-label="iPadOS Tablet Experience">
         <!-- iPadOS Top Safari Address Bar -->
         <header class="tablet-safari-bar" role="banner">
+            <div class="safari-loading-bar" aria-hidden="true">
+                <div class="safari-loading-progress"></div>
+            </div>
             <div class="tablet-safari-nav-btns">
                 <span class="safari-nav-circle"></span>
                 <span class="safari-nav-circle"></span>
@@ -944,12 +947,18 @@
 
         <!-- iOS Bottom Safari Bar (Matching Reference Mockup) -->
         <footer class="ios-safari-bar" role="contentinfo">
-            <span class="safari-btn" style="font-weight: 500; font-size: 13px;">aA</span>
-            <div class="safari-pill">
-                <svg width="11" height="13" viewBox="0 0 12 14" fill="currentColor"><path d="M10 5V3.5C10 1.57 8.43 0 6.5 0S3 1.57 3 3.5V5H1v9h11V5h-2zM4.5 3.5C4.5 2.4 5.4 1.5 6.5 1.5S8.5 2.4 8.5 3.5V5h-4V3.5z"/></svg>
-                <span class="safari-domain">anantjoshiportfolio.com</span>
+            <div class="safari-loading-bar" aria-hidden="true">
+                <div class="safari-loading-progress"></div>
             </div>
-            <svg class="safari-btn" width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-7.068 2H.534a.25.25 0 0 1-.192-.41l1.966-2.36a.25.25 0 0 1 .384 0l1.966 2.36a.25.25 0 0 1-.192.41z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
+            <span class="safari-btn safari-format-btn" style="font-weight: 500; font-size: 13px;">aA</span>
+            <div class="safari-pill">
+                <svg class="safari-lock-icon" width="11" height="13" viewBox="0 0 12 14" fill="currentColor"><path d="M10 5V3.5C10 1.57 8.43 0 6.5 0S3 1.57 3 3.5V5H1v9h11V5h-2zM4.5 3.5C4.5 2.4 5.4 1.5 6.5 1.5S8.5 2.4 8.5 3.5V5h-4V3.5z"/></svg>
+                <span class="safari-domain">anantjoshiportfolio.com</span>
+                <svg class="safari-reload-mini" width="11" height="11" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+            </div>
+            <button class="safari-btn safari-reload-action-btn" title="Reload Page" aria-label="Reload Page">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-7.068 2H.534a.25.25 0 0 1-.192-.41l1.966-2.36a.25.25 0 0 1 .384 0l1.966 2.36a.25.25 0 0 1-.192.41z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
+            </button>
         </footer>
 
         <!-- iOS Slide-Up Sheet Modals -->
