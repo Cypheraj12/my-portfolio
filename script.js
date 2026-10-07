@@ -54,7 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="project-tag-pill">${escapeHtml(p.tag)}</span>
                         <span class="project-year">${escapeHtml(p.year)}</span>
                     </div>
-                    <h4 class="project-title">${escapeHtml(p.title)}</h4>
+                    <h4 class="project-title">
+                        <a href="${escapeHtml(p.liveUrl || p.githubUrl)}" target="_blank" rel="noopener noreferrer" class="project-title-link" onclick="event.stopPropagation();">
+                            ${escapeHtml(p.title)}
+                            <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" style="opacity: 0.65; flex-shrink: 0;"><path d="M10.5 1.5H7a.5.5 0 0 0 0 1h2.793L4.146 8.146a.5.5 0 1 0 .708.708L10.5 3.207V6a.5.5 0 0 0 1 0V1.5a.5.5 0 0 0-.5-.5z"/><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2H5a.5.5 0 0 1 0 1H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v2.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 1 10.5v-7z"/></svg>
+                        </a>
+                    </h4>
                     <p class="project-desc">${escapeHtml(p.description)}</p>
                     <div class="project-highlights-list">
                         ${p.highlights.map(h => `<div class="highlight-row"><span>${escapeHtml(h)}</span></div>`).join("")}
@@ -63,7 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${p.stack.map(s => `<span class="tech-tag">${escapeHtml(s)}</span>`).join("")}
                     </div>
                 </div>
-                <div class="project-card-footer">
+                <div class="project-card-footer" style="display: flex; gap: 12px; align-items: center; justify-content: flex-end;">
+                    ${p.liveUrl ? `
+                        <a href="${escapeHtml(p.liveUrl)}" target="_blank" rel="noopener noreferrer" class="project-link-btn project-link-demo" onclick="event.stopPropagation();">
+                            <span>Live Demo</span>
+                            <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><path d="M10.5 1.5H7a.5.5 0 0 0 0 1h2.793L4.146 8.146a.5.5 0 1 0 .708.708L10.5 3.207V6a.5.5 0 0 0 1 0V1.5a.5.5 0 0 0-.5-.5z"/><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2H5a.5.5 0 0 1 0 1H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v2.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 1 10.5v-7z"/></svg>
+                        </a>
+                    ` : ""}
                     <a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener noreferrer" class="project-link-btn" onclick="event.stopPropagation();">
                         <span>View Source Code</span>
                         <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><path d="M10.5 1.5H7a.5.5 0 0 0 0 1h2.793L4.146 8.146a.5.5 0 1 0 .708.708L10.5 3.207V6a.5.5 0 0 0 1 0V1.5a.5.5 0 0 0-.5-.5z"/><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2H5a.5.5 0 0 1 0 1H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v2.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 1 10.5v-7z"/></svg>
@@ -480,12 +491,20 @@ document.addEventListener("DOMContentLoaded", () => {
                                         <span class="project-tag-pill">${escapeHtml(p.tag)}</span>
                                         <span class="project-year">${escapeHtml(p.year)}</span>
                                     </div>
-                                    <h4 style="font-size: 15px; font-weight: 600; color: #FFF; margin-bottom: 6px;">${escapeHtml(p.title)}</h4>
+                                    <h4 style="font-size: 15px; font-weight: 600; margin-bottom: 6px;">
+                                        <a href="${escapeHtml(p.liveUrl || p.githubUrl)}" target="_blank" rel="noopener noreferrer" style="color: #FFF; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+                                            ${escapeHtml(p.title)}
+                                            <svg width="11" height="11" viewBox="0 0 12 12" fill="var(--accent)"><path d="M10.5 1.5H7a.5.5 0 0 0 0 1h2.793L4.146 8.146a.5.5 0 1 0 .708.708L10.5 3.207V6a.5.5 0 0 0 1 0V1.5a.5.5 0 0 0-.5-.5z"/><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2H5a.5.5 0 0 1 0 1H2.5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v2.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 1 10.5v-7z"/></svg>
+                                        </a>
+                                    </h4>
                                     <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;">${escapeHtml(p.description)}</p>
                                     <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px;">
                                         ${p.stack.map(s => `<span class="tech-tag">${escapeHtml(s)}</span>`).join("")}
                                     </div>
-                                    <a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: var(--accent); font-weight: 500; text-decoration: underline;">View on GitHub →</a>
+                                    <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+                                        ${p.liveUrl ? `<a href="${escapeHtml(p.liveUrl)}" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: var(--accent); font-weight: 600; text-decoration: underline;">Live Demo ↗</a>` : ""}
+                                        <a href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: var(--text-secondary); font-weight: 500; text-decoration: underline;">View on GitHub ↗</a>
+                                    </div>
                                 </div>
                             `).join("")}
                         </div>

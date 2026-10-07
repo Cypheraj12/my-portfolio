@@ -935,6 +935,18 @@ button {
   justify-content: flex-end;
 }
 
+.project-title-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 140ms ease;
+}
+.project-title-link:hover {
+  color: var(--accent);
+}
+
 .project-link-btn {
   display: inline-flex;
   align-items: center;
@@ -947,6 +959,11 @@ button {
 .project-link-btn:hover {
   opacity: 0.8;
   text-decoration: underline;
+}
+
+.project-link-demo {
+  color: #74D0FA !important;
+  font-weight: 600 !important;
 }
 
 /* 3. SKILLS WINDOW */

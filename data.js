@@ -34,7 +34,7 @@ const PORTFOLIO_DATA = {
       ],
       stack: ["Python", "TensorFlow", "MobileNetV2", "OpenCV", "NumPy"],
       githubUrl: "https://github.com/Cypheraj12/Deep_fake_detection_using_deep_learning",
-      liveUrl: null
+      liveUrl: "https://deepfakedetectionusingdeeplearning-gyrnacaq2wanhxbpxvuc6r.streamlit.app/"
     },
     {
       id: "youtube-fetcher-api",
@@ -87,7 +87,7 @@ const PORTFOLIO_DATA = {
         "Packaged into containerized microservice ready for pipeline integration"
       ],
       stack: ["Python", "PyTorch / LSTM", "XGBoost", "FastAPI", "Docker", "Pandas"],
-      githubUrl: "https://github.com/Cypheraj12",
+      githubUrl: "https://github.com/Cypheraj12/backend-api-latency",
       liveUrl: null
     },
     {
