@@ -70,7 +70,7 @@ const PORTFOLIO_DATA = {
       ],
       stack: ["Python", "Scikit-Learn", "Streamlit", "Pandas", "Matplotlib"],
       githubUrl: "https://github.com/Cypheraj12/Heart_disease-prediction",
-      liveUrl: null
+      liveUrl: "https://heartdisease-prediction123.streamlit.app/"
     },
     {
       id: "api-latency-forecasting",
@@ -106,7 +106,25 @@ const PORTFOLIO_DATA = {
       ],
       stack: ["Python", "Pandas", "NumPy", "Scikit-Learn", "Seaborn", "Matplotlib"],
       githubUrl: "https://github.com/Cypheraj12/laptop_price-analysis-and-prediction",
-      liveUrl: null
+      liveUrl: "https://laptopprice-analysis-and-prediction-1lkp62x08-cypheraj12.vercel.app/"
+    },
+    {
+      id: "air-quality-analysis",
+      title: "Air Quality Exploration & AQI Engine",
+      category: "analytics",
+      categoryLabel: "Data Analytics & Modeling",
+      year: "2026",
+      tag: "EDA • AQI Prediction",
+      description: "An interactive exploratory data analysis dashboard and AQI prediction engine. Computes multi-pollutant breakpoints (PM2.5, PM10, NO2, SO2, CO, O3) and evaluates seasonal air quality patterns across Indian metropolitan regions.",
+      role: "Data Analyst & Web Developer",
+      highlights: [
+        "Compliant with CPCB and US-EPA standard breakpoint algorithms for multi-pollutant AQI calculation",
+        "Interactive analytics dashboard featuring real-time correlation matrices and metropolitan presets",
+        "End-to-end data pipeline combining Jupyter/Python analysis with a responsive Vercel web deployment"
+      ],
+      stack: ["Python", "Pandas", "JavaScript", "Chart.js", "EDA", "Vercel"],
+      githubUrl: "https://github.com/Cypheraj12/Air_quality_exploration",
+      liveUrl: "https://airqualityexploration-642aq6fpl-cypheraj12.vercel.app"
     }
   ],
 

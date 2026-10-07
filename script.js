@@ -105,6 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDesktopSkills();
 
     // Project filtering in finder
+    const allChip = document.querySelector('.finder-chip[data-filter="all"]');
+    if (allChip) {
+        allChip.textContent = `All (${projects.length})`;
+    }
+
     const filterChips = document.querySelectorAll(".finder-chip");
     filterChips.forEach(chip => {
         chip.addEventListener("click", () => {
